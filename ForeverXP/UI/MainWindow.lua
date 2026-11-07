@@ -113,6 +113,10 @@ function U:Build()
             local _, message = engine:Select(ids[index],F.character)
             if message then F:Print(message) end
         end)
+        self.chooseQuest = button(frame,"Choose quest",264,-334,138,function()
+            local ok,err=F.modules.LiveJournal:CycleFocus()
+            if not ok then F:Print(err) end
+        end)
         self.professionControls = {}
         local function control(title,x,y,width,fn)
             local item = button(frame,title,x,y,width,function()
@@ -175,7 +179,7 @@ function U:Render()
         self.footer:ClearAllPoints()
         self.footer:SetPoint("TOPLEFT",self.frame,"TOPLEFT",174,self.tab == "professions" and -306 or -282)
         self.previous:Hide(); self.next:Hide(); self.toggle:Hide()
-        self.chooseGuide:Hide(); self.progressTrack:Hide(); self.progressFill:Hide()
+        self.chooseGuide:Hide(); self.chooseQuest:Hide(); self.progressTrack:Hide(); self.progressFill:Hide()
         for _, control in ipairs(self.professionControls) do control:Hide() end
         if F.settings.compact then self.footer:Hide() else self.footer:Show() end
         if self.tab == "settings" then
@@ -212,12 +216,19 @@ function U:Render()
             if not F.settings.compact then self.chooseGuide:Show() end
             if engine.guide then
                 local progress = math.min(engine.index-1,#engine.guide.steps)
+                local journal=engine.guide.id==F.modules.LiveJournal.id
+                if journal then
+                    progress=F.modules.LiveJournal:Progress()
+                    if not F.settings.compact then self.chooseGuide:Hide(); self.chooseQuest:Show() end
+                end
                 self.progressTrack:ClearAllPoints()
                 self.progressTrack:SetPoint("TOPLEFT",self.frame,"TOPLEFT",174,F.settings.compact and -232 or -270)
                 self.progressTrack:Show()
                 if progress>0 then self.progressFill:SetWidth(384*progress/#engine.guide.steps); self.progressFill:Show() end
                 local upcoming = engine.guide.steps[engine.index+1]
+                if journal then upcoming=F.modules.LiveJournal:NextStep() end
                 local lines={string.format("%d / %d steps",progress,#engine.guide.steps),"",step and step.text or "Guide complete"}
+                if step and step.minLevel then lines[#lines+1]="Reference minimum level: "..step.minLevel end
                 local quest=step and F.snapshot and type(F.snapshot.quests)=="table" and F.snapshot.quests[step.questId]
                 if quest and quest.objectives then
                     for i=1,math.min(3,#quest.objectives) do
@@ -225,7 +236,7 @@ function U:Render()
                         lines[#lines+1]=string.format("%s (%d/%d)",row.text,row.count,row.required)
                     end
                 end
-                if engine.guide.id==F.modules.LiveJournal.id then lines[#lines+1]="Current quest log order · no authored travel route" end
+                if journal then lines[#lines+1]=engine.state.focusStep and "Focused quest · other progress is retained" or "Objectives first · then turn-ins" end
                 lines[#lines+1]=""; lines[#lines+1]=upcoming and ("Next: "..upcoming.text) or ""
                 self.body:SetText(table.concat(lines,"\n"))
                 if not F.settings.compact then self.previous:Show(); self.next:Show() end

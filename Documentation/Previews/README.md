@@ -15,3 +15,9 @@ still need live-client verification.
 ## Options
 
 ![Higher contrast settings](settings.png)
+
+## Elwynn reference route
+
+This view uses the authored reference guide, with live route validation pending.
+
+![Elwynn reference route introduction](elwynn.png)

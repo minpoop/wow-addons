@@ -36,9 +36,21 @@ history-backed turn-ins, repeatable history, abandonment, failed/unloaded data,
 loading screens, inventory/level changes and journal restoration. These are
 contract tests, not an assertion that gameplay testing occurred in this workspace.
 
-User-reported live evidence: the 0.1 development build loaded successfully. The
-0.2 quest tracking and journal are new and still need the acceptance/objective/
-turn-in checks below, beginning with `/fxp tracking` and `/fxp journal`.
+User-reported live evidence: the 0.1 development build loaded successfully and the
+0.2 journal "does progress". Exact quest/actions were not recorded. Detailed
+event/persistence checks remain useful; these reports do not validate the new
+Elwynn content or every tracking edge case.
+
+`Tests/routing.lua` covers objective-first batching, out-of-order observations,
+explicit focus, immediate manual resume, old saved cursor compatibility and full
+synthetic progression through the Elwynn reference guide. `Tests/test_elwynn.py`
+cross-checks every route quest, giver, reference coordinate, minimum level and
+prerequisite against curated source facts. Class restrictions are absent in those
+reference records. None of these tests establish live Forever route validity.
+
+Next manual content check: use `/fxp elwynn`, confirm the introduction, then test
+A Threat Within and the first Northshire quest branches. Record any differing
+quest names, prerequisites or giver locations before expanding the verified label.
 
 ## Manual live-client scenarios (all unrun)
 

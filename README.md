@@ -8,8 +8,8 @@ a production release or a verified leveling guide**.
 · [Preview images](Documentation/Previews/README.md)
 
 Extract the ZIP's `ForeverXP` folder into `Interface/AddOns`. This package contains
-the themed framework, James portrait and source-inspected live quest tracking.
-It does not include full leveling routes, and the new tracking needs gameplay testing.
+the James portrait, live quest journal and an Elwynn shared reference route.
+Elwynn still needs end-to-end validation on Forever; full 1–60 coverage is missing.
 
 The user reports client version **1.60.70790**. The supplied working
 `Questie_Forever.toc` declares **interface 16001** and `LoadSavedVariablesFirst: 1`;
@@ -26,11 +26,26 @@ Farm/Buy/Hybrid planning, route draft import/recording and consent-based detours
 gameplay actions, purchasing or automatic movement are implemented.
 
 The user has confirmed that the 0.1 development addon loads in their client.
-Version **0.2.0-dev** adds a source-inspected Forever quest/inventory adapter and
-live quest journal. Gameplay testing of those new features is still pending.
+The user also reports that the 0.2 live quest journal progresses in game. The
+specific quest/build/scenario was not recorded, so this is limited user-reported
+evidence. Version **0.3.0-dev** adds the Elwynn reference route and multi-quest
+journal batching. These additions still need in-game testing.
 Live profession/recipe tracking, arrows, map pins and verified leveling content
 remain pending. The profession view has selection, target and mode controls;
 they populate only from registered verified catalogs and normalized providers.
+
+## Elwynn Forest — shared route for all classes
+
+Use `/fxp elwynn` to start **34 quests across 113 steps**, from Northshire through
+Goldshire, the eastern forest and Westbrook. Quest IDs, prerequisites and giver
+coordinates are checked against pinned Classic reference facts. The ordering and
+instructions are original. The selected quests have no class restriction in that
+reference; class-specific tasks remain optional detours outside the common route.
+
+The guide and coordinates are visibly marked **reference**, not live-verified on
+Forever. It is not a promise of level 10 or a complete 1–60 route. Follow the
+introductory step, then test A Threat Within and the first Northshire branches.
+See [route scope and evidence](Documentation/Reference/Elwynn.md).
 
 ## Try the live quest journal
 
@@ -41,9 +56,13 @@ Replace the old addon folder with the updated download, then reload the client U
 3. Complete objectives and turn a quest in normally. The checklist should update
    from observed quest completion and positive turn-in evidence.
 
-No quest is accepted, turned in, or navigated automatically. The journal follows
-log order and supplies no invented NPC locations. It is not an optimized 1–60
-leveling route. Abandoned quests remain uncertain until you manually confirm the
+No quest is accepted, turned in, or navigated automatically. The journal now groups
+objective work before turn-ins, while recording positive observations that arrive
+out of order. It supplies no invented NPC locations. Use **Choose quest** to cycle
+through unfinished tasks, or `/fxp quests` then `/fxp focus QUEST_ID` to follow a
+specific task. Focus releases when that task completes, returning to the remaining
+queue. Existing saved quest IDs and overrides survive the reordering. It is not an
+optimized travel route. Abandoned quests remain uncertain until you manually confirm the
 step with Next. Current journal records and overrides persist per character.
 Quests are recorded once per journal (including repeatables), with a 100-quest
 limit; repeated cycles and an indefinitely growing journal are not supported.
@@ -104,7 +123,8 @@ Drag the window to move it. Position, scale, opacity and settings are retained.
 The Route / Supplies / Options tabs share the field-journal theme.
 `/fxp select ID` selects registered verified content, `next` explicitly confirms
 a step, `back` reviews a step and pauses auto advancement, and `skip` skips an
-optional step. There are currently no shipped guides to select.
+optional step. `/fxp elwynn` selects the shipped reference guide; `/fxp journal`
+opens the observed quest checklist.
 
 Profession commands: `/fxp profession CATALOG`, `/fxp target N`, `/fxp mode Farm`
 (or Buy/Hybrid), `/fxp estimate expected` (or conservative/guaranteed),

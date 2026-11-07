@@ -47,9 +47,13 @@ function C:RegisterInspectedProvider(name, fn, source)
 end
 function C:Character()
     -- These generic probes are diagnostic candidates, not certified adapters.
-    local _, faction = self:Call("UnitFactionGroup", "player")
-    local _, race = self:Call("UnitRace", "player")
-    local _, class = self:Call("UnitClass", "player")
+    local factionName, faction = self:Call("UnitFactionGroup", "player")
+    local raceName, race = self:Call("UnitRace", "player")
+    local className, class = self:Call("UnitClass", "player")
+    -- Call returns an error string in slot two on failure; it is not a token.
+    if type(factionName)~="string" then faction=nil end
+    if type(raceName)~="string" then race=nil end
+    if type(className)~="string" then class=nil end
     return { faction = faction, race = race, class = class,
              level = self:Call("UnitLevel", "player"), zone = self:Call("GetZoneText") }
 end

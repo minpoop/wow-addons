@@ -101,6 +101,18 @@ Per-character `liveJournal` stores at most 100 ordered quests; corrupted data is
 retained without rewriting it. Each quest is recorded once, not once per repeat.
 New quests append; a previously finished journal resumes at the new step.
 
+Version 0.3 builds all journal objective steps before the turn-in pass. Positive
+observations are recorded even when a later quest finishes first; unobserved tasks
+stay pending. `focusStep` pins an explicitly chosen task until completion, then
+the pending queue resumes. Manual review, auto-advance settings and profession
+detour pauses still apply. Stable step IDs preserve older interleaved progress.
+The progress bar counts actual completed IDs rather than cursor position.
+
+`RegisterReferenceGuide` validates an original, sourced reference guide separately
+from production registration. It is explicitly selectable but excluded from
+automatic recommendations and live-verified coverage. The Elwynn module uses
+this path, with reference markers on every factual NPC/object waypoint.
+
 The adapter batches event bursts through one 0.2-second timer where available;
 otherwise it refreshes on events directly. It reads only referenced item counts,
 pauses during world loading and never treats a missing quest as completed. Failed

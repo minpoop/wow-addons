@@ -148,11 +148,16 @@ def render(nodes):
 
 for view, theme, title in [('guide', 'fog', '01 / ROUTE JOURNAL'),
                            ('professions', 'fog', '02 / SUPPLY LEDGER'),
-                           ('settings', 'contrast', '03 / HIGH-CONTRAST OPTIONS')]:
-    lua.execute(f'ForeverXP.settings.theme={json.dumps(theme)}; ForeverXP.modules.MainWindow:Show({json.dumps(view)})')
+                           ('settings', 'contrast', '03 / HIGH-CONTRAST OPTIONS'),
+                           ('elwynn', 'fog', '04 / ELWYNN SHARED REFERENCE ROUTE')]:
+    if view == 'elwynn':
+        lua.execute('ForeverXP.settings.theme="fog"; ForeverXP:Command("elwynn")')
+    else:
+        lua.execute(f'ForeverXP.settings.theme={json.dumps(theme)}; ForeverXP.modules.MainWindow:Show({json.dumps(view)})')
     nodes = snapshot()
     assert any('James Sunderland' in row.get('text', '') for row in nodes.values())
     content = render(nodes)
+    data_label = 'Classic reference route · live route validation pending' if view == 'elwynn' else 'synthetic layout data'
     html = f'''<!doctype html><html><head><meta charset="utf-8"><style>
     *{{box-sizing:border-box}}body{{margin:0;background:#171e1a;color:#c9cec2;width:1000px;height:820px;font-family:Arial,sans-serif}}
     h1{{position:absolute;left:62px;top:30px;font-size:15px;letter-spacing:3px;font-weight:400}}
@@ -161,6 +166,6 @@ for view, theme, title in [('guide', 'fog', '01 / ROUTE JOURNAL'),
     .texture,.label{{position:absolute}}.label{{font-family:Georgia,serif;line-height:14px;white-space:pre-wrap;overflow:hidden}}
     footer{{position:absolute;left:62px;bottom:45px;font-size:11px;line-height:19px;color:#94a18f;letter-spacing:.4px}}
     </style></head><body><h1>FOREVER XP — {title}</h1><div class="stamp">SOURCE-RENDERED PREVIEW</div>
-    <div class="scene">{content}</div><footer>Mocked client · synthetic layout data · not captured in WoW<br>Actual game fonts, wrapping and rendering may differ.</footer></body></html>'''
+    <div class="scene">{content}</div><footer>Mocked client · {data_label} · not captured in WoW<br>Actual game fonts, wrapping and rendering may differ.</footer></body></html>'''
     (OUTPUT / f'{view}.html').write_text(html)
 print(OUTPUT)

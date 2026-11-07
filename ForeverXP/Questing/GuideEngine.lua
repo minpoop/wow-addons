@@ -33,10 +33,18 @@ function G:RegisterGuide(guide)
     self.guides[guide.id] = F.modules.SavedVariables.Copy(guide)
     return true
 end
+function G:RegisterReferenceGuide(guide)
+    local valid,errors=F.modules.StepValidator:Guide(guide,false)
+    if not valid then return nil,table.concat(errors,"; ") end
+    if guide.verification~="reference-reviewed" or not V.String(guide.source) then return nil,"reference evidence required" end
+    if self.guides[guide.id] then return nil,"duplicate guide" end
+    self.guides[guide.id]=F.modules.SavedVariables.Copy(guide)
+    return true
+end
 function G:Recommend(character)
     local best, score
     for _, guide in pairs(self.guides) do
-        if (not guide.faction or guide.faction == character.faction)
+        if guide.verification~="reference-reviewed" and (not guide.faction or guide.faction == character.faction)
            and (not guide.race or guide.race == character.race)
            and (not guide.class or guide.class == character.class)
            and (not guide.minLevel or (character.level and character.level >= guide.minLevel))
@@ -57,6 +65,7 @@ function G:Select(id, character)
     if state then
         if not V.DataOnly(state) or (state.finished ~= nil and type(state.finished) ~= "boolean")
            or (state.review ~= nil and type(state.review) ~= "boolean") or (state.current ~= nil and not V.String(state.current))
+           or (state.focusStep ~= nil and not V.String(state.focusStep))
            or (state.finished and state.current ~= nil) then return nil, "invalid saved cursor retained" end
         for id,value in pairs(state.completed) do
             if not V.String(id) or type(value) ~= "boolean" then return nil, "invalid saved completion retained" end
@@ -81,6 +90,11 @@ function G:Advance(manual)
     if not step then return false end
     if manual then self.state.overrides[step.id] = "confirmed" end
     self.state.completed[step.id] = true
+    if self.guide.id==F.modules.LiveJournal.id then
+        self.state.review=nil
+        F.modules.LiveJournal:Update({})
+        return true
+    end
     self.index = self.index + 1
     local following = self:Current()
     self.state.current, self.state.finished = following and following.id or nil, following == nil
@@ -103,6 +117,7 @@ end
 function G:Update(snapshot)
     if F.modules.Detours and F.modules.Detours.active then return end
     if not F.settings.autoAdvance or not self.state or self.state.review then return end
+    if self.guide and self.guide.id==F.modules.LiveJournal.id then return F.modules.LiveJournal:Update(snapshot) end
     while self:Current() do
         local step, ready = self:Current(), true
         for _, id in ipairs(step.prerequisites or {}) do if not self.state.completed[id] then ready = false end end

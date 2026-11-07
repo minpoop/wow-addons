@@ -19,6 +19,10 @@
 * The user reports the 0.1 development addon loaded successfully in the actual
   client. That confirms startup for their installation; it does not validate all
   UI interactions, persistence, or gameplay tracking. No in-game run occurred here.
+* The user subsequently reports that the 0.2 journal "does progress". This confirms
+  observed advancement in their gameplay, with no particular quest or event trace
+  recorded. It does not establish turn-in edge cases, profession/map contracts,
+  or the new Elwynn route. The global verified-profile flag remains false.
 * The exact Questie commit from the supplied manifest was subsequently retrieved
   from the upstream repository for source inspection. Its Forever event and
   read-only quest/item contracts underpin the 0.2 adapter. See REFERENCE_EVIDENCE.md.

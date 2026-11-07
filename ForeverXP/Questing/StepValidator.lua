@@ -37,6 +37,7 @@ function V:Guide(guide, production)
             if not self.types[step.type] then fail(prefix .. "unknown type") end
             if not Check.String(step.text) then fail(prefix .. "instruction required") end
             if step.optional ~= nil and type(step.optional) ~= "boolean" then fail(prefix .. "optional must be boolean") end
+            if step.minLevel ~= nil and not positive(step.minLevel) then fail(prefix .. "invalid minimum level") end
             if step.waypoint and not self:Waypoint(step.waypoint) then fail(prefix .. "invalid normalized coordinates") end
             if step.type == "ACCEPT_QUEST" or step.type == "COMPLETE_QUEST" or step.type == "TURN_IN_QUEST" then
                 if not positive(step.questId) then fail(prefix .. "questId required") end

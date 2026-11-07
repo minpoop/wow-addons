@@ -25,6 +25,13 @@ step types and backward-only prerequisite IDs. This declaration is a content
 author's assertion, not automated proof of server validity. Attach actual source
 and verification evidence. Do not label fixtures live-verified outside tests.
 
+`RegisterReferenceGuide` is a distinct authoring path: it requires
+`verification="reference-reviewed"`, a nonempty source and valid structure. Its
+guides are selectable explicitly but excluded from automatic recommendations.
+They do not count as live-verified coverage. Reference waypoints carry their own
+verification marker and render an in-game-check reminder. The Elwynn guide uses
+this path; it is not registered through a fabricated live-verification claim.
+
 Prerequisites must themselves be a dense array, without duplicate IDs. Metadata
 types, level ranges, optional flags and all coordinates are checked. Travel steps
 require waypoints; interaction/flight steps require NPC IDs; kill steps require an

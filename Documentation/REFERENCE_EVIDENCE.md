@@ -81,6 +81,8 @@ Findings used in the original ForeverXP adapter:
   accepts explicit events or a newly positive history flag, preserving uncertainty
   when a repeatable's previous flag was already positive or unreadable.
 
-No reference instructions, source implementation, static quest content or assets
-were incorporated. The new code is an independent read-only adapter and observed
-quest checklist. No protected quest interaction is performed.
+No reference instructions, source implementation or assets were incorporated.
+Version 0.2 added an independent read-only adapter and observed quest checklist.
+Version 0.3 adds an original Elwynn route using curated factual quest records from
+a separately pinned Classic source; see Reference/Elwynn.md. No wholesale
+database or guide text is bundled. No protected quest interaction is performed.

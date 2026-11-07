@@ -56,6 +56,29 @@ function F:Command(message)
     elseif cmd == "journal" then
         local ok,err=self.modules.LiveJournal:Open()
         if ok then U:Show("guide") else self:Print(err) end
+    elseif cmd == "elwynn" then
+        local player=C:Character()
+        if player.faction and player.faction~="Alliance" then self:Print("The Elwynn route is intended for Alliance characters.")
+        else
+            local ok,err=self.modules.GuideEngine:Select("elwynn-forest-shared",self.character)
+            if ok then
+                self:Print("Elwynn reference route selected: shared quests for all classes; Forever route validation is still in progress.")
+                self:Refresh(); U:Show("guide")
+            else self:Print(err) end
+        end
+    elseif cmd == "focus" then
+        local ok,err=self.modules.LiveJournal:Focus(tonumber(arg))
+        if ok then U:Show("guide") else self:Print(err) end
+    elseif cmd == "quests" then
+        local data=self.character.liveJournal
+        if type(data)~="table" or not self.modules.Validation.Array(data.order) or type(data.quests)~="table" then self:Print("Open /fxp journal to collect your quests.")
+        else
+            for _,id in ipairs(data.order) do
+                local record=data.quests[id]
+                if type(record)=="table" and type(record.title)=="string" then self:Print(tostring(id).." · "..record.title) end
+            end
+            self:Print("Use /fxp focus QUEST_ID to choose a quest without confirming other steps.")
+        end
     elseif cmd == "tracking" then
         local a=self.modules.ForeverAdapter
         local snapshot=self.modules.Compatibility:Read("snapshot")
@@ -139,7 +162,7 @@ function F:Command(message)
             self.modules.Waypoints:Set(nil); self.pendingReset = nil
             self:Print("Character progress reset; one pre-reset backup retained."); U:Render()
         end
-    else self:Print("/fxp [journal|tracking|guide|select ID|professions|profession ID|target N|mode Farm/Buy/Hybrid|estimate expected/conservative/guaranteed|price ITEM N|materials|integration MODE|detour|record ID|settings|next|back|skip|auto|compact|scale N|opacity N|debug|diagnostics|reset]") end
+    else self:Print("/fxp [elwynn|journal|quests|focus QUEST_ID|tracking|guide|select ID|professions|profession ID|target N|mode Farm/Buy/Hybrid|estimate expected/conservative/guaranteed|price ITEM N|materials|integration MODE|detour|record ID|settings|next|back|skip|auto|compact|scale N|opacity N|debug|diagnostics|reset]") end
 end
 -- SlashCmdList and event semantics are compatibility candidates, tested with mocks.
 if type(SlashCmdList) == "table" and not SlashCmdList.FOREVERXP then

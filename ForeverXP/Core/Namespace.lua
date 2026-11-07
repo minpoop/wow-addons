@@ -1,5 +1,5 @@
 -- One public namespace; modules never depend on addon varargs or a client generation.
-ForeverXP = { version = "0.2.0-dev", modules = {} }
+ForeverXP = { version = "0.3.0-dev", modules = {} }
 local F = ForeverXP
 function F:Register(name, module)
     assert(type(name) == "string" and type(module) == "table", "invalid module")

@@ -9,5 +9,6 @@ end
 function W:Text()
     if not self.current or not F.settings.waypoints then return "No waypoint" end
     local w = self.current
-    return string.format("%s  ·  %.1f, %.1f\nCoordinate guidance · direction unavailable", tostring(w.zone), w.x * 100, w.y * 100)
+    local note=w.verification=="reference-reviewed" and "Reference coordinates · confirm in game" or "Coordinate guidance · direction unavailable"
+    return string.format("%s  ·  %.1f, %.1f\n%s", tostring(w.zone), w.x * 100, w.y * 100,note)
 end
