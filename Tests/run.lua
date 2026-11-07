@@ -193,6 +193,7 @@ test("waypoints degrade to coordinates, reject invalid numbers and clear",functi
     eq(w:Set(nil),true); eq(w:Text(),"No waypoint")
 end)
 assert(loadfile("Tests/planning.lua"))(F,test,eq)
+assert(loadfile("Tests/tracking.lua"))(F,test,eq)
 test("reset requires two commands and keeps a backup without deleting other characters",function()
     F.character.guides.saved="keep"; F.db.characters.other={guides={x=1},professions={},windows={}}
     F:Command("reset confirm"); eq(F.character.guides.saved,"keep")

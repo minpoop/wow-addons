@@ -9,6 +9,8 @@ James Sunderland portrait texture with its original generated source in `art/`.
 | Module | Responsibility |
 | --- | --- |
 | Compatibility | Guarded diagnostic calls; verified-profile provider boundary |
+| ForeverAdapter | Source-inspected, interface-gated quest/item reads and coalesced events |
+| LiveJournal | Bounded per-character checklist generated from observed quest records |
 | Events | Keyed handlers, idempotent subscription, isolated callback errors |
 | SavedVariables | Schema handling, backups, per-character tables, session fallback |
 | Settings | Typed defaults and clamped display/performance settings |
@@ -51,8 +53,9 @@ registered as Blizzard events. No module polls per frame or scans bags repeatedl
 ## Client adapter contract
 
 Default `Compatibility.profile.verified` is false. Presence probes and mock tests
-do not change it. After live verification, add a documented client profile which
-registers `snapshot` via `RegisterProvider`. Snapshot shape:
+do not change it. `RegisterInspectedProvider` records source evidence separately;
+the shipped snapshot adapter checks observed interface 16001 on each read. It does
+not unlock unrelated capabilities or assert live verification. Snapshot shape:
 
 ```lua
 {
@@ -88,3 +91,17 @@ relogging. Starting a detour requires consent, pauses main auto advancement and
 does not mutate the main guide cursor. Finishing restores the current main
 objective. Explicit guide navigation cancels the detour rather than restoring an
 obsolete step. With no guide, a prior manual waypoint is restored instead.
+
+The quest snapshot also supplies `active` quest IDs, title/objective records and
+source provenance. `LiveJournal` creates COMPLETE_QUEST/TURN_IN_QUEST pairs only
+from those observed records, with stable IDs and a distinct
+`observed-character-log` label. It bypasses neither validation nor the authored
+content verification gate: this is a separate kind of non-optimized checklist.
+Per-character `liveJournal` stores at most 100 ordered quests; corrupted data is
+retained without rewriting it. Each quest is recorded once, not once per repeat.
+New quests append; a previously finished journal resumes at the new step.
+
+The adapter batches event bursts through one 0.2-second timer where available;
+otherwise it refreshes on events directly. It reads only referenced item counts,
+pauses during world loading and never treats a missing quest as completed. Failed
+reads do not update guide progress. Turn-in memory/history baselines are bounded.

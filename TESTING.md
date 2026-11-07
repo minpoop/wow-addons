@@ -30,6 +30,16 @@ The real development package defaults to interface 16001 from the working
 reference manifest. CLI tests also check duplicate/executable content rejection
 and missing quests against a supplied catalog.
 
+`Tests/tracking.lua` simulates the source-inspected interface-16001 contracts:
+single-argument acceptance, event coalescing, objective rows, explicit and
+history-backed turn-ins, repeatable history, abandonment, failed/unloaded data,
+loading screens, inventory/level changes and journal restoration. These are
+contract tests, not an assertion that gameplay testing occurred in this workspace.
+
+User-reported live evidence: the 0.1 development build loaded successfully. The
+0.2 quest tracking and journal are new and still need the acceptance/objective/
+turn-in checks below, beginning with `/fxp tracking` and `/fxp journal`.
+
 ## Manual live-client scenarios (all unrun)
 
 Complete the compatibility checklist before these checks:

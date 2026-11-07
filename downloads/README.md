@@ -7,8 +7,9 @@ sign in with an account that has access. Extract the `ForeverXP` folder from the
 ZIP into your WoW client's `Interface/AddOns` directory.
 
 This is a development framework targeting Forever interface 16001. It includes
-the James portrait and field-journal theme, but no complete leveling guides or
-verified live gameplay adapters. See the root README and compatibility checklist.
+the James portrait, field-journal theme and a source-inspected live quest journal
+(`/fxp journal`). It has no complete leveling routes. The new gameplay adapter
+needs live testing; see the root README and compatibility checklist.
 
 `SHA256SUMS` records the archive's checksum. To rebuild the tracked download:
 

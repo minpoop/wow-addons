@@ -42,3 +42,45 @@ The source manifest now targets 16001 and declares early saved-variable loading.
 The compatibility profile records that provenance but remains `verified=false`.
 No Questie artwork, code, libraries, databases or guide content were copied.
 No inference to a Retail, Classic, WotLK or other client API family was made.
+
+## Subsequent upstream source inspection
+
+The user later confirmed the development addon loads in the live client. This
+is a startup report only; gameplay support remains unverified by live tests.
+
+The reference's build commit was resolvable in the upstream
+[Questie repository](https://github.com/Questie/Questie/tree/97d7518d5402d185e47b39522a6ea09b8316f0ef).
+The following files were read, not executed or bundled:
+
+| File | SHA-256 |
+| --- | --- |
+| Modules/QuestieCompat.lua | `de79383e1f3e7dc717fd4eb6ca8429adf11a24c02ee94566479934c65bd3a4d8` |
+| Modules/EventHandler/EventHandler.lua | `32f6042835abfa04b880a0f8c73dac97501e53b9aaf959c781c03b594bf33e60` |
+| Modules/Quest/QuestLogCache.lua | `dcc37c7b8f38a4e02c3955ad9601c49a8b4755c2eaaf712313d0ede76d66d284` |
+
+Also inspected QuestEventHandler.lua, QuestieProfessions.lua and the upstream
+FOREVER_WORK_LEFT_TO_DO.md for contract caveats. These references describe
+source-inspected builds, not proof of validation on the user's current build.
+
+Findings used in the original ForeverXP adapter:
+
+* QuestieCompat lines 448–497: C_QuestLog.GetNumQuestLogEntries/GetInfo enumerate
+  records containing questID, title and isHeader; IsComplete/IsFailed are queried
+  with a quest ID.
+* Lines 606–608: IsQuestFlaggedCompleted is a history flag, separate from current
+  objective completion. Existing repeatable history cannot prove a new turn-in.
+* Lines 712–724: C_Item.GetItemCount (legacy global fallback) accepts item ID and
+  bank/charge/reagent-bank flags.
+* EventHandler lines 161–168: Forever QUEST_ACCEPTED supplies only the quest ID.
+  Lines 197–200 register removal, turn-in (quest ID first), and log updates.
+* QuestLogCache lines 103–139 use C_QuestLog.GetQuestObjectives with text, type,
+  numFulfilled, numRequired and finished fields; empty/unloaded rows are unsafe
+  completion evidence. ForeverXP displays validated rows and relies on the
+  explicit completion API, never all-empty/all-finished inference.
+* QuestEventHandler lines 453–461 document late/missing turn-in events. ForeverXP
+  accepts explicit events or a newly positive history flag, preserving uncertainty
+  when a repeatable's previous flag was already positive or unreadable.
+
+No reference instructions, source implementation, static quest content or assets
+were incorporated. The new code is an independent read-only adapter and observed
+quest checklist. No protected quest interaction is performed.

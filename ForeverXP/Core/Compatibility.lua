@@ -1,5 +1,5 @@
 local F = ForeverXP
-local C = F:Register("Compatibility", { providers = {}, failures = {} })
+local C = F:Register("Compatibility", { providers = {}, failures = {}, inspected = {} })
 -- Capability presence is not proof of client compatibility. Providers require
 -- an explicit verified profile; no quest/map/profession API family is guessed.
 C.profile = { verified = false, reportedVersion = "1.60.70790", interface = 16001,
@@ -32,12 +32,18 @@ function C:RegisterProvider(name, fn)
     self.providers[name] = fn
 end
 function C:Read(name, ...)
-    if not self.profile.verified then return nil, "client profile unverified" end
+    if not self.profile.verified and not self.inspected[name] then return nil, "client profile unverified" end
     local fn = self.providers[name]
     if not fn then return nil, "unsupported capability: " .. name end
     local ok, value = pcall(fn, ...)
     if not ok then self.failures[name] = tostring(value); return nil, "provider failed: " .. name end
+    self.failures[name]=nil
     return value
+end
+-- Source-reviewed, runtime-gated adapters are distinct from live-verified profiles.
+function C:RegisterInspectedProvider(name, fn, source)
+    assert(type(fn) == "function" and type(source) == "string" and source ~= "", "provider evidence required")
+    self.providers[name], self.inspected[name] = fn, source
 end
 function C:Character()
     -- These generic probes are diagnostic candidates, not certified adapters.

@@ -8,8 +8,8 @@ a production release or a verified leveling guide**.
 · [Preview images](Documentation/Previews/README.md)
 
 Extract the ZIP's `ForeverXP` folder into `Interface/AddOns`. This package contains
-the themed framework and James portrait; it does not include full leveling routes
-or verified live quest tracking.
+the themed framework, James portrait and source-inspected live quest tracking.
+It does not include full leveling routes, and the new tracking needs gameplay testing.
 
 The user reports client version **1.60.70790**. The supplied working
 `Questie_Forever.toc` declares **interface 16001** and `LoadSavedVariablesFirst: 1`;
@@ -25,9 +25,35 @@ profession skill bands and recipe alternatives, recursive material calculation,
 Farm/Buy/Hybrid planning, route draft import/recording and consent-based detours. No protected
 gameplay actions, purchasing or automatic movement are implemented.
 
-Live quest/inventory/profession tracking, arrows, map pins and verified content
+The user has confirmed that the 0.1 development addon loads in their client.
+Version **0.2.0-dev** adds a source-inspected Forever quest/inventory adapter and
+live quest journal. Gameplay testing of those new features is still pending.
+Live profession/recipe tracking, arrows, map pins and verified leveling content
 remain pending. The profession view has selection, target and mode controls;
 they populate only from registered verified catalogs and normalized providers.
+
+## Try the live quest journal
+
+Replace the old addon folder with the updated download, then reload the client UI:
+
+1. `/fxp tracking` reports the observed active quest count and character context.
+2. `/fxp journal` opens a checklist built only from quests actually in your log.
+3. Complete objectives and turn a quest in normally. The checklist should update
+   from observed quest completion and positive turn-in evidence.
+
+No quest is accepted, turned in, or navigated automatically. The journal follows
+log order and supplies no invented NPC locations. It is not an optimized 1–60
+leveling route. Abandoned quests remain uncertain until you manually confirm the
+step with Next. Current journal records and overrides persist per character.
+Quests are recorded once per journal (including repeatables), with a 100-quest
+limit; repeated cycles and an indefinitely growing journal are not supported.
+`/fxp reset` followed by `/fxp reset confirm` resets character guide/profession
+progress including the journal, retaining one backup.
+
+Tracking activates only for observed interface 16001. The adapter uses contracts
+inspected at the exact Questie commit in the working manifest; this is distinct
+from live-verified gameplay support. API failures and loading screens preserve
+progress. A disappearing quest alone never completes a turn-in step.
 
 ## Field-journal theme
 
@@ -67,7 +93,8 @@ not shipped with the addon. There are no development services to start.
 
 The manifest interface comes from the user's working addon, not a version-number
 guess. The ZIP is a development build for live loading/visual checks, not a
-production guide release. Gameplay providers remain disabled pending evidence.
+production guide release. Only the source-inspected, interface-gated quest adapter
+is enabled; unsupported gameplay providers remain disabled.
 
 ## Commands (candidate slash API)
 

@@ -29,6 +29,7 @@ function F:Initialize()
     self.character, self.persistent = D:Character(self.db,nil)
     self:AttachCharacter()
     self.initialized = true
+    self.modules.ForeverAdapter:Start()
     if D.warning then self:Print(D.warning) end
     if not self.persistent then self:Print("Progress is session-only until a valid character identity and save are available.") end
     local ok, err = U:Build()
@@ -38,7 +39,11 @@ function F:Refresh()
     if not self.initialized then return end
     self:AttachCharacter()
     local snapshot = C:Read("snapshot")
-    if type(snapshot) == "table" then self.modules.GuideEngine:Update(snapshot) end
+    if type(snapshot) == "table" then
+        self.modules.LiveJournal:Sync(snapshot)
+        self.modules.GuideEngine:Update(snapshot)
+        self.snapshot=snapshot
+    else self.snapshot=nil end
     self.modules.ProfessionController:Refresh()
     U:Render()
 end
@@ -48,6 +53,18 @@ function F:Command(message)
     cmd = string.lower(cmd)
     if cmd == "" then U:Toggle()
     elseif cmd == "guide" or cmd == "professions" or cmd == "settings" then U:Show(cmd)
+    elseif cmd == "journal" then
+        local ok,err=self.modules.LiveJournal:Open()
+        if ok then U:Show("guide") else self:Print(err) end
+    elseif cmd == "tracking" then
+        local a=self.modules.ForeverAdapter
+        local snapshot=self.modules.Compatibility:Read("snapshot")
+        self:Print("Tracking: " .. (a.enabled and "source-inspected adapter" or "unavailable") .. "; live gameplay validation pending.")
+        if snapshot then
+            self:Print("Readable active quests: "..#snapshot.active..". Use /fxp journal for your current quests.")
+            local p=snapshot.character or {}
+            self:Print("Character: "..tostring(p.faction).." / "..tostring(p.race).." / "..tostring(p.class).."; level "..tostring(snapshot.level).."; zone "..tostring(p.zone))
+        else self:Print(C.failures.snapshot or a.error or "Quest data currently unavailable.") end
     elseif cmd == "auto" then self.modules.Settings:Set("autoAdvance",not self.settings.autoAdvance); U:Render()
     elseif cmd == "compact" then self.modules.Settings:Set("compact",not self.settings.compact); U:Render()
     elseif cmd == "debug" then self.modules.Settings:Set("debug",not self.settings.debug); self:Print("Debug: " .. tostring(self.settings.debug))
@@ -118,10 +135,11 @@ function F:Command(message)
             local controller = self.modules.ProfessionController
             controller.catalog, controller.state, controller.plan, controller.error = nil, nil, nil, nil
             self.modules.Detours.active = nil
+            self.character.liveJournal=nil
             self.modules.Waypoints:Set(nil); self.pendingReset = nil
             self:Print("Character progress reset; one pre-reset backup retained."); U:Render()
         end
-    else self:Print("/fxp [guide|select ID|professions|profession ID|target N|mode Farm/Buy/Hybrid|estimate expected/conservative/guaranteed|price ITEM N|materials|integration MODE|detour|record ID|settings|next|back|skip|auto|compact|scale N|opacity N|debug|diagnostics|reset]") end
+    else self:Print("/fxp [journal|tracking|guide|select ID|professions|profession ID|target N|mode Farm/Buy/Hybrid|estimate expected/conservative/guaranteed|price ITEM N|materials|integration MODE|detour|record ID|settings|next|back|skip|auto|compact|scale N|opacity N|debug|diagnostics|reset]") end
 end
 -- SlashCmdList and event semantics are compatibility candidates, tested with mocks.
 if type(SlashCmdList) == "table" and not SlashCmdList.FOREVERXP then

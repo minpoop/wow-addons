@@ -217,10 +217,20 @@ function U:Render()
                 self.progressTrack:Show()
                 if progress>0 then self.progressFill:SetWidth(384*progress/#engine.guide.steps); self.progressFill:Show() end
                 local upcoming = engine.guide.steps[engine.index+1]
-                self.body:SetText(string.format("%d / %d steps\n\n%s\n\n%s",progress,#engine.guide.steps,step and step.text or "Guide complete", upcoming and ("Next: " .. upcoming.text) or ""))
+                local lines={string.format("%d / %d steps",progress,#engine.guide.steps),"",step and step.text or "Guide complete"}
+                local quest=step and F.snapshot and type(F.snapshot.quests)=="table" and F.snapshot.quests[step.questId]
+                if quest and quest.objectives then
+                    for i=1,math.min(3,#quest.objectives) do
+                        local row=quest.objectives[i]
+                        lines[#lines+1]=string.format("%s (%d/%d)",row.text,row.count,row.required)
+                    end
+                end
+                if engine.guide.id==F.modules.LiveJournal.id then lines[#lines+1]="Current quest log order · no authored travel route" end
+                lines[#lines+1]=""; lines[#lines+1]=upcoming and ("Next: "..upcoming.text) or ""
+                self.body:SetText(table.concat(lines,"\n"))
                 if not F.settings.compact then self.previous:Show(); self.next:Show() end
             else
-                self.body:SetText("A quiet road. A new page.\n\nChoose a route to begin your journal.\nVerified guides have not been installed yet.\n\nDevelopment build · Forever interface 16001\n/fxp diagnostics shows compatibility details.")
+                self.body:SetText("A quiet road. A new page.\n\n/fxp journal tracks quests already in your log.\nAuthored leveling routes are still being verified.\n\n/fxp tracking checks live quest data.\nDevelopment build · Forever interface 16001")
             end
         end
         local detour = F.modules.Detours.active

@@ -16,7 +16,12 @@
   unverified. Lua 5.1 is the offline language target, not a runtime identity claim.
 * The reference loads XML and includes compatibility/library bridges. That
   demonstrates intended usage, not every supported XML element or native API.
-* Actual ForeverXP client loading and visual behavior have not been tested here.
+* The user reports the 0.1 development addon loaded successfully in the actual
+  client. That confirms startup for their installation; it does not validate all
+  UI interactions, persistence, or gameplay tracking. No in-game run occurred here.
+* The exact Questie commit from the supplied manifest was subsequently retrieved
+  from the upstream repository for source inspection. Its Forever event and
+  read-only quest/item contracts underpin the 0.2 adapter. See REFERENCE_EVIDENCE.md.
 
 ## Collect before live installation
 
@@ -48,15 +53,18 @@
 
 ## Record the verified profile
 
-Add exact observed version/build/interface, API signatures, event arguments,
-evidence source and date to a reviewed profile. Only after this investigation
-should it set `Compatibility.profile.verified=true` and register providers. Never
-flip the flag solely to remove a warning. Do not run protected actions to test.
+`Compatibility.profile.verified` remains false. A separately labeled
+`RegisterInspectedProvider` path permits the reviewed read-only snapshot adapter,
+which checks the observed interface on every read. It does not certify live
+behavior or unlock profession/map providers. Record actual gameplay outcomes
+before promoting a capability to live-verified. Never flip a flag to remove a
+warning. Do not run protected actions to test.
 
 Then complete the manual scenarios in TESTING.md. Save sanitized observations,
 not account credentials or identifying screenshots. Server content verification
 is separate from client API verification; neither implies the other.
 
-The next useful reference is `Modules/QuestieCompat.lua`, followed by the quest
-event/log, profession and map modules listed in the supplied manifest. Inspect
-them as evidence; do not import Questie code, databases or assets into ForeverXP.
+The quest compatibility, event and log-cache modules have now been inspected at
+the pinned upstream commit. Profession and map integration still need further
+investigation. References are evidence; Questie implementation code, databases
+and assets have not been imported into ForeverXP.
