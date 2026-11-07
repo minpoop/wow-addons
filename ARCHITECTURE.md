@@ -11,6 +11,7 @@ James Sunderland portrait texture with its original generated source in `art/`.
 | Compatibility | Guarded diagnostic calls; verified-profile provider boundary |
 | ForeverAdapter | Source-inspected, interface-gated quest/item reads and coalesced events |
 | LiveJournal | Bounded per-character checklist generated from observed quest records |
+| RecoveryEngine | Evidence-based cursor catch-up for opted-in authored routes; reversible without completing unknown steps |
 | Events | Keyed handlers, idempotent subscription, isolated callback errors |
 | SavedVariables | Schema handling, backups, per-character tables, session fallback |
 | Settings | Typed defaults and clamped display/performance settings |
@@ -117,3 +118,17 @@ The adapter batches event bursts through one 0.2-second timer where available;
 otherwise it refreshes on events directly. It reads only referenced item counts,
 pauses during world loading and never treats a missing quest as completed. Failed
 reads do not update guide progress. Turn-in memory/history baselines are bounded.
+
+Elwynn opts into `autoResume`. RecoveryEngine reconciles positive evidence for
+all route steps, then matches fresh quest activity, native tracked/selected quests,
+the accepted current quest or another accepted route quest. With completed history
+and no active match, it finds a remaining eligible acceptance/level task. It never
+infers a turn-in from absence or completion of a downstream prerequisite.
+`resumeStart` bounds later suggestions to the resumed route section; `resume`
+stores the last cursor move, reason and count of earlier unconfirmed steps.
+These are bounded metadata, not a rewritten completion ledger. Undo returns to
+the previous cursor and enters review mode, retaining legitimate observations.
+Automatic advance, review and detour guards run before recovery. Failed or missing
+snapshots cannot relocate the cursor. Invalid saved resume records are retained
+and rejected rather than silently reset. All guides display actual completion
+counts; reaching the route's end with deferred work is labeled explicitly.

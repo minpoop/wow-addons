@@ -18,6 +18,7 @@ function V:Guide(guide, production)
     if type(guide) ~= "table" or not self.DataOnly(guide) then return nil, { "guide must contain only finite, acyclic data" } end
     if not Check.String(guide.id) then fail("guide id required") end
     if not Check.String(guide.title) then fail("guide title required") end
+    if guide.autoResume~=nil and type(guide.autoResume)~="boolean" then fail("autoResume must be boolean") end
     for _, key in ipairs({"faction", "race", "class"}) do
         if guide[key] ~= nil and not Check.String(guide[key]) then fail(key .. " must be a nonempty string") end
     end

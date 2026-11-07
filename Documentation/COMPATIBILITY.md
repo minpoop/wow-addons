@@ -23,6 +23,10 @@
   observed advancement in their gameplay, with no particular quest or event trace
   recorded. It does not establish turn-in edge cases, profession/map contracts,
   or the new Elwynn route. The global verified-profile flag remains false.
+* The 0.3 Elwynn route reportedly loaded but did not catch up to the player's
+  current quest. Version 0.3.1 adds automatic resume and optional native quest
+  focus reads. Its source contracts are inspected and mocked, with live
+  confirmation still pending. No new broad verification flag is asserted.
 * The exact Questie commit from the supplied manifest was subsequently retrieved
   from the upstream repository for source inspection. Its Forever event and
   read-only quest/item contracts underpin the 0.2 adapter. See REFERENCE_EVIDENCE.md.

@@ -215,7 +215,7 @@ function U:Render()
             self.heading:SetText(engine.guide and engine.guide.title or "No route selected")
             if not F.settings.compact then self.chooseGuide:Show() end
             if engine.guide then
-                local progress = math.min(engine.index-1,#engine.guide.steps)
+                local progress = engine:Progress()
                 local journal=engine.guide.id==F.modules.LiveJournal.id
                 if journal then
                     progress=F.modules.LiveJournal:Progress()
@@ -227,7 +227,10 @@ function U:Render()
                 if progress>0 then self.progressFill:SetWidth(384*progress/#engine.guide.steps); self.progressFill:Show() end
                 local upcoming = engine.guide.steps[engine.index+1]
                 if journal then upcoming=F.modules.LiveJournal:NextStep() end
-                local lines={string.format("%d / %d steps",progress,#engine.guide.steps),"",step and step.text or "Guide complete"}
+                local ended=progress<#engine.guide.steps and "Route end reached; earlier steps remain reviewable." or "Guide complete"
+                local status=string.format("%d / %d completed",progress,#engine.guide.steps)
+                if engine.guide.autoResume and step then status=status.." · step "..engine.index end
+                local lines={status,"",step and step.text or ended}
                 if step and step.minLevel then lines[#lines+1]="Reference minimum level: "..step.minLevel end
                 local quest=step and F.snapshot and type(F.snapshot.quests)=="table" and F.snapshot.quests[step.questId]
                 if quest and quest.objectives then
@@ -246,6 +249,10 @@ function U:Render()
         end
         local detour = F.modules.Detours.active
         local footer = detour and string.format("Detour: %s · %d/%d\n/fxp detour next or cancel",detour.route.title,detour.index,#detour.route.points) or F.modules.Waypoints:Text()
+        local engine=F.modules.GuideEngine
+        if not detour and F.persistent and engine.state and type(engine.state.resume)=="table" and (engine.state.resume.deferred or 0)>0 then
+            footer=footer.."\nEarlier steps retained · /fxp resume undo"
+        end
         self.footer:SetText(footer .. (F.persistent and "" or "\nSession-only progress; original save retained."))
         self:Paint()
     end)

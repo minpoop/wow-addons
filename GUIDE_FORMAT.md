@@ -61,6 +61,14 @@ a syntactically valid but nonexistent quest ID. See the coverage report.
 
 ## Data-only authoring validation
 
+An authored guide can set `autoResume=true` (boolean) to opt into evidence-based
+cursor catch-up. Elwynn uses it. Known acceptance, completion, history and level
+facts reconcile their own steps; active quests determine the current objective or
+turn-in. Unknown earlier steps are not marked done. Recovery retains source
+verification labels and does not certify untested route content. The existing
+`GuideEngine:Recovery` method still returns suggestions without applying them;
+automatic cursor matching is implemented separately by RecoveryEngine.
+
 Use JSON for external content checks; files are parsed as data and never executed:
 
 ```sh

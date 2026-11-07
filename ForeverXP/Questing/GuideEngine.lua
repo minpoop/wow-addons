@@ -66,7 +66,15 @@ function G:Select(id, character)
         if not V.DataOnly(state) or (state.finished ~= nil and type(state.finished) ~= "boolean")
            or (state.review ~= nil and type(state.review) ~= "boolean") or (state.current ~= nil and not V.String(state.current))
            or (state.focusStep ~= nil and not V.String(state.focusStep))
+           or (state.resumeStart~=nil and not V.String(state.resumeStart))
            or (state.finished and state.current ~= nil) then return nil, "invalid saved cursor retained" end
+        if state.resume~=nil then
+            local resume=state.resume
+            if type(resume)~="table" or not V.String(resume.target) or not V.String(resume.reason)
+               or not V.Integer(resume.deferred) or (resume.from~=nil and not V.String(resume.from)) then
+                return nil,"invalid saved resume record retained"
+            end
+        end
         for id,value in pairs(state.completed) do
             if not V.String(id) or type(value) ~= "boolean" then return nil, "invalid saved completion retained" end
         end
@@ -79,12 +87,23 @@ function G:Select(id, character)
     for i, step in ipairs(guide.steps) do if step.id == state.current then index = i end end
     if not index and not state.finished then return nil, "saved step missing from guide; progress retained" end
     character.guides[id], character.selectedGuide = state, id
+    local changed=self.guide~=guide or self.state~=state
     self.guide, self.state, self.index = guide, state, index or #guide.steps + 1
+    if changed then
+        self.resumePending=guide.autoResume==true
+        self.lastResumeSignal,self.lastResumeNative=nil,nil
+    end
     self:Changed()
     return true
 end
 function G:Current() return self.guide and self.guide.steps[self.index] end
 function G:Changed() F.modules.Events:Emit("FXP_GUIDE_CHANGED") end
+function G:Progress()
+    local count=0
+    if not self.guide or not self.state then return count end
+    for _,step in ipairs(self.guide.steps) do if self.state.completed[step.id]==true then count=count+1 end end
+    return count
+end
 function G:Advance(manual)
     local step = self:Current()
     if not step then return false end
@@ -118,6 +137,7 @@ function G:Update(snapshot)
     if F.modules.Detours and F.modules.Detours.active then return end
     if not F.settings.autoAdvance or not self.state or self.state.review then return end
     if self.guide and self.guide.id==F.modules.LiveJournal.id then return F.modules.LiveJournal:Update(snapshot) end
+    if self.guide and self.guide.autoResume then F.modules.RecoveryEngine:Apply(self,snapshot) end
     while self:Current() do
         local step, ready = self:Current(), true
         for _, id in ipairs(step.prerequisites or {}) do if not self.state.completed[id] then ready = false end end

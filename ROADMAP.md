@@ -16,7 +16,7 @@
 | Phase | Implemented files/features | Validation | Remaining gate / next step |
 | --- | --- | --- | --- |
 | 1 Foundation | Core/, UI/MainWindow.lua, interface-16001 TOC | Offline tests; user confirms 0.1 build loads in live client | Detailed UI/persistence gameplay checks pending |
-| 2 Quest engine | StepValidator, GuideEngine, LiveJournal, ForeverAdapter | User reports 0.2 journal progresses; offline event and persistence tests | 0.3 adds batching/focus and Elwynn reference guide; full route validation pending |
+| 2 Quest engine | StepValidator, GuideEngine, LiveJournal, ForeverAdapter, RecoveryEngine | User reports 0.2 journal progresses; 0.3 route loads but did not catch up; offline regression tests | 0.3.1 adds automatic quest matching and reversible cursor recovery; live fix confirmation pending |
 | 3 Navigation | Waypoints.lua, GatheringRoutes.lua | Coordinate fallback, draft validation, verified-provider recording | Facing/map/scale APIs, arrow and map pins pending |
 | 4 Professions | MaterialCalculator.lua, RecipeDatabase.lua, ProfessionPlanner.lua, ProfessionController.lua | Authored target skill bands, known-recipe alternatives, estimates, UI and stale-data handling | Live skill/recipe tracker and verified catalogs pending |
 | 5 Modes | Pure Farm/Buy/Hybrid split and manual prices | Shared targets, inventory subtraction and shopping quantities | Verified farming routes and live inventory integration pending |

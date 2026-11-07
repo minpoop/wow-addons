@@ -80,6 +80,11 @@ Findings used in the original ForeverXP adapter:
 * QuestEventHandler lines 453–461 document late/missing turn-in events. ForeverXP
   accepts explicit events or a newly positive history flag, preserving uncertainty
   when a repeatable's previous flag was already positive or unreadable.
+* QuestieCompat lines 860–873 read C_SuperTrack.GetSuperTrackedQuestID; lines
+  520–524 read C_QuestLog.GetSelectedQuest. EventHandler lines 205–206 register
+  SUPER_TRACKING_CHANGED. Version 0.3.1 reads these optional getters without
+  calling their setters, validates IDs against the actual active log, and isolates
+  getter errors so optional focus cannot invalidate the entire quest snapshot.
 
 No reference instructions, source implementation or assets were incorporated.
 Version 0.2 added an independent read-only adapter and observed quest checklist.

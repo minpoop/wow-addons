@@ -28,8 +28,8 @@ gameplay actions, purchasing or automatic movement are implemented.
 The user has confirmed that the 0.1 development addon loads in their client.
 The user also reports that the 0.2 live quest journal progresses in game. The
 specific quest/build/scenario was not recorded, so this is limited user-reported
-evidence. Version **0.3.0-dev** adds the Elwynn reference route and multi-quest
-journal batching. These additions still need in-game testing.
+evidence. Version **0.3.1-dev** fixes Elwynn's automatic catch-up for characters
+who already have quests underway. Route content still needs in-game validation.
 Live profession/recipe tracking, arrows, map pins and verified leveling content
 remain pending. The profession view has selection, target and mode controls;
 they populate only from registered verified catalogs and normalized providers.
@@ -42,9 +42,25 @@ coordinates are checked against pinned Classic reference facts. The ordering and
 instructions are original. The selected quests have no class restriction in that
 reference; class-specific tasks remain optional detours outside the common route.
 
+Elwynn now automatically locates an appropriate objective or turn-in using your
+accepted quests, completed history and tracked/selected quest where supported.
+Fresh acceptance/objective events can change the target. An earlier introduction
+or instruction no longer blocks catch-up. Only positively observed conditions
+are marked complete: earlier unknown steps remain reviewable, and the progress
+bar counts actual completed IDs instead of assuming everything before the cursor
+is done. Your saved progress and manual overrides are preserved.
+
+After updating, restart the client and keep Elwynn selected (or use `/fxp elwynn`).
+No quest ID is required to catch up. `/fxp resume` explicitly resynchronizes;
+`/fxp resume undo` restores the previous cursor and pauses in review mode. Back
+also pauses automatic relocation. Automatic catch-up respects auto-advance and
+the disabled recovery setting. A quest outside this route cannot be mapped to an
+Elwynn step; the live journal can still track it.
+
 The guide and coordinates are visibly marked **reference**, not live-verified on
-Forever. It is not a promise of level 10 or a complete 1–60 route. Follow the
-introductory step, then test A Threat Within and the first Northshire branches.
+Forever. It is not a promise of level 10 or a complete 1–60 route. A fresh
+character starts at the introduction; an existing character can catch up from
+observed quest state without clicking through earlier instructions.
 See [route scope and evidence](Documentation/Reference/Elwynn.md).
 
 ## Try the live quest journal

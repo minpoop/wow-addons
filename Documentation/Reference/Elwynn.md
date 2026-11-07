@@ -6,6 +6,12 @@ Alliance common route intended for roughly levels 1–10, with no class filter.
 Class-specific letters, training quests and ability recommendations are excluded;
 trainer visits are optional manual reminders. No fixed XP yield is assumed.
 
+Version 0.3.1 automatically catches up from accepted/completed quests when
+starting mid-route, and uses native quest focus or fresh objective activity where
+available. An earlier manual introduction no longer prevents matching the current
+quest. Unknown earlier steps are retained, not falsely completed. Back pauses
+relocation; `/fxp resume undo` restores the previous cursor for correction.
+
 **Status: reference-reviewed, not live-verified on Forever.** The user confirmed
 that the earlier live journal progresses in game; this does not validate this
 new route. Server quest availability, chains, coordinates and difficulty remain

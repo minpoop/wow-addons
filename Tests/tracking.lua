@@ -2,7 +2,7 @@ local F,test,eq=...
 local A,C,E,G,J=F.modules.ForeverAdapter,F.modules.Compatibility,F.modules.Events,F.modules.GuideEngine,F.modules.LiveJournal
 local originalCharacter=F.character
 F.character={guides={},professions={},windows={}}
-local names={"GetBuildInfo","UnitLevel","C_QuestLog","C_Item","C_Timer"}
+local names={"GetBuildInfo","UnitLevel","C_QuestLog","C_Item","C_Timer","C_SuperTrack"}
 local old={}; for _,name in ipairs(names) do old[name]=_G[name] end
 local queue,enumerations,level,owned={},0,5,0
 local entries={{isHeader=true,title="Fixture header"},{isHeader=false,title="Observed fixture quest",questID=880001}}
@@ -49,6 +49,20 @@ test("quest event bursts are coalesced into one scan without per-frame polling",
     local before=enumerations
     for _=1,50 do E:Emit("QUEST_LOG_UPDATE") end
     eq(#queue,1); drain(); eq(enumerations,before+1)
+end)
+test("native tracked quest and objective activity are exposed without changing the game's selection",function()
+    local writes=0
+    C_SuperTrack={GetSuperTrackedQuestID=function() return 880001 end,SetSuperTrackedQuestID=function() writes=writes+1 end}
+    C_QuestLog.GetSelectedQuest=function() return 880001 end
+    E:Emit("QUEST_WATCH_UPDATE",880001)
+    local snapshot=assert(C:Read("snapshot"))
+    eq(snapshot.trackedQuestId,880001); eq(snapshot.selectedQuestId,880001)
+    eq(snapshot.signalQuestId,880001); assert(snapshot.signalRevision>0); eq(writes,0)
+    C_SuperTrack.GetSuperTrackedQuestID=function() error("fixture restricted focus") end
+    snapshot=assert(C:Read("snapshot")); eq(snapshot.trackedQuestId,nil); eq(snapshot.selectedQuestId,880001)
+    C_QuestLog.GetSelectedQuest=function() return 999999 end
+    snapshot=assert(C:Read("snapshot")); eq(snapshot.selectedQuestId,nil)
+    C_SuperTrack=nil; C_QuestLog.GetSelectedQuest=nil; drain()
 end)
 test("objectives and turn-ins advance while abandonment remains uncertain",function()
     complete[880001]=true; E:Emit("QUEST_WATCH_UPDATE",880001); drain()

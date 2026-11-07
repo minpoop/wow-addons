@@ -1,6 +1,7 @@
 -- Original shared Elwynn route. Classic facts are reference-reviewed, NOT live-verified on Forever.
 -- Sources, hashes and coverage: Documentation/Reference/Elwynn.md.
 local guide = {
+    autoResume = true,
     id = "elwynn-forest-shared",
     title = "Elwynn Forest · shared reference route",
     faction = "Alliance",

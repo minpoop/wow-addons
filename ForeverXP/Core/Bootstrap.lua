@@ -62,9 +62,26 @@ function F:Command(message)
         else
             local ok,err=self.modules.GuideEngine:Select("elwynn-forest-shared",self.character)
             if ok then
+                self.modules.GuideEngine.state.review=nil
+                self.modules.GuideEngine.resumePending=true
                 self:Print("Elwynn reference route selected: shared quests for all classes; Forever route validation is still in progress.")
                 self:Refresh(); U:Show("guide")
             else self:Print(err) end
+        end
+    elseif cmd == "resume" then
+        local engine=self.modules.GuideEngine
+        if arg=="undo" then
+            local ok,err=self.modules.RecoveryEngine:Undo(engine)
+            if not ok then self:Print(err) else U:Show("guide") end
+        elseif not engine.guide or not engine.guide.autoResume then self:Print("Select a route with automatic resume first.")
+        else
+            local snapshot=C:Read("snapshot")
+            if not snapshot then self:Print("Quest data unavailable; current step retained.")
+            else
+                engine.state.review=nil; engine.resumePending=true
+                self.modules.RecoveryEngine:Apply(engine,snapshot,true)
+                engine:Update(snapshot); self.snapshot=snapshot; U:Show("guide")
+            end
         end
     elseif cmd == "focus" then
         local ok,err=self.modules.LiveJournal:Focus(tonumber(arg))
@@ -162,7 +179,7 @@ function F:Command(message)
             self.modules.Waypoints:Set(nil); self.pendingReset = nil
             self:Print("Character progress reset; one pre-reset backup retained."); U:Render()
         end
-    else self:Print("/fxp [elwynn|journal|quests|focus QUEST_ID|tracking|guide|select ID|professions|profession ID|target N|mode Farm/Buy/Hybrid|estimate expected/conservative/guaranteed|price ITEM N|materials|integration MODE|detour|record ID|settings|next|back|skip|auto|compact|scale N|opacity N|debug|diagnostics|reset]") end
+    else self:Print("/fxp [elwynn|resume|resume undo|journal|quests|focus QUEST_ID|tracking|guide|select ID|professions|profession ID|target N|mode Farm/Buy/Hybrid|estimate expected/conservative/guaranteed|price ITEM N|materials|integration MODE|detour|record ID|settings|next|back|skip|auto|compact|scale N|opacity N|debug|diagnostics|reset]") end
 end
 -- SlashCmdList and event semantics are compatibility candidates, tested with mocks.
 if type(SlashCmdList) == "table" and not SlashCmdList.FOREVERXP then

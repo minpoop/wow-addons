@@ -14,6 +14,12 @@ end
 function A:Matches()
     return C:Build().interface == 16001
 end
+function A:SignalQuest(id)
+    if V.Integer(id,1) then
+        self.signalQuestId=id
+        self.signalRevision=(self.signalRevision or 0)+1
+    end
+end
 function A:Collect()
     if not self.enabled or not self:Matches() or self.loading then return nil end
     if not fn("C_QuestLog","GetNumQuestLogEntries") or not fn("C_QuestLog","GetInfo") then
@@ -62,6 +68,20 @@ function A:Collect()
             snapshot.quests[id] = quest
             snapshot.active[#snapshot.active+1] = id
         end
+    end
+    -- Optional native focus must not make the whole snapshot fail if a getter
+    -- is unavailable, restricted or temporarily returns an unreadable value.
+    local function focus(namespace,name)
+        local ok,id=pcall(function()
+            local value=call(namespace,name)
+            if V.Integer(value,1) and snapshot.quests[value] and snapshot.quests[value].accepted==true then return value end
+        end)
+        if ok then return id end
+    end
+    snapshot.trackedQuestId=focus("C_SuperTrack","GetSuperTrackedQuestID")
+    snapshot.selectedQuestId=focus("C_QuestLog","GetSelectedQuest")
+    if self.signalQuestId and snapshot.quests[self.signalQuestId] then
+        snapshot.signalQuestId,snapshot.signalRevision=self.signalQuestId,self.signalRevision
     end
     -- Query only referenced inventory IDs and completed history, never every bag slot.
     local quests, items = {}, {}
@@ -112,12 +132,14 @@ function A:Start()
     if not self:Matches() then self.error = "Tracking requires observed interface 16001"; return nil,self.error end
     self.enabled = true
     C:RegisterInspectedProvider("snapshot",function() return self:Collect() end,self.source)
-    for _,event in ipairs({"QUEST_LOG_UPDATE","QUEST_WATCH_UPDATE","BAG_UPDATE_DELAYED","PLAYER_LEVEL_UP","ZONE_CHANGED_NEW_AREA"}) do
+    for _,event in ipairs({"QUEST_LOG_UPDATE","BAG_UPDATE_DELAYED","PLAYER_LEVEL_UP","ZONE_CHANGED_NEW_AREA","SUPER_TRACKING_CHANGED"}) do
         E:On(event,"forever-tracking",function() self:Schedule() end)
     end
+    E:On("QUEST_WATCH_UPDATE","forever-tracking",function(id) self:SignalQuest(id); self:Schedule() end)
     E:On("QUEST_ACCEPTED","forever-tracking",function(id)
         -- Forever's first and only argument is the quest ID, not a log index.
         if V.Integer(id,1) then self.turnedIn[id],self.baseline[id]=nil,nil end
+        self:SignalQuest(id)
         self:Schedule()
     end)
     E:On("QUEST_TURNED_IN","forever-tracking",function(id)

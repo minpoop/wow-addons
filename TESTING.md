@@ -54,6 +54,21 @@ quest names, prerequisites or giver locations before expanding the verified labe
 
 ## Manual live-client scenarios (all unrun)
 
+`Tests/recovery.lua` covers mid-route installation with an active Goldshire quest,
+completed active quests, history-only catch-up, native focus changes, fresh quest
+activity, missing/invalid snapshots, preserved overrides, relog state, review,
+disabled settings, undo and the Elwynn slash-command/refresh path. The adapter's
+native focus getter is read-only and optional; a throwing getter does not discard
+the quest snapshot. These regression cases reproduce the reported failure as
+mocked scenarios; the user has not yet confirmed this fix in game.
+
+For the 0.3.1 live check, install while an Elwynn quest is already accepted and
+select Elwynn. It should show that quest's objective, or its turn-in if complete,
+without clicking through old instructions. Change the native tracked quest or
+progress another route quest and check the new target. Verify unknown earlier
+steps were not marked complete, Back pauses relocation, and resume undo returns
+to the previous cursor. Check saved progress after relogging.
+
 Complete the compatibility checklist before these checks:
 
 1. Back up saves, install a manifest built from the observed interface, log in and
