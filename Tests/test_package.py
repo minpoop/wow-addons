@@ -1,7 +1,6 @@
 """The synthetic interface used here exists only inside a temporary directory."""
 from pathlib import Path
 import shutil
-import struct
 import subprocess
 import sys
 import tempfile
@@ -34,12 +33,7 @@ class PackagingTests(unittest.TestCase):
                 for module in ('Questing/LevelingCampaign.lua', 'Data/QuestGuides/Alliance/Levels1_20.lua', 'Data/QuestGuides/Alliance/Levels1_60.lua'):
                     self.assertIn('ForeverXP/' + module, archive.namelist())
                     self.assertIn(module, archive.read('ForeverXP/ForeverXP.toc').decode())
-                portrait = archive.read('ForeverXP/Assets/JamesSunderland.tga')
-                self.assertEqual(portrait, (ROOT / 'ForeverXP/Assets/JamesSunderland.tga').read_bytes())
-                self.assertEqual(portrait[2], 2, 'portrait must use uncompressed true-color TGA')
-                self.assertEqual(struct.unpack_from('<HH', portrait, 12), (256, 256))
-                self.assertEqual(portrait[16], 24)
-                self.assertGreaterEqual(len(portrait), 18 + 256*256*3)
+                self.assertNotIn('ForeverXP/Assets/JamesSunderland.tga', archive.namelist())
                 self.assertFalse(any('Tests/' in name for name in archive.namelist()))
                 self.assertTrue(all(name.startswith('ForeverXP/') for name in archive.namelist()))
 

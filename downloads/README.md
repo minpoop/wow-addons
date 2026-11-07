@@ -6,8 +6,8 @@ If GitHub shows a file page, choose **Download raw file**. For a private reposit
 sign in with an account that has access. Extract the `ForeverXP` folder from the
 ZIP into your WoW client's `Interface/AddOns` directory.
 
-This is version **0.5.0-dev**, targeting Forever interface 16001. It includes
-the James portrait, field-journal theme and a source-inspected live quest journal
+This is version **0.5.1-dev**, targeting Forever interface 16001. It includes
+the portrait-free field-journal themes and a source-inspected live quest journal
 (`/fxp journal`), plus the Elwynn route and an expanded **level-aware Alliance 1–60
 guide**. Replace the old folder, restart the client and run **`/fxp leveling`**.
 It selects among 556 reference quests based on your level and quest state, setting

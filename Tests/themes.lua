@@ -20,7 +20,7 @@ test("Warcraft and Warhammer themes style every tab and retain James Sunderland"
             U:Show(tab)
             eq(U.title.text,T:Get().journal)
             eq(U.body.SetTextColorArgs[1],T:Get().text[1])
-            eq(U.portrait:IsShown(),true); eq(U.portraitName.text,"James Sunderland")
+            eq(U.portrait,nil); assert(U.companion.text:find("James Sunderland",1,true))
             eq(U.trim[1]:IsShown(),theme~="fog")
             if tab~="settings" then for _,control in ipairs(U.themeControls) do eq(control:IsShown(),false) end end
         end

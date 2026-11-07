@@ -2,7 +2,7 @@
 ## Title: ForeverXP [DEVELOPMENT BUILD]
 ## Notes: Targets Forever interface 16001. Live API validation pending; see Documentation/COMPATIBILITY.md.
 ## Author: ForeverXP contributors
-## Version: 0.5.0-dev
+## Version: 0.5.1-dev
 ## SavedVariables: ForeverXPDB
 ## LoadSavedVariablesFirst: 1
 Core/Namespace.lua

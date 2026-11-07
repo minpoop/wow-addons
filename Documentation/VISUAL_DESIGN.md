@@ -1,37 +1,26 @@
 # The field journal
 
-ForeverXP now uses a Silent Hill 2–inspired atmosphere with an original interface.
-James Sunderland is the journal companion, visible in a framed 128 × 128 portrait
-panel alongside every view, with his name below the image and original header
-notes. The notes change with Routes, Supplies, Options, active
-detours and completed guides. They are separate from objective and recipe data.
+Version 0.5.1 removes the character portrait, its frame, nameplate and sidebar.
+Guide text, progress, settings and profession controls now use the full 540-pixel
+content width in the existing 576-pixel window. Compact mode also uses that width.
+James Sunderland remains only in the original companion header notes, separate
+from quest instructions. Those notes change with the active view and guide state.
 
-Visual rules: low-saturation gray-green panels, static translucent fog bands,
-rust-colored edges, pale paper-like text, simple selected-tab marks and a thin
-progress line. The portrait is a newly generated fan-art illustration, not a game
-screenshot or extracted asset. No animation loop, flashing effects, copied
-dialogue, music or bundled font is used. Existing client font resources are used
-through the guarded candidate UI.
+Options provides four persisted choices:
 
-`/fxp theme fog` is the default; `/fxp theme contrast` raises text, border and
-selection contrast. Both persist through shared settings. Buttons show a distinct
-hover state; selected Route/Supplies/Options and Farm/Buy/Hybrid controls remain
-marked. Compact mode hides bottom controls without changing saved progression.
+1. Silent Hill: low-saturation gray-green panels, static fog bands, oxidized edges,
+   pale text and a thin progress line. This remains the default.
+2. Warcraft: parchment, brown ink, brass framing and an adventurer’s journal header.
+3. Warhammer 40K: gunmetal, crimson, bone text, corner studs and a crusade log header.
+4. High contrast: the existing brighter-text variant of the field journal.
 
-Panels use flat color textures and text; James uses a bundled, power-of-two,
-uncompressed TGA. Its original source and export instructions are in `art/`.
-Lua tests exercise the
-style application and state; they are not a screenshot or a live visual review.
-Verify font metrics, line wrapping, scaling and visibility in the actual client
-before declaring the theme polished for release.
+Selection applies immediately to all tabs. Compact Options offers one cycling
+button. Slash alternatives are `/fxp theme fog`, `warcraft`, `warhammer` or
+`contrast`. Existing settings and gameplay progress are retained.
 
-## Theme selector (0.5)
-
-Options now has explicit persisted buttons for 1 · Silent Hill, 2 · Warcraft,
-3 · Warhammer 40K and High contrast. Compact Options cycles these choices.
-Warcraft uses parchment, dark brown ink, brass edges and an adventurer's journal
-header. Warhammer uses gunmetal panels, crimson accents, bone text, corner studs
-and a crusade archive header. Styling is procedural and original; the same James
-portrait is retained. No further franchise assets, music or dialogue are bundled.
-Selection recolors all tabs immediately without touching gameplay state.
-Source-rendered previews show the layouts; live font/texture review is pending.
+All current visuals use procedural color textures and existing client fonts.
+No image asset, franchise music or copied dialogue is included in the addon ZIP.
+The old generated portrait source remains in art/ as an unused development
+reference. Source-rendered previews use mocked client frames; they are not game
+screenshots. Tests exercise theme application, state, full-width layout and
+portrait exclusion from packaging. Live font and layout review remains pending.

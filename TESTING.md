@@ -134,3 +134,11 @@ later chapters. Open Options, select all three requested themes and High contras
 change tabs, use compact mode and relog. Confirm theme switching never moves the
 quest cursor. Measure XP gaps and travel issues rather than inferring them from
 synthetic progression.
+
+## 0.5.1 portrait removal
+
+The existing layout regressions now check that no portrait or nameplate is built,
+that every view uses the full 540-pixel content width from the left margin, and
+that compact mode and all theme buttons still work. Packaging asserts the old
+portrait texture is absent. The complete suite remains 95 Lua checks and 8 Python
+tests. Source-rendered previews were refreshed for all views and themes.

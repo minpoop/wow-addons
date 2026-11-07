@@ -3,8 +3,8 @@
 `ForeverXP` is the sole addon namespace. Required slash-command globals and
 `ForeverXPDB` are the only other intentional globals. The TOC defines load order;
 modules register once through `ForeverXP:Register` and use `ForeverXP.modules`.
-The candidate UI needs no XML or external Lua libraries. It includes a bundled
-James Sunderland portrait texture with its original generated source in `art/`.
+The candidate UI needs no XML or external Lua libraries. Version 0.5.1 removes
+the portrait texture and sidebar; the guide body uses the full window width.
 
 | Module | Responsibility |
 | --- | --- |
@@ -170,4 +170,4 @@ allowlist. Options buttons call Settings:Set immediately; Paint updates panels,
 text, selected states, progress, procedural borders and theme-specific headers.
 Compact Options uses one cycling control. Theme changes emit only FXP_CHANGED,
 so they redraw without moving quest cursors or modifying gameplay progress.
-James's portrait remains the same in all skins.
+James's original text notes remain in all skins; the portrait was removed in 0.5.1.

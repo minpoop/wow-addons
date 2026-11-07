@@ -13,7 +13,7 @@ local function text(parent, points, width)
 end
 local function button(parent, title, x, y, width, onClick)
     local b = CreateFrame("Button", nil, parent)
-    size(b, width, 25); b:SetPoint("TOPLEFT", parent, "TOPLEFT", x+156, y)
+    size(b, width, 25); b:SetPoint("TOPLEFT", parent, "TOPLEFT", x, y)
     local bg = b:CreateTexture(nil, "BACKGROUND"); bg:SetAllPoints(b)
     T:Texture(bg,T:Get().button)
     local label = text(b, {8,-6}, width-12); label:SetText(title)
@@ -38,11 +38,6 @@ function U:Paint()
         T:Texture(trim,theme.border)
         if theme.ornament then trim:Show() else trim:Hide() end
     end
-    T:Texture(self.portraitBorder,theme.border)
-    T:Text(self.portraitName,theme.accent)
-    T:Text(self.themeMark,theme.muted)
-    self.themeMark:SetText(theme.mark or "")
-    if theme.mark and not F.settings.compact then self.themeMark:Show() else self.themeMark:Hide() end
     for _, band in ipairs(self.fog) do T:Texture(band,theme.fog) end
     T:Text(self.title,theme.muted); T:Text(self.companion,theme.muted); T:Text(self.heading,theme.accent)
     T:Text(self.body,theme.text); T:Text(self.footer,theme.muted)
@@ -89,13 +84,6 @@ function U:Build()
             rivet:SetPoint(point[1],frame,point[1],point[2],point[3]); size(rivet,5,5)
             self.trim[#self.trim+1]=rivet
         end
-        self.portraitBorder = frame:CreateTexture(nil,"BACKGROUND")
-        self.portraitBorder:SetPoint("TOPLEFT",frame,"TOPLEFT",16,-90); size(self.portraitBorder,132,132)
-        self.portrait = frame:CreateTexture(nil,"ARTWORK")
-        self.portrait:SetPoint("TOPLEFT",frame,"TOPLEFT",18,-92); size(self.portrait,128,128)
-        self.portrait:SetTexture("Interface\\AddOns\\ForeverXP\\Assets\\JamesSunderland.tga")
-        self.portraitName = text(frame,{18,-226},132); self.portraitName:SetText("James Sunderland")
-        self.themeMark = text(frame,{18,-262},132)
         self.fog = {}
         for i=1,6 do
             local band = frame:CreateTexture(nil,"BORDER")
@@ -104,26 +92,26 @@ function U:Build()
         end
         self.title = text(frame, {18,-16}, 500); self.title:SetText("FOREVER XP  /  FIELD JOURNAL")
         self.companion = text(frame,{18,-32},520)
-        button(frame, "×", 380,-8,27,function() frame:Hide() end)
+        button(frame, "×", 536,-8,27,function() frame:Hide() end)
         local captions = {guide="ROUTE",professions="SUPPLIES",settings="OPTIONS"}
         for i, tab in ipairs({"guide","professions","settings"}) do
             local selected = tab
-            local b = button(frame, captions[tab], 18+(i-1)*128,-48,120,function() U:Show(selected) end)
+            local b = button(frame, captions[tab], 18+(i-1)*180,-48,174,function() U:Show(selected) end)
             b.tab = tab
         end
-        self.heading = text(frame,{174,-92},384)
-        self.body = text(frame,{174,-120},384)
-        self.footer = text(frame,{174,-282},384)
+        self.heading = text(frame,{18,-92},540)
+        self.body = text(frame,{18,-120},540)
+        self.footer = text(frame,{18,-282},540)
         self.progressTrack = frame:CreateTexture(nil,"ARTWORK")
         self.progressFill = frame:CreateTexture(nil,"OVERLAY")
         self.progressFill:SetPoint("TOPLEFT",self.progressTrack,"TOPLEFT",0,0)
-        self.progressFill:SetHeight(3); size(self.progressTrack,384,3)
-        self.previous = button(frame,"Previous",18,-334,100,function() local _,err=F.modules.GuideEngine:Back(); if err then F:Print(err) end end)
-        self.next = button(frame,"Confirm step",126,-334,130,function() local _,err=F.modules.GuideEngine:Advance(true); if err then F:Print(err) end end)
-        self.toggle, self.toggleLabel = button(frame,"Auto advance",264,-334,138,function()
+        self.progressFill:SetHeight(3); size(self.progressTrack,540,3)
+        self.previous = button(frame,"Previous",18,-334,174,function() local _,err=F.modules.GuideEngine:Back(); if err then F:Print(err) end end)
+        self.next = button(frame,"Confirm step",198,-334,174,function() local _,err=F.modules.GuideEngine:Advance(true); if err then F:Print(err) end end)
+        self.toggle, self.toggleLabel = button(frame,"Auto advance",378,-334,174,function()
             F.modules.Settings:Set("autoAdvance",not F.settings.autoAdvance)
         end)
-        self.chooseGuide = button(frame,"Choose route",264,-334,138,function()
+        self.chooseGuide = button(frame,"Choose route",378,-334,174,function()
             local engine, ids = F.modules.GuideEngine, {}
             for id in pairs(engine.guides) do ids[#ids+1] = id end
             table.sort(ids)
@@ -133,24 +121,24 @@ function U:Build()
             local _, message = engine:Select(ids[index],F.character)
             if message then F:Print(message) end
         end)
-        self.chooseQuest = button(frame,"Choose quest",264,-334,138,function()
+        self.chooseQuest = button(frame,"Choose quest",378,-334,174,function()
             local ok,err=F.modules.LiveJournal:CycleFocus()
             if not ok then F:Print(err) end
         end)
-        self.autoCampaign=button(frame,"Auto plan",264,-334,138,function()
+        self.autoCampaign=button(frame,"Auto plan",378,-334,174,function()
             local _,err=F.modules.LevelingCampaign:Auto(F.modules.GuideEngine)
             if err then F:Print(err) end
         end)
         self.themeControls={}
         for i,choice in ipairs(T.options) do
             local id=choice.id
-            local control=button(frame,choice.name,18+((i-1)%2)*196,-192-math.floor((i-1)/2)*34,188,function()
+            local control=button(frame,choice.name,18+((i-1)%2)*274,-192-math.floor((i-1)/2)*34,266,function()
                 F.modules.Settings:Set("theme",id)
             end)
             control.theme=id
             self.themeControls[#self.themeControls+1]=control
         end
-        self.themeCycle=button(frame,"Change theme",18,-198,384,function() T:Cycle() end)
+        self.themeCycle=button(frame,"Change theme",18,-198,540,function() T:Cycle() end)
         self.professionControls = {}
         local function control(title,x,y,width,fn)
             local item = button(frame,title,x,y,width,function()
@@ -169,19 +157,19 @@ function U:Build()
             for i,id in ipairs(ids) do if id == F.character.selectedProfession then index = i % #ids + 1 end end
             return F.modules.ProfessionController:Select(ids[index])
         end)
-        control("Target −5",200,-350,98,function()
+        control("Target −5",198,-350,174,function()
             local c = F.modules.ProfessionController
             if not c.state then return nil,"Select a profession first." end
             return c:Change("target",math.max(c.catalog.minSkill,c.state.target-5))
         end)
-        control("Target +5",306,-350,96,function()
+        control("Target +5",378,-350,174,function()
             local c = F.modules.ProfessionController
             if not c.state then return nil,"Select a profession first." end
             return c:Change("target",math.min(c.catalog.maxSkill,c.state.target+5))
         end)
         for i,mode in ipairs({"Farm","Buy","Hybrid"}) do
             local selected = mode
-            local b = control(mode,18+(i-1)*128,-386,120,function() return F.modules.ProfessionController:Change("mode",selected) end)
+            local b = control(mode,18+(i-1)*180,-386,174,function() return F.modules.ProfessionController:Change("mode",selected) end)
             b.mode = mode
         end
         self.frame = frame
@@ -213,11 +201,11 @@ function U:Render()
         local height=F.settings.compact and 245 or (expanded and 450 or (self.tab=="professions" and 430 or 380))
         self.frame:SetHeight(height); self.trim[1]:SetHeight(height); self.trim[2]:SetHeight(height)
         self.body:SetHeight(F.settings.compact and 110 or (expanded and 210 or (self.tab == "professions" and 180 or 160)))
-        for _,control in ipairs({{self.previous,174},{self.next,282},{self.autoCampaign,420}}) do
+        for _,control in ipairs({{self.previous,18},{self.next,198},{self.autoCampaign,378}}) do
             control[1]:ClearAllPoints(); control[1]:SetPoint("TOPLEFT",self.frame,"TOPLEFT",control[2],expanded and -410 or -334)
         end
         self.footer:ClearAllPoints()
-        self.footer:SetPoint("TOPLEFT",self.frame,"TOPLEFT",174,expanded and -352 or (self.tab == "professions" and -306 or -282))
+        self.footer:SetPoint("TOPLEFT",self.frame,"TOPLEFT",18,expanded and -352 or (self.tab == "professions" and -306 or -282))
         self.previous:Hide(); self.next:Hide(); self.toggle:Hide()
         self.chooseGuide:Hide(); self.chooseQuest:Hide(); self.autoCampaign:Hide(); self.progressTrack:Hide(); self.progressFill:Hide()
         self.previous.label:SetText("Previous"); self.next.label:SetText("Confirm step")
@@ -270,9 +258,9 @@ function U:Render()
                     if not F.settings.compact then self.chooseGuide:Hide(); self.chooseQuest:Show() end
                 end
                 self.progressTrack:ClearAllPoints()
-                self.progressTrack:SetPoint("TOPLEFT",self.frame,"TOPLEFT",174,F.settings.compact and -232 or (expanded and -340 or -270))
+                self.progressTrack:SetPoint("TOPLEFT",self.frame,"TOPLEFT",18,F.settings.compact and -232 or (expanded and -340 or -270))
                 self.progressTrack:Show()
-                if progress>0 then self.progressFill:SetWidth(384*progress/#engine.guide.steps); self.progressFill:Show() end
+                if progress>0 then self.progressFill:SetWidth(540*progress/#engine.guide.steps); self.progressFill:Show() end
                 local upcoming = engine.guide.steps[engine.index+1]
                 if journal then upcoming=F.modules.LiveJournal:NextStep() end
                 local ended=progress<#engine.guide.steps and "Route end reached; earlier steps remain reviewable." or "Guide complete"
@@ -297,7 +285,7 @@ function U:Render()
                     local target=engine.guide.campaign.targetLevel
                     local fraction=level and math.max(0,math.min(1,(level-1)/(target-1))) or 0
                     self.progressFill:Hide()
-                    if fraction>0 then self.progressFill:SetWidth(384*fraction); self.progressFill:Show() end
+                    if fraction>0 then self.progressFill:SetWidth(540*fraction); self.progressFill:Show() end
                     self.body:SetText(campaign:Text(engine))
                     self.chooseGuide:Hide(); self.chooseQuest:Hide()
                     self.previous.label:SetText("Other quests"); self.next.label:SetText("Defer quest")

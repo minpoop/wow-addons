@@ -6,11 +6,11 @@ still need live-client verification.
 
 ## Route journal
 
-![Route journal with James Sunderland](guide.png)
+![Route journal](guide.png)
 
 ## Supply ledger
 
-![Profession planning with James Sunderland](professions.png)
+![Profession planning](professions.png)
 
 ## Options
 
@@ -27,7 +27,7 @@ This view uses the authored reference guide, with live route validation pending.
 The mocked character is level 14; older quests remain saved while the campaign
 selects a suitable quest from its reference pool. Live validation is pending.
 
-![Level-aware Alliance campaign with James Sunderland](leveling.png)
+![Level-aware Alliance campaign](leveling.png)
 
 ## Warcraft journal
 
@@ -47,3 +47,6 @@ Options provides immediate, persistent theme choices. These are source-rendered
 layouts, not screenshots from the live game.
 
 ![Theme settings menu](themes.png)
+
+Version 0.5.1 removes the portrait sidebar. These previews use the wider
+text and control layout; James’s original header notes remain.

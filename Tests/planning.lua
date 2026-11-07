@@ -151,15 +151,16 @@ test("invalid external snapshots and materials fail without mutating progress",f
     eq(character.guides.bad.completed.one,"yes")
     F.modules.GuideEngine.guides.bad=nil
 end)
-test("James portrait stays visible in every tab and compact mode",function()
+test("portrait-free layout uses the full guide width in every tab and compact mode",function()
     local ui=F.modules.MainWindow
     for _,tab in ipairs({"guide","professions","settings"}) do
         ui:Show(tab)
         eq(ui.frame.SetWidthArgs[1],576)
-        eq(ui.portrait.SetTextureArgs[1],"Interface\\AddOns\\ForeverXP\\Assets\\JamesSunderland.tga")
-        eq(ui.portrait.SetWidthArgs[1],128); eq(ui.portrait.SetHeightArgs[1],128)
-        eq(ui.portraitName.text,"James Sunderland"); eq(ui.portrait:IsShown(),true)
+        eq(ui.portrait,nil); eq(ui.portraitName,nil)
+        eq(ui.body.SetWidthArgs[1],540)
+        eq(ui.body.SetPointArgs[4],18)
     end
-    F:Command("compact"); eq(ui.portrait:IsShown(),true); eq(ui.frame.SetHeightArgs[1],245)
+    F:Command("compact"); eq(ui.frame.SetHeightArgs[1],245)
+    eq(ui.body.SetWidthArgs[1],540)
     F:Command("compact"); ui:Show("guide")
 end)

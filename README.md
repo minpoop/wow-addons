@@ -8,7 +8,8 @@ and profession-planning foundation. End-to-end live content validation is pendin
 · [Preview images](Documentation/Previews/README.md)
 
 Extract the ZIP's `ForeverXP` folder into `Interface/AddOns`. This package contains
-the James portrait, live quest journal and a level-aware Alliance 1–60 guide.
+the live quest journal and a level-aware Alliance 1–60 guide. Version 0.5.1 removes
+the portrait and gives instructions the full window width.
 Use `/fxp leveling` for the expanded campaign and `/fxp settings` to choose
 Silent Hill, Warcraft or Warhammer 40K styling. Content still needs end-to-end
 validation on Forever; this is a reference development build.
@@ -138,17 +139,17 @@ progress. A disappearing quest alone never completes a turn-in step.
 
 The Silent Hill 2–inspired interface uses original procedural fog bands, muted
 gray-green panels, oxidized borders, faded paper text and subtle progress marks.
-James Sunderland appears in a persistent portrait panel with his name and short
-original field notes kept separate from quest instructions. The bundled portrait
-is newly generated fan art; no extracted game art, copied dialogue or music
-is bundled. Open **Options** or `/fxp settings` and click a theme:
+James Sunderland remains in the short original header notes, separate from quest
+instructions. The character portrait and its panel have been removed. No extracted
+game art, copied dialogue or music is bundled. Open **Options** or `/fxp settings`
+and click a theme:
 
 1. **Silent Hill** — the current fog-gray field journal, still the default.
 2. **Warcraft** — parchment, brown ink and brass framing for an Azeroth journal.
 3. **Warhammer 40K** — gunmetal, crimson, bone lettering and a crusade archive frame.
 
 The existing **High contrast** variant remains available. Changes apply immediately
-and persist across sessions; James remains visible in every theme. Compact Options
+and persist across sessions; James’s text notes remain in every theme. Compact Options
 has a cycling theme button. Slash alternatives: `/fxp theme fog`, `warcraft`,
 `warhammer` or `contrast`. These are original procedural franchise-inspired skins;
 no additional extracted franchise assets or music are included. Source-rendered

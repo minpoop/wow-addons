@@ -1,17 +1,6 @@
-# James Sunderland portrait
+# Archived portrait source
 
-`JamesSunderland.png` is an original AI-generated fan-art illustration created for
-ForeverXP, depicting James Sunderland from Silent Hill 2. It is not an extracted
-game texture, screenshot or promotional image. The original companion notes are
-separate from the illustration and do not quote game dialogue.
-
-The runtime uses a 256 × 256, opaque, uncompressed 24-bit TGA for a 128 × 128
-portrait panel. Re-export from this source using ImageMagick:
-
-```sh
-magick art/JamesSunderland.png -resize 256x256 -alpha off -depth 8 -compress None ForeverXP/Assets/JamesSunderland.tga
-```
-
-The package includes the TGA, not this full-resolution source. Live texture loading
-on the target client remains unverified. `tools/preview.py` reads the actual TGA
-and converts it to PNG for the source-rendered browser preview.
+JamesSunderland.png is the original generated fan-art source used by earlier
+ForeverXP development builds. Version 0.5.1 removes the runtime portrait and TGA.
+This source is retained only as an unused development reference and is excluded
+from the addon package. The current interface uses procedural textures and text.
