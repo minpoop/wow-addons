@@ -1,0 +1,25 @@
+## Interface: 16001
+## Title: ForeverXP [DEVELOPMENT BUILD]
+## Notes: Targets Forever interface 16001. Live API validation pending; see Documentation/COMPATIBILITY.md.
+## Author: ForeverXP contributors
+## Version: 0.1.0-dev
+## SavedVariables: ForeverXPDB
+## LoadSavedVariablesFirst: 1
+Core/Namespace.lua
+Core/Compatibility.lua
+Core/Events.lua
+Core/SavedVariables.lua
+Core/Settings.lua
+Core/Validation.lua
+Questing/StepValidator.lua
+Questing/GuideEngine.lua
+Professions/MaterialCalculator.lua
+Professions/RecipeDatabase.lua
+Professions/ProfessionPlanner.lua
+Professions/ProfessionController.lua
+Navigation/Waypoints.lua
+Navigation/GatheringRoutes.lua
+Navigation/Detours.lua
+UI/Themes.lua
+UI/MainWindow.lua
+Core/Bootstrap.lua
