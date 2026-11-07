@@ -102,3 +102,16 @@ Campaign Next means defer, Back cycles alternatives, and Auto plan clears an
 explicit pin. Deferral changes planner preference only. It never confirms a quest
 phase or abandons a quest. The separate campaign guide imports matching old
 Elwynn completions/overrides once and retains the old route save.
+
+## Expanded campaign metadata (0.5)
+
+A campaign can add `zonePreference=25` (integer 0–100) and a dense `chapters`
+array of `{minLevel,maxLevel,title,text}`. Chapter ranges must cover every level
+from 1 through targetLevel-1 contiguously. The target must be at least 2.
+Accept steps can add dense positive-ID arrays `prerequisiteQuestsAny` (one
+completed quest required) and `exclusiveQuests` (positively observed conflicts).
+These use quest IDs; the existing prerequisites field still uses backward step IDs
+and means ALL. Selected alternative quests must precede the dependent quest in
+source order. Alternatives outside the pool can satisfy positive history, but
+cannot be invented as guide work. Duplicate/self references and sparse arrays fail
+validation. See the generated Levels1_60.lua and curated facts for concrete data.

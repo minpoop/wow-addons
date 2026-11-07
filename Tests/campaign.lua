@@ -11,11 +11,11 @@ local function begin(level,quests,zone)
     F.character={guides={},professions={},windows={}}
     F.settings.autoAdvance=true
     current=snapshot(level,quests,zone)
-    assert(G:Select(C.id,F.character)); G:Update(current)
-    return C.runtime[C.id]
+    assert(G:Select(C.testId,F.character)); G:Update(current)
+    return C.runtime[C.testId]
 end
 test("campaign supplies a class-independent reference pool and valid level policy",function()
-    local guide=G.guides[C.id]
+    local guide=G.guides[C.testId]
     eq(guide.verification,"reference-reviewed"); eq(guide.class,nil); eq(guide.campaign.targetLevel,20)
     eq(#C:Index(guide).order,97); eq(#guide.steps,293)
     eq(F.modules.StepValidator:Guide(guide,false),true); eq(F.modules.StepValidator:Guide(guide,true),false)
@@ -35,7 +35,7 @@ end)
 test("a tracked low-level quest is set aside at higher level without fake turn-in or abandonment",function()
     local run=begin(14,{[7]={accepted=true,level=2}})
     current.trackedQuestId=7; current.signalQuestId=7; G:Update(current)
-    run=C.runtime[C.id]
+    run=C.runtime[C.testId]
     assert(G:Current().questId~=7); assert(run.selected.goal.level>=11)
     eq(G.state.completed["quest-7-turn-in"],nil); eq(G.state.completed["quest-7-complete"],nil)
     eq(G.state.completed["quest-7-accept"],true); assert(run.deferred>0)
@@ -126,30 +126,30 @@ end)
 test("existing Elwynn completion and overrides import once without overwriting old progress",function()
     local old={current="quest-7-turn-in",completed={["quest-783-turn-in"]=true},overrides={["quest-7-accept"]="confirmed"}}
     F.character={guides={["elwynn-forest-shared"]=old},professions={},windows={}}
-    assert(G:Select(C.id,F.character))
+    assert(G:Select(C.testId,F.character))
     eq(G.state.completed["quest-783-turn-in"],true); eq(G.state.overrides["quest-7-accept"],"confirmed")
     eq(old.current,"quest-7-turn-in"); eq(old.completed["campaign-target-20"],nil)
-    G.state.completed["quest-783-turn-in"]=false; assert(G:Select(C.id,F.character))
+    G.state.completed["quest-783-turn-in"]=false; assert(G:Select(C.testId,F.character))
     eq(G.state.completed["quest-783-turn-in"],false)
 end)
 test("campaign save validation preserves unknown versions and relog preferences",function()
     begin(14); local id=G:Current().questId; assert(C:Defer(G))
     local saved=F.modules.SavedVariables.Copy(F.character)
-    F.character=saved; assert(G:Select(C.id,saved)); G:Update(current)
+    F.character=saved; assert(G:Select(C.testId,saved)); G:Update(current)
     eq(G.state.campaign.deferredByUser[id],true); assert(G:Current().questId~=id)
-    local record=saved.guides[C.id]; record.campaign.version=99
-    eq(G:Select(C.id,saved),nil); eq(record.campaign.version,99)
+    local record=saved.guides[C.testId]; record.campaign.version=99
+    eq(G:Select(C.testId,saved),nil); eq(record.campaign.version,99)
 end)
 test("public command and UI show a level goal with non-destructive controls",function()
     current=snapshot(16,{},"Westfall")
     F.character={guides={},professions={},windows={}}
-    F:Command("leveling"); eq(G.guide.id,C.id)
+    F:Command("1-20"); eq(G.guide.id,C.testId)
     local U=F.modules.MainWindow
     assert(U.body.text:find("Level 16 / 20",1,true))
     eq(U.previous.label.text,"Other quests"); eq(U.next.label.text,"Defer quest")
     eq(U.autoCampaign:IsShown(),true)
     F:Command("leveling defer"); F:Command("leveling auto"); eq(G.state.campaign.pinnedQuest,nil)
-    F:Command("1-20"); eq(G.guide.id,C.id)
+    F:Command("1-20"); eq(G.guide.id,C.testId)
 end)
 test("accelerated 1–20 simulation preserves quest evidence and terminates at the actual target",function()
     begin(1)

@@ -21,11 +21,10 @@
 | 4 Professions | MaterialCalculator.lua, RecipeDatabase.lua, ProfessionPlanner.lua, ProfessionController.lua | Authored target skill bands, known-recipe alternatives, estimates, UI and stale-data handling | Live skill/recipe tracker and verified catalogs pending |
 | 5 Modes | Pure Farm/Buy/Hybrid split and manual prices | Shared targets, inventory subtraction and shopping quantities | Verified farming routes and live inventory integration pending |
 | 6 Integrated routing | Navigation/Detours.lua, explicit slash consent, suggestion limits | Pause/resume, cancellation, main objective restoration | Verified routes and live-client integration pending |
-| 7 Content | Elwynn 34 quests / 113 steps; new Alliance 1–20 pool: 97 quests / 293 steps, including Elwynn; curated facts | Schema, dependency, eligibility and factual coordinate checks; synthetic full progression | Forever validation pending; other faction regions and professions missing |
+| 7 Content | Elwynn and retained 1–20 test; Alliance 1–60 pool: 556 quests / 1,670 steps, 12 chapters; curated facts | Schema, dependency, eligibility and factual coordinate checks; synthetic full progression | Forever validation pending; other faction regions and professions missing |
 | 8 Release | Documentation, data validator, ZIP packager, original SH2-inspired theme with James Sunderland notes | Offline suite, packaging and content CLI tests | Development ZIP built; live visual review, performance profiling and production release pending |
 
-This is an incremental implementation, not the completed production addon from
-the master brief. Advancing the independent algorithms does not bypass the Phase 1
+This is an expanded reference implementation, with production validation still pending. Advancing the independent algorithms does not bypass the Phase 1
 live-compatibility requirements. User-reported startup is recorded separately from
 gameplay validation. No verified sample leveling route is claimed.
 
@@ -34,6 +33,8 @@ content. The reported version is `1.60.70790`; the supplied working reference
 manifest resolves the interface to `16001`. The upstream quest compatibility and
 event/cache source at that exact commit has been inspected. The next live check
 is `/fxp leveling`: validate level-appropriate recommendations, prerequisite
-access, quest facts and XP gaps through levels 1–20.
+access, quest facts and XP gaps through levels 1–60. Theme settings include
+Silent Hill, Warcraft, Warhammer 40K and High contrast, with source-rendered
+previews and mocked interaction/persistence tests.
 No named quest, event trace or full route completion accompanied the reported
 journal advancement; keep that limited result separate from content verification.

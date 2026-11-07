@@ -73,26 +73,58 @@ function V:Guide(guide, production)
     end
     if guide.campaign~=nil then
         local plan=guide.campaign
-        if type(plan)~="table" or not positive(plan.targetLevel)
+        if type(plan)~="table" or not Check.Integer(plan.targetLevel,2)
            or not Check.Integer(plan.maxQuestLag) or plan.maxQuestLag>10
-           or not Check.Integer(plan.maxQuestLead) or plan.maxQuestLead>10 then
+           or not Check.Integer(plan.maxQuestLead) or plan.maxQuestLead>10
+           or (plan.zonePreference~=nil and (not Check.Integer(plan.zonePreference) or plan.zonePreference>100)) then
             fail("invalid campaign level policy")
         else
             local quests,goal={},0
             for _,step in ipairs(guide.steps) do
                 if type(step)=="table" then
                     if step.type=="REACH_LEVEL" and step.level==plan.targetLevel then goal=goal+1 end
-                    if step.questId then
+                    if step.questId and positive(step.questId) and ({ACCEPT_QUEST=true,COMPLETE_QUEST=true,TURN_IN_QUEST=true})[step.type] then
                         if not positive(step.questLevel) or not positive(step.minLevel) or not Check.String(step.questTitle) then fail("campaign quest metadata required") end
                         local record=quests[step.questId] or {}; quests[step.questId]=record
                         if record[step.type] then fail("duplicate campaign quest phase") end
                         record[step.type]=true
                         if record.level and (record.level~=step.questLevel or record.minimum~=step.minLevel or record.title~=step.questTitle) then fail("inconsistent campaign quest metadata") end
                         record.level,record.minimum,record.title=step.questLevel,step.minLevel,step.questTitle
+                    elseif step.questId then fail("invalid campaign quest phase")
                     end
                 end
             end
             if not next(quests) or goal~=1 then fail("campaign needs quests and one target level step") end
+            local positions={}; for i,step in ipairs(guide.steps) do if type(step)=="table" and step.type=="ACCEPT_QUEST" and positive(step.questId) then positions[step.questId]=i end end
+            for i,step in ipairs(guide.steps) do
+                if type(step)=="table" then
+                    for _,field in ipairs({"prerequisiteQuestsAny","exclusiveQuests"}) do
+                        if step[field]~=nil then
+                            if step.type~="ACCEPT_QUEST" or not Check.Array(step[field]) then fail("campaign quest relationships require dense accept-step arrays")
+                            else
+                                local ids={}
+                                for _,id in ipairs(step[field]) do
+                                    if not positive(id) or ids[id] or id==step.questId then fail("invalid campaign quest relationship") end
+                                    ids[id]=true
+                                    if field=="prerequisiteQuestsAny" and positions[id] and positions[id]>=i then fail("campaign alternative must precede dependent quest") end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+            if plan.chapters~=nil then
+                if not Check.Array(plan.chapters,true) then fail("campaign chapters require a dense array")
+                else
+                    local expected=1
+                    for _,chapter in ipairs(plan.chapters) do
+                        if type(chapter)~="table" or chapter.minLevel~=expected or not positive(chapter.maxLevel)
+                           or chapter.maxLevel<expected or not Check.String(chapter.title) or not Check.String(chapter.text) then fail("invalid campaign chapter coverage"); break end
+                        expected=chapter.maxLevel+1
+                    end
+                    if expected~=plan.targetLevel then fail("campaign chapters must cover every level before target") end
+                end
+            end
             for _,record in pairs(quests) do
                 if not record.ACCEPT_QUEST or not record.COMPLETE_QUEST or not record.TURN_IN_QUEST then fail("campaign quest phases incomplete") end
             end

@@ -16,7 +16,7 @@ function S:Load(raw)
     settings.navigationInterval = math.max(0.1, math.min(2, settings.navigationInterval))
     if not ({ disabled=true, minimal=true, balanced=true, focused=true })[settings.integration] then settings.integration = "disabled" end
     if settings.recovery ~= "suggest" and settings.recovery ~= "disabled" then settings.recovery = "suggest" end
-    if settings.theme ~= "fog" and settings.theme ~= "contrast" then settings.theme = "fog" end
+    if not ({fog=true,contrast=true,warcraft=true,warhammer=true})[settings.theme] then settings.theme = "fog" end
     return settings
 end
 function S:Set(key, value)

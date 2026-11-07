@@ -102,8 +102,11 @@ def render(nodes):
             x = y = 0
             if node.get('relative'):
                 rx, ry, rw, rh = bounds(node['relative'])
-                px, py = (0.5, 0.5) if node.get('point') == 'CENTER' else (0, 0)
-                ax, ay = (0.5, 0.5) if node.get('relativePoint') == 'CENTER' else (0, 0)
+                anchors = {'TOPLEFT': (0, 0), 'TOP': (.5, 0), 'TOPRIGHT': (1, 0),
+                           'LEFT': (0, .5), 'CENTER': (.5, .5), 'RIGHT': (1, .5),
+                           'BOTTOMLEFT': (0, 1), 'BOTTOM': (.5, 1), 'BOTTOMRIGHT': (1, 1)}
+                px, py = anchors.get(node.get('point'), (0, 0))
+                ax, ay = anchors.get(node.get('relativePoint'), (0, 0))
                 x = rx + rw * ax + node.get('x', 0) - width * px
                 y = ry + rh * ay - node.get('y', 0) - height * py
             value = x, y, width, height
@@ -150,24 +153,33 @@ for view, theme, title in [('guide', 'fog', '01 / ROUTE JOURNAL'),
                            ('professions', 'fog', '02 / SUPPLY LEDGER'),
                            ('settings', 'contrast', '03 / HIGH-CONTRAST OPTIONS'),
                            ('elwynn', 'fog', '04 / ELWYNN SHARED REFERENCE ROUTE'),
-                           ('leveling', 'fog', '05 / LEVEL-AWARE ALLIANCE 1–20')]:
+                           ('leveling', 'fog', '05 / LEVEL-AWARE ALLIANCE 1–60'),
+                           ('leveling-warcraft', 'warcraft', '06 / WARCRAFT JOURNAL'),
+                           ('leveling-warhammer', 'warhammer', '07 / WARHAMMER 40K FIELD LOG'),
+                           ('themes', 'warcraft', '08 / THEME SETTINGS')]:
     if view == 'elwynn':
         lua.execute('ForeverXP.settings.theme="fog"; ForeverXP:Command("elwynn")')
-    elif view == 'leveling':
+    elif view.startswith('leveling'):
+        level, zone = {'leveling': (14, 'Elwynn Forest'), 'leveling-warcraft': (35, 'Desolace'),
+                       'leveling-warhammer': (58, 'Winterspring')}[view]
+        lua.execute(f'ForeverXP.settings.theme={json.dumps(theme)}')
         lua.execute('''
             local F=ForeverXP
-            F.settings.theme="fog"
             assert(F.modules.GuideEngine:Select(F.modules.LevelingCampaign.id,F.character))
-            F.snapshot={level=14,active={},quests={},character={zone="Elwynn Forest"}}
+        ''')
+        lua.execute(f'ForeverXP.snapshot={{level={level},active={{}},quests={{}},character={{zone={json.dumps(zone)}}}}}')
+        lua.execute('''
+            local F=ForeverXP
             F.modules.GuideEngine:Update(F.snapshot)
             F.modules.MainWindow:Show("guide")
         ''')
     else:
-        lua.execute(f'ForeverXP.settings.theme={json.dumps(theme)}; ForeverXP.modules.MainWindow:Show({json.dumps(view)})')
+        tab='settings' if view=='themes' else view
+        lua.execute(f'ForeverXP.settings.theme={json.dumps(theme)}; ForeverXP.modules.MainWindow:Show({json.dumps(tab)})')
     nodes = snapshot()
     assert any('James Sunderland' in row.get('text', '') for row in nodes.values())
     content = render(nodes)
-    data_label = 'Classic reference content · live validation pending' if view in ('elwynn', 'leveling') else 'synthetic layout data'
+    data_label = 'Classic reference content · live validation pending' if view=='elwynn' or view.startswith('leveling') else 'synthetic layout data'
     html = f'''<!doctype html><html><head><meta charset="utf-8"><style>
     *{{box-sizing:border-box}}body{{margin:0;background:#171e1a;color:#c9cec2;width:1000px;height:820px;font-family:Arial,sans-serif}}
     h1{{position:absolute;left:62px;top:30px;font-size:15px;letter-spacing:3px;font-weight:400}}

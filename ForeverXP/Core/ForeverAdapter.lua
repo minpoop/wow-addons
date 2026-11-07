@@ -95,6 +95,8 @@ function A:Collect()
     if guide then
         for _,step in ipairs(guide.steps) do
             if step.questId then quests[step.questId] = true end
+            for _,id in ipairs(step.prerequisiteQuestsAny or {}) do quests[id]=true end
+            for _,id in ipairs(step.exclusiveQuests or {}) do quests[id]=true end
             if step.itemId then items[step.itemId] = true end
         end
     end
@@ -147,7 +149,7 @@ function A:Start()
     E:On("QUEST_TURNED_IN","forever-tracking",function(id)
         if V.Integer(id,1) then
             local size=0; for _ in pairs(self.turnedIn) do size=size+1 end
-            if size<512 or self.turnedIn[id] then self.turnedIn[id]=true end
+            if size<2048 or self.turnedIn[id] then self.turnedIn[id]=true end
         end
         self:Schedule()
     end)

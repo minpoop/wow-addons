@@ -1,6 +1,12 @@
 local F = ForeverXP
 local T = F:Register("Themes", {})
 T.companion = "James Sunderland"
+T.options = {
+    {id="fog",name="1 · Silent Hill"},
+    {id="warcraft",name="2 · Warcraft"},
+    {id="warhammer",name="3 · Warhammer 40K"},
+    {id="contrast",name="High contrast"},
+}
 -- Original companion lines, kept separate from authored quest instructions.
 function T:Note(tab)
     if tab == "professions" then return "Count your supplies before moving on." end
@@ -12,6 +18,7 @@ end
 -- Original procedural styling: no game screenshots, franchise art or audio.
 T.palettes = {
     fog = {
+        name="Silent Hill", journal="FOREVER XP  /  FIELD JOURNAL",
         panel={0.065,0.082,0.077,0.98}, fog={0.52,0.58,0.53,0.025},
         text={0.82,0.84,0.76,1}, muted={0.61,0.67,0.61,1},
         accent={0.74,0.60,0.45,1}, border={0.39,0.27,0.22,1},
@@ -19,13 +26,35 @@ T.palettes = {
         selected={0.24,0.29,0.24,1}, track={0.15,0.19,0.17,1}, progress={0.54,0.64,0.52,1},
     },
     contrast = {
+        name="High contrast", journal="FOREVER XP  /  FIELD JOURNAL",
         panel={0.025,0.035,0.03,1}, fog={0.52,0.58,0.53,0.01},
         text={0.95,0.96,0.90,1}, muted={0.80,0.84,0.78,1},
         accent={0.95,0.80,0.62,1}, border={0.68,0.48,0.37,1},
         button={0.14,0.18,0.15,1}, hover={0.26,0.32,0.26,1},
         selected={0.29,0.35,0.29,1}, track={0.18,0.22,0.19,1}, progress={0.74,0.84,0.69,1},
     },
+    warcraft = {
+        name="Warcraft", journal="FOREVER XP  /  ADVENTURER'S JOURNAL", ornament=true, mark="AZEROTH CHRONICLE\nADVENTURER'S SEAL",
+        panel={0.77,0.67,0.47,1}, fog={0.34,0.22,0.09,0.035},
+        text={0.13,0.08,0.035,1}, muted={0.24,0.14,0.065,1},
+        accent={0.29,0.10,0.035,1}, border={0.40,0.24,0.075,1},
+        button={0.66,0.50,0.29,1}, hover={0.87,0.74,0.48,1},
+        selected={0.91,0.77,0.48,1}, track={0.37,0.27,0.14,1}, progress={0.24,0.37,0.15,1},
+    },
+    warhammer = {
+        name="Warhammer 40K", journal="FOREVER XP  /  CRUSADE FIELD LOG", ornament=true, mark="CRUSADE ARCHIVE\nEXPEDITION RECORD",
+        panel={0.045,0.055,0.075,1}, fog={0.43,0.07,0.055,0.06},
+        text={0.87,0.84,0.73,1}, muted={0.65,0.68,0.70,1},
+        accent={0.88,0.68,0.33,1}, border={0.55,0.14,0.105,1},
+        button={0.17,0.075,0.085,1}, hover={0.30,0.10,0.105,1},
+        selected={0.36,0.12,0.12,1}, track={0.19,0.21,0.24,1}, progress={0.72,0.24,0.17,1},
+    },
 }
+function T:Cycle()
+    for i,choice in ipairs(self.options) do
+        if choice.id==F.settings.theme then return F.modules.Settings:Set("theme",self.options[i % #self.options+1].id) end
+    end
+end
 function T:Get()
     local name = F.settings and F.settings.theme or "fog"
     return self.palettes[name] or self.palettes.fog

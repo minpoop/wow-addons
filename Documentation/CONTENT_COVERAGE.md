@@ -1,9 +1,10 @@
 # Content coverage
 
-No authored route has been live-verified end to end on Forever. Version 0.4 ships
-an Elwynn reference route (34 quests, 113 steps) and an Alliance 1–20 level-aware
-playtest (97 quests, 293 steps, including the same Elwynn quests). Reference labels
-and provenance are in Reference/Elwynn.md and Reference/Alliance1_20.md. All synthetic IDs in Tests/ and
+No authored route has been live-verified end to end on Forever. Version 0.5 ships
+an Elwynn reference route (34 quests), the retained 1–20 test (97 quests), and an
+Alliance 1–60 level-aware guide (556 quests / 1,670 steps). These overlap; there
+are 556 distinct shared reference quests, not the sum of all guide counts. Source
+evidence is in Reference/Alliance1_60.md and the earlier reference documents. All synthetic IDs in Tests/ and
 documentation exist only to exercise formats and logic; they are not playable.
 
 | Target | Verified content | Status |
@@ -11,7 +12,7 @@ documentation exist only to exercise formats and logic; they are not playable.
 | Alliance starting zones | 0 live-verified; 1 Elwynn reference guide | Shared class-independent quest core; Forever validation pending |
 | Horde race starting zones | 0 guides | Missing live observations |
 | Alliance 1–20 test | 0 live-verified; 1 reference campaign | Level-aware selection; no measured XP budget or completed live playthrough |
-| Alliance 1–60 progression | 0 complete routes | Full coverage missing; level cap unverified |
+| Alliance 1–60 progression | 0 live-verified; 1 reference guide | 556 quests and chapters through target 60; measured XP budget and completed Forever playthrough pending |
 | Horde 1–60 progression | 0 routes | Missing; level cap unverified |
 | Class instructions / dungeons / flight paths | 0 | Missing |
 | Supported profession roster and caps | 0 | Unverified |

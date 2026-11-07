@@ -1,7 +1,8 @@
 local F = ForeverXP
 local C = F:Register("LevelingCampaign", { indexes = {}, runtime = {} })
 local V = F.modules.Validation
-C.id = "alliance-levels-1-20"
+C.id = "alliance-levels-1-60"
+C.testId = "alliance-levels-1-20"
 function C:Index(guide)
     local cached=self.indexes[guide.id]
     if cached and cached.guide==guide then return cached end
@@ -18,6 +19,7 @@ function C:Index(guide)
             if step.type=="ACCEPT_QUEST" then
                 record.title,record.level,record.minimum=step.questTitle,step.questLevel,step.minLevel
                 record.zone,record.optional=step.zone,step.optional==true
+                record.requiresAny,record.exclusive=step.prerequisiteQuestsAny or {},step.exclusiveQuests or {}
             end
         elseif step.type=="REACH_LEVEL" and step.level==guide.campaign.targetLevel then index.goal=position end
     end
@@ -39,17 +41,26 @@ function C:ValidateState(state)
     local count=0
     for id,value in pairs(saved.deferredByUser) do
         count=count+1
-        if count>512 or not V.Integer(id,1) or type(value)~="boolean" then return nil,"Invalid campaign deferrals retained" end
+        if count>2048 or not V.Integer(id,1) or type(value)~="boolean" then return nil,"Invalid campaign deferrals retained" end
     end
     return true
 end
 function C:Import(guide,state,character)
     local index=self:Index(guide)
-    local old=character.guides["elwynn-forest-shared"]
+    local old=guide.id==self.id and character.guides[self.testId] or nil
+    if type(old)~="table" then old=character.guides["elwynn-forest-shared"] end
     if type(old)~="table" or not V.DataOnly(old) or type(old.completed)~="table" or type(old.overrides)~="table" then return end
     for id in pairs(index.steps) do
         if old.completed[id]==true then state.completed[id]=true end
         if old.overrides[id]=="confirmed" or old.overrides[id]=="skipped" then state.overrides[id]=old.overrides[id] end
+    end
+    if guide.id==self.id and self:ValidateState(old) and type(old.campaign)=="table" then
+        local preferences={version=1,status="waiting",deferredByUser={}}
+        for id,value in pairs(old.campaign.deferredByUser) do
+            if index.quests[id] and value then preferences.deferredByUser[id]=true end
+        end
+        if index.quests[old.campaign.pinnedQuest] then preferences.pinnedQuest=old.campaign.pinnedQuest end
+        state.campaign=preferences
     end
 end
 local function savedState(state)
@@ -61,10 +72,11 @@ function C:QuestLevel(record,snapshot)
     return type(q)=="table" and V.Integer(q.level,1) and q.level or record.level
 end
 function C:Done(index,state,snapshot,id)
+    local q=snapshot.quests[id]
+    if type(q)=="table" and q.turnedIn==true then return true end
     local record=index.quests[id]
     if not record then return false end
-    local q=snapshot.quests[id]
-    return (type(q)=="table" and q.turnedIn==true) or state.completed[index.guide.steps[record.TURN_IN_QUEST].id]==true
+    return state.completed[index.guide.steps[record.TURN_IN_QUEST].id]==true
 end
 function C:BuildCandidates(engine,snapshot)
     local guide,state=engine.guide,engine.state
@@ -77,10 +89,28 @@ function C:BuildCandidates(engine,snapshot)
         if record.optional and not allowOptional then return end
         local q=snapshot.quests[id]
         if type(q)=="table" and (q.accepted==true or q.complete==true) then return record end
+        for _,other in ipairs(record.exclusive or {}) do
+            local observed=snapshot.quests[other]
+            if self:Done(index,state,snapshot,other) or (type(observed)=="table" and observed.accepted==true) then return end
+        end
         if level<record.minimum or visiting[id] then return end
         visiting[id]=true
         for _,pre in ipairs(record.requires) do
             if not self:Done(index,state,snapshot,pre) then return root(pre,allowOptional,visiting) end
+        end
+        if #(record.requiresAny or {})>0 then
+            local satisfied=false
+            for _,pre in ipairs(record.requiresAny) do
+                if self:Done(index,state,snapshot,pre) then satisfied=true; break end
+            end
+            if not satisfied then
+                for _,pre in ipairs(record.requiresAny) do
+                    local branch={}; for key,value in pairs(visiting) do branch[key]=value end
+                    local work=root(pre,allowOptional,branch)
+                    if work then return work end
+                end
+                return
+            end
         end
         return record
     end
@@ -97,7 +127,7 @@ function C:BuildCandidates(engine,snapshot)
                     local q=snapshot.quests[work.id]
                     local active=type(q)=="table" and (q.accepted==true or q.complete==true)
                     local zone=type(snapshot.character)=="table" and snapshot.character.zone
-                    local score=100-math.abs(questLevel-level)*10+(zone and work.zone==zone and 5 or 0)+(active and 15 or 0)
+                    local score=100-math.abs(questLevel-level)*10+(zone and work.zone==zone and (guide.campaign.zonePreference or 5) or 0)+(active and 15 or 0)
                     local candidate={record=work,goal=record,score=score,bridge=work.id~=record.id}
                     if not byRoot[work.id] or score>byRoot[work.id].score then byRoot[work.id]=candidate end
                 end
@@ -193,17 +223,21 @@ function C:Auto(engine)
 end
 function C:Cycle(engine)
     local run=self.runtime[engine.guide.id]
-    if not run or not run.candidates or #run.candidates==0 then return nil,"No alternative quest group is available at this level." end
+    if not run or run.state~=engine.state or not run.candidates or #run.candidates==0 then return nil,"No alternative quest group is available at this level." end
     local current=engine:Current() and engine:Current().questId
     local nextIndex=1
     for i,candidate in ipairs(run.candidates) do if candidate.record.id==current then nextIndex=i % #run.candidates+1 end end
     return self:Keep(engine,run.candidates[nextIndex].record.id)
 end
-function C:Band(level)
+function C:Band(level,target)
     for _,range in ipairs({{1,4},{5,7},{8,9},{10,11},{12,14},{15,17},{18,19}}) do
         if level>=range[1] and level<=range[2] then return range[1].."–"..range[2] end
     end
-    return "20"
+    if level>=20 and level<(target or 20) then
+        local first=math.floor(level/5)*5
+        return first.."–"..math.min(first+4,(target or 20)-1)
+    end
+    return tostring(target or 20)
 end
 function C:Text(engine)
     local guide,state=engine.guide,engine.state
@@ -211,9 +245,9 @@ function C:Text(engine)
     local saved=state.campaign
     if not run or run.state~=state or run.error then return (run and run.state==state and run.error) or "Waiting for live level and quest data." end
     local level=run.snapshot.level
-    local lines={"Level "..level.." / "..guide.campaign.targetLevel.." · band "..self:Band(level)}
+    local lines={"Level "..level.." / "..guide.campaign.targetLevel.." · band "..self:Band(level,guide.campaign.targetLevel)}
     if run.status=="target-reached" then
-        lines[#lines+1]="Level 20 target reached."
+        lines[#lines+1]="Level "..guide.campaign.targetLevel.." target reached."
         lines[#lines+1]="Unfinished quests remain saved for review."
         return table.concat(lines,"\n\n")
     end
@@ -223,7 +257,10 @@ function C:Text(engine)
         lines[#lines+1]="Check deferred choices or finish other level-appropriate quests; the planner will re-evaluate as your state changes."
     else
         local record=chosen.record
-        lines[#lines+1]="Quest level "..self:QuestLevel(record,run.snapshot).." · "..(record.zone or "location unconfirmed")
+        local step=engine:Current()
+        local zone=step.waypoint and step.waypoint.zone or step.zone or record.zone
+        local playerZone=type(run.snapshot.character)=="table" and run.snapshot.character.zone
+        lines[#lines+1]="Quest level "..self:QuestLevel(record,run.snapshot).." · "..(zone and (playerZone and playerZone~=zone and "travel to " or "")..zone or "location unconfirmed")
         if chosen.bridge then lines[#lines+1]="Prerequisite for "..chosen.goal.title end
         if chosen.pinned then lines[#lines+1]="Kept by you · Auto plan resumes recommendations" end
         lines[#lines+1]=engine:Current().text
@@ -238,31 +275,46 @@ function C:Text(engine)
     if (run.deferred or 0)>0 then lines[#lines+1]=run.deferred.." older quests retained for review" end
     return table.concat(lines,"\n")
 end
-function C:Select()
+function C:Select(id)
     local G=F.modules.GuideEngine
     local player=F.modules.Compatibility:Character()
     if player.faction and player.faction~="Alliance" then return nil,"This campaign is for Alliance characters." end
-    local ok,err=G:Select(self.id,F.character)
+    local ok,err=G:Select(id or self.id,F.character)
     if not ok then return nil,err end
     G.state.review=nil
     self:Refresh(G)
     F.modules.MainWindow:Show("guide")
-    F:Print("Alliance 1–20 reference playtest: recommendations follow your level. Older unfinished quests stay saved.")
+    F:Print("Alliance 1–"..G.guide.campaign.targetLevel.." reference guide: recommendations follow your level. Older unfinished quests stay saved.")
     return true
 end
-function C:List(engine)
+function C:Chapters(engine)
+    local chapters=engine.guide.campaign.chapters
+    if not chapters then return nil,"This test guide has no chapter overview." end
+    for _,chapter in ipairs(chapters) do
+        F:Print(chapter.minLevel.."–"..chapter.maxLevel.." · "..chapter.title..": "..chapter.text)
+    end
+    return true
+end
+function C:List(engine,page)
     local run=self.runtime[engine.guide.id]
     if not run or run.state~=engine.state or not run.snapshot then return nil,"Wait for readable campaign data." end
     local index=self:Index(engine.guide)
+    page=page or 1
+    if not V.Integer(page,1) then return nil,"Quest page must be a positive integer." end
+    local rows={}
     for _,record in ipairs(index.order) do
         if not self:Done(index,engine.state,run.snapshot,record.id) then
             local level=self:QuestLevel(record,run.snapshot)
             local note=level<run.snapshot.level-engine.guide.campaign.maxQuestLag and " · older" or ""
             if record.optional then note=note.." · optional" end
             if engine.state.campaign.deferredByUser[record.id] then note=note.." · deferred by you" end
-            F:Print(record.id.." · "..record.title.." · quest level "..level..note)
+            rows[#rows+1]=record.id.." · "..record.title.." · quest level "..level..note
         end
     end
+    local pages=math.max(1,math.ceil(#rows/20))
+    if page>pages then return nil,"Quest page is outside 1–"..pages.."." end
+    F:Print("Unfinished campaign quests · page "..page.." / "..pages.." · /fxp leveling quests PAGE")
+    for i=(page-1)*20+1,math.min(page*20,#rows) do F:Print(rows[i]) end
     F:Print("/fxp leveling keep QUEST_ID keeps a quest; /fxp leveling auto resumes automatic recommendations.")
     return true
 end

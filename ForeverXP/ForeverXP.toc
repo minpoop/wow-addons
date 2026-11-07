@@ -2,7 +2,7 @@
 ## Title: ForeverXP [DEVELOPMENT BUILD]
 ## Notes: Targets Forever interface 16001. Live API validation pending; see Documentation/COMPATIBILITY.md.
 ## Author: ForeverXP contributors
-## Version: 0.4.0-dev
+## Version: 0.5.0-dev
 ## SavedVariables: ForeverXPDB
 ## LoadSavedVariablesFirst: 1
 Core/Namespace.lua
@@ -28,4 +28,5 @@ UI/Themes.lua
 UI/MainWindow.lua
 Data/QuestGuides/Alliance/Elwynn.lua
 Data/QuestGuides/Alliance/Levels1_20.lua
+Data/QuestGuides/Alliance/Levels1_60.lua
 Core/Bootstrap.lua

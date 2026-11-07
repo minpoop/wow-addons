@@ -24,3 +24,14 @@ Lua tests exercise the
 style application and state; they are not a screenshot or a live visual review.
 Verify font metrics, line wrapping, scaling and visibility in the actual client
 before declaring the theme polished for release.
+
+## Theme selector (0.5)
+
+Options now has explicit persisted buttons for 1 · Silent Hill, 2 · Warcraft,
+3 · Warhammer 40K and High contrast. Compact Options cycles these choices.
+Warcraft uses parchment, dark brown ink, brass edges and an adventurer's journal
+header. Warhammer uses gunmetal panels, crimson accents, bone text, corner studs
+and a crusade archive header. Styling is procedural and original; the same James
+portrait is retained. No further franchise assets, music or dialogue are bundled.
+Selection recolors all tabs immediately without touching gameplay state.
+Source-rendered previews show the layouts; live font/texture review is pending.

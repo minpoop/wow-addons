@@ -113,3 +113,24 @@ that old quests remain unfinished without holding the recommendation. Exercise
 Other quests, Defer quest, Auto plan and keep; relog to check preferences. Confirm
 prerequisite access, quest locations and XP gaps through levels 1–20. These
 campaign scenarios have not yet been run on the live client.
+
+## 0.5 expanded campaign and theme menu
+
+The suite passes **95 Lua checks and 8 Python tests**. Tests/campaign_full.lua
+adds 12 scenarios covering all levels 1–59, actual target 60, complete 1–20 save
+continuation, ALL/ANY relationships, exclusions, local-zone preference without
+area gates, corrupted metadata, full-pool preferences, paginated output, positive
+synthetic progression and native external-related history. Tests/themes.lua adds
+four scenarios for settings buttons, immediate/persisted selection, all tabs,
+James visibility, compact controls, safe legacy defaults and normal-text contrast.
+Tests/test_campaign_full.py checks every expanded fact/phase, retained initial
+content, later band breadth and deterministic regeneration. Package checks verify
+the expanded module is included in both TOC and ZIP.
+
+Source-rendered Chromium previews check normal campaign layouts and the theme
+menu; they are not game screenshots. Live checks: select /fxp leveling to import
+old test progress, then follow the 1–60 reference validation document through
+later chapters. Open Options, select all three requested themes and High contrast,
+change tabs, use compact mode and relog. Confirm theme switching never moves the
+quest cursor. Measure XP gaps and travel issues rather than inferring them from
+synthetic progression.

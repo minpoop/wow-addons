@@ -74,3 +74,9 @@ access and UI controls. Progress a quest and level up; verify a now-old target
 falls away without false completion. Keep an older quest, turn it in, and verify
 automatic selection resumes. Relog and check preferences. Repeat across levels
 1–20 and record XP gaps and travel issues before claiming full route coverage.
+
+## Continued in 0.5
+
+The retained test is now selected explicitly with `/fxp 1-20`. `/fxp leveling`
+selects the expanded [Alliance 1–60 guide](Alliance1_60.md) and imports matching
+test progress/preferences once. The old test save and content remain available.

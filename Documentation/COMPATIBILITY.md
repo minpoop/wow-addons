@@ -77,3 +77,13 @@ The quest compatibility, event and log-cache modules have now been inspected at
 the pinned upstream commit. Profession and map integration still need further
 investigation. References are evidence; Questie implementation code, databases
 and assets have not been imported into ForeverXP.
+
+## 0.5 expansion and themes
+
+The user says the 0.4 level-aware 1–20 test appears to work. The 0.5 build extends
+that framework to an Alliance level-60 target and adds Warcraft/Warhammer styling
+choices. Source-inspected read-only history calls now also cover referenced ANY
+alternatives and exclusive choices. The explicit turn-in cache bound is 2,048.
+Theme controls use the same existing frame/texture methods. These changes have
+mocked regression and source-rendered layout checks; full live-client validation
+and a measured 1–60 content playthrough remain pending.

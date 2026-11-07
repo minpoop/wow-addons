@@ -1,16 +1,17 @@
 # ForeverXP
 
 Original, modular leveling and profession guide addon under development for the
-WoW Forever server. This repository contains a tested offline foundation, **not
-a production release or a verified leveling guide**.
+WoW Forever server. This development build includes a **level-aware Alliance 1–60 reference guide**
+and profession-planning foundation. End-to-end live content validation is pending.
 
 [Download the development addon ZIP](https://github.com/minpoop/wow-addons/blob/main/downloads/ForeverXP-dev.zip?raw=true)
 · [Preview images](Documentation/Previews/README.md)
 
 Extract the ZIP's `ForeverXP` folder into `Interface/AddOns`. This package contains
-the James portrait, live quest journal, Elwynn reference route and a level-aware
-Alliance 1–20 playtest. Use `/fxp leveling` for the new campaign. Content still
-needs end-to-end validation on Forever; full 1–60 coverage is missing.
+the James portrait, live quest journal and a level-aware Alliance 1–60 guide.
+Use `/fxp leveling` for the expanded campaign and `/fxp settings` to choose
+Silent Hill, Warcraft or Warhammer 40K styling. Content still needs end-to-end
+validation on Forever; this is a reference development build.
 
 The user reports client version **1.60.70790**. The supplied working
 `Questie_Forever.toc` declares **interface 16001** and `LoadSavedVariablesFirst: 1`;
@@ -30,43 +31,52 @@ The user has confirmed that the 0.1 development addon loads in their client.
 The user also reports that the 0.2 live quest journal progresses in game. The
 specific quest/build/scenario was not recorded, so this is limited user-reported
 evidence. The user subsequently confirmed Elwynn catches up, but reported
-outleveling its quests. Version **0.4.0-dev** adds a level-aware 1–20 campaign
-to address this. Route content still needs in-game validation.
+outleveling its quests. Version 0.4 added level-aware selection; the user says that appears to work.
+Version **0.5.0-dev** extends the shared Alliance quest pool through level 60 and
+adds theme selection in Options. Route content still needs in-game validation.
 Live profession/recipe tracking, arrows, map pins and verified leveling content
 remain pending. The profession view has selection, target and mode controls;
 they populate only from registered verified catalogs and normalized providers.
 
-## Alliance 1–20 — level-aware test guide
+## Alliance 1–60 — level-aware guide
 
-Install the updated folder, restart the client, and run **`/fxp leveling`** (or
-`/fxp 1-20`). This selects the new campaign; `/fxp elwynn` keeps the older area
-route. Existing Elwynn completion and manual overrides import on first selection;
-the original route save remains available.
+Replace the addon folder, restart the client, and run **`/fxp leveling`** (or
+`/fxp 1-60`). It selects the new guide with **556 quests / 1,670 steps** and 12
+chapter summaries, extending the tested 1–20 core through the later Classic zones.
+Included quests have no class requirement in the reference: this is common
+Alliance content for all classes, with class-specific training outside its scope.
+Custom Forever race eligibility remains unverified.
 
-The campaign chooses among **97 reference quests / 293 steps** across Elwynn,
-Westfall, Loch Modan and Redridge, with related deliveries. It follows your actual
-level and observed quest state, rather than requiring an area to be finished.
-Automatic goals fall between three levels below and two above your level, subject
-to minimum levels and prerequisites. Observed quest levels take precedence over
-Classic reference levels. Older prerequisites may still be offered when they
-unlock a suitable quest; the panel explains the connection.
+The planner follows your actual level and observed quest state. Automatic goals
+fall between three levels below and two above your level, subject to minimum
+levels and prerequisites. Observed quest levels override reference levels. Local
+suitable quests receive a preference without requiring an area to be completed.
+Older chain prerequisites can be recommended when they unlock a suitable goal.
+ALL and ANY prerequisites are distinct, and observed mutually exclusive choices
+block conflicting introductions. Optional encounters never become automatic goals.
 
-Outleveled quests remain saved without being falsely completed or abandoned.
-The progress bar measures your level toward 20. Optional group/escort encounters
-and selected deliveries are excluded from automatic choices. All included quests
-have no class restriction in the reference, so this is common Alliance content,
-not class-specific training. Availability for custom races remains unverified.
+Accept/turn-in steps name the giver; objective steps include selected target/item
+names and reference leads where available. Coordinates are labeled reference,
+with live quest-log tasks and totals taking precedence. Missing locations stay
+unknown. There are no invented flight paths or automatic travel actions.
 
-- **Other quests** cycles suitable choices and keeps your choice until turn-in.
+Outleveled quests stay saved without false completion or abandonment. The bar
+measures your level toward 60. The expanded guide imports matching 1–20 completion,
+manual overrides and defer/keep preferences once; the old save remains available.
+A finished level-20 goal does not finish the new guide. `/fxp 1-20` still opens the
+old test campaign; `/fxp elwynn` opens the original area route.
+
+- **Other quests** cycles suitable choices and keeps one until turn-in.
 - **Defer quest** sets aside the current quest as a planner preference.
-- **Auto plan** releases an explicit choice and resumes level-based selection.
-- `/fxp leveling quests` lists unfinished quests and their IDs.
+- **Auto plan** releases an explicit choice and resumes automatic selection.
+- `/fxp leveling chapters` shows all 12 chapter summaries.
+- `/fxp leveling quests PAGE` lists unfinished quest IDs, 20 per page.
 - `/fxp leveling keep QUEST_ID` restores a deferred quest or keeps an older one.
 
-At actual level 20 the campaign goal ends while unfinished quest records remain.
-If suitable content runs out earlier, the planner says so and waits. This is a
-reference playtest, without a measured XP budget or a guaranteed uninterrupted
-1–20 route. See [scope and evidence](Documentation/Reference/Alliance1_20.md).
+At actual level 60 the goal ends while unfinished quest records remain saved.
+If suitable content runs out earlier, the planner waits visibly. This is an
+expanded reference guide with no measured XP budget or completed 1–60 Forever
+playthrough. See [content, chapters and evidence](Documentation/Reference/Alliance1_60.md).
 
 ## Elwynn Forest — shared route for all classes
 
@@ -131,8 +141,18 @@ gray-green panels, oxidized borders, faded paper text and subtle progress marks.
 James Sunderland appears in a persistent portrait panel with his name and short
 original field notes kept separate from quest instructions. The bundled portrait
 is newly generated fan art; no extracted game art, copied dialogue or music
-is bundled. `/fxp theme fog` selects the default; `/fxp theme contrast` increases
-contrast. The preference persists between sessions. Live visual testing is pending.
+is bundled. Open **Options** or `/fxp settings` and click a theme:
+
+1. **Silent Hill** — the current fog-gray field journal, still the default.
+2. **Warcraft** — parchment, brown ink and brass framing for an Azeroth journal.
+3. **Warhammer 40K** — gunmetal, crimson, bone lettering and a crusade archive frame.
+
+The existing **High contrast** variant remains available. Changes apply immediately
+and persist across sessions; James remains visible in every theme. Compact Options
+has a cycling theme button. Slash alternatives: `/fxp theme fog`, `warcraft`,
+`warhammer` or `contrast`. These are original procedural franchise-inspired skins;
+no additional extracted franchise assets or music are included. Source-rendered
+previews are linked above; live visual review is pending.
 
 ## Development
 
@@ -171,11 +191,11 @@ is enabled; unsupported gameplay providers remain disabled.
 `settings`, `diagnostics`, `debug`, `auto`, `compact`, `scale 1.1`, or `opacity 0.9`.
 Drag the window to move it. Position, scale, opacity and settings are retained.
 The Route / Supplies / Options tabs share the field-journal theme.
-`/fxp select ID` selects registered verified content, `next` explicitly confirms
+`/fxp select ID` selects registered content, `next` explicitly confirms
 a step, `back` reviews a step and pauses auto advancement, and `skip` skips an
 optional step. `/fxp elwynn` selects the shipped reference guide; `/fxp journal`
 opens the observed quest checklist. `/fxp leveling` selects the new level-aware
-1–20 campaign; there, Next defers a quest and Back cycles alternatives.
+1–60 campaign; there, Next defers a quest and Back cycles alternatives.
 
 Profession commands: `/fxp profession CATALOG`, `/fxp target N`, `/fxp mode Farm`
 (or Buy/Hybrid), `/fxp estimate expected` (or conservative/guaranteed),

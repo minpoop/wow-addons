@@ -52,18 +52,20 @@ function F:Command(message)
     local cmd, arg = string.match(message or "", "^%s*(%S*)%s*(.-)%s*$")
     cmd = string.lower(cmd)
     if cmd == "" then U:Toggle()
-    elseif cmd=="leveling" or cmd=="1-20" then
+    elseif cmd=="leveling" or cmd=="1-20" or cmd=="1-60" then
         local campaign,engine=self.modules.LevelingCampaign,self.modules.GuideEngine
         local ok,err
-        if arg=="" then ok,err=campaign:Select()
-        elseif not engine.guide or not engine.guide.campaign then err="Use /fxp leveling to select the 1–20 campaign first."
+        if arg=="" then ok,err=campaign:Select(cmd=="1-20" and campaign.testId or campaign.id)
+        elseif not engine.guide or not engine.guide.campaign then err="Use /fxp leveling to select the 1–60 campaign first."
         elseif arg=="auto" then ok,err=campaign:Auto(engine)
         elseif arg=="defer" then ok,err=campaign:Defer(engine)
         elseif arg=="quests" then ok,err=campaign:List(engine)
+        elseif arg:match("^quests%s+%d+$") then ok,err=campaign:List(engine,tonumber(arg:match("%d+$")))
+        elseif arg=="chapters" then ok,err=campaign:Chapters(engine)
         else
             local id=arg:match("^keep%s+(%d+)$")
             if id then ok,err=campaign:Keep(engine,tonumber(id))
-            else err="Use /fxp leveling [auto|defer|quests|keep QUEST_ID]." end
+            else err="Use /fxp leveling [auto|defer|quests|chapters|keep QUEST_ID]." end
         end
         if not ok and err then self:Print(err) end
     elseif cmd == "guide" or cmd == "professions" or cmd == "settings" then U:Show(cmd)
@@ -123,7 +125,7 @@ function F:Command(message)
     elseif cmd == "compact" then self.modules.Settings:Set("compact",not self.settings.compact); U:Render()
     elseif cmd == "debug" then self.modules.Settings:Set("debug",not self.settings.debug); self:Print("Debug: " .. tostring(self.settings.debug))
     elseif cmd == "theme" then
-        if not self.modules.Themes.palettes[arg] then self:Print("Use /fxp theme fog or /fxp theme contrast.")
+        if not self.modules.Themes.palettes[arg] then self:Print("Use Options to choose a theme, or /fxp theme fog|warcraft|warhammer|contrast.")
         else self.modules.Settings:Set("theme",arg); U:Render() end
     elseif cmd == "scale" or cmd == "opacity" then
         local value = tonumber(arg)
@@ -193,7 +195,7 @@ function F:Command(message)
             self.modules.Waypoints:Set(nil); self.pendingReset = nil
             self:Print("Character progress reset; one pre-reset backup retained."); U:Render()
         end
-    else self:Print("/fxp [leveling|1-20|elwynn|resume|resume undo|journal|quests|focus QUEST_ID|tracking|guide|select ID|professions|profession ID|target N|mode Farm/Buy/Hybrid|estimate expected/conservative/guaranteed|price ITEM N|materials|integration MODE|detour|record ID|settings|next|back|skip|auto|compact|scale N|opacity N|debug|diagnostics|reset]") end
+    else self:Print("/fxp [leveling|1-60|1-20|elwynn|resume|resume undo|journal|quests|focus QUEST_ID|tracking|guide|select ID|professions|profession ID|target N|mode Farm/Buy/Hybrid|estimate expected/conservative/guaranteed|price ITEM N|materials|integration MODE|detour|record ID|settings|theme|next|back|skip|auto|compact|scale N|opacity N|debug|diagnostics|reset]") end
 end
 -- SlashCmdList and event semantics are compatibility candidates, tested with mocks.
 if type(SlashCmdList) == "table" and not SlashCmdList.FOREVERXP then

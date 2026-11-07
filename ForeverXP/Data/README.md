@@ -14,3 +14,10 @@ QuestGuides/Alliance/Levels1_20.lua adds a level-aware Alliance reference playte
 with 97 quests (including Elwynn). Evidence and curated facts are in
 Documentation/Reference/Alliance1_20.md. The pool is class-independent in the
 reference; XP coverage and server validity still need live validation.
+
+QuestGuides/Alliance/Levels1_60.lua is the expanded default campaign: 556 selected
+quests, including the original 97; no class restriction in those source facts.
+Generate it with tools/build_leveling.py from Alliance1_60Facts.json. Chapter
+summaries, source hashes, optional content and live-validation scope are recorded
+in Documentation/Reference/Alliance1_60.md. Do not equate level-range content with
+a measured XP budget or a completed Forever playthrough.

@@ -146,3 +146,28 @@ status, lastLevel, deferredByUser and pinnedQuest alongside normal completed IDs
 Runtime snapshots/candidates are transient and tied to the current guide state.
 The UI uses level progress and explicit planner controls. Missing data retains
 progress. A waiting pool is distinct from the actual level-20 target reached.
+
+## Expanded campaign and themes (0.5)
+
+The default campaign ID is alliance-levels-1-60; the old ID remains available
+through /fxp 1-20. One-time import copies matching completion/overrides and planner
+preferences without importing the old level-20 finished state. Accept metadata
+adds prerequisiteQuestsAny (quest IDs, one required) and exclusiveQuests (quest
+IDs, positively active/completed conflicts). ALL prerequisites remain backward
+turn-in step references. The adapter reads history for related IDs even when an
+alternative is outside the selected pool. Root resolution follows supported
+alternatives and never synthesizes missing content. Selected active quests bypass
+prerequisite inference; no earlier unknown steps are marked complete.
+
+A 25-point local-zone preference reduces unnecessary zone switches while goals
+remain inside the level window. Chapters are contiguous summaries, not gates.
+Generated Lua is reproducible from selected JSON facts via tools/build_leveling.py.
+No downloaded source executes in the client or content builder. The expanded
+panel has extra body space for target hints and live objectives.
+
+Themes.options defines four persisted choices. Settings validates IDs against its
+allowlist. Options buttons call Settings:Set immediately; Paint updates panels,
+text, selected states, progress, procedural borders and theme-specific headers.
+Compact Options uses one cycling control. Theme changes emit only FXP_CHANGED,
+so they redraw without moving quest cursors or modifying gameplay progress.
+James's portrait remains the same in all skins.

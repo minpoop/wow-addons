@@ -25,7 +25,7 @@ local function button(parent, title, x, y, width, onClick)
     return b, label
 end
 function U:PaintButton(b)
-    local selected = b.tab == self.tab or (b.mode and F.modules.ProfessionController.state and b.mode == F.modules.ProfessionController.state.mode)
+    local selected = b.tab == self.tab or b.theme==F.settings.theme or (b.mode and F.modules.ProfessionController.state and b.mode == F.modules.ProfessionController.state.mode)
     T:Texture(b.background,selected and T:Get().selected or T:Get().button)
     T:Text(b.label,selected and T:Get().accent or T:Get().text)
 end
@@ -33,8 +33,16 @@ function U:Paint()
     local theme = T:Get()
     T:Texture(self.background,theme.panel)
     T:Texture(self.edge,theme.border)
+    self.title:SetText(theme.journal)
+    for _,trim in ipairs(self.trim) do
+        T:Texture(trim,theme.border)
+        if theme.ornament then trim:Show() else trim:Hide() end
+    end
     T:Texture(self.portraitBorder,theme.border)
     T:Text(self.portraitName,theme.accent)
+    T:Text(self.themeMark,theme.muted)
+    self.themeMark:SetText(theme.mark or "")
+    if theme.mark and not F.settings.compact then self.themeMark:Show() else self.themeMark:Hide() end
     for _, band in ipairs(self.fog) do T:Texture(band,theme.fog) end
     T:Text(self.title,theme.muted); T:Text(self.companion,theme.muted); T:Text(self.heading,theme.accent)
     T:Text(self.body,theme.text); T:Text(self.footer,theme.muted)
@@ -70,12 +78,24 @@ function U:Build()
         local background = frame:CreateTexture(nil, "BACKGROUND"); background:SetAllPoints(frame)
         self.background = background
         self.edge = frame:CreateTexture(nil,"ARTWORK"); self.edge:SetPoint("TOPLEFT",frame,"TOPLEFT",0,0); size(self.edge,576,2)
+        self.trim={}
+        for _,edge in ipairs({{"TOPLEFT",0,0,3,380},{"TOPRIGHT",0,0,3,380},{"BOTTOMLEFT",0,0,576,3}}) do
+            local trim=frame:CreateTexture(nil,"ARTWORK")
+            trim:SetPoint(edge[1],frame,edge[1],edge[2],edge[3]); size(trim,edge[4],edge[5])
+            self.trim[#self.trim+1]=trim
+        end
+        for _,point in ipairs({{"TOPLEFT",8,-8},{"TOPRIGHT",-8,-8},{"BOTTOMLEFT",8,8},{"BOTTOMRIGHT",-8,8}}) do
+            local rivet=frame:CreateTexture(nil,"ARTWORK")
+            rivet:SetPoint(point[1],frame,point[1],point[2],point[3]); size(rivet,5,5)
+            self.trim[#self.trim+1]=rivet
+        end
         self.portraitBorder = frame:CreateTexture(nil,"BACKGROUND")
         self.portraitBorder:SetPoint("TOPLEFT",frame,"TOPLEFT",16,-90); size(self.portraitBorder,132,132)
         self.portrait = frame:CreateTexture(nil,"ARTWORK")
         self.portrait:SetPoint("TOPLEFT",frame,"TOPLEFT",18,-92); size(self.portrait,128,128)
         self.portrait:SetTexture("Interface\\AddOns\\ForeverXP\\Assets\\JamesSunderland.tga")
         self.portraitName = text(frame,{18,-226},132); self.portraitName:SetText("James Sunderland")
+        self.themeMark = text(frame,{18,-262},132)
         self.fog = {}
         for i=1,6 do
             local band = frame:CreateTexture(nil,"BORDER")
@@ -121,6 +141,16 @@ function U:Build()
             local _,err=F.modules.LevelingCampaign:Auto(F.modules.GuideEngine)
             if err then F:Print(err) end
         end)
+        self.themeControls={}
+        for i,choice in ipairs(T.options) do
+            local id=choice.id
+            local control=button(frame,choice.name,18+((i-1)%2)*196,-192-math.floor((i-1)/2)*34,188,function()
+                F.modules.Settings:Set("theme",id)
+            end)
+            control.theme=id
+            self.themeControls[#self.themeControls+1]=control
+        end
+        self.themeCycle=button(frame,"Change theme",18,-198,384,function() T:Cycle() end)
         self.professionControls = {}
         local function control(title,x,y,width,fn)
             local item = button(frame,title,x,y,width,function()
@@ -178,19 +208,32 @@ function U:Render()
     local ok, err = pcall(function()
         self.frame:SetScale(F.settings.scale); self.frame:SetAlpha(F.settings.opacity)
         self.companion:SetText(T.companion .. " · " .. T:Note(self.tab))
-        self.frame:SetHeight(F.settings.compact and 245 or (self.tab == "professions" and 430 or 380))
-        self.body:SetHeight(F.settings.compact and 110 or (self.tab == "professions" and 180 or 160))
+        local selectedGuide=F.modules.GuideEngine.guide
+        local expanded=self.tab=="guide" and selectedGuide and selectedGuide.campaign and selectedGuide.campaign.targetLevel>20 and not F.settings.compact
+        local height=F.settings.compact and 245 or (expanded and 450 or (self.tab=="professions" and 430 or 380))
+        self.frame:SetHeight(height); self.trim[1]:SetHeight(height); self.trim[2]:SetHeight(height)
+        self.body:SetHeight(F.settings.compact and 110 or (expanded and 210 or (self.tab == "professions" and 180 or 160)))
+        for _,control in ipairs({{self.previous,174},{self.next,282},{self.autoCampaign,420}}) do
+            control[1]:ClearAllPoints(); control[1]:SetPoint("TOPLEFT",self.frame,"TOPLEFT",control[2],expanded and -410 or -334)
+        end
         self.footer:ClearAllPoints()
-        self.footer:SetPoint("TOPLEFT",self.frame,"TOPLEFT",174,self.tab == "professions" and -306 or -282)
+        self.footer:SetPoint("TOPLEFT",self.frame,"TOPLEFT",174,expanded and -352 or (self.tab == "professions" and -306 or -282))
         self.previous:Hide(); self.next:Hide(); self.toggle:Hide()
         self.chooseGuide:Hide(); self.chooseQuest:Hide(); self.autoCampaign:Hide(); self.progressTrack:Hide(); self.progressFill:Hide()
         self.previous.label:SetText("Previous"); self.next.label:SetText("Confirm step")
         for _, control in ipairs(self.professionControls) do control:Hide() end
+        for _,control in ipairs(self.themeControls) do control:Hide() end
+        self.themeCycle:Hide()
         if F.settings.compact then self.footer:Hide() else self.footer:Show() end
         if self.tab == "settings" then
             self.heading:SetText("Preferences")
-            self.body:SetText(string.format("Auto advance: %s   |   Theme: %s\nScale: %.2f   |   Opacity: %.2f\n\n/fxp theme fog  /fxp theme contrast\n/fxp scale 1.1    /fxp opacity 0.9\n/fxp compact    /fxp auto\n/fxp reset requests confirmation.", tostring(F.settings.autoAdvance),F.settings.theme,F.settings.scale,F.settings.opacity))
-            if not F.settings.compact then self.toggle:Show() end
+            self.body:SetText(string.format("Auto advance: %s\nScale: %.2f   |   Opacity: %.2f\n\nChoose your theme below. Changes apply immediately.", tostring(F.settings.autoAdvance),F.settings.scale,F.settings.opacity))
+            if F.settings.compact then
+                self.themeCycle.label:SetText("Theme: "..T:Get().name.." · change"); self.themeCycle:Show()
+            else
+                for _,control in ipairs(self.themeControls) do control:Show() end
+                self.toggle:Show()
+            end
         elseif self.tab == "professions" then
             local c = F.modules.ProfessionController
             self.heading:SetText(c.catalog and c.catalog.title or "Supply ledger")
@@ -227,7 +270,7 @@ function U:Render()
                     if not F.settings.compact then self.chooseGuide:Hide(); self.chooseQuest:Show() end
                 end
                 self.progressTrack:ClearAllPoints()
-                self.progressTrack:SetPoint("TOPLEFT",self.frame,"TOPLEFT",174,F.settings.compact and -232 or -270)
+                self.progressTrack:SetPoint("TOPLEFT",self.frame,"TOPLEFT",174,F.settings.compact and -232 or (expanded and -340 or -270))
                 self.progressTrack:Show()
                 if progress>0 then self.progressFill:SetWidth(384*progress/#engine.guide.steps); self.progressFill:Show() end
                 local upcoming = engine.guide.steps[engine.index+1]
@@ -270,6 +313,7 @@ function U:Render()
         if not detour and F.persistent and engine.state and type(engine.state.resume)=="table" and (engine.state.resume.deferred or 0)>0 then
             footer=footer.."\nEarlier steps retained · /fxp resume undo"
         end
+        if self.tab=="settings" then footer="/fxp scale 1.1  ·  /fxp opacity 0.9\n/fxp compact  ·  /fxp reset requests confirmation." end
         self.footer:SetText(footer .. (F.persistent and "" or "\nSession-only progress; original save retained."))
         self:Paint()
     end)
