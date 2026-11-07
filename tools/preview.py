@@ -149,15 +149,25 @@ def render(nodes):
 for view, theme, title in [('guide', 'fog', '01 / ROUTE JOURNAL'),
                            ('professions', 'fog', '02 / SUPPLY LEDGER'),
                            ('settings', 'contrast', '03 / HIGH-CONTRAST OPTIONS'),
-                           ('elwynn', 'fog', '04 / ELWYNN SHARED REFERENCE ROUTE')]:
+                           ('elwynn', 'fog', '04 / ELWYNN SHARED REFERENCE ROUTE'),
+                           ('leveling', 'fog', '05 / LEVEL-AWARE ALLIANCE 1–20')]:
     if view == 'elwynn':
         lua.execute('ForeverXP.settings.theme="fog"; ForeverXP:Command("elwynn")')
+    elif view == 'leveling':
+        lua.execute('''
+            local F=ForeverXP
+            F.settings.theme="fog"
+            assert(F.modules.GuideEngine:Select(F.modules.LevelingCampaign.id,F.character))
+            F.snapshot={level=14,active={},quests={},character={zone="Elwynn Forest"}}
+            F.modules.GuideEngine:Update(F.snapshot)
+            F.modules.MainWindow:Show("guide")
+        ''')
     else:
         lua.execute(f'ForeverXP.settings.theme={json.dumps(theme)}; ForeverXP.modules.MainWindow:Show({json.dumps(view)})')
     nodes = snapshot()
     assert any('James Sunderland' in row.get('text', '') for row in nodes.values())
     content = render(nodes)
-    data_label = 'Classic reference route · live route validation pending' if view == 'elwynn' else 'synthetic layout data'
+    data_label = 'Classic reference content · live validation pending' if view in ('elwynn', 'leveling') else 'synthetic layout data'
     html = f'''<!doctype html><html><head><meta charset="utf-8"><style>
     *{{box-sizing:border-box}}body{{margin:0;background:#171e1a;color:#c9cec2;width:1000px;height:820px;font-family:Arial,sans-serif}}
     h1{{position:absolute;left:62px;top:30px;font-size:15px;letter-spacing:3px;font-weight:400}}

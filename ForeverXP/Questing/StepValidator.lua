@@ -71,6 +71,33 @@ function V:Guide(guide, production)
             if type(step.id) == "string" then seen[step.id] = true end
         end
     end
+    if guide.campaign~=nil then
+        local plan=guide.campaign
+        if type(plan)~="table" or not positive(plan.targetLevel)
+           or not Check.Integer(plan.maxQuestLag) or plan.maxQuestLag>10
+           or not Check.Integer(plan.maxQuestLead) or plan.maxQuestLead>10 then
+            fail("invalid campaign level policy")
+        else
+            local quests,goal={},0
+            for _,step in ipairs(guide.steps) do
+                if type(step)=="table" then
+                    if step.type=="REACH_LEVEL" and step.level==plan.targetLevel then goal=goal+1 end
+                    if step.questId then
+                        if not positive(step.questLevel) or not positive(step.minLevel) or not Check.String(step.questTitle) then fail("campaign quest metadata required") end
+                        local record=quests[step.questId] or {}; quests[step.questId]=record
+                        if record[step.type] then fail("duplicate campaign quest phase") end
+                        record[step.type]=true
+                        if record.level and (record.level~=step.questLevel or record.minimum~=step.minLevel or record.title~=step.questTitle) then fail("inconsistent campaign quest metadata") end
+                        record.level,record.minimum,record.title=step.questLevel,step.minLevel,step.questTitle
+                    end
+                end
+            end
+            if not next(quests) or goal~=1 then fail("campaign needs quests and one target level step") end
+            for _,record in pairs(quests) do
+                if not record.ACCEPT_QUEST or not record.COMPLETE_QUEST or not record.TURN_IN_QUEST then fail("campaign quest phases incomplete") end
+            end
+        end
+    end
     return #errors == 0, errors
 end
 function V:KnownQuests(guide, known)

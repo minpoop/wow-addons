@@ -8,8 +8,9 @@ a production release or a verified leveling guide**.
 · [Preview images](Documentation/Previews/README.md)
 
 Extract the ZIP's `ForeverXP` folder into `Interface/AddOns`. This package contains
-the James portrait, live quest journal and an Elwynn shared reference route.
-Elwynn still needs end-to-end validation on Forever; full 1–60 coverage is missing.
+the James portrait, live quest journal, Elwynn reference route and a level-aware
+Alliance 1–20 playtest. Use `/fxp leveling` for the new campaign. Content still
+needs end-to-end validation on Forever; full 1–60 coverage is missing.
 
 The user reports client version **1.60.70790**. The supplied working
 `Questie_Forever.toc` declares **interface 16001** and `LoadSavedVariablesFirst: 1`;
@@ -28,11 +29,44 @@ gameplay actions, purchasing or automatic movement are implemented.
 The user has confirmed that the 0.1 development addon loads in their client.
 The user also reports that the 0.2 live quest journal progresses in game. The
 specific quest/build/scenario was not recorded, so this is limited user-reported
-evidence. Version **0.3.1-dev** fixes Elwynn's automatic catch-up for characters
-who already have quests underway. Route content still needs in-game validation.
+evidence. The user subsequently confirmed Elwynn catches up, but reported
+outleveling its quests. Version **0.4.0-dev** adds a level-aware 1–20 campaign
+to address this. Route content still needs in-game validation.
 Live profession/recipe tracking, arrows, map pins and verified leveling content
 remain pending. The profession view has selection, target and mode controls;
 they populate only from registered verified catalogs and normalized providers.
+
+## Alliance 1–20 — level-aware test guide
+
+Install the updated folder, restart the client, and run **`/fxp leveling`** (or
+`/fxp 1-20`). This selects the new campaign; `/fxp elwynn` keeps the older area
+route. Existing Elwynn completion and manual overrides import on first selection;
+the original route save remains available.
+
+The campaign chooses among **97 reference quests / 293 steps** across Elwynn,
+Westfall, Loch Modan and Redridge, with related deliveries. It follows your actual
+level and observed quest state, rather than requiring an area to be finished.
+Automatic goals fall between three levels below and two above your level, subject
+to minimum levels and prerequisites. Observed quest levels take precedence over
+Classic reference levels. Older prerequisites may still be offered when they
+unlock a suitable quest; the panel explains the connection.
+
+Outleveled quests remain saved without being falsely completed or abandoned.
+The progress bar measures your level toward 20. Optional group/escort encounters
+and selected deliveries are excluded from automatic choices. All included quests
+have no class restriction in the reference, so this is common Alliance content,
+not class-specific training. Availability for custom races remains unverified.
+
+- **Other quests** cycles suitable choices and keeps your choice until turn-in.
+- **Defer quest** sets aside the current quest as a planner preference.
+- **Auto plan** releases an explicit choice and resumes level-based selection.
+- `/fxp leveling quests` lists unfinished quests and their IDs.
+- `/fxp leveling keep QUEST_ID` restores a deferred quest or keeps an older one.
+
+At actual level 20 the campaign goal ends while unfinished quest records remain.
+If suitable content runs out earlier, the planner says so and waits. This is a
+reference playtest, without a measured XP budget or a guaranteed uninterrupted
+1–20 route. See [scope and evidence](Documentation/Reference/Alliance1_20.md).
 
 ## Elwynn Forest — shared route for all classes
 
@@ -140,7 +174,8 @@ The Route / Supplies / Options tabs share the field-journal theme.
 `/fxp select ID` selects registered verified content, `next` explicitly confirms
 a step, `back` reviews a step and pauses auto advancement, and `skip` skips an
 optional step. `/fxp elwynn` selects the shipped reference guide; `/fxp journal`
-opens the observed quest checklist.
+opens the observed quest checklist. `/fxp leveling` selects the new level-aware
+1–20 campaign; there, Next defers a quest and Back cycles alternatives.
 
 Profession commands: `/fxp profession CATALOG`, `/fxp target N`, `/fxp mode Farm`
 (or Buy/Hybrid), `/fxp estimate expected` (or conservative/guaranteed),

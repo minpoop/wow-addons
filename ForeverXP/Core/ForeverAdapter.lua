@@ -45,6 +45,8 @@ function A:Collect()
                 else self.historyFull=true end
             end
             local quest = { accepted = true, title = info.title }
+            local readable,observedLevel=pcall(function() if V.Integer(info.level,1) then return info.level end end)
+            if readable then quest.level=observedLevel end
             if fn("C_QuestLog","IsComplete") then
                 local complete = call("C_QuestLog","IsComplete",id)
                 if type(complete) == "boolean" then quest.complete = complete end

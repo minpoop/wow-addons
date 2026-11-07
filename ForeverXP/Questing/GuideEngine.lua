@@ -83,6 +83,11 @@ function G:Select(id, character)
         end
     end
     state = state or { current = guide.steps[1].id, completed = {}, overrides = {} }
+    if guide.campaign then
+        local valid,err=F.modules.LevelingCampaign:ValidateState(state)
+        if not valid then return nil,err end
+        if not character.guides[id] then F.modules.LevelingCampaign:Import(guide,state,character) end
+    end
     local index
     for i, step in ipairs(guide.steps) do if step.id == state.current then index = i end end
     if not index and not state.finished then return nil, "saved step missing from guide; progress retained" end
@@ -105,6 +110,7 @@ function G:Progress()
     return count
 end
 function G:Advance(manual)
+    if self.guide and self.guide.campaign then return F.modules.LevelingCampaign:Defer(self) end
     local step = self:Current()
     if not step then return false end
     if manual then self.state.overrides[step.id] = "confirmed" end
@@ -123,6 +129,7 @@ function G:Advance(manual)
 end
 function G:Back()
     if not self.guide then return end
+    if self.guide.campaign then return F.modules.LevelingCampaign:Cycle(self) end
     self.index = math.max(1, self.index - 1)
     self.state.current, self.state.finished, self.state.review = self:Current().id, false, true
     self:Changed() -- review pauses automatic advancement until manual forward
@@ -136,6 +143,7 @@ end
 function G:Update(snapshot)
     if F.modules.Detours and F.modules.Detours.active then return end
     if not F.settings.autoAdvance or not self.state or self.state.review then return end
+    if self.guide and self.guide.campaign then return F.modules.LevelingCampaign:Update(self,snapshot) end
     if self.guide and self.guide.id==F.modules.LiveJournal.id then return F.modules.LiveJournal:Update(snapshot) end
     if self.guide and self.guide.autoResume then F.modules.RecoveryEngine:Apply(self,snapshot) end
     while self:Current() do

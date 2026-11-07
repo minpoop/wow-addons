@@ -60,7 +60,8 @@ activity, missing/invalid snapshots, preserved overrides, relog state, review,
 disabled settings, undo and the Elwynn slash-command/refresh path. The adapter's
 native focus getter is read-only and optional; a throwing getter does not discard
 the quest snapshot. These regression cases reproduce the reported failure as
-mocked scenarios; the user has not yet confirmed this fix in game.
+mocked scenarios. The user now reports catch-up works, but that the quests were
+outleveled. No named quest trace or full-route live validation was supplied.
 
 For the 0.3.1 live check, install while an Elwynn quest is already accepted and
 select Elwynn. It should show that quest's objective, or its turn-in if complete,
@@ -94,3 +95,21 @@ Complete the compatibility checklist before these checks:
 
 Live integration, server content, XML, combat behavior, Lua runtime identity,
 visual polish, navigation direction/distance and optional addons remain unrun.
+
+## 0.4 level-aware campaign
+
+`Tests/campaign.lua` adds 17 behavioral scenarios: valid shared reference content,
+choices at every level 1–19, outleveled tracked quests, accelerated levels, native
+quest-level precedence, positive history, prerequisite bridges, optional goals,
+defer/keep and pin release, missing data, exhausted pools, actual target 20,
+one-time Elwynn import, invalid/reloaded saves, public commands/UI and synthetic
+1–20 progression. `Tests/test_campaign.py` checks every selected quest and phase
+against curated facts, including prerequisites and missing/present coordinates.
+The suite currently passes 79 Lua checks and 5 Python tests.
+
+Next live test: on the outleveled character, run `/fxp leveling`, verify the level
+and recommended quest difficulty, then complete a quest and gain a level. Check
+that old quests remain unfinished without holding the recommendation. Exercise
+Other quests, Defer quest, Auto plan and keep; relog to check preferences. Confirm
+prerequisite access, quest locations and XP gaps through levels 1–20. These
+campaign scenarios have not yet been run on the live client.

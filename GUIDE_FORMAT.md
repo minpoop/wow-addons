@@ -85,3 +85,20 @@ overly deep data and files over 2 MB are rejected. Schema-valid production label
 remain author assertions; the command cannot certify live observations. Validated
 data must be registered explicitly through the addon modules; the client does not
 read external files or execute arbitrary imported Lua.
+
+## Level-aware campaign guides
+
+The Alliance playtest uses `campaign={targetLevel=20,maxQuestLag=3,maxQuestLead=2}`.
+These integer limits select goal quest levels relative to the observed player.
+Campaigns need one matching REACH_LEVEL step and a nonempty quest pool. Each
+quest has exactly one ACCEPT_QUEST, COMPLETE_QUEST and TURN_IN_QUEST, with matching
+positive `questLevel`, `minLevel` and nonempty `questTitle`. Accept prerequisites
+reference earlier turn-in step IDs. Each phase retains its own positive evidence;
+source order is not a requirement to finish every quest. Lower-level prerequisite
+bridges can be selected to unlock eligible goals. Optional quests are excluded
+unless explicitly kept. This pool format has no travel-time or XP guarantee.
+
+Campaign Next means defer, Back cycles alternatives, and Auto plan clears an
+explicit pin. Deferral changes planner preference only. It never confirms a quest
+phase or abandons a quest. The separate campaign guide imports matching old
+Elwynn completions/overrides once and retains the old route save.

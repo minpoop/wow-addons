@@ -98,8 +98,8 @@ function U:Build()
         self.progressFill = frame:CreateTexture(nil,"OVERLAY")
         self.progressFill:SetPoint("TOPLEFT",self.progressTrack,"TOPLEFT",0,0)
         self.progressFill:SetHeight(3); size(self.progressTrack,384,3)
-        self.previous = button(frame,"Previous",18,-334,100,function() F.modules.GuideEngine:Back() end)
-        self.next = button(frame,"Confirm step",126,-334,130,function() F.modules.GuideEngine:Advance(true) end)
+        self.previous = button(frame,"Previous",18,-334,100,function() local _,err=F.modules.GuideEngine:Back(); if err then F:Print(err) end end)
+        self.next = button(frame,"Confirm step",126,-334,130,function() local _,err=F.modules.GuideEngine:Advance(true); if err then F:Print(err) end end)
         self.toggle, self.toggleLabel = button(frame,"Auto advance",264,-334,138,function()
             F.modules.Settings:Set("autoAdvance",not F.settings.autoAdvance)
         end)
@@ -116,6 +116,10 @@ function U:Build()
         self.chooseQuest = button(frame,"Choose quest",264,-334,138,function()
             local ok,err=F.modules.LiveJournal:CycleFocus()
             if not ok then F:Print(err) end
+        end)
+        self.autoCampaign=button(frame,"Auto plan",264,-334,138,function()
+            local _,err=F.modules.LevelingCampaign:Auto(F.modules.GuideEngine)
+            if err then F:Print(err) end
         end)
         self.professionControls = {}
         local function control(title,x,y,width,fn)
@@ -179,7 +183,8 @@ function U:Render()
         self.footer:ClearAllPoints()
         self.footer:SetPoint("TOPLEFT",self.frame,"TOPLEFT",174,self.tab == "professions" and -306 or -282)
         self.previous:Hide(); self.next:Hide(); self.toggle:Hide()
-        self.chooseGuide:Hide(); self.chooseQuest:Hide(); self.progressTrack:Hide(); self.progressFill:Hide()
+        self.chooseGuide:Hide(); self.chooseQuest:Hide(); self.autoCampaign:Hide(); self.progressTrack:Hide(); self.progressFill:Hide()
+        self.previous.label:SetText("Previous"); self.next.label:SetText("Confirm step")
         for _, control in ipairs(self.professionControls) do control:Hide() end
         if F.settings.compact then self.footer:Hide() else self.footer:Show() end
         if self.tab == "settings" then
@@ -243,6 +248,18 @@ function U:Render()
                 lines[#lines+1]=""; lines[#lines+1]=upcoming and ("Next: "..upcoming.text) or ""
                 self.body:SetText(table.concat(lines,"\n"))
                 if not F.settings.compact then self.previous:Show(); self.next:Show() end
+                if engine.guide.campaign then
+                    local campaign=F.modules.LevelingCampaign
+                    local level=engine.state.campaign and engine.state.campaign.lastLevel
+                    local target=engine.guide.campaign.targetLevel
+                    local fraction=level and math.max(0,math.min(1,(level-1)/(target-1))) or 0
+                    self.progressFill:Hide()
+                    if fraction>0 then self.progressFill:SetWidth(384*fraction); self.progressFill:Show() end
+                    self.body:SetText(campaign:Text(engine))
+                    self.chooseGuide:Hide(); self.chooseQuest:Hide()
+                    self.previous.label:SetText("Other quests"); self.next.label:SetText("Defer quest")
+                    if not F.settings.compact then self.autoCampaign:Show() end
+                end
             else
                 self.body:SetText("A quiet road. A new page.\n\n/fxp journal tracks quests already in your log.\nAuthored leveling routes are still being verified.\n\n/fxp tracking checks live quest data.\nDevelopment build · Forever interface 16001")
             end

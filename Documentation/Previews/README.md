@@ -21,3 +21,10 @@ still need live-client verification.
 This view uses the authored reference guide, with live route validation pending.
 
 ![Elwynn reference route introduction](elwynn.png)
+
+## Level-aware Alliance 1–20
+
+The mocked character is level 14; older quests remain saved while the campaign
+selects a suitable quest from its reference pool. Live validation is pending.
+
+![Level-aware Alliance campaign with James Sunderland](leveling.png)

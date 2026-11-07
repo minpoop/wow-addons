@@ -52,6 +52,20 @@ function F:Command(message)
     local cmd, arg = string.match(message or "", "^%s*(%S*)%s*(.-)%s*$")
     cmd = string.lower(cmd)
     if cmd == "" then U:Toggle()
+    elseif cmd=="leveling" or cmd=="1-20" then
+        local campaign,engine=self.modules.LevelingCampaign,self.modules.GuideEngine
+        local ok,err
+        if arg=="" then ok,err=campaign:Select()
+        elseif not engine.guide or not engine.guide.campaign then err="Use /fxp leveling to select the 1–20 campaign first."
+        elseif arg=="auto" then ok,err=campaign:Auto(engine)
+        elseif arg=="defer" then ok,err=campaign:Defer(engine)
+        elseif arg=="quests" then ok,err=campaign:List(engine)
+        else
+            local id=arg:match("^keep%s+(%d+)$")
+            if id then ok,err=campaign:Keep(engine,tonumber(id))
+            else err="Use /fxp leveling [auto|defer|quests|keep QUEST_ID]." end
+        end
+        if not ok and err then self:Print(err) end
     elseif cmd == "guide" or cmd == "professions" or cmd == "settings" then U:Show(cmd)
     elseif cmd == "journal" then
         local ok,err=self.modules.LiveJournal:Open()
@@ -179,7 +193,7 @@ function F:Command(message)
             self.modules.Waypoints:Set(nil); self.pendingReset = nil
             self:Print("Character progress reset; one pre-reset backup retained."); U:Render()
         end
-    else self:Print("/fxp [elwynn|resume|resume undo|journal|quests|focus QUEST_ID|tracking|guide|select ID|professions|profession ID|target N|mode Farm/Buy/Hybrid|estimate expected/conservative/guaranteed|price ITEM N|materials|integration MODE|detour|record ID|settings|next|back|skip|auto|compact|scale N|opacity N|debug|diagnostics|reset]") end
+    else self:Print("/fxp [leveling|1-20|elwynn|resume|resume undo|journal|quests|focus QUEST_ID|tracking|guide|select ID|professions|profession ID|target N|mode Farm/Buy/Hybrid|estimate expected/conservative/guaranteed|price ITEM N|materials|integration MODE|detour|record ID|settings|next|back|skip|auto|compact|scale N|opacity N|debug|diagnostics|reset]") end
 end
 -- SlashCmdList and event semantics are compatibility candidates, tested with mocks.
 if type(SlashCmdList) == "table" and not SlashCmdList.FOREVERXP then

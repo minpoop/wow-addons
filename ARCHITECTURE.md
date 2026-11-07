@@ -11,6 +11,7 @@ James Sunderland portrait texture with its original generated source in `art/`.
 | Compatibility | Guarded diagnostic calls; verified-profile provider boundary |
 | ForeverAdapter | Source-inspected, interface-gated quest/item reads and coalesced events |
 | LiveJournal | Bounded per-character checklist generated from observed quest records |
+| LevelingCampaign | Level-aware quest pool selection, prerequisite bridges, persistent defer/keep and level-20 goal |
 | RecoveryEngine | Evidence-based cursor catch-up for opted-in authored routes; reversible without completing unknown steps |
 | Events | Keyed handlers, idempotent subscription, isolated callback errors |
 | SavedVariables | Schema handling, backups, per-character tables, session fallback |
@@ -132,3 +133,16 @@ Automatic advance, review and detour guards run before recovery. Failed or missi
 snapshots cannot relocate the cursor. Invalid saved resume records are retained
 and rejected rather than silently reset. All guides display actual completion
 counts; reaching the route's end with deferred work is labeled explicitly.
+
+## Level-aware campaign
+
+Campaign guides opt into LevelingCampaign through typed campaign metadata.
+GuideEngine delegates automatic updates and uses non-destructive defer/cycle
+controls for these guides. The campaign reconciles positive step evidence, builds
+eligible goals by observed level, resolves unfinished prerequisite chains and
+selects a phase for the chosen quest. It never calls gameplay actions. Optional
+observed quest.level overrides the reference value. Campaign state version 1 stores
+status, lastLevel, deferredByUser and pinnedQuest alongside normal completed IDs.
+Runtime snapshots/candidates are transient and tied to the current guide state.
+The UI uses level progress and explicit planner controls. Missing data retains
+progress. A waiting pool is distinct from the actual level-20 target reached.
