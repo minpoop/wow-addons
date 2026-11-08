@@ -142,3 +142,21 @@ that every view uses the full 540-pixel content width from the left margin, and
 that compact mode and all theme buttons still work. Packaging asserts the old
 portrait texture is absent. The complete suite remains 95 Lua checks and 8 Python
 tests. Source-rendered previews were refreshed for all views and themes.
+
+## 0.6 profession guides and tracking
+
+The complete suite passes **115 Lua checks + 11 Python tests**. Twenty new Lua
+profession scenarios cover 12 loaded guides, 132 recipes, 146 stages, every skill
+1–299, modern/legacy skill reads, localization, header expansion, positive skill
+progress, recipe knowledge, tool/intermediate preparation, inventory changes,
+gathering, training gates, temporary errors, unlearning, relog/character separation,
+corrupt future state, public controls, event coalescing and interface mismatch.
+Tests/test_professions.py checks generated facts and representative canonical
+reagents, outputs and minimum skills, and verifies deterministic regeneration.
+Package tests require ProfessionAdapter, ProfessionGuides and Classic.lua.
+
+Chromium source-rendered previews show tracked Alchemy and Mining with synthetic
+observations. Next live check: choose an actually learned profession, compare the
+skill/cap, craft or gather, check bag deltas, verify only real skill-ups change the
+stage, train a rank and relog. Test a secondary profession's book/quest gate. No
+live profession compatibility or complete 1–300 outcome is implied by mocks.

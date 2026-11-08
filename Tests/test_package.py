@@ -30,7 +30,7 @@ class PackagingTests(unittest.TestCase):
             with zipfile.ZipFile(root / 'dist/ForeverXP-dev.zip') as archive:
                 self.assertIn('## Interface: 999999\n', archive.read('ForeverXP/ForeverXP.toc').decode())
                 self.assertIn('ForeverXP/Core/Bootstrap.lua', archive.namelist())
-                for module in ('Questing/LevelingCampaign.lua', 'Data/QuestGuides/Alliance/Levels1_20.lua', 'Data/QuestGuides/Alliance/Levels1_60.lua'):
+                for module in ('Questing/LevelingCampaign.lua', 'Data/QuestGuides/Alliance/Levels1_20.lua', 'Data/QuestGuides/Alliance/Levels1_60.lua', 'Core/ProfessionAdapter.lua', 'Professions/ProfessionGuides.lua', 'Data/ProfessionGuides/Classic.lua'):
                     self.assertIn('ForeverXP/' + module, archive.namelist())
                     self.assertIn(module, archive.read('ForeverXP/ForeverXP.toc').decode())
                 self.assertNotIn('ForeverXP/Assets/JamesSunderland.tga', archive.namelist())

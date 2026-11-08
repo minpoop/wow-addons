@@ -30,6 +30,7 @@ function F:Initialize()
     self:AttachCharacter()
     self.initialized = true
     self.modules.ForeverAdapter:Start()
+    self.modules.ProfessionAdapter:Start()
     if D.warning then self:Print(D.warning) end
     if not self.persistent then self:Print("Progress is session-only until a valid character identity and save are available.") end
     local ok, err = U:Build()
@@ -68,7 +69,9 @@ function F:Command(message)
             else err="Use /fxp leveling [auto|defer|quests|chapters|keep QUEST_ID]." end
         end
         if not ok and err then self:Print(err) end
-    elseif cmd == "guide" or cmd == "professions" or cmd == "settings" then U:Show(cmd)
+    elseif cmd == "guide" or cmd == "professions" or cmd == "settings" then
+        if cmd=="professions" then self.modules.ProfessionController:Default() end
+        U:Show(cmd)
     elseif cmd == "journal" then
         local ok,err=self.modules.LiveJournal:Open()
         if ok then U:Show("guide") else self:Print(err) end
@@ -138,6 +141,17 @@ function F:Command(message)
         local _, err = self.modules.GuideEngine:Select(arg,self.character); if err then self:Print(err) end
     elseif cmd == "profession" then
         local _, err = self.modules.ProfessionController:Select(arg); if err then self:Print(err) else U:Show("professions") end
+    elseif cmd=="batch" then
+        local _,err=self.modules.ProfessionController:Change("batch",tonumber(arg)); if err then self:Print(err) end
+    elseif cmd=="recipes" then
+        local c=self.modules.ProfessionController
+        if not c.catalog or not c.catalog.guide or not c.plan or not c.plan.stage then self:Print("Select a tracked profession guide first.")
+        else for _,id in ipairs(c.plan.stage.choices or {}) do self:Print(id.." · "..c.catalog.recipes[id].name) end end
+    elseif cmd=="recipe" then
+        local c=self.modules.ProfessionController
+        if arg=="next" and c.catalog and c.catalog.guide then
+            local _,err=self.modules.ProfessionGuides:Cycle(c); if err then self:Print(err) end
+        else self:Print("Use /fxp recipes to list stage choices, or /fxp recipe next to cycle them.") end
     elseif cmd == "target" or cmd == "mode" or cmd == "estimate" then
         local value = cmd == "target" and tonumber(arg) or arg
         local _, err = self.modules.ProfessionController:Change(cmd,value); if err then self:Print(err) end
@@ -147,7 +161,9 @@ function F:Command(message)
         if err then self:Print(err) end
     elseif cmd == "materials" then
         local controller = self.modules.ProfessionController
-        if not controller.plan then self:Print("No profession plan available.")
+        if controller.catalog and controller.catalog.guide then
+            local _,err=self.modules.ProfessionGuides:Materials(controller); if err then self:Print(err) end
+        elseif not controller.plan then self:Print("No profession plan available.")
         else
             if controller.stale then self:Print("Previous plan; current data unavailable.") end
             local materials, ids = controller.plan.materials, {}

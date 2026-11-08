@@ -171,3 +171,26 @@ text, selected states, progress, procedural borders and theme-specific headers.
 Compact Options uses one cycling control. Theme changes emit only FXP_CHANGED,
 so they redraw without moving quest cursors or modifying gameplay progress.
 James's original text notes remain in all skins; the portrait was removed in 0.5.1.
+
+## Profession guide tracking (0.6)
+
+ProfessionAdapter registers a separate source-inspected professionSnapshot provider
+for interface 16001. It enumerates skill lines, expands collapsed headers through
+the inspected API, matches modern skill IDs (English-name legacy fallback), checks
+rank/recipe spells and reads referenced carried-item counts. Failures remain
+unknown; no skill is inferred from inventory. Skill/recipe events share the existing
+ForeverAdapter coalesced refresh queue and discard chat arguments.
+
+RecipeDatabase:RegisterReferenceGuide delegates to ProfessionGuides validation.
+This path stays separate from live-verified legacy probability catalogs. Reference
+guides choose stages by actual skill; batches compute exact reference craft inputs,
+using known fixed-output intermediates and owned stock through MaterialCalculator.
+Missing included tools are prepared before the main recipe. Gathering uses actual
+skill and resource inventory with no craft estimate or purchased-skill inference.
+
+ProfessionController supports both formats and keeps targets/preferences separated
+by character and profession. The new guideVersion=1 state stores batch, lastSkill
+and preferredRecipes; future/corrupt records remain untouched. The UI shows current
+skill/target progress, recipe/source, batch materials and rank reminders. Compact
+mode preserves tracking while hiding controls. New guides are generated from
+selected factual JSON; source data and Python are not runtime dependencies.

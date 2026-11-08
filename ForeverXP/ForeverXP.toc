@@ -2,7 +2,7 @@
 ## Title: ForeverXP [DEVELOPMENT BUILD]
 ## Notes: Targets Forever interface 16001. Live API validation pending; see Documentation/COMPATIBILITY.md.
 ## Author: ForeverXP contributors
-## Version: 0.5.1-dev
+## Version: 0.6.0-dev
 ## SavedVariables: ForeverXPDB
 ## LoadSavedVariablesFirst: 1
 Core/Namespace.lua
@@ -20,7 +20,9 @@ Core/ForeverAdapter.lua
 Professions/MaterialCalculator.lua
 Professions/RecipeDatabase.lua
 Professions/ProfessionPlanner.lua
+Professions/ProfessionGuides.lua
 Professions/ProfessionController.lua
+Core/ProfessionAdapter.lua
 Navigation/Waypoints.lua
 Navigation/GatheringRoutes.lua
 Navigation/Detours.lua
@@ -29,4 +31,5 @@ UI/MainWindow.lua
 Data/QuestGuides/Alliance/Elwynn.lua
 Data/QuestGuides/Alliance/Levels1_20.lua
 Data/QuestGuides/Alliance/Levels1_60.lua
+Data/ProfessionGuides/Classic.lua
 Core/Bootstrap.lua

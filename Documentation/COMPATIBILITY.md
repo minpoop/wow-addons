@@ -87,3 +87,12 @@ alternatives and exclusive choices. The explicit turn-in cache bound is 2,048.
 Theme controls use the same existing frame/texture methods. These changes have
 mocked regression and source-rendered layout checks; full live-client validation
 and a measured 1–60 content playthrough remain pending.
+
+## 0.6 profession adapter
+
+Profession tracking now has a source-inspected, interface-16001 provider using the
+working reference's skill-line, rank/knowledge, header expansion and skill/recipe
+event contracts. Modern matching uses profession skill IDs; legacy name fallback
+is English-only. Existing item count reads exclude bank stock. No live profession
+run was performed here. The profile verified flag stays false. See
+Reference/Professions1_300.md for exact evidence, data boundaries and live checks.

@@ -1,7 +1,9 @@
 # Profession format
 
-No profession names, skill caps, recipes or gathering coordinates are shipped as
-server facts. Adapters and verified content must supply them.
+Version 0.6 adds 12 explicitly labeled Classic reference guides covering 1–300,
+with a source-inspected runtime adapter. Reference recipes and authored stages
+remain distinct from live-verified server facts. See the separate tracking-guide
+contract below; the legacy catalog/planner contract remains supported.
 
 The pure calculator accepts `crafts`, `recipes`, `inventory`, and `producers` maps.
 Synthetic example (all keys are fixtures, not game IDs):
@@ -83,3 +85,38 @@ Integration defaults to disabled. Minimal/balanced/focused limit suggestions to
 travel-time budgets. Explicitly accepted detours share waypoints, pause main guide
 auto advancement and restore the main objective afterward. Map overlays, trainer
 location registries and auction providers remain pending.
+
+## Tracking-driven reference guides (0.6)
+
+RecipeDatabase:RegisterReferenceGuide validates the dedicated ProfessionGuides
+schema; it never sets a live-verification flag. Each guide has guide=true,
+kind=craft/gather, id/profession/name/title, skillId, minSkill=1, maxSkill=300,
+reference-reviewed verification and a source. Four rankSpells correspond to the
+reference caps 75/150/225/300. rankNotes supply training reminders. Stages are
+contiguous from 1 through 300, with id/from/to/text. Craft stages have recipe-ID
+choices whose minimum skill does not exceed stage.from; gathering stages have
+resource item IDs. Recipe records include name, minimum, acquisition, exact
+reference reagent maps, required tools, output and outputCount. Optional seller
+and quest-source records are factual learning leads, not live availability claims.
+
+Explicit fixed-output producers expand known processing recipes through the
+existing MaterialCalculator. toolRecipes identify included rod/tool preparation.
+Source spell effects without an item output (enchants) use a synthetic internal
+output key, never an assertion that an inventory item was created. No skill-up
+probability is assigned to this guide format. Batch size 1–20 controls a next-craft
+scenario, bounded by the remaining stage/target points; repeated crafting never
+advances a stage without a new observed skill. Unknown preparation knowledge
+leaves that component as an acquisition requirement rather than inventing a recipe.
+
+Profession state adds guideVersion=1, batch, lastSkill and preferredRecipes keyed
+by stage ID. Unknown future versions and corrupt values are retained and rejected.
+Default target is 300 on first selection; existing targets are preserved. Gathering
+modes do not imply skill from purchases. Legacy estimate commands do not apply to
+these next-batch guides.
+
+professionSnapshot returns skillsReady, optional positively observed skill/cap,
+knownRecipes boolean map and optional inventory. Missing skill means not found in
+readable lines, not completed. Missing inventory means unknown stock, not zero.
+Provider failures retain prior plans as stale; lastSkill persists as a labeled
+historical observation. Actual skill at or above the selected target is required
+for target reached. No inferred craft count or resource count completes a stage.

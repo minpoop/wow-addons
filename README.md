@@ -2,14 +2,15 @@
 
 Original, modular leveling and profession guide addon under development for the
 WoW Forever server. This development build includes a **level-aware Alliance 1–60 reference guide**
-and profession-planning foundation. End-to-end live content validation is pending.
+and **12 profession guides from 1–300 with skill, recipe and material tracking**.
+End-to-end live content validation is pending.
 
 [Download the development addon ZIP](https://github.com/minpoop/wow-addons/blob/main/downloads/ForeverXP-dev.zip?raw=true)
 · [Preview images](Documentation/Previews/README.md)
 
 Extract the ZIP's `ForeverXP` folder into `Interface/AddOns`. This package contains
-the live quest journal and a level-aware Alliance 1–60 guide. Version 0.5.1 removes
-the portrait and gives instructions the full window width.
+the live quest journal, level-aware Alliance 1–60 guide and profession guides.
+Version **0.6.0-dev** adds profession tracking; the portrait-free layout remains.
 Use `/fxp leveling` for the expanded campaign and `/fxp settings` to choose
 Silent Hill, Warcraft or Warhammer 40K styling. Content still needs end-to-end
 validation on Forever; this is a reference development build.
@@ -35,9 +36,51 @@ evidence. The user subsequently confirmed Elwynn catches up, but reported
 outleveling its quests. Version 0.4 added level-aware selection; the user says that appears to work.
 Version **0.5.0-dev** extends the shared Alliance quest pool through level 60 and
 adds theme selection in Options. Route content still needs in-game validation.
-Live profession/recipe tracking, arrows, map pins and verified leveling content
-remain pending. The profession view has selection, target and mode controls;
-they populate only from registered verified catalogs and normalized providers.
+A source-inspected profession adapter now reads skill lines, recipe knowledge,
+rank spells and carried material counts on interface 16001. Live profession
+validation, directional arrows, map pins and verified content remain pending.
+
+## Profession guides 1–300 with tracking
+
+Open the **Professions** tab or run **`/fxp professions`**. The first available
+learned guide is selected when skill lines are readable; **Choose profession**
+cycles the installed guides. You can also select one directly:
+
+`/fxp profession alchemy` · `blacksmithing` · `enchanting` · `engineering` ·
+`leatherworking` · `tailoring` · `cooking` · `first-aid` · `herbalism` · `mining` ·
+`skinning` · `fishing`. Spaces/case in First Aid are accepted too.
+
+The **12 Classic reference guides** contain **132 selected crafting recipes and
+146 stages covering skill 1–300**. The guide follows observed skill automatically,
+including mid-profession installation, and shows when a rank needs training.
+Recipe knowledge is checked separately; meeting a skill threshold never assumes
+you learned the recipe. Learning notes include selected reference sellers or quest
+givers where available, and the secondary-profession book/quest gates.
+
+Crafting guides show a small next batch, named reagents, carried stock and missing
+materials. Known processing recipes can prepare intermediate materials, reusing
+owned bolts/components before counting more raw materials. Missing runed rods or
+engineering tools are prepared first when their recipes are included. Unknown
+recipe knowledge and unavailable inventory remain visibly unknown.
+
+- `/fxp target 300` changes the saved target for the selected profession.
+- `/fxp batch 5` sets a crafting batch of 1–20. Buttons adjust it by one.
+- **Other recipe** or `/fxp recipe next` cycles stage alternatives.
+- `/fxp recipes` lists the current stage recipes; `/fxp materials` prints the
+  named next-batch materials and any processing crafts.
+- Farm/Buy/Hybrid modes retain one target; Hybrid uses the existing conservative
+  split when no verified local gathering opportunity is registered.
+
+Gathering guides show resources, broad reference areas and carried counts.
+They advance from actual skill; buying materials does not increase gathering
+skill. Rank and target progress, preferences and last observed skill are kept per
+character/profession. API outages retain the last plan with a stale label.
+
+These are original reference routes, not measured cheapest routes or a guarantee
+of one skill point per craft. Batch counts describe crafts and reference reagents,
+not a promised number of points or a full 1–300 shopping total. Check recipe color
+and availability in your client. No crafting, buying, movement, quest interaction
+or item use is automated. See [profession evidence and scope](Documentation/Reference/Professions1_300.md).
 
 ## Alliance 1–60 — level-aware guide
 
@@ -183,8 +226,8 @@ not shipped with the addon. There are no development services to start.
 
 The manifest interface comes from the user's working addon, not a version-number
 guess. The ZIP is a development build for live loading/visual checks, not a
-production guide release. Only the source-inspected, interface-gated quest adapter
-is enabled; unsupported gameplay providers remain disabled.
+production guide release. The source-inspected, interface-gated quest and profession adapters
+are enabled; unsupported gameplay providers remain disabled.
 
 ## Commands (candidate slash API)
 

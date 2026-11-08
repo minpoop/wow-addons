@@ -50,3 +50,17 @@ layouts, not screenshots from the live game.
 
 Version 0.5.1 removes the portrait sidebar. These previews use the wider
 text and control layout; James’s original header notes remain.
+
+## Crafting guide with tracking
+
+A synthetic skill-160 Alchemy observation drives the actual reference guide UI.
+
+![Alchemy guide tracking](profession-tracking.png)
+
+## Gathering guide with tracking
+
+A synthetic Mining observation shows the matching resource stage and carried ore.
+
+![Mining guide tracking](profession-gathering.png)
+
+These remain source-rendered layouts, not in-game screenshots.

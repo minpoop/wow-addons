@@ -1,6 +1,6 @@
 # Content coverage
 
-No authored route has been live-verified end to end on Forever. Version 0.5 ships
+No authored route has been live-verified end to end on Forever. Version 0.6 ships
 an Elwynn reference route (34 quests), the retained 1–20 test (97 quests), and an
 Alliance 1–60 level-aware guide (556 quests / 1,670 steps). These overlap; there
 are 556 distinct shared reference quests, not the sum of all guide counts. Source
@@ -15,9 +15,9 @@ documentation exist only to exercise formats and logic; they are not playable.
 | Alliance 1–60 progression | 0 live-verified; 1 reference guide | 556 quests and chapters through target 60; measured XP budget and completed Forever playthrough pending |
 | Horde 1–60 progression | 0 routes | Missing; level cap unverified |
 | Class instructions / dungeons / flight paths | 0 | Missing |
-| Supported profession roster and caps | 0 | Unverified |
-| Recipes and trainers | 0 | Missing |
-| Gathering routes and spawns | 0 | Missing |
+| Professions 1–300 | 0 live-verified; 12 reference guides | 8 crafting + 4 gathering; observed skill/rank/stock tracking added |
+| Recipes and learning sources | 0 live-verified; 132 selected recipes | Reference reagent/learning facts and training reminders; 146 total profession stages |
+| Gathering routes and spawns | 0 surveyed loops | Broad resource/area stages for Herbalism, Mining, Skinning and Fishing; no measured spawns |
 | Custom server content | 0 | Unknown |
 
 For every added guide/recipe/route, record author, client build, server, observation

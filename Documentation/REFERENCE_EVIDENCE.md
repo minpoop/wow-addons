@@ -91,3 +91,14 @@ Version 0.2 added an independent read-only adapter and observed quest checklist.
 Version 0.3 adds an original Elwynn route using curated factual quest records from
 a separately pinned Classic source; see Reference/Elwynn.md. No wholesale
 database or guide text is bundled. No protected quest interaction is performed.
+
+## Profession guide implementation (0.6)
+
+The previously pinned working Questie source supplies skill-line fields
+name/isHeader/rank/skillID, skill/header enumeration/expansion, C_SpellBook knowledge
+and IsPlayerSpell fallback, profession/rank spell IDs and skill/recipe event names.
+Selected recipe facts additionally use pinned cmangos/classic-db revision
+c33f90b8eeb3f8bacb53d5cbfee45075c80b416c. Its SQL literals were parsed as data;
+no downloaded implementation was executed or copied. Exact archive/item/NPC hashes,
+selected facts and remaining live-validation work are recorded in
+Reference/Professions1_300.md. These references do not certify Forever behavior.

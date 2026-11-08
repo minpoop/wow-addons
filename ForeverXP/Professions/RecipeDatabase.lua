@@ -54,3 +54,11 @@ function R:RegisterCatalog(catalog)
     self.catalogs[catalog.id] = F.modules.SavedVariables.Copy(catalog)
     return true
 end
+
+function R:RegisterReferenceGuide(guide)
+    local ok,err=F.modules.ProfessionGuides:Validate(guide)
+    if not ok then return nil,err end
+    if self.catalogs[guide.id] then return nil,"duplicate profession guide" end
+    self.catalogs[guide.id]=F.modules.SavedVariables.Copy(guide)
+    return true
+end

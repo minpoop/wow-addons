@@ -21,3 +21,9 @@ Generate it with tools/build_leveling.py from Alliance1_60Facts.json. Chapter
 summaries, source hashes, optional content and live-validation scope are recorded
 in Documentation/Reference/Alliance1_60.md. Do not equate level-range content with
 a measured XP budget or a completed Forever playthrough.
+
+ProfessionGuides/Classic.lua adds 12 reference guides covering skill 1–300.
+Generate it from the selected Professions1_300Facts.json using tools/build_professions.py.
+It contains 132 recipes and 146 authored stages, with no manufactured skill-up
+probability. See Documentation/Reference/Professions1_300.md for provenance and
+live-validation scope. No downloaded SQL database is included in the addon.

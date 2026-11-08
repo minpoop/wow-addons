@@ -93,7 +93,7 @@ function U:Build()
         self.title = text(frame, {18,-16}, 500); self.title:SetText("FOREVER XP  /  FIELD JOURNAL")
         self.companion = text(frame,{18,-32},520)
         button(frame, "×", 536,-8,27,function() frame:Hide() end)
-        local captions = {guide="ROUTE",professions="SUPPLIES",settings="OPTIONS"}
+        local captions = {guide="ROUTE",professions="PROFESSIONS",settings="OPTIONS"}
         for i, tab in ipairs({"guide","professions","settings"}) do
             local selected = tab
             local b = button(frame, captions[tab], 18+(i-1)*180,-48,174,function() U:Show(selected) end)
@@ -145,6 +145,7 @@ function U:Build()
                 local _, message = fn()
                 if message then F:Print(message) end
             end)
+            item.baseX,item.baseY=x,y
             self.professionControls[#self.professionControls+1] = item
             return item
         end
@@ -152,7 +153,7 @@ function U:Build()
             local ids = {}
             for id in pairs(F.modules.RecipeDatabase.catalogs) do ids[#ids+1] = id end
             table.sort(ids)
-            if #ids == 0 then return nil,"No verified profession catalogs installed." end
+            if #ids == 0 then return nil,"No profession guides installed." end
             local index = 1
             for i,id in ipairs(ids) do if id == F.character.selectedProfession then index = i % #ids + 1 end end
             return F.modules.ProfessionController:Select(ids[index])
@@ -172,6 +173,16 @@ function U:Build()
             local b = control(mode,18+(i-1)*180,-386,174,function() return F.modules.ProfessionController:Change("mode",selected) end)
             b.mode = mode
         end
+        self.recipeControls={}
+        self.recipeControls[1]=control("Other recipe",18,-422,174,function() return F.modules.ProfessionGuides:Cycle(F.modules.ProfessionController) end)
+        self.recipeControls[2]=control("Batch −1",198,-422,174,function()
+            local c=F.modules.ProfessionController
+            return c:Change("batch",math.max(1,(c.state.batch or 5)-1))
+        end)
+        self.recipeControls[3]=control("Batch +1",378,-422,174,function()
+            local c=F.modules.ProfessionController
+            return c:Change("batch",math.min(20,(c.state.batch or 5)+1))
+        end)
         self.frame = frame
         self:RestorePosition(); self:Render()
     end)
@@ -184,6 +195,7 @@ function U:Build()
 end
 function U:Show(tab)
     if tab then self.tab = tab end
+    if self.tab=="professions" and F.initialized and not F.modules.ProfessionController.catalog then F.modules.ProfessionController:Default() end
     local ok, err = self:Build()
     if not ok then F:Print(err); return end
     self:Render(); self.frame:Show()
@@ -198,18 +210,22 @@ function U:Render()
         self.companion:SetText(T.companion .. " · " .. T:Note(self.tab))
         local selectedGuide=F.modules.GuideEngine.guide
         local expanded=self.tab=="guide" and selectedGuide and selectedGuide.campaign and selectedGuide.campaign.targetLevel>20 and not F.settings.compact
-        local height=F.settings.compact and 245 or (expanded and 450 or (self.tab=="professions" and 430 or 380))
+        local professionGuide=self.tab=="professions" and F.modules.ProfessionController.catalog and F.modules.ProfessionController.catalog.guide
+        local height=F.settings.compact and 245 or (expanded and 450 or (self.tab=="professions" and (professionGuide and F.modules.ProfessionController.catalog.kind=="craft" and 500 or 430) or 380))
         self.frame:SetHeight(height); self.trim[1]:SetHeight(height); self.trim[2]:SetHeight(height)
-        self.body:SetHeight(F.settings.compact and 110 or (expanded and 210 or (self.tab == "professions" and 180 or 160)))
+        self.body:SetHeight(F.settings.compact and 110 or (expanded and 210 or (self.tab == "professions" and (professionGuide and 210 or 180) or 160)))
         for _,control in ipairs({{self.previous,18},{self.next,198},{self.autoCampaign,378}}) do
             control[1]:ClearAllPoints(); control[1]:SetPoint("TOPLEFT",self.frame,"TOPLEFT",control[2],expanded and -410 or -334)
         end
         self.footer:ClearAllPoints()
-        self.footer:SetPoint("TOPLEFT",self.frame,"TOPLEFT",18,expanded and -352 or (self.tab == "professions" and -306 or -282))
+        self.footer:SetPoint("TOPLEFT",self.frame,"TOPLEFT",18,expanded and -352 or (self.tab == "professions" and (professionGuide and -346 or -306) or -282))
         self.previous:Hide(); self.next:Hide(); self.toggle:Hide()
         self.chooseGuide:Hide(); self.chooseQuest:Hide(); self.autoCampaign:Hide(); self.progressTrack:Hide(); self.progressFill:Hide()
         self.previous.label:SetText("Previous"); self.next.label:SetText("Confirm step")
-        for _, control in ipairs(self.professionControls) do control:Hide() end
+        for _, control in ipairs(self.professionControls) do
+            control:Hide(); control:ClearAllPoints()
+            control:SetPoint("TOPLEFT",self.frame,"TOPLEFT",control.baseX,control.baseY-(professionGuide and 40 or 0))
+        end
         for _,control in ipairs(self.themeControls) do control:Hide() end
         self.themeCycle:Hide()
         if F.settings.compact then self.footer:Hide() else self.footer:Show() end
@@ -228,7 +244,7 @@ function U:Render()
             if c.catalog then
                 local lines = {string.format("Target: %d  |  %s  |  %s estimate",c.state.target,c.state.mode,c.state.estimate or "conservative")}
                 if c.error then lines[#lines+1] = c.error end
-                if c.plan then
+                if c.plan and not c.catalog.guide then
                     lines[#lines+1] = string.format("Skill %d → %d%s",c.plan.current,c.plan.target,c.stale and " (stale plan)" or "")
                     local items = {}; for item,count in pairs(c.plan.materials.raw) do if count > 0 then items[#items+1] = item end end
                     table.sort(items,function(a,b) return tostring(a)<tostring(b) end)
@@ -240,11 +256,25 @@ function U:Render()
                     lines[#lines+1] = c.plan.distribution.costComplete and ("Estimated purchases: " .. c.plan.distribution.cost .. " price units") or "Purchase cost incomplete; manual prices available."
                     if c.plan.trainers[1] then lines[#lines+1] = "Trainer: " .. c.plan.trainers[1] end
                 end
-                self.body:SetText(table.concat(lines,"\n"))
+                self.body:SetText(c.catalog.guide and F.modules.ProfessionGuides:Text(c) or table.concat(lines,"\n"))
+                if c.catalog.guide and c.plan and c.plan.current then
+                    self.progressTrack:ClearAllPoints(); self.progressTrack:SetPoint("TOPLEFT",self.frame,"TOPLEFT",18,F.settings.compact and -232 or -332)
+                    self.progressTrack:Show()
+                    local progress=c.plan.status=="target-reached" and 1 or math.max(0,math.min(1,(c.plan.current-1)/math.max(1,c.state.target-1)))
+                    if progress>0 then self.progressFill:SetWidth(540*progress); self.progressFill:Show() end
+                end
             else
-                self.body:SetText("No profession record is available yet.\n\nFarm · gather what you need\nBuy · prepare a shopping list\nHybrid · gather nearby, buy the rest\n\nChoose a profession once verified content is installed.")
+                self.body:SetText("No profession record is available yet.\n\nFarm · gather what you need\nBuy · prepare a shopping list\nHybrid · gather nearby, buy the rest\n\nUse Choose profession, or /fxp profession alchemy, to open a 1–300 guide.")
             end
-            if not F.settings.compact then for _, control in ipairs(self.professionControls) do control:Show() end end
+            if not F.settings.compact then
+                for _,control in ipairs(self.professionControls) do control:Show() end
+                if not c.catalog or not c.catalog.guide or c.catalog.kind~="craft" then
+                    for _,control in ipairs(self.recipeControls) do control:Hide() end
+                end
+                if c.catalog and c.catalog.guide and c.catalog.kind=="gather" then
+                    for _,control in ipairs(self.professionControls) do if control.mode then control:Hide() end end
+                end
+            end
         else
             local engine = F.modules.GuideEngine
             local step = engine:Current()
@@ -301,6 +331,8 @@ function U:Render()
         if not detour and F.persistent and engine.state and type(engine.state.resume)=="table" and (engine.state.resume.deferred or 0)>0 then
             footer=footer.."\nEarlier steps retained · /fxp resume undo"
         end
+        if professionGuide then footer="Reference guide · progress follows your observed skill.\n/fxp materials  ·  /fxp recipes  ·  /fxp batch 5" end
+        if professionGuide and F.modules.ProfessionController.catalog.kind=="gather" then footer="Reference gathering areas · skill updates automatically.\nChoose profession to switch guides; each profession keeps its target." end
         if self.tab=="settings" then footer="/fxp scale 1.1  ·  /fxp opacity 0.9\n/fxp compact  ·  /fxp reset requests confirmation." end
         self.footer:SetText(footer .. (F.persistent and "" or "\nSession-only progress; original save retained."))
         self:Paint()

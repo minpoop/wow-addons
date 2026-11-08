@@ -156,9 +156,22 @@ for view, theme, title in [('guide', 'fog', '01 / ROUTE JOURNAL'),
                            ('leveling', 'fog', '05 / LEVEL-AWARE ALLIANCE 1–60'),
                            ('leveling-warcraft', 'warcraft', '06 / WARCRAFT JOURNAL'),
                            ('leveling-warhammer', 'warhammer', '07 / WARHAMMER 40K FIELD LOG'),
-                           ('themes', 'warcraft', '08 / THEME SETTINGS')]:
+                           ('themes', 'warcraft', '08 / THEME SETTINGS'),
+                           ('profession-tracking', 'warcraft', '09 / ALCHEMY 1–300 TRACKING'),
+                           ('profession-gathering', 'fog', '10 / MINING 1–300 TRACKING')]:
     if view == 'elwynn':
         lua.execute('ForeverXP.settings.theme="fog"; ForeverXP:Command("elwynn")')
+    elif view.startswith('profession-'):
+        profession='alchemy' if view=='profession-tracking' else 'mining'
+        lua.execute(f'ForeverXP.settings.theme={json.dumps(theme)}; assert(ForeverXP.modules.ProfessionController:Select({json.dumps(profession)}))')
+        lua.execute('''
+            local F=ForeverXP
+            local c=F.modules.ProfessionController
+            local known={}; for id in pairs(c.catalog.recipes) do known[id]=true end
+            local skill=c.catalog.id=="alchemy" and 160 or 184
+            c:Refresh({skillsReady=true,skill=skill,cap=225,knownRecipes=known,inventory={[3356]=8,[3357]=3,[3372]=4,[3858]=18}})
+            F.modules.MainWindow:Show("professions")
+        ''')
     elif view.startswith('leveling'):
         level, zone = {'leveling': (14, 'Elwynn Forest'), 'leveling-warcraft': (35, 'Desolace'),
                        'leveling-warhammer': (58, 'Winterspring')}[view]
@@ -179,7 +192,7 @@ for view, theme, title in [('guide', 'fog', '01 / ROUTE JOURNAL'),
     nodes = snapshot()
     assert any('James Sunderland' in row.get('text', '') for row in nodes.values())
     content = render(nodes)
-    data_label = 'Classic reference content · live validation pending' if view=='elwynn' or view.startswith('leveling') else 'synthetic layout data'
+    data_label = 'Classic reference content · live validation pending' if view=='elwynn' or view.startswith(('leveling','profession-')) else 'synthetic layout data'
     html = f'''<!doctype html><html><head><meta charset="utf-8"><style>
     *{{box-sizing:border-box}}body{{margin:0;background:#171e1a;color:#c9cec2;width:1000px;height:820px;font-family:Arial,sans-serif}}
     h1{{position:absolute;left:62px;top:30px;font-size:15px;letter-spacing:3px;font-weight:400}}
