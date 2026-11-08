@@ -4,7 +4,7 @@ A leveling and profession guide for WoW Forever, with a resizable field journal,
 level-aware Alliance and Horde 1–60 reference guides, and 12 profession guides
 from 1–300 with skill, recipe and carried-material tracking.
 
-[Download ForeverXP 0.7.1-dev](https://github.com/minpoop/wow-addons/blob/main/downloads/ForeverXP-dev.zip?raw=true)
+[Download ForeverXP 0.8.0-dev](https://github.com/minpoop/wow-addons/blob/main/downloads/ForeverXP-dev.zip?raw=true)
 · [Interface previews](Documentation/Previews/README.md)
 
 Replace the old `ForeverXP` folder in `Interface/AddOns` with the ZIP's folder,
@@ -18,6 +18,7 @@ reports client version **1.60.70790**.
 **Right-click anywhere in the window to open the dropdown.** Controls are tucked
 into this menu so the main window stays focused on your current task.
 
+- **Route plan & run report:** focused 1–20 batches, free-pool mode and opt-in local playtest reports.
 - **Leveling actions:** faction guide, live journal, earlier reference guides,
   other suitable quest, defer, automatic plan and printed quest/chapter lists.
 - **Choose profession / Profession actions:** all 12 guides, target skill, recipe,
@@ -82,6 +83,35 @@ See [Alliance evidence](Documentation/Reference/Alliance1_60.md),
 [content coverage](Documentation/CONTENT_COVERAGE.md). Quest locations are marked
 reference. These pools have no measured XP budget or completed Forever 1–60
 playthrough, so their content counts do not guarantee enough XP at every level.
+
+## Focused 1–20 route batches
+
+Version **0.8.0-dev** adds an original **Elwynn → Westfall → Redridge** plan:
+**53 shared quests, 159 phases and 98 pickup/work/turn-in batches**. For example,
+it collects Fargodeep, candles and gold dust before the kobold outing, then groups
+the returns. The card names the batch and related ready quests.
+
+Automatic mode applies in those regions below 20. `/fxp route elwynn` explicitly
+selects it with the existing Alliance 1–60 campaign; `/fxp route off` restores free
+quest-pool selection and `/fxp route auto` restores regional planning. At level 20
+the full campaign continues normally. Manual keep still wins, and old unknown
+steps remain unfinished when the plan catches up to observed work.
+
+Selected early pickups require actual spare log space and valid minimum levels/
+prerequisites. They never relax the automatic combat-level window. Optional group
+encounters remain optional; missing regional work causes an honest wait rather
+than invented XP or a silent cross-continent detour.
+
+A synthetic three-quest benchmark reduces three hub outings to one while using
+the real planner. This is an offline algorithm result, not a measured Forever
+speed gain. Full route XP/travel validation remains pending. See
+[route design and evidence](Documentation/ROUTE_PLANNING.md).
+
+For a real test, run **`/fxp run start`**, play normally and use **`/fxp run report`**
+at a confusing recommendation or gap. **`/fxp run stop`** retains the report. It
+records measured XP changes, unique turn-ins, observed zone/task changes and waits
+locally, without uploading anything. Unknown XP intervals remain unknown. See
+[run report instructions](Documentation/RUN_REPORTS.md).
 
 ## Quest tips and difficulty warnings
 
@@ -172,6 +202,8 @@ python3 tools/build_leveling.py --check
 python3 tools/build_leveling.py --faction Horde --check
 python3 tools/build_professions.py --check
 python3 tools/build_quest_advice.py --check
+python3 tools/build_route_plan.py --check
+/workspace/.foreverxp-tools/bin/python tools/route_benchmark.py --check Documentation/Reference/RouteBatchBenchmark.json
 python3 tools/package.py --output downloads/ForeverXP-dev.zip
 ```
 

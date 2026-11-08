@@ -132,3 +132,16 @@ not assert runtime availability. QuestAdviceFacts.json uses the existing pinned
 Classic quest/NPC hashes for selected target ranks and explicit escort/event facts.
 Original cave notes/tips and all remaining limitations are in QUEST_ADVICE.md.
 No downloaded Lua is executed and no reference implementation is bundled.
+
+
+## Regional itinerary and playtest counters (0.8)
+
+The itinerary is original authoring over the existing pinned Alliance facts; it
+contains no third-party guide text. Optional C_QuestLog.GetMaxNumQuestsCanAccept
+is used only if present and returning a valid bounded integer; no capacity is
+assumed and no live support is claimed. Optional UnitXP/UnitXPMax/UnitLevel/GetTime
+reads and the XP event are guarded runtime probes on the target interface, not
+new live-verified contracts. Existing positive quest events/history underpin
+turn-in counts. Missing/ambiguous samples remain uncertain. ROUTE_PLANNING.md,
+RUN_REPORTS.md and the checked synthetic benchmark distinguish implementation
+proof from live travel/XP evidence; no measured Forever speedup is asserted.

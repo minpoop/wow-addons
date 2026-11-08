@@ -2,7 +2,7 @@
 ## Title: ForeverXP [DEVELOPMENT BUILD]
 ## Notes: Targets Forever interface 16001. Live API validation pending; see Documentation/COMPATIBILITY.md.
 ## Author: ForeverXP contributors
-## Version: 0.7.1-dev
+## Version: 0.8.0-dev
 ## SavedVariables: ForeverXPDB
 ## LoadSavedVariablesFirst: 1
 Core/Namespace.lua
@@ -16,6 +16,8 @@ Questing/GuideEngine.lua
 Questing/RecoveryEngine.lua
 Questing/LevelingCampaign.lua
 Questing/QuestAdvice.lua
+Questing/RoutePlanner.lua
+Questing/RunTracker.lua
 Questing/LiveJournal.lua
 Core/ForeverAdapter.lua
 Professions/MaterialCalculator.lua
@@ -37,4 +39,5 @@ Data/QuestGuides/Alliance/Levels1_60.lua
 Data/QuestGuides/Horde/Levels1_60.lua
 Data/ProfessionGuides/Classic.lua
 Data/QuestAdvice/Classic.lua
+Data/RoutePlans/ElwynnWestfall1_20.lua
 Core/Bootstrap.lua

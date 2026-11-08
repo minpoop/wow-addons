@@ -22,3 +22,10 @@ Reference/Horde1_60.md and Reference/Professions1_300.md. For live verification,
 record client build/interface, server, date, quest/recipe IDs and actual outcomes.
 Schema and synthetic progression tests establish structure and algorithm behavior;
 they do not establish server availability, enough XP, travel efficiency or caps.
+
+
+Version 0.8 adds a planned 53-quest Elwynn–Westfall–Redridge itinerary using existing
+quest IDs (no increase in distinct coverage), with 159 phases and 98 batches.
+This is a shared Human-region 1–20 segment, not all starting races, Horde or a
+measured XP budget. The synthetic three-quest comparison and private opt-in run
+reports support testing; a complete live route remains pending. See ROUTE_PLANNING.md.

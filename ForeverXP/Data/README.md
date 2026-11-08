@@ -41,3 +41,10 @@ unique faction-pool quests. Regenerate with tools/build_quest_advice.py. Selecte
 elite/event facts and 17 authored notes are in QuestAdviceFacts.json; scope and
 source evidence are in Documentation/QUEST_ADVICE.md. Advice changes no quest
 completion or eligibility metadata.
+
+
+RoutePlans/ElwynnWestfall1_20.lua adds original phase batches over 53 existing
+shared reference quests, with no new quest coverage or live-verification claim.
+Regenerate with tools/build_route_plan.py from ElwynnWestfall1_20Plan.json. See
+Documentation/ROUTE_PLANNING.md for ordering, eligibility, pickup-ahead guards and
+live-test scope. Synthetic benchmark fixtures remain under tools/, never the ZIP.

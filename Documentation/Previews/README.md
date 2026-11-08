@@ -71,3 +71,15 @@ scrolling card. These use actual advice code and synthetic character state.
 ![Stronger above-level warning](advice-danger.png)
 
 ![Escort event warning](advice-escort.png)
+
+
+## Focused route planning
+
+Version 0.8 groups pickups, field objectives and returns. Character observations
+are synthetic; actual travel and XP outcomes still need a client playthrough.
+
+![Collect the three Goldshire quests first](route-batch.png)
+
+![Work on all three during the outing](route-outing.png)
+
+![Route plan and private local run controls](route-menu.png)

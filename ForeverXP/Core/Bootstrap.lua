@@ -32,6 +32,7 @@ function F:Initialize()
     self.modules.ForeverAdapter:Start()
     self.modules.ProfessionAdapter:Start()
     self.modules.Navigation:Start()
+    self.modules.RunTracker:Initialize()
     if D.warning then self:Print(D.warning) end
     if not self.persistent then self:Print("Progress is session-only until a valid character identity and save are available.") end
     local ok, err = U:Build()
@@ -45,6 +46,7 @@ function F:Refresh()
         self.modules.LiveJournal:Sync(snapshot)
         self.modules.GuideEngine:Update(snapshot)
         self.snapshot=snapshot
+        self.modules.RunTracker:Observe(snapshot)
     else self.snapshot=nil end
     self.modules.ProfessionController:Refresh()
     U:Render()
@@ -131,6 +133,29 @@ function F:Command(message)
         local width,height=arg:match("^(%d+)%s+(%d+)$")
         local ok,err=U:ResizeTo(tonumber(width),tonumber(height),true)
         if not ok then self:Print(err) end
+    elseif cmd=="route" then
+        local choice=({auto="auto",off="off",elwynn="elwynn-westfall-1-20"})[arg]
+        if not choice then self:Print("Use /fxp route auto|off|elwynn. /fxp run start|report|stop records a private local test.")
+        else
+            local campaign=self.modules.LevelingCampaign
+            local player=C:Character()
+            if choice=="elwynn-westfall-1-20" and player.faction and player.faction~="Alliance" then self:Print("This route is for Alliance characters.")
+            else
+                self.modules.Settings:Set("routePlan",choice)
+                local G=self.modules.GuideEngine
+                if choice=="elwynn-westfall-1-20" then local ok,err=campaign:Select(campaign.id);if not ok then self:Print(err) end
+                elseif G.guide and G.guide.campaign then campaign:Refresh(G) end
+                U:Show("guide")
+            end
+        end
+    elseif cmd=="run" then
+        local tracker=self.modules.RunTracker
+        local ok,err
+        if arg=="start" then self:Refresh();ok,err=tracker:Start();if ok then self:Print("Local route run started. /fxp run report shows the private report; /fxp run stop ends recording.") end
+        elseif arg=="stop" then ok,err=tracker:Stop();if ok then self:Print("Local run stopped; report retained.") end
+        elseif arg=="report" then ok,err=tracker:Report()
+        else err="Use /fxp run start|report|stop. Reports stay in this character's addon saves; nothing is uploaded." end
+        if not ok and err then self:Print(err) end
     elseif cmd=="menu" then self.modules.ContextMenu:Open("root")
     elseif cmd=="map" then local ok,err=self.modules.Navigation:ShowMap(); if not ok then self:Print(err) end
     elseif cmd == "debug" then self.modules.Settings:Set("debug",not self.settings.debug); self:Print("Debug: " .. tostring(self.settings.debug))
@@ -215,10 +240,12 @@ function F:Command(message)
             controller.catalog, controller.state, controller.plan, controller.error = nil, nil, nil, nil
             self.modules.Detours.active = nil
             self.character.liveJournal=nil
+            self.character.routeRun,self.character.previousRouteRun=nil,nil
+            self.modules.RunTracker:Pause()
             self.modules.Waypoints:Set(nil); self.pendingReset = nil
             self:Print("Character progress reset; one pre-reset backup retained."); U:Render()
         end
-    else self:Print("/fxp [menu|size WIDTH HEIGHT|map|leveling|horde|1-60|1-20|elwynn|resume|resume undo|journal|quests|focus QUEST_ID|tracking|guide|select ID|professions|profession ID|target N|mode Farm/Buy/Hybrid|estimate expected/conservative/guaranteed|price ITEM N|materials|integration MODE|detour|record ID|settings|theme|next|back|skip|auto|compact|scale N|opacity N|debug|diagnostics|reset]") end
+    else self:Print("/fxp [menu|route auto/off/elwynn|run start/report/stop|size WIDTH HEIGHT|map|leveling|horde|1-60|1-20|elwynn|resume|resume undo|journal|quests|focus QUEST_ID|tracking|guide|select ID|professions|profession ID|target N|mode Farm/Buy/Hybrid|estimate expected/conservative/guaranteed|price ITEM N|materials|integration MODE|detour|record ID|settings|theme|next|back|skip|auto|compact|scale N|opacity N|debug|diagnostics|reset]") end
 end
 -- SlashCmdList and event semantics are compatibility candidates, tested with mocks.
 if type(SlashCmdList) == "table" and not SlashCmdList.FOREVERXP then

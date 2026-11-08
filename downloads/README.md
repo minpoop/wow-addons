@@ -1,6 +1,6 @@
 # Downloadable development build
 
-[Download ForeverXP 0.7.1-dev](https://github.com/minpoop/wow-addons/blob/main/downloads/ForeverXP-dev.zip?raw=true)
+[Download ForeverXP 0.8.0-dev](https://github.com/minpoop/wow-addons/blob/main/downloads/ForeverXP-dev.zip?raw=true)
 
 If GitHub shows a file page, choose **Download raw file**. For a private repository,
 sign in with an account that has access. Replace the old `ForeverXP` folder in
@@ -40,3 +40,16 @@ level warnings prefer actual quest levels. Live quest tags are optional. The
 right-click Quest tips & warnings submenu controls each feature independently.
 Warnings never mark a quest complete or change your selected work. Check reference
 hazards against your actual client and target before relying on them.
+
+
+Version 0.8 adds focused Elwynn–Westfall–Redridge 1–20 phase batches. Run
+`/fxp route elwynn` to select the plan on the existing Alliance campaign; accepted
+work can rejoin without replaying unknown introductions. The plan collects nearby
+quests before field work and combines returns. It is shared class-independent
+reference content, with live XP/path validation pending. Other starts and levels
+20+ keep the existing level-aware pool.
+
+`/fxp run start`, `report` and `stop` control opt-in local testing counters and a
+bounded quest/task/zone trace. Nothing is uploaded. The right-click Route plan &
+run report submenu exposes these actions. See Documentation/ROUTE_PLANNING.md and
+Documentation/RUN_REPORTS.md for scope and interpretation.

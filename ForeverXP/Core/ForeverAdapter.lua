@@ -31,6 +31,10 @@ function A:Collect()
         provenance = "source-inspected", source = self.source }
     local level = call(nil,"UnitLevel","player")
     if V.Integer(level,1) then snapshot.level = level end
+    pcall(function()
+        local capacity=call("C_QuestLog","GetMaxNumQuestsCanAccept")
+        if V.Integer(capacity,1) and capacity<=512 then snapshot.questLogCapacity=capacity end
+    end)
     for index=1,count do
         local info = call("C_QuestLog","GetInfo",index)
         if type(info) ~= "table" then self.error = "Incomplete quest log; waiting for update"; return nil end

@@ -1,0 +1,33 @@
+{
+  "scope": "Synthetic three-quest geometry only; not measured Forever travel, time or XP.",
+  "quest_pool": {
+    "hub_crossings": 6,
+    "map_units": 4.249563,
+    "actions": [
+      "ACCEPT_QUEST:990601",
+      "COMPLETE_QUEST:990601",
+      "TURN_IN_QUEST:990601",
+      "ACCEPT_QUEST:990602",
+      "COMPLETE_QUEST:990602",
+      "TURN_IN_QUEST:990602",
+      "ACCEPT_QUEST:990603",
+      "COMPLETE_QUEST:990603",
+      "TURN_IN_QUEST:990603"
+    ]
+  },
+  "phase_batches": {
+    "hub_crossings": 2,
+    "map_units": 1.55889,
+    "actions": [
+      "ACCEPT_QUEST:990601",
+      "ACCEPT_QUEST:990602",
+      "ACCEPT_QUEST:990603",
+      "COMPLETE_QUEST:990603",
+      "COMPLETE_QUEST:990601",
+      "COMPLETE_QUEST:990602",
+      "TURN_IN_QUEST:990601",
+      "TURN_IN_QUEST:990602",
+      "TURN_IN_QUEST:990603"
+    ]
+  }
+}

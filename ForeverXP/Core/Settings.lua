@@ -2,7 +2,7 @@ local F = ForeverXP
 local S = F:Register("Settings", {})
 S.defaults = { autoAdvance = true, arrow = true, sound = false, integration = "disabled", theme = "fog", questTips=true, questWarnings=true,
     fontSize = 13, locked = false, scale = 1, opacity = 0.95, compact = false, debug = false, waypoints = true,
-    recovery = "suggest", navigationInterval = 0.2 }
+    recovery = "suggest", navigationInterval = 0.2, routePlan="auto" }
 function S:Load(raw)
     local settings = {}
     for k, default in pairs(self.defaults) do
@@ -18,6 +18,7 @@ function S:Load(raw)
     if not ({ disabled=true, minimal=true, balanced=true, focused=true })[settings.integration] then settings.integration = "disabled" end
     if settings.recovery ~= "suggest" and settings.recovery ~= "disabled" then settings.recovery = "suggest" end
     if not ({fog=true,contrast=true,warcraft=true,warhammer=true})[settings.theme] then settings.theme = "fog" end
+    if not ({auto=true,off=true,["elwynn-westfall-1-20"]=true})[settings.routePlan] then settings.routePlan="auto" end
     return settings
 end
 function S:Set(key, value)

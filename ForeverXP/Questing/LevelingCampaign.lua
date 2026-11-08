@@ -187,13 +187,15 @@ function C:Update(engine,snapshot)
         elseif self:Done(index,state,snapshot,saved.pinnedQuest) then saved.pinnedQuest=nil end
     end
     local byId={}; for _,candidate in ipairs(candidates) do byId[candidate.record.id]=candidate end
-    if not selected then selected=byId[snapshot.signalQuestId] or byId[snapshot.trackedQuestId] or byId[snapshot.selectedQuestId] end
+    local route,planned
+    if not selected and F.modules.RoutePlanner then selected,route,planned=F.modules.RoutePlanner:Choose(engine,snapshot,candidates,root) end
+    if not selected and not planned then selected=byId[snapshot.signalQuestId] or byId[snapshot.trackedQuestId] or byId[snapshot.selectedQuestId] end
     local current=engine:Current()
-    if not selected and current and current.questId then
+    if not selected and not planned and current and current.questId then
         local q=snapshot.quests[current.questId]
         if type(q)=="table" and (q.accepted==true or q.complete==true) then selected=byId[current.questId] end
     end
-    selected=selected or candidates[1]
+    if not selected and not planned then selected=candidates[1] end
     local position=1
     if selected then
         local record=selected.record
@@ -205,7 +207,8 @@ function C:Update(engine,snapshot)
     local id=guide.steps[position].id
     if state.current~=id or state.finished then changed=true end
     state.current,state.finished=id,false; engine.index=position
-    self.runtime[guide.id]={state=state,snapshot=snapshot,status=saved.status,selected=selected,candidates=candidates,deferred=deferred}
+    if F.modules.RoutePlanner then candidates=F.modules.RoutePlanner:Alternatives(engine,snapshot,candidates,selected) end
+    self.runtime[guide.id]={state=state,snapshot=snapshot,status=saved.status,selected=selected,candidates=candidates,deferred=deferred,route=route}
     if changed then engine:Changed() end
     return true
 end
@@ -273,7 +276,7 @@ function C:Text(engine)
     end
     local chosen=run.selected
     if not chosen then
-        lines[#lines+1]="No suitable unfinished quest group is available from the reference pool."
+        lines[#lines+1]=run.route and "No suitable unfinished task is available in this route's regions under the current restrictions." or "No suitable unfinished quest group is available from the reference pool."
         lines[#lines+1]="Check deferred choices or finish other level-appropriate quests; the planner will re-evaluate as your state changes."
     else
         local record=chosen.record

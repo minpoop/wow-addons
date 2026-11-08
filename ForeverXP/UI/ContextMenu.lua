@@ -13,6 +13,7 @@ function M:Items(page)
         add(entry("view-professions","Profession guide",function() U:Show("professions") end,U.tab=="professions"))
         add(entry("view-settings","Preferences",function() U:Show("settings") end,U.tab=="settings"))
         add(submenu("guides","Leveling actions","guides"))
+        add(submenu("route-planning","Route plan & run report","route-planning"))
         add(submenu("professions","Choose profession","professions"))
         if C.catalog then add(submenu("profession-actions","Profession actions","profession-actions")) end
         add(submenu("themes","Appearance","themes"))
@@ -43,6 +44,13 @@ function M:Items(page)
             end
             add(entry("auto-advance","Automatic progression",function() S:Set("autoAdvance",not F.settings.autoAdvance) end,F.settings.autoAdvance))
         end
+    elseif page=="route-planning" then
+        add(entry("route-auto","Automatic regional batches",command("route auto"),F.settings.routePlan=="auto"))
+        add(entry("route-elwynn","Elwynn–Westfall 1–20 plan",command("route elwynn"),F.settings.routePlan=="elwynn-westfall-1-20"))
+        add(entry("route-off","Free quest-pool selection",command("route off"),F.settings.routePlan=="off"))
+        add(entry("run-start","Start local test run",command("run start")))
+        add(entry("run-report","Print local run report",command("run report")))
+        add(entry("run-stop","Stop run; keep report",command("run stop")))
     elseif page=="library" then
         add(entry("elwynn","Elwynn shared route",command("elwynn")))
         add(entry("test-campaign","Alliance 1–20 test",command("1-20")))
@@ -147,7 +155,7 @@ function M:Paint()
 end
 function M:Open(page)
     self:Build(); self.page=page or "root"; self.items=self:Items(self.page)
-    local titles={root="FOREVER XP",guides="LEVELING ACTIONS",library="REFERENCE GUIDES",professions="CHOOSE PROFESSION",["profession-actions"]="PROFESSION ACTIONS",themes="APPEARANCE",advice="QUEST TIPS & WARNINGS",navigation="NAVIGATION",display="WINDOW & TEXT",targets="TARGET SKILL",batch="CRAFTING BATCH",recipes="CHOOSE RECIPE",modes="MATERIAL PLANNING"}
+    local titles={root="FOREVER XP",guides="LEVELING ACTIONS",["route-planning"]="ROUTE PLAN & RUN REPORT",library="REFERENCE GUIDES",professions="CHOOSE PROFESSION",["profession-actions"]="PROFESSION ACTIONS",themes="APPEARANCE",advice="QUEST TIPS & WARNINGS",navigation="NAVIGATION",display="WINDOW & TEXT",targets="TARGET SKILL",batch="CRAFTING BATCH",recipes="CHOOSE RECIPE",modes="MATERIAL PLANNING"}
     self.title:SetText(titles[self.page] or "FOREVER XP")
     for i,item in ipairs(self.items) do
         local row=self.rows[i]

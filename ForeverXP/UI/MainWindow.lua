@@ -145,6 +145,12 @@ function U:View()
         local c=F.modules.LevelingCampaign
         local level=G.state.campaign and G.state.campaign.lastLevel
         result.text=c:Text(G)
+        local run=c.runtime[G.guide.id]
+        if run and run.state==G.state and run.route then
+            local route=run.route
+            result.meta=route.stage and (route.stage.title.." · "..#route.tasks.." ready in batch") or (route.status=="waiting" and "Route waiting · check local alternatives" or "Local route alternative")
+            result.routeContext=F.modules.RoutePlanner:Text(route,run.selected)
+        end
         result.fraction=level and math.max(0,math.min(1,(level-1)/(G.guide.campaign.targetLevel-1))) or 0
         result.progress=level and ("LEVEL "..level.." / "..G.guide.campaign.targetLevel) or "Waiting for observed level"
     else
@@ -157,9 +163,13 @@ function U:View()
     result.advice=advice
     if advice.badge then result.eyebrow=result.eyebrow.." · WARNING: "..advice.badge end
     local notes=F.modules.QuestAdvice:Text(advice)
-    if notes~="" then
+    if notes~="" or (result.routeContext and result.routeContext~="") then
         local first,remaining=(result.text or ""):match("^([^\n]*)\n?(.*)$")
-        result.text=(first or "").."\n\n"..notes..(remaining and remaining~="" and "\n\n"..remaining or "")
+        local blocks={first or ""}
+        if result.routeContext and result.routeContext~="" then blocks[#blocks+1]=result.routeContext end
+        if notes~="" then blocks[#blocks+1]=notes end
+        if remaining and remaining~="" then blocks[#blocks+1]=remaining end
+        result.text=table.concat(blocks,"\n\n")
     end
     return result
 end

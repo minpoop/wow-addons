@@ -57,3 +57,26 @@ Complete objectives and enter turn-in: combat warnings should disappear. Verify
 a failed quest stays visibly failed. Toggle tips and warnings separately from the
 right-click menu, relog, resize and scroll; the warning caption must stay visible
 and progress/selection must remain unchanged. Record any custom server differences.
+
+
+## Focused route and run reports (0.8, pending)
+
+Start with `/fxp route elwynn`, then `/fxp run start`. In Goldshire verify pickups
+for mine, candles and gold dust appear before field work; finish overlapping
+objectives and inspect the combined return. Install mid-route and confirm earlier
+unknown introductions are bypassed without false completion. Test manual keep,
+auto/off selection, deferrals and different actual quest levels.
+
+Check capacity against your real quest log. Early pickups must require actual
+spare slots, respect minimums/prerequisites and leave three slots reserved; field
+work must still meet the ordinary difficulty window. Test a full log and an
+unavailable capacity getter. A local shortage must wait or offer a labeled
+regional alternative, without fabricated XP or automatic abandonment.
+
+Use `/fxp run report` at each level, apparent XP gap, failed pickup or long detour.
+Compare XP changes and unique turn-ins to actual gameplay; record deaths/travel
+separately. Relog/load/change characters and verify no offline/other-character XP
+or time is added. Stop/restart recording and check one previous report and normal
+quest/profession progress. XP events must not cause extra quest scans. Check CPU/
+memory in a longer run. At level 20 the full campaign should resume ordinary pool
+selection; the retained 1–20 test should finish only at actual level 20.

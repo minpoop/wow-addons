@@ -110,8 +110,8 @@ test("expanded campaign simulates acceptance, objectives and turn-in through lev
         local id=G:Current().questId
         local record=C:Index(G.guide).quests[id]
         current.quests[id]={accepted=true,level=record.level}; current.trackedQuestId=id
-        G:Update(current); eq(G:Current().type,"COMPLETE_QUEST")
-        current.quests[id].complete=true; G:Update(current); eq(G:Current().type,"TURN_IN_QUEST")
+        G:Update(current); eq(G.state.completed["quest-"..id.."-accept"],true)
+        current.quests[id].complete=true; G:Update(current); eq(G.state.completed["quest-"..id.."-complete"],true)
         current.quests[id]={turnedIn=true}; G:Update(current)
         eq(G.state.completed["quest-"..id.."-turn-in"],true)
     end

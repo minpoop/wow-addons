@@ -12,6 +12,8 @@ the portrait texture and sidebar; the guide body uses the full window width.
 | ForeverAdapter | Source-inspected, interface-gated quest/item reads and coalesced events |
 | LiveJournal | Bounded per-character checklist generated from observed quest records |
 | LevelingCampaign | Level-aware quest pool selection, prerequisite bridges, persistent defer/keep and observed level target |
+| RoutePlanner | Validated reference phase batches, safe early pickups, observed-state rejoin and regional fallback |
+| RunTracker | Opt-in per-character XP/quest/zone/wait observations and a bounded private report |
 | QuestAdvice | Data-only reference catalog, level/tag/hazard reasons and phase-aware tips; pure view calculation |
 | RecoveryEngine | Evidence-based cursor catch-up for opted-in authored routes; reversible without completing unknown steps |
 | Events | Keyed handlers, idempotent subscription, isolated callback errors |
@@ -234,3 +236,28 @@ ForeverAdapter reads optional GetQuestTagInfo fields through an isolated pcall;
 errors in that optional API do not invalidate the primary snapshot. No new scans,
 per-frame handlers or gameplay actions are added. Data/QuestAdvice/Classic.lua is
 generated from selected facts; neither Python nor JSON is needed at runtime.
+
+
+## Regional phase planning and local reports (0.8)
+
+LevelingCampaign still constructs eligibility/prerequisite roots and reconciles
+positive facts. RoutePlanner optionally chooses from those candidates in ordered
+pickup/work/turn-in batches. Manual pins bypass it. Early pickups call the same
+root resolver and require known spare log slots, minimums and a maximum +5 lead;
+field work remains capped at +2. No generic quest completion is inferred by plan
+position. Eligible active quests/history set a transient rejoin floor, without
+modifying earlier completion records. Profiles apply only to supported guides,
+factions, levels and automatic regions; outside them the original pool is used.
+
+The first profile is generated from ElwynnWestfall1_20Plan.json and loaded after
+its campaign data. Runtime registration checks typed, bounded, complete/ordered
+phase sets and selected ALL prerequisites. No save-schema migration is needed.
+routePlan is a typed account preference; quest progression stays per character.
+
+RunTracker stores versioned character.routeRun and one previous stopped report.
+Normal refresh supplies snapshots; optional native XP events read only XP/level/
+clock, never full quest scans. Session/character/loading boundaries reset ephemeral
+baselines. Ambiguous XP deltas discard the baseline, avoiding phantom rollover
+XP. Positive turn-ins are deduplicated; waits require a current matching planner
+snapshot. Reports mutate only their own counters, with no uploads or broadcasts.
+The existing explicit reset backs up and clears run records with character data.

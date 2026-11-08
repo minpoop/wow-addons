@@ -184,9 +184,24 @@ for view, theme, title in [('guide', 'fog', '01 / ROUTE JOURNAL'),
                            ('navigation', 'fog', '14 / NAVIGATION LAYOUT SAMPLE'),
                            ('advice-warning', 'fog', '15 / ELITE QUEST ADVICE'),
                            ('advice-danger', 'warcraft', '16 / QUEST ABOVE YOUR LEVEL'),
-                           ('advice-escort', 'warhammer', '17 / ESCORT EVENT WARNING')]:
+                           ('advice-escort', 'warhammer', '17 / ESCORT EVENT WARNING'),
+                           ('route-batch', 'warcraft', '18 / QUEST PICKUP BATCH'),
+                           ('route-outing', 'fog', '19 / COMBINED FIELD WORK'),
+                           ('route-menu', 'warhammer', '20 / ROUTE & RUN MENU')]:
     lua.execute('ForeverXP.modules.ContextMenu:Close(); ForeverXP.modules.MainWindow:ResizeTo(620,420,false)')
-    if view in ('context-menu','resized'):
+    if view.startswith('route-'):
+        lua.execute(f'ForeverXP.settings.theme={json.dumps(theme)}; ForeverXP.settings.routePlan="auto"')
+        lua.execute('''
+            local F=ForeverXP
+            F.character={guides={},professions={},windows={}}
+            assert(F.modules.GuideEngine:Select(F.modules.LevelingCampaign.id,F.character))
+            F.snapshot={level=5,active={},quests={[54]={turnedIn=true}},character={zone="Elwynn Forest",faction="Alliance",race="Human"}}
+        ''')
+        if view=='route-outing':
+            lua.execute('ForeverXP.snapshot.level=6; for _,id in ipairs({62,60,47}) do ForeverXP.snapshot.quests[id]={accepted=true} end')
+        lua.execute('local F=ForeverXP; F.modules.GuideEngine:Update(F.snapshot); F.modules.MainWindow:Show("guide"); F.modules.MainWindow:ResizeTo(680,480,false)')
+        if view=='route-menu':lua.execute('ForeverXP.modules.ContextMenu:Open("route-planning")')
+    elif view in ('context-menu','resized'):
         lua.execute(f'ForeverXP.settings.theme={json.dumps(theme)}')
         lua.execute('ForeverXP.modules.MainWindow:Show("guide")')
         if view=='resized':lua.execute('ForeverXP.modules.MainWindow:ResizeTo(400,300,false)')
@@ -257,7 +272,7 @@ for view, theme, title in [('guide', 'fog', '01 / ROUTE JOURNAL'),
     nodes = snapshot()
     assert any('James Sunderland' in row.get('text', '') for row in nodes.values())
     content = render(nodes)
-    data_label = 'Classic reference content · synthetic observations · live validation pending' if view in ('elwynn','horde','resized','context-menu') or view.startswith(('leveling','profession-','advice-')) else 'synthetic layout data'
+    data_label = 'Classic reference content · synthetic observations · live validation pending' if view in ('elwynn','horde','resized','context-menu') or view.startswith(('leveling','profession-','advice-','route-')) else 'synthetic layout data'
     html = f'''<!doctype html><html><head><meta charset="utf-8"><style>
     *{{box-sizing:border-box}}body{{margin:0;background:#171e1a;color:#c9cec2;width:1000px;height:820px;font-family:Arial,sans-serif}}
     h1{{position:absolute;left:62px;top:30px;font-size:15px;letter-spacing:3px;font-weight:400}}
