@@ -34,3 +34,10 @@ race-gated introductions and chapters through 60. Generate from Horde1_60Facts.j
 using tools/build_leveling.py --faction Horde. Reference provenance, selection
 rules and remaining live checks are in Documentation/Reference/Horde1_60.md.
 No quest/XP path is promoted to live-verified by offline generation.
+
+
+QuestAdvice/Classic.lua adds a separate reference advice catalog for the 1,159
+unique faction-pool quests. Regenerate with tools/build_quest_advice.py. Selected
+elite/event facts and 17 authored notes are in QuestAdviceFacts.json; scope and
+source evidence are in Documentation/QUEST_ADVICE.md. Advice changes no quest
+completion or eligibility metadata.

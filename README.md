@@ -4,7 +4,7 @@ A leveling and profession guide for WoW Forever, with a resizable field journal,
 level-aware Alliance and Horde 1–60 reference guides, and 12 profession guides
 from 1–300 with skill, recipe and carried-material tracking.
 
-[Download ForeverXP 0.7.0-dev](https://github.com/minpoop/wow-addons/blob/main/downloads/ForeverXP-dev.zip?raw=true)
+[Download ForeverXP 0.7.1-dev](https://github.com/minpoop/wow-addons/blob/main/downloads/ForeverXP-dev.zip?raw=true)
 · [Interface previews](Documentation/Previews/README.md)
 
 Replace the old `ForeverXP` folder in `Interface/AddOns` with the ZIP's folder,
@@ -23,6 +23,7 @@ into this menu so the main window stays focused on your current task.
 - **Choose profession / Profession actions:** all 12 guides, target skill, recipe,
   batch size, Farm/Buy/Hybrid planning and material lists.
 - **Appearance:** Silent Hill, Warcraft, Warhammer 40K and High contrast.
+- **Quest tips & warnings:** independent toggles for practical tips and difficulty alerts.
 - **Navigation:** arrow, coordinates, show target map and clear target.
 - **Window & text:** lock, compact spacing, font size, window presets and opacity.
 - **Hide window:** reopen with `/fxp`. Escape also hides the window.
@@ -81,6 +82,25 @@ See [Alliance evidence](Documentation/Reference/Alliance1_60.md),
 [content coverage](Documentation/CONTENT_COVERAGE.md). Quest locations are marked
 reference. These pools have no measured XP budget or completed Forever 1–60
 playthrough, so their content counts do not guarantee enough XP at every level.
+
+## Quest tips and difficulty warnings
+
+Version **0.7.1-dev** adds a persistent warning caption to the task card, with
+reasons and practical tips below the current instruction. It flags quests 2–3
+levels above you, with stronger warnings at 4+, plus known elite targets/loot
+leads, escorts, scripted events and close quarters. Available live quest tags can
+also warn about elite/group, dungeon, raid and PvP work outside the reference pool.
+Live quest levels take precedence; reference hazards are labeled as reference.
+
+Right-click → **Quest tips & warnings** to switch either feature independently.
+Combat warnings disappear when objectives are complete or you are turning in.
+Advice never completes, skips or defers a quest. Unknown information stays unknown;
+these are practical cautions rather than a prediction of solo success.
+
+The reference metadata covers 1,159 distinct quests, with generic guidance for
+known objective types and 17 individually authored quest notes. See
+[advice coverage and evidence](Documentation/QUEST_ADVICE.md) and
+[warning previews](Documentation/Previews/README.md#quest-tips-and-warnings).
 
 ## Navigation
 
@@ -151,6 +171,7 @@ python3 -m venv /workspace/.foreverxp-tools
 python3 tools/build_leveling.py --check
 python3 tools/build_leveling.py --faction Horde --check
 python3 tools/build_professions.py --check
+python3 tools/build_quest_advice.py --check
 python3 tools/package.py --output downloads/ForeverXP-dev.zip
 ```
 

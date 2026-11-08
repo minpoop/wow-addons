@@ -16,6 +16,7 @@ function M:Items(page)
         add(submenu("professions","Choose profession","professions"))
         if C.catalog then add(submenu("profession-actions","Profession actions","profession-actions")) end
         add(submenu("themes","Appearance","themes"))
+        add(submenu("advice","Quest tips & warnings","advice"))
         add(submenu("navigation","Navigation","navigation"))
         add(submenu("display","Window & text","display"))
         add(entry("hide","Hide window",function() U.frame:Hide() end))
@@ -82,6 +83,9 @@ function M:Items(page)
         for _,name in ipairs({"Farm","Buy","Hybrid"}) do local mode=name; add(entry("mode-"..name,name,function() C:Change("mode",mode) end,C.state.mode==name)) end
     elseif page=="themes" then
         for _,choice in ipairs(F.modules.Themes.options) do local id=choice.id; add(entry("theme-"..id,choice.name,function() S:Set("theme",id) end,F.settings.theme==id)) end
+    elseif page=="advice" then
+        add(entry("quest-tips","Show quest tips",function() S:Set("questTips",not F.settings.questTips) end,F.settings.questTips))
+        add(entry("quest-warnings","Show difficulty warnings",function() S:Set("questWarnings",not F.settings.questWarnings) end,F.settings.questWarnings))
     elseif page=="navigation" then
         add(entry("arrow","Direction arrow",function() S:Set("arrow",not F.settings.arrow) end,F.settings.arrow))
         add(entry("coordinates","Show coordinates",function() S:Set("waypoints",not F.settings.waypoints) end,F.settings.waypoints))
@@ -143,7 +147,7 @@ function M:Paint()
 end
 function M:Open(page)
     self:Build(); self.page=page or "root"; self.items=self:Items(self.page)
-    local titles={root="FOREVER XP",guides="LEVELING ACTIONS",library="REFERENCE GUIDES",professions="CHOOSE PROFESSION",["profession-actions"]="PROFESSION ACTIONS",themes="APPEARANCE",navigation="NAVIGATION",display="WINDOW & TEXT",targets="TARGET SKILL",batch="CRAFTING BATCH",recipes="CHOOSE RECIPE",modes="MATERIAL PLANNING"}
+    local titles={root="FOREVER XP",guides="LEVELING ACTIONS",library="REFERENCE GUIDES",professions="CHOOSE PROFESSION",["profession-actions"]="PROFESSION ACTIONS",themes="APPEARANCE",advice="QUEST TIPS & WARNINGS",navigation="NAVIGATION",display="WINDOW & TEXT",targets="TARGET SKILL",batch="CRAFTING BATCH",recipes="CHOOSE RECIPE",modes="MATERIAL PLANNING"}
     self.title:SetText(titles[self.page] or "FOREVER XP")
     for i,item in ipairs(self.items) do
         local row=self.rows[i]

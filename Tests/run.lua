@@ -210,6 +210,7 @@ assert(loadfile("Tests/profession_guides.lua"))(F,test,eq)
 assert(loadfile("Tests/interface.lua"))(F,test,eq)
 assert(loadfile("Tests/navigation.lua"))(F,test,eq)
 assert(loadfile("Tests/horde.lua"))(F,test,eq)
+assert(loadfile("Tests/advice.lua"))(F,test,eq)
 test("reset requires two commands and keeps a backup without deleting other characters",function()
     F.character.guides.saved="keep"; F.db.characters.other={guides={x=1},professions={},windows={}}
     F:Command("reset confirm"); eq(F.character.guides.saved,"keep")

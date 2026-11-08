@@ -12,6 +12,7 @@ the portrait texture and sidebar; the guide body uses the full window width.
 | ForeverAdapter | Source-inspected, interface-gated quest/item reads and coalesced events |
 | LiveJournal | Bounded per-character checklist generated from observed quest records |
 | LevelingCampaign | Level-aware quest pool selection, prerequisite bridges, persistent defer/keep and observed level target |
+| QuestAdvice | Data-only reference catalog, level/tag/hazard reasons and phase-aware tips; pure view calculation |
 | RecoveryEngine | Evidence-based cursor catch-up for opted-in authored routes; reversible without completing unknown steps |
 | Events | Keyed handlers, idempotent subscription, isolated callback errors |
 | SavedVariables | Schema handling, backups, per-character tables, session fallback |
@@ -217,3 +218,19 @@ clamp and reflow the card without changing guide state. ScrollFrame clips long
 instructions. All action Buttons live in ContextMenu rather than the main window.
 A private overlay closes on outside click and main-window hide; named frames in
 UISpecialFrames support Escape. Settings/font/theme controls remain account-wide.
+
+
+## Quest advice (0.7.1)
+
+QuestAdvice registers a bounded, validated reference catalog keyed by quest ID.
+For(step,snapshot) combines known reference hazards, observed quest levels/tags
+and phase without mutating engine or save state. Completed/turn-in phases suppress
+combat warnings; missing observations do not create a difficulty guess. The main
+window inserts reasons/tips after the task and applies a persistent worded alert
+caption and theme-specific rail color. Known quest titles shorten older route
+headings. Account settings independently control tips and warnings.
+
+ForeverAdapter reads optional GetQuestTagInfo fields through an isolated pcall;
+errors in that optional API do not invalidate the primary snapshot. No new scans,
+per-frame handlers or gameplay actions are added. Data/QuestAdvice/Classic.lua is
+generated from selected facts; neither Python nor JSON is needed at runtime.

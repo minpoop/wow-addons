@@ -121,3 +121,14 @@ Alliance1_60.md. Source literal records were parsed as data; selection, prose,
 chapters and planner remain original. Horde1_60.md records race masks, counts,
 optional exclusions and unverified server scope. Offline checks do not assert
 live API or quest availability.
+
+
+## Quest tips and warnings (0.7.1)
+
+The same working QuestieCompat source at commit 97d7518d5402d185e47b39522a6ea09b8316f0ef
+reads C_QuestLog.GetQuestTagInfo (lines 473–476 and 991–997), including tagID and
+optional isElite. ForeverXP reads these in an isolated optional pcall; this does
+not assert runtime availability. QuestAdviceFacts.json uses the existing pinned
+Classic quest/NPC hashes for selected target ranks and explicit escort/event facts.
+Original cave notes/tips and all remaining limitations are in QUEST_ADVICE.md.
+No downloaded Lua is executed and no reference implementation is bundled.

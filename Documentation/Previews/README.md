@@ -59,3 +59,15 @@ Synthetic skill-160 Alchemy and skill-184 Mining observations drive the guides.
 ![Elwynn introduction](elwynn.png)
 
 ![Preferences](settings.png)
+
+
+## Quest tips and warnings
+
+Version 0.7.1 adds a worded caption and colored edge, with reasons and tips in the
+scrolling card. These use actual advice code and synthetic character state.
+
+![Elite loot warning and Hogger tip](advice-warning.png)
+
+![Stronger above-level warning](advice-danger.png)
+
+![Escort event warning](advice-escort.png)

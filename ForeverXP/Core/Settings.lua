@@ -1,6 +1,6 @@
 local F = ForeverXP
 local S = F:Register("Settings", {})
-S.defaults = { autoAdvance = true, arrow = true, sound = false, integration = "disabled", theme = "fog",
+S.defaults = { autoAdvance = true, arrow = true, sound = false, integration = "disabled", theme = "fog", questTips=true, questWarnings=true,
     fontSize = 13, locked = false, scale = 1, opacity = 0.95, compact = false, debug = false, waypoints = true,
     recovery = "suggest", navigationInterval = 0.2 }
 function S:Load(raw)

@@ -181,13 +181,37 @@ for view, theme, title in [('guide', 'fog', '01 / ROUTE JOURNAL'),
                            ('context-menu', 'warhammer', '11 / RIGHT-CLICK MENU'),
                            ('resized', 'fog', '12 / SMALL WINDOW'),
                            ('horde', 'warhammer', '13 / HORDE 1–60'),
-                           ('navigation', 'fog', '14 / NAVIGATION LAYOUT SAMPLE')]:
+                           ('navigation', 'fog', '14 / NAVIGATION LAYOUT SAMPLE'),
+                           ('advice-warning', 'fog', '15 / ELITE QUEST ADVICE'),
+                           ('advice-danger', 'warcraft', '16 / QUEST ABOVE YOUR LEVEL'),
+                           ('advice-escort', 'warhammer', '17 / ESCORT EVENT WARNING')]:
     lua.execute('ForeverXP.modules.ContextMenu:Close(); ForeverXP.modules.MainWindow:ResizeTo(620,420,false)')
     if view in ('context-menu','resized'):
         lua.execute(f'ForeverXP.settings.theme={json.dumps(theme)}')
         lua.execute('ForeverXP.modules.MainWindow:Show("guide")')
         if view=='resized':lua.execute('ForeverXP.modules.MainWindow:ResizeTo(400,300,false)')
         else:lua.execute('ForeverXP.modules.ContextMenu:Open("root")')
+    elif view.startswith('advice-'):
+        quest_id=435 if view=='advice-escort' else 176
+        player_level=11 if view=='advice-escort' else 6 if view=='advice-danger' else 8
+        guide_id='horde-levels-1-60' if view=='advice-escort' else 'elwynn-forest-shared'
+        lua.execute(f'ForeverXP.settings.theme={json.dumps(theme)}; assert(ForeverXP.modules.GuideEngine:Select({json.dumps(guide_id)},ForeverXP.character))')
+        lua.execute(f'ForeverXP.snapshot={{level={player_level},quests={{[{quest_id}]={{accepted=true}}}}}}')
+        if view=='advice-escort':
+            lua.execute('local F=ForeverXP; F.modules.GuideEngine.state.campaign.pinnedQuest=435; F.modules.GuideEngine:Update(F.snapshot)')
+        lua.execute(f'''
+            local F=ForeverXP; local G=F.modules.GuideEngine
+            for index,step in ipairs(G.guide.steps) do
+                if step.questId=={quest_id} and step.type=="COMPLETE_QUEST" then
+                    G.index=index; G.state.current=step.id; G.state.finished=false
+                    F.modules.Waypoints:Set(step.waypoint)
+                    break
+                end
+            end
+            F.modules.MainWindow:Show("guide")
+        ''')
+        if view=='advice-escort':
+            lua.execute('ForeverXP.modules.MainWindow:ResizeTo(620,480,false)')
     elif view in ('horde','navigation'):
         lua.execute(f'ForeverXP.settings.theme={json.dumps(theme)}')
         lua.execute('''
@@ -233,7 +257,7 @@ for view, theme, title in [('guide', 'fog', '01 / ROUTE JOURNAL'),
     nodes = snapshot()
     assert any('James Sunderland' in row.get('text', '') for row in nodes.values())
     content = render(nodes)
-    data_label = 'Classic reference content · synthetic observations · live validation pending' if view in ('elwynn','horde','resized','context-menu') or view.startswith(('leveling','profession-')) else 'synthetic layout data'
+    data_label = 'Classic reference content · synthetic observations · live validation pending' if view in ('elwynn','horde','resized','context-menu') or view.startswith(('leveling','profession-','advice-')) else 'synthetic layout data'
     html = f'''<!doctype html><html><head><meta charset="utf-8"><style>
     *{{box-sizing:border-box}}body{{margin:0;background:#171e1a;color:#c9cec2;width:1000px;height:820px;font-family:Arial,sans-serif}}
     h1{{position:absolute;left:62px;top:30px;font-size:15px;letter-spacing:3px;font-weight:400}}

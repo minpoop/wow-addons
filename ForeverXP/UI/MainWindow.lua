@@ -97,6 +97,10 @@ function U:Paint()
     local chrome=t.chromeText or t.muted
     T:Text(self.title,t.headerText or t.text); T:Text(self.companion,chrome); T:Text(self.viewLabel,chrome)
     T:Text(self.eyebrow,t.accent); T:Text(self.heading,t.accent); T:Text(self.meta,t.muted); T:Text(self.body,t.text)
+    if self.adviceSeverity then
+        local alert=self.adviceSeverity=="danger" and t.danger or t.warning
+        T:Text(self.eyebrow,alert); T:Texture(self.rail,alert)
+    end
     T:Text(self.progressCaption,t.muted); T:Text(self.navTitle,t.headerText or t.text); T:Text(self.footer,chrome); T:Text(self.hint,chrome)
     T:Text(self.navGlyph,t.progress)
     T:Texture(self.progressTrack,t.track); T:Texture(self.progressFill,t.progress)
@@ -132,8 +136,11 @@ function U:View()
     end
     local step=G:Current()
     if not G.guide then return {heading="Your next chapter",eyebrow="LEVELING",meta="Choose a guide from the right-click menu",fraction=0,text="A quiet road. A new page.\n\nChoose your faction’s leveling guide, or open the live quest journal to follow quests already in your log.",progress="No route selected"} end
+    local observed=step and F.snapshot and F.snapshot.quests and F.snapshot.quests[step.questId]
+    local title=type(observed)=="table" and V.String(observed.title) and observed.title or nil
+    local reference=step and F.modules.QuestAdvice.records[step.questId]
     local labels={ACCEPT_QUEST="ACCEPT QUEST",COMPLETE_QUEST="OBJECTIVES",TURN_IN_QUEST="TURN IN QUEST",REACH_LEVEL="LEVEL GOAL"}
-    local result={heading=step and (step.questTitle or step.text) or G.guide.title,eyebrow=step and (labels[step.type] or "NEXT STEP") or "GUIDE",meta=G.guide.title,fraction=G:Progress()/#G.guide.steps,progress=G:Progress().." completed"}
+    local result={heading=step and (title or step.questTitle or (reference and reference.title) or step.text) or G.guide.title,eyebrow=step and (labels[step.type] or "NEXT STEP") or "GUIDE",meta=G.guide.title,fraction=G:Progress()/#G.guide.steps,progress=G:Progress().." completed"}
     if G.guide.campaign then
         local c=F.modules.LevelingCampaign
         local level=G.state.campaign and G.state.campaign.lastLevel
@@ -145,6 +152,14 @@ function U:View()
         local q=step and F.snapshot and F.snapshot.quests and F.snapshot.quests[step.questId]
         if q and type(q.objectives)=="table" then for _,row in ipairs(q.objectives) do lines[#lines+1]=string.format("%s (%d/%d)",row.text,row.count,row.required) end end
         result.text=table.concat(lines,"\n\n")
+    end
+    local advice=F.modules.QuestAdvice:For(step,F.snapshot)
+    result.advice=advice
+    if advice.badge then result.eyebrow=result.eyebrow.." · WARNING: "..advice.badge end
+    local notes=F.modules.QuestAdvice:Text(advice)
+    if notes~="" then
+        local first,remaining=(result.text or ""):match("^([^\n]*)\n?(.*)$")
+        result.text=(first or "").."\n\n"..notes..(remaining and remaining~="" and "\n\n"..remaining or "")
     end
     return result
 end
@@ -178,6 +193,7 @@ function U:Render()
         self.companion:SetText(T.companion.." · "..T:Note(self.tab)); self.title:SetText("FOREVER XP")
         self.viewLabel:SetText(({guide="FIELD GUIDE",professions="PROFESSIONS",settings="PREFERENCES"})[self.tab])
         local view=self:View()
+        self.adviceSeverity=view.advice and view.advice.severity
         self.eyebrow:SetText(view.eyebrow); self.heading:SetText(view.heading); self.meta:SetText(view.meta)
         self.body:SetText(view.text or ""); self.progressCaption:SetText(view.progress or "")
         self:Layout(); self:Paint()

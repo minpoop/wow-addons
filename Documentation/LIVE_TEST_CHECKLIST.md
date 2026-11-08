@@ -45,3 +45,15 @@ Elwynn catch-up and a working-looking 1–20 test, not full content verification
 
 Source reference content and client API verification remain separate. Record
 measured outcomes before changing any verification label.
+
+
+## Quest advice (0.7.1, pending)
+
+Compare level warnings at +2 and +4 with the quest log, then test an elite/group
+quest and an ordinary quest. Confirm live quest levels override references and
+unknown API data never claims a safe encounter. Check escort/event/cave notes
+against the actual quest; a needs-event flag alone must not imply an escort.
+Complete objectives and enter turn-in: combat warnings should disappear. Verify
+a failed quest stays visibly failed. Toggle tips and warnings separately from the
+right-click menu, relog, resize and scroll; the warning caption must stay visible
+and progress/selection must remain unchanged. Record any custom server differences.

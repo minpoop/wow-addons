@@ -1,6 +1,6 @@
 # Downloadable development build
 
-[Download ForeverXP 0.7.0-dev](https://github.com/minpoop/wow-addons/blob/main/downloads/ForeverXP-dev.zip?raw=true)
+[Download ForeverXP 0.7.1-dev](https://github.com/minpoop/wow-addons/blob/main/downloads/ForeverXP-dev.zip?raw=true)
 
 If GitHub shows a file page, choose **Download raw file**. For a private repository,
 sign in with an account that has access. Replace the old `ForeverXP` folder in
@@ -32,3 +32,11 @@ python3 tools/package.py --output downloads/ForeverXP-dev.zip
 cd downloads
 sha256sum ForeverXP-dev.zip > SHA256SUMS
 ```
+
+
+Version 0.7.1 adds quest tips and difficulty warnings. Reference elite targets,
+elite loot leads, escorts/events and selected cave notes are labeled clearly;
+level warnings prefer actual quest levels. Live quest tags are optional. The
+right-click Quest tips & warnings submenu controls each feature independently.
+Warnings never mark a quest complete or change your selected work. Check reference
+hazards against your actual client and target before relying on them.

@@ -66,6 +66,11 @@ T.palettes.warhammer.card={0.067,0.075,0.09,1}
 T.palettes.warhammer.headerText={0.94,0.79,0.48,1}
 T.palettes.warhammer.chromeText={0.69,0.70,0.70,1}
 T.palettes.warhammer.titleFont="Fonts\\MORPHEUS.TTF"
+-- Worded warnings also use distinct colors; meaning never depends on color alone.
+T.palettes.fog.warning={0.96,0.76,0.36,1}; T.palettes.fog.danger={1,0.56,0.49,1}
+T.palettes.contrast.warning={1,0.90,0.50,1}; T.palettes.contrast.danger={1,0.68,0.60,1}
+T.palettes.warcraft.warning={0.33,0.19,0.025,1}; T.palettes.warcraft.danger={0.45,0.055,0.035,1}
+T.palettes.warhammer.warning={1,0.80,0.38,1}; T.palettes.warhammer.danger={1,0.56,0.49,1}
 function T:Cycle()
     for i,choice in ipairs(self.options) do
         if choice.id==F.settings.theme then return F.modules.Settings:Set("theme",self.options[i % #self.options+1].id) end

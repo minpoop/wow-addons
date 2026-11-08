@@ -34,6 +34,9 @@ class PackagingTests(unittest.TestCase):
                     self.assertIn('ForeverXP/' + module, archive.namelist())
                     self.assertIn(module, archive.read('ForeverXP/ForeverXP.toc').decode())
                 self.assertNotIn('ForeverXP/Assets/JamesSunderland.tga', archive.namelist())
+                for module in ('Questing/QuestAdvice.lua','Data/QuestAdvice/Classic.lua'):
+                    self.assertIn('ForeverXP/'+module,archive.namelist())
+                    self.assertIn(module,archive.read('ForeverXP/ForeverXP.toc').decode())
                 arrow=archive.read('ForeverXP/Assets/NavigationArrow.tga')
                 self.assertEqual(arrow[2],2)
                 self.assertEqual(int.from_bytes(arrow[12:14],'little'),64)
