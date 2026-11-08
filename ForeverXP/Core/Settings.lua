@@ -1,7 +1,7 @@
 local F = ForeverXP
 local S = F:Register("Settings", {})
 S.defaults = { autoAdvance = true, arrow = true, sound = false, integration = "disabled", theme = "fog",
-    scale = 1, opacity = 0.95, compact = false, debug = false, waypoints = true,
+    fontSize = 13, locked = false, scale = 1, opacity = 0.95, compact = false, debug = false, waypoints = true,
     recovery = "suggest", navigationInterval = 0.2 }
 function S:Load(raw)
     local settings = {}
@@ -11,6 +11,7 @@ function S:Load(raw)
             settings[k] = value
         else settings[k] = default end
     end
+    settings.fontSize=math.floor(math.max(10,math.min(18,settings.fontSize)))
     settings.scale = math.max(0.6, math.min(1.8, settings.scale))
     settings.opacity = math.max(0.25, math.min(1, settings.opacity))
     settings.navigationInterval = math.max(0.1, math.min(2, settings.navigationInterval))

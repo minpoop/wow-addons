@@ -17,7 +17,18 @@ local function object(kind,parent,layer)
     objects[#objects+1] = item
     return item
 end
-for _,name in ipairs({"SetFrameStrata","SetMovable","EnableMouse","SetClampedToScreen","RegisterForDrag","StartMoving","StopMovingOrSizing","RegisterEvent","UnregisterEvent","SetJustifyH"}) do methods[name]=function() end end
+for _,name in ipairs({"SetFrameStrata","SetMovable","EnableMouse","SetClampedToScreen","RegisterForDrag","StartMoving","StopMovingOrSizing","RegisterEvent","UnregisterEvent","SetJustifyH","SetFrameLevel","SetResizable","SetResizeBounds","SetMinResize","SetMaxResize","EnableMouseWheel","StartSizing","SetVertexColor","SetRotation","SetParent"}) do methods[name]=function() end end
+function methods:GetEffectiveScale() return 1 end
+function methods:SetRotation(value) self.rotation=value end
+function methods:GetWidth() return self.width or 0 end
+function methods:GetHeight() return self.height or 0 end
+function methods:SetScrollChild(child) self.scrollChild=child end
+function methods:SetVerticalScroll(offset) self.scrollOffset=offset end
+function methods:GetStringHeight()
+    local total=0; local width=math.max(1,self.width or 500); local font=self.fontSize or 13
+    for line in ((self.text or "").."\n"):gmatch("(.-)\n") do total=total+math.max(1,math.ceil(#line/(width/(font*.5)))) end
+    return total*(font+2)
+end
 function methods:SetWidth(v) self.width=v end
 function methods:SetHeight(v) self.height=v end
 function methods:SetScale(v) self.scale=v end
@@ -48,7 +59,7 @@ function PreviewSnapshot()
         result[i]={id=node.id,kind=node.kind,parent=node.parent and node.parent.id,layer=node.layer,
             width=node.width,height=node.height,scale=node.scale,alpha=node.alpha,point=node.point,
             relative=node.relative and node.relative.id,relativePoint=node.relativePoint,x=node.x,y=node.y,
-            all=node.all and node.all.id,text=node.text,fontSize=node.fontSize,color=node.color,texture=node.texture,shown=node.shown}
+            all=node.all and node.all.id,scrollOffset=node.scrollOffset,rotation=node.rotation,text=node.text,fontSize=node.fontSize,color=node.color,texture=node.texture,shown=node.shown}
     end
     return result
 end
@@ -97,7 +108,9 @@ def render(nodes):
         if node.get('all'):
             value = bounds(node['all'])
         else:
-            width = node.get('width', 0)
+            # Native FontStrings without an explicit width size to their text.
+            automatic_width = max((len(line) for line in node.get('text', '').splitlines()), default=0) * node.get('fontSize', 12) * .55
+            width = node.get('width', automatic_width if node['kind']=='FontString' else 0)
             height = node.get('height', max(1, len(node.get('text', '').splitlines())) * 14)
             x = y = 0
             if node.get('relative'):
@@ -118,17 +131,22 @@ def render(nodes):
         children.setdefault(node.get('parent'), []).append(key)
     layers = {'BACKGROUND': 0, 'BORDER': 1, 'ARTWORK': 2, 'OVERLAY': 3}
 
-    def paint(key):
+    def paint(key, origin_x=0, origin_y=0):
         node = nodes[key]
         if not node['shown']:
             return ''
         x, y, width, height = bounds(key)
         output = ''
+        if node['kind']=='ScrollFrame':
+            output=f'<div class="clip" style="position:absolute;overflow:hidden;left:{x-origin_x}px;top:{y-origin_y}px;width:{width}px;height:{height}px">'
+            for child in children.get(key, []):
+                output+=paint(child,x,y+node.get('scrollOffset',0))
+            return output+'</div>'
         if node['kind'] in ('Texture', 'FontString'):
             color = node.get('color', [1, 1, 1, 1])
             color += [1] * (4-len(color))
             rgba = f'rgba({round(color[0]*255)},{round(color[1]*255)},{round(color[2]*255)},{color[3]})'
-            style = f'left:{x}px;top:{y}px;width:{width}px;height:{height}px;'
+            style = f'left:{x-origin_x}px;top:{y-origin_y}px;width:{width}px;height:{height}px;'
             if node['kind'] == 'Texture':
                 if node.get('texture'):
                     relative = node['texture'].replace('\\', '/').removeprefix('Interface/AddOns/')
@@ -136,14 +154,15 @@ def render(nodes):
                     path.resolve().relative_to((ROOT/'ForeverXP').resolve())
                     png = subprocess.check_output(['magick',str(path),'png:-'])
                     url = 'data:image/png;base64,' + base64.b64encode(png).decode()
-                    output = f'<img class="texture" alt="James Sunderland portrait" src="{url}" style="{style}">'
+                    rotation = -node.get('rotation', 0)*180/3.141592653589793
+                    output = f'<img class="texture" alt="Navigation arrow" src="{url}" style="{style}transform:rotate({rotation}deg)">'
                 else:
                     output = f'<div class="texture" style="{style}background:{rgba}"></div>'
             else:
                 text = escape(node.get('text', ''))
                 output = f'<div class="label" style="{style}color:{rgba};font-size:{node.get("fontSize",12)}px">{text}</div>'
         for child in sorted(children.get(key, []), key=lambda item: (4 if nodes[item]['kind'] in ('Frame', 'Button') else layers.get(nodes[item].get('layer'), 0), item)):
-            output += paint(child)
+            output += paint(child,origin_x,origin_y)
         return output
 
     return paint(1)
@@ -158,8 +177,29 @@ for view, theme, title in [('guide', 'fog', '01 / ROUTE JOURNAL'),
                            ('leveling-warhammer', 'warhammer', '07 / WARHAMMER 40K FIELD LOG'),
                            ('themes', 'warcraft', '08 / THEME SETTINGS'),
                            ('profession-tracking', 'warcraft', '09 / ALCHEMY 1–300 TRACKING'),
-                           ('profession-gathering', 'fog', '10 / MINING 1–300 TRACKING')]:
-    if view == 'elwynn':
+                           ('profession-gathering', 'fog', '10 / MINING 1–300 TRACKING'),
+                           ('context-menu', 'warhammer', '11 / RIGHT-CLICK MENU'),
+                           ('resized', 'fog', '12 / SMALL WINDOW'),
+                           ('horde', 'warhammer', '13 / HORDE 1–60'),
+                           ('navigation', 'fog', '14 / NAVIGATION LAYOUT SAMPLE')]:
+    lua.execute('ForeverXP.modules.ContextMenu:Close(); ForeverXP.modules.MainWindow:ResizeTo(620,420,false)')
+    if view in ('context-menu','resized'):
+        lua.execute(f'ForeverXP.settings.theme={json.dumps(theme)}')
+        lua.execute('ForeverXP.modules.MainWindow:Show("guide")')
+        if view=='resized':lua.execute('ForeverXP.modules.MainWindow:ResizeTo(400,300,false)')
+        else:lua.execute('ForeverXP.modules.ContextMenu:Open("root")')
+    elif view in ('horde','navigation'):
+        lua.execute(f'ForeverXP.settings.theme={json.dumps(theme)}')
+        lua.execute('''
+            local F=ForeverXP
+            assert(F.modules.GuideEngine:Select(F.modules.LevelingCampaign.hordeId,F.character))
+            F.snapshot={level=12,active={},quests={},character={zone="The Barrens",race="Orc",faction="Horde"}}
+            F.modules.GuideEngine:Update(F.snapshot)
+            F.modules.MainWindow:Show("guide")
+        ''')
+        if view=='navigation':
+            lua.execute('ForeverXP.modules.Navigation.state={distance=148,rotation=-0.6,cardinal="NE"}; ForeverXP.modules.MainWindow:RenderNavigation()')
+    elif view == 'elwynn':
         lua.execute('ForeverXP.settings.theme="fog"; ForeverXP:Command("elwynn")')
     elif view.startswith('profession-'):
         profession='alchemy' if view=='profession-tracking' else 'mining'
@@ -189,10 +229,11 @@ for view, theme, title in [('guide', 'fog', '01 / ROUTE JOURNAL'),
     else:
         tab='settings' if view=='themes' else view
         lua.execute(f'ForeverXP.settings.theme={json.dumps(theme)}; ForeverXP.modules.MainWindow:Show({json.dumps(tab)})')
+        if view=='themes':lua.execute('ForeverXP.modules.ContextMenu:Open("themes")')
     nodes = snapshot()
     assert any('James Sunderland' in row.get('text', '') for row in nodes.values())
     content = render(nodes)
-    data_label = 'Classic reference content · live validation pending' if view=='elwynn' or view.startswith(('leveling','profession-')) else 'synthetic layout data'
+    data_label = 'Classic reference content · synthetic observations · live validation pending' if view in ('elwynn','horde','resized','context-menu') or view.startswith(('leveling','profession-')) else 'synthetic layout data'
     html = f'''<!doctype html><html><head><meta charset="utf-8"><style>
     *{{box-sizing:border-box}}body{{margin:0;background:#171e1a;color:#c9cec2;width:1000px;height:820px;font-family:Arial,sans-serif}}
     h1{{position:absolute;left:62px;top:30px;font-size:15px;letter-spacing:3px;font-weight:400}}

@@ -132,9 +132,10 @@ test("fog journal includes James, readable theme switching and original companio
     eq(F.db.settings.theme,"contrast"); assert(ui.background.SetColorTextureArgs[1] ~= fog)
     ui:Show("professions"); assert(ui.companion.text:find("Count your supplies",1,true))
     ui:Show("settings"); assert(ui.companion.text:find("important things",1,true))
-    local selected=ui.buttons[2]
+    local menu=F.modules.ContextMenu; menu:Open("themes")
+    local selected=menu.rows[2]
     selected.scripts.OnEnter(); eq(selected.background.SetColorTextureArgs[1],themes:Get().hover[1])
-    selected.scripts.OnLeave(); ui:PaintButton(selected)
+    selected.scripts.OnLeave(); menu:Close()
     F:Command("theme missing"); eq(F.settings.theme,"contrast")
     local fallback={SetTexture=function(self,...) self.color={...} end}
     themes:Texture(fallback,themes:Get().panel); eq(fallback.color[4],1)
@@ -155,12 +156,12 @@ test("portrait-free layout uses the full guide width in every tab and compact mo
     local ui=F.modules.MainWindow
     for _,tab in ipairs({"guide","professions","settings"}) do
         ui:Show(tab)
-        eq(ui.frame.SetWidthArgs[1],576)
+        eq(ui.frame.SetWidthArgs[1],ui.width)
         eq(ui.portrait,nil); eq(ui.portraitName,nil)
-        eq(ui.body.SetWidthArgs[1],540)
-        eq(ui.body.SetPointArgs[4],18)
+        eq(ui.body.SetWidthArgs[1],ui.contentWidth)
+        eq(ui.scroll.SetPointArgs[4],18)
     end
-    F:Command("compact"); eq(ui.frame.SetHeightArgs[1],245)
-    eq(ui.body.SetWidthArgs[1],540)
+    F:Command("compact"); eq(ui.frame.SetHeightArgs[1],ui.height)
+    eq(ui.body.SetWidthArgs[1],ui.contentWidth)
     F:Command("compact"); ui:Show("guide")
 end)

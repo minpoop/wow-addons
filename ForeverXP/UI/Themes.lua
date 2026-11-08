@@ -50,6 +50,22 @@ T.palettes = {
         selected={0.36,0.12,0.12,1}, track={0.19,0.21,0.24,1}, progress={0.72,0.24,0.17,1},
     },
 }
+-- Separate reading surface and outer chrome keep every skin legible.
+T.palettes.fog.card={0.09,0.112,0.101,1}
+T.palettes.fog.headerText={0.87,0.89,0.81,1}
+T.palettes.fog.chromeText={0.64,0.71,0.65,1}
+T.palettes.fog.titleFont="Fonts\\ARIALN.TTF"
+T.palettes.contrast.card={0.05,0.07,0.055,1}
+T.palettes.contrast.headerText=T.palettes.contrast.text
+T.palettes.warcraft.card={0.79,0.69,0.50,1}
+T.palettes.warcraft.panel={0.105,0.073,0.042,1}
+T.palettes.warcraft.headerText={0.96,0.80,0.48,1}
+T.palettes.warcraft.chromeText={0.80,0.71,0.54,1}
+T.palettes.warcraft.border={0.53,0.36,0.14,1}
+T.palettes.warhammer.card={0.067,0.075,0.09,1}
+T.palettes.warhammer.headerText={0.94,0.79,0.48,1}
+T.palettes.warhammer.chromeText={0.69,0.70,0.70,1}
+T.palettes.warhammer.titleFont="Fonts\\MORPHEUS.TTF"
 function T:Cycle()
     for i,choice in ipairs(self.options) do
         if choice.id==F.settings.theme then return F.modules.Settings:Set("theme",self.options[i % #self.options+1].id) end

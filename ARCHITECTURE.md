@@ -1,7 +1,7 @@
 # Architecture
 
 `ForeverXP` is the sole addon namespace. Required slash-command globals and
-`ForeverXPDB` are the only other intentional globals. The TOC defines load order;
+`ForeverXPDB`, `ForeverXPWindow` and `ForeverXPContextMenu` are the other intentional globals. The named windows support native Escape dismissal. The TOC defines load order;
 modules register once through `ForeverXP:Register` and use `ForeverXP.modules`.
 The candidate UI needs no XML or external Lua libraries. Version 0.5.1 removes
 the portrait texture and sidebar; the guide body uses the full window width.
@@ -11,7 +11,7 @@ the portrait texture and sidebar; the guide body uses the full window width.
 | Compatibility | Guarded diagnostic calls; verified-profile provider boundary |
 | ForeverAdapter | Source-inspected, interface-gated quest/item reads and coalesced events |
 | LiveJournal | Bounded per-character checklist generated from observed quest records |
-| LevelingCampaign | Level-aware quest pool selection, prerequisite bridges, persistent defer/keep and level-20 goal |
+| LevelingCampaign | Level-aware quest pool selection, prerequisite bridges, persistent defer/keep and observed level target |
 | RecoveryEngine | Evidence-based cursor catch-up for opted-in authored routes; reversible without completing unknown steps |
 | Events | Keyed handlers, idempotent subscription, isolated callback errors |
 | SavedVariables | Schema handling, backups, per-character tables, session fallback |
@@ -24,10 +24,12 @@ the portrait texture and sidebar; the guide body uses the full window width.
 | RecipeDatabase | Verified catalogs, contiguous skill bands and dependency checks |
 | ProfessionController | Provider snapshots, persistent selection, target and price controls, stale plan handling |
 | Waypoints | Normalized coordinate validation and text fallback |
+| Navigation | Optional HBD/C_Map geometry, coalesced visible-only arrow updates and explicit safe map opening/pin |
+| ContextMenu | Right-click actions, submenus and outside/Escape dismissal |
 | GatheringRoutes | Verified route registry, unverified drafts and guarded coordinate recording |
 | Detours | Explicit opt-in, paused main progression and current-objective restoration |
 | Themes | Original fog/contrast palettes and James Sunderland companion notes |
-| MainWindow | Movable window, views, guide controls, display settings |
+| MainWindow | Movable/resizable task card, scrolling views, progress and navigation strip |
 | Bootstrap | Candidate lifecycle events and slash commands |
 
 ## Data flow
@@ -76,9 +78,7 @@ API failures at the boundary and must avoid protected operations. Register only
 live-confirmed game events; emit normalized changes when state actually changes.
 
 Directional navigation needs verified position, facing, map identity and scale.
-Neither guessed zone dimensions nor straight-line travel-time claims are allowed.
-Map pins, TomTom, profession scanners, inventory caches and price providers belong
-behind the same capability boundary when their client contracts are verified.
+Distances require reported geometry and are labeled straight-line yards, without travel-time claims. Navigation checks interface/loading/API contracts and falls back to coordinates; see Documentation/NAVIGATION.md. Optional integrations require their own inspected contracts.
 
 `professionSnapshot(profession)` returns `{skill, inventory, knownRecipes,
 opportunities}`. Skill and quantities are nonnegative integers; knownRecipes maps
@@ -166,9 +166,8 @@ No downloaded source executes in the client or content builder. The expanded
 panel has extra body space for target hints and live objectives.
 
 Themes.options defines four persisted choices. Settings validates IDs against its
-allowlist. Options buttons call Settings:Set immediately; Paint updates panels,
-text, selected states, progress, procedural borders and theme-specific headers.
-Compact Options uses one cycling control. Theme changes emit only FXP_CHANGED,
+allowlist. Context-menu entries call Settings:Set immediately; Paint updates panels,
+text, selected states, progress and procedural borders. Compact layouts preserve the chosen dimensions. Theme changes emit only FXP_CHANGED,
 so they redraw without moving quest cursors or modifying gameplay progress.
 James's original text notes remain in all skins; the portrait was removed in 0.5.1.
 
@@ -194,3 +193,27 @@ and preferredRecipes; future/corrupt records remain untouched. The UI shows curr
 skill/target progress, recipe/source, batch materials and rank reminders. Compact
 mode preserves tracking while hiding controls. New guides are generated from
 selected factual JSON; source data and Python are not runtime dependencies.
+
+
+## Horde, navigation and window controls (0.7)
+
+LevelingCampaign:Select chooses the observed faction by default, preserves separate
+campaign saves and rejects known opposite-faction choices. Horde accept records
+can carry allowedRaces; candidate and explicit-keep paths enforce observed race.
+Early home-region scoring complements locality without becoming an area gate.
+External ALL prerequisites remain positive-history requirements. The adapter reads
+them alongside existing ANY/exclusive IDs without assuming unknown history.
+
+Navigation reads guarded optional APIs separately from quest/profession providers;
+it never marks the overall profile live-verified. A visible-only coalesced timer
+updates vectors/pins without scanning quests/skills. Cross-map vectors require a
+shared world instance; raw C_Map and HBD axes are converted separately. It uses
+reported scale only, falls back on errors, and opens maps explicitly via guarded
+C_Map.OpenWorldMap outside combat, never SetMapID. No library is bundled.
+
+MainWindow stores width/height alongside position in character.windows.main;
+existing position-only saves restore at default dimensions. Native sizing callbacks
+clamp and reflow the card without changing guide state. ScrollFrame clips long
+instructions. All action Buttons live in ContextMenu rather than the main window.
+A private overlay closes on outside click and main-window hide; named frames in
+UISpecialFrames support Escape. Settings/font/theme controls remain account-wide.

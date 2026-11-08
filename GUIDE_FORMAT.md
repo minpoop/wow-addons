@@ -115,3 +115,20 @@ and means ALL. Selected alternative quests must precede the dependent quest in
 source order. Alternatives outside the pool can satisfy positive history, but
 cannot be invented as guide work. Duplicate/self references and sparse arrays fail
 validation. See the generated Levels1_60.lua and curated facts for concrete data.
+
+
+## Horde eligibility and bounds (0.7)
+
+Accept steps may include a nonempty dense string array `allowedRaces` using native
+race tokens; Undead normalizes to Scourge. Unknown race cannot grant a restricted
+quest. Both automatic candidates and explicit keep enforce this requirement.
+`prerequisiteQuestsAll` is a dense positive-ID array of external required turn-ins;
+every ID must have positive history. Selected ALL prerequisites still use backward
+turn-in step IDs. ANY alternatives and exclusive observations retain their earlier
+semantics. The adapter queries these related IDs without inventing guide tasks.
+
+Guide data validation permits up to 4,096 dense steps and a 100,000-node traversal
+budget for a guide. Other data-only checks retain their 50,000-node default budget.
+The Horde reference has 2,465 steps. Generation uses the same offline builder with
+`--faction Horde`; default Alliance generation remains byte-identical. Reference
+labels are unchanged, and no schema validation proves server validity or XP supply.

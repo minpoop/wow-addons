@@ -81,7 +81,7 @@ test("Elwynn command and later refreshes automatically relocate using live-provi
     begin(); F:Command("elwynn")
     eq(G:Current().id,"quest-62-complete")
     eq(G.state.completed["quest-783-turn-in"],nil)
-    assert(F.modules.MainWindow.body.text:find("step "..G.index,1,true))
+    assert(F.modules.MainWindow.body.text:find("Fargodeep",1,true))
     s.quests[62].complete=true; F.modules.Events:Emit("FXP_STATE_CHANGED")
     eq(G:Current().id,"quest-62-turn-in")
     local current=G:Current().id

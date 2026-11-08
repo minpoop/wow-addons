@@ -27,3 +27,10 @@ Generate it from the selected Professions1_300Facts.json using tools/build_profe
 It contains 132 recipes and 146 authored stages, with no manufactured skill-up
 probability. See Documentation/Reference/Professions1_300.md for provenance and
 live-validation scope. No downloaded SQL database is included in the addon.
+
+
+QuestGuides/Horde/Levels1_60.lua adds 821 selected quests and 2,465 steps, with
+race-gated introductions and chapters through 60. Generate from Horde1_60Facts.json
+using tools/build_leveling.py --faction Horde. Reference provenance, selection
+rules and remaining live checks are in Documentation/Reference/Horde1_60.md.
+No quest/XP path is promoted to live-verified by offline generation.

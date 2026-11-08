@@ -169,17 +169,17 @@ test("public profession controls select aliases, change batches and preserve gui
     begin("first-aid",42); F.settings.compact=false
     F:Command("profession FirstAid"); eq(C.catalog.id,"first-aid")
     U:Show("professions"); assert(U.body.text:find("Skill 42 / 300",1,true))
-    eq(U.recipeControls[1]:IsShown(),true)
-    U.recipeControls[3].scripts.OnClick(); eq(C.state.batch,6)
+    eq(U.recipeControls,nil)
+    local menu=F.modules.ContextMenu; menu:Open("batch"); assert(menu:Invoke("batch-10")); eq(C.state.batch,10)
     F:Command("batch 3"); eq(C.state.batch,3)
     F:Command("target 100"); eq(C.state.target,100)
-    assert(math.abs(U.progressFill.SetWidthArgs[1]-540*41/99)<0.001)
+    assert(math.abs(U.progressFill.SetWidthArgs[1]-U.contentWidth*41/99)<0.001)
     F:Command("materials"); F:Command("recipes")
-    F:Command("compact"); eq(U.recipeControls[1]:IsShown(),false)
+    F:Command("compact"); eq(U.recipeControls,nil)
     F:Command("compact")
     observe("mining",65); assert(C:Select("mining")); U:Render()
-    eq(U.recipeControls[1]:IsShown(),false)
-    for _,b in ipairs(U.professionControls) do if b.mode then eq(b:IsShown(),false) end end
+    eq(U.recipeControls,nil)
+    for _,item in ipairs(menu:Items("profession-actions")) do assert(item.id~="batch" and item.id~="modes") end
 end)
 test("skill and recipe event bursts use the existing coalesced refresh queue",function()
     begin("alchemy",100); timers={}; questAdapter.pending=false

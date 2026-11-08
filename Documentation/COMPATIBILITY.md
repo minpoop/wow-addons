@@ -64,8 +64,7 @@
 
 `Compatibility.profile.verified` remains false. A separately labeled
 `RegisterInspectedProvider` path permits the reviewed read-only snapshot adapter,
-which checks the observed interface on every read. It does not certify live
-behavior or unlock profession/map providers. Record actual gameplay outcomes
+which checks the observed interface on every read. It does not certify live behavior. Profession and navigation integrations have separate source-inspected guards; they do not set the global verified flag. Record actual gameplay outcomes
 before promoting a capability to live-verified. Never flip a flag to remove a
 warning. Do not run protected actions to test.
 
@@ -74,9 +73,7 @@ not account credentials or identifying screenshots. Server content verification
 is separate from client API verification; neither implies the other.
 
 The quest compatibility, event and log-cache modules have now been inspected at
-the pinned upstream commit. Profession and map integration still need further
-investigation. References are evidence; Questie implementation code, databases
-and assets have not been imported into ForeverXP.
+the pinned upstream commit. Profession and map implementations now have separate source inspection notes below. References are evidence; Questie implementation code, complete databases and assets are not bundled.
 
 ## 0.5 expansion and themes
 
@@ -96,3 +93,23 @@ event contracts. Modern matching uses profession skill IDs; legacy name fallback
 is English-only. Existing item count reads exclude bank stock. No live profession
 run was performed here. The profile verified flag stays false. See
 Reference/Professions1_300.md for exact evidence, data boundaries and live checks.
+
+
+## 0.7 window, Horde and navigation
+
+Native SetResizable/SetResizeBounds (legacy min/max fallback), StartSizing,
+OnSizeChanged, ScrollFrame and UISpecialFrames are exercised with frame mocks;
+actual native window behavior remains untested here. No XML is required.
+Context-menu actions use private addon frames and do not invoke gameplay actions.
+
+Navigation reads the pinned working reference's HBD world/map/facing contracts and
+QuestieCompat safe map-opening pattern. Optional C_Map child-map discovery and
+canvas availability are checked at runtime, not assumed from a version number.
+Interface 16001 and loading gates still apply; direction requires reported geometry
+and falls back to coordinates on missing data. Map opening requires an explicit
+request and a readable out-of-combat state. See NAVIGATION.md for exact evidence
+and LIVE_TEST_CHECKLIST.md for unrun scenarios. No live verification flag changes.
+
+Horde facts are Classic references with explicit race masks, not evidence for
+custom server races or available quest/XP paths. All new content remains
+reference-reviewed pending actual playthroughs.

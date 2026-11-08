@@ -3,6 +3,7 @@ local C = F:Register("LevelingCampaign", { indexes = {}, runtime = {} })
 local V = F.modules.Validation
 C.id = "alliance-levels-1-60"
 C.testId = "alliance-levels-1-20"
+C.hordeId = "horde-levels-1-60"
 function C:Index(guide)
     local cached=self.indexes[guide.id]
     if cached and cached.guide==guide then return cached end
@@ -20,6 +21,8 @@ function C:Index(guide)
                 record.title,record.level,record.minimum=step.questTitle,step.questLevel,step.minLevel
                 record.zone,record.optional=step.zone,step.optional==true
                 record.requiresAny,record.exclusive=step.prerequisiteQuestsAny or {},step.exclusiveQuests or {}
+                record.allowedRaces=step.allowedRaces
+                for _,id in ipairs(step.prerequisiteQuestsAll or {}) do record.requires[#record.requires+1]=id end
             end
         elseif step.type=="REACH_LEVEL" and step.level==guide.campaign.targetLevel then index.goal=position end
     end
@@ -46,6 +49,7 @@ function C:ValidateState(state)
     return true
 end
 function C:Import(guide,state,character)
+    if guide.faction=="Horde" then return end
     local index=self:Index(guide)
     local old=guide.id==self.id and character.guides[self.testId] or nil
     if type(old)~="table" then old=character.guides["elwynn-forest-shared"] end
@@ -78,14 +82,27 @@ function C:Done(index,state,snapshot,id)
     if not record then return false end
     return state.completed[index.guide.steps[record.TURN_IN_QUEST].id]==true
 end
+function C:RaceEligible(record,snapshot)
+    if not record.allowedRaces then return true end
+    local player=type(snapshot.character)=="table" and snapshot.character or {}
+    local race=player.race=="Undead" and "Scourge" or player.race
+    for _,allowed in ipairs(record.allowedRaces) do if allowed==race then return true end end
+    return false
+end
 function C:BuildCandidates(engine,snapshot)
     local guide,state=engine.guide,engine.state
     local index=self:Index(guide)
     local saved=savedState(state)
     local level=snapshot.level
+    local player=type(snapshot.character)=="table" and snapshot.character or {}
+    local race=player.race=="Undead" and "Scourge" or player.race
+    local function eligible(record)
+        return self:RaceEligible(record,snapshot)
+    end
     local function root(id,allowOptional,visiting)
         local record=index.quests[id]
         if not record or self:Done(index,state,snapshot,id) or saved.deferredByUser[id] then return end
+        if not eligible(record) then return end
         if record.optional and not allowOptional then return end
         local q=snapshot.quests[id]
         if type(q)=="table" and (q.accepted==true or q.complete==true) then return record end
@@ -119,8 +136,8 @@ function C:BuildCandidates(engine,snapshot)
     for _,record in ipairs(index.order) do
         local questLevel=self:QuestLevel(record,snapshot)
         if not self:Done(index,state,snapshot,record.id) then
-            if questLevel<level-guide.campaign.maxQuestLag then deferred=deferred+1 end
-            if not record.optional and level>=record.minimum
+            if eligible(record) and questLevel<level-guide.campaign.maxQuestLag then deferred=deferred+1 end
+            if eligible(record) and not record.optional and level>=record.minimum
                and questLevel>=level-guide.campaign.maxQuestLag and questLevel<=level+guide.campaign.maxQuestLead then
                 local work=root(record.id,false,{})
                 if work then
@@ -128,6 +145,7 @@ function C:BuildCandidates(engine,snapshot)
                     local active=type(q)=="table" and (q.accepted==true or q.complete==true)
                     local zone=type(snapshot.character)=="table" and snapshot.character.zone
                     local score=100-math.abs(questLevel-level)*10+(zone and work.zone==zone and (guide.campaign.zonePreference or 5) or 0)+(active and 15 or 0)
+                    if level<=10 and guide.campaign.homeZones and guide.campaign.homeZones[race]==work.zone then score=score+15 end
                     local candidate={record=work,goal=record,score=score,bridge=work.id~=record.id}
                     if not byRoot[work.id] or score>byRoot[work.id].score then byRoot[work.id]=candidate end
                 end
@@ -212,6 +230,8 @@ function C:Defer(engine)
 end
 function C:Keep(engine,id)
     if not V.Integer(id,1) or not self:Index(engine.guide).quests[id] then return nil,"Quest is not in this campaign." end
+    local run=self.runtime[engine.guide.id]
+    if not self:RaceEligible(self:Index(engine.guide).quests[id],run and run.state==engine.state and run.snapshot or {}) then return nil,"Quest is not eligible for the observed race." end
     local saved=savedState(engine.state)
     saved.pinnedQuest=id; saved.deferredByUser[id]=nil
     engine.state.review=nil
@@ -263,12 +283,13 @@ function C:Text(engine)
         lines[#lines+1]="Quest level "..self:QuestLevel(record,run.snapshot).." · "..(zone and (playerZone and playerZone~=zone and "travel to " or "")..zone or "location unconfirmed")
         if chosen.bridge then lines[#lines+1]="Prerequisite for "..chosen.goal.title end
         if chosen.pinned then lines[#lines+1]="Kept by you · Auto plan resumes recommendations" end
-        lines[#lines+1]=engine:Current().text
+        -- Keep the actual task visible first, including in a small scrolling card.
+        table.insert(lines,1,engine:Current().text)
         local q=run.snapshot.quests[record.id]
         if type(q)=="table" and q.objectives then
             for i=1,math.min(2,#q.objectives) do
                 local row=q.objectives[i]
-                lines[#lines+1]=string.format("%s (%d/%d)",row.text,row.count,row.required)
+                table.insert(lines,i+1,string.format("%s (%d/%d)",row.text,row.count,row.required))
             end
         end
     end
@@ -278,13 +299,15 @@ end
 function C:Select(id)
     local G=F.modules.GuideEngine
     local player=F.modules.Compatibility:Character()
-    if player.faction and player.faction~="Alliance" then return nil,"This campaign is for Alliance characters." end
-    local ok,err=G:Select(id or self.id,F.character)
+    id=id or (player.faction=="Horde" and self.hordeId or self.id)
+    local guide=G.guides[id]
+    if guide and player.faction and player.faction~=guide.faction then return nil,"This campaign is for "..guide.faction.." characters." end
+    local ok,err=G:Select(id,F.character)
     if not ok then return nil,err end
     G.state.review=nil
     self:Refresh(G)
     F.modules.MainWindow:Show("guide")
-    F:Print("Alliance 1–"..G.guide.campaign.targetLevel.." reference guide: recommendations follow your level. Older unfinished quests stay saved.")
+    F:Print(G.guide.faction.." 1–"..G.guide.campaign.targetLevel.." reference guide: recommendations follow your level. Older unfinished quests stay saved.")
     return true
 end
 function C:Chapters(engine)

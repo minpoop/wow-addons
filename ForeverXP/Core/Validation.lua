@@ -19,11 +19,11 @@ function V.Array(value, nonempty)
     for i = 1, count do if value[i] == nil then return false end end
     return true
 end
-function V.DataOnly(value)
+function V.DataOnly(value, budget)
     local active, count = {}, 0
     local function visit(item, depth)
         count = count + 1
-        if count > 50000 or depth > 64 then return false end
+        if count > (budget or 50000) or depth > 64 then return false end
         local kind = type(item)
         if kind == "number" then return V.Finite(item) end
         if kind ~= "table" then return kind == "nil" or kind == "string" or kind == "boolean" end

@@ -8,14 +8,21 @@ end
 -- Generic candidate UI mock: stateful enough to detect missing text and controls.
 local frames, messages = {}, {}
 local methods = {}
-for _, name in ipairs({"SetWidth","SetHeight","SetPoint","SetFont","SetFontObject","SetJustifyH","SetTextColor","SetFrameStrata","SetMovable","EnableMouse","SetClampedToScreen","RegisterForDrag","StartMoving","StopMovingOrSizing","SetAllPoints","SetColorTexture","SetTexture","ClearAllPoints","SetScale","SetAlpha"}) do
+for _, name in ipairs({"SetWidth","SetHeight","SetPoint","SetFont","SetFontObject","SetJustifyH","SetTextColor","SetFrameStrata","SetMovable","EnableMouse","SetClampedToScreen","RegisterForDrag","StartMoving","StopMovingOrSizing","SetAllPoints","SetColorTexture","SetTexture","ClearAllPoints","SetScale","SetAlpha","SetFrameLevel","SetResizable","SetResizeBounds","SetMinResize","SetMaxResize","StartSizing","EnableMouseWheel","SetScrollChild","SetVerticalScroll","SetRotation","SetVertexColor"}) do
     local key = name
     methods[key] = function(self, ...) self[key .. "Args"] = {...} end
 end
+function methods:GetStringHeight() return math.max(14, math.ceil(#(self.text or "")/70)*14) end
+function methods:GetEffectiveScale() return 1 end
+function methods:GetWidth() return self.SetWidthArgs and self.SetWidthArgs[1] or 0 end
+function methods:GetHeight() return self.SetHeightArgs and self.SetHeightArgs[1] or 0 end
 function methods:SetText(value) self.text = value end
 function methods:GetPoint() return "CENTER",UIParent,"CENTER",12,34 end
 function methods:Show() self.shown = true end
-function methods:Hide() self.shown = false end
+function methods:Hide()
+    local shown=self.shown; self.shown=false
+    if shown and self.scripts.OnHide then self.scripts.OnHide(self) end
+end
 function methods:IsShown() return self.shown end
 function methods:SetScript(name, fn) self.scripts[name] = fn end
 function methods:RegisterEvent(name) self.events[name] = true end
@@ -54,7 +61,7 @@ test("event bridge loads only matching addon, initializes UI and saves",function
     E.frame.scripts.OnEvent(E.frame,"ADDON_LOADED","AnotherAddon"); eq(F.initialized,nil)
     E.frame.scripts.OnEvent(E.frame,"ADDON_LOADED","ForeverXP")
     eq(F.initialized,true); eq(F.persistent,true); eq(ForeverXPDB.schema,1)
-    eq(U.heading.text,"No route selected"); assert(U.frame:IsShown())
+    eq(U.heading.text,"Your next chapter"); assert(U.frame:IsShown())
     local count = #frames; F:Initialize(); E:Start(); eq(#frames,count)
 end)
 test("event subscriptions deduplicate, isolate failures and unregister",function()
@@ -88,7 +95,7 @@ test("settings validate finite values, clamp ranges and persist",function()
     F:Command("opacity 0.8"); eq(F.db.settings.opacity,0.8)
     F:Command("scale 1"); F:Command("settings"); assert(U.body.text:find("Preferences") == nil)
     U:SavePosition(); eq(F.character.windows.main.x,12)
-    F:Command("compact"); eq(U.frame.SetHeightArgs[1],245); F:Command("compact")
+    F:Command("compact"); eq(U.frame.SetHeightArgs[1],U.height); F:Command("compact")
 end)
 -- All identifiers below are synthetic fixtures, never shipped as playable guides.
 local function guide()
@@ -200,6 +207,9 @@ assert(loadfile("Tests/campaign.lua"))(F,test,eq)
 assert(loadfile("Tests/campaign_full.lua"))(F,test,eq)
 assert(loadfile("Tests/themes.lua"))(F,test,eq)
 assert(loadfile("Tests/profession_guides.lua"))(F,test,eq)
+assert(loadfile("Tests/interface.lua"))(F,test,eq)
+assert(loadfile("Tests/navigation.lua"))(F,test,eq)
+assert(loadfile("Tests/horde.lua"))(F,test,eq)
 test("reset requires two commands and keeps a backup without deleting other characters",function()
     F.character.guides.saved="keep"; F.db.characters.other={guides={x=1},professions={},windows={}}
     F:Command("reset confirm"); eq(F.character.guides.saved,"keep")

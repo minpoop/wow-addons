@@ -146,8 +146,9 @@ test("public command and UI show a level goal with non-destructive controls",fun
     F:Command("1-20"); eq(G.guide.id,C.testId)
     local U=F.modules.MainWindow
     assert(U.body.text:find("Level 16 / 20",1,true))
-    eq(U.previous.label.text,"Other quests"); eq(U.next.label.text,"Defer quest")
-    eq(U.autoCampaign:IsShown(),true)
+    eq(U.previous,nil); eq(U.next,nil)
+    local menu=F.modules.ContextMenu; menu:Open("guides")
+    assert(menu:Invoke("auto-plan"))
     F:Command("leveling defer"); F:Command("leveling auto"); eq(G.state.campaign.pinnedQuest,nil)
     F:Command("1-20"); eq(G.guide.id,C.testId)
 end)

@@ -40,7 +40,7 @@ SHA-256: `f5ff4dffaf6929ab3257ac7d4601352adf8fff1821d1d2b8e4b8c1f409c1d0aa`
 
 The source manifest now targets 16001 and declares early saved-variable loading.
 The compatibility profile records that provenance but remains `verified=false`.
-No Questie artwork, code, libraries, databases or guide content were copied.
+No Questie artwork, implementation, libraries, complete databases or guide prose is bundled. Later reference guides use selected factual records with separate provenance below.
 No inference to a Retail, Classic, WotLK or other client API family was made.
 
 ## Subsequent upstream source inspection
@@ -102,3 +102,22 @@ c33f90b8eeb3f8bacb53d5cbfee45075c80b416c. Its SQL literals were parsed as data;
 no downloaded implementation was executed or copied. Exact archive/item/NPC hashes,
 selected facts and remaining live-validation work are recorded in
 Reference/Professions1_300.md. These references do not certify Forever behavior.
+
+
+## Navigation and Horde expansion (0.7)
+
+Read, without executing or bundling, the working reference commit's
+[Libs/HereBeDragons/HereBeDragons-2.0.lua](https://github.com/Questie/Questie/blob/97d7518d5402d185e47b39522a6ea09b8316f0ef/Libs/HereBeDragons/HereBeDragons-2.0.lua).
+This supplies contracts for optional library map IDs/names/player position and
+world conversion, native world coordinate axes, reported map dimensions and
+facing. QuestieCompat lines 301–318 specify safe C_Map.OpenWorldMap use and warn
+about SetMapID taint. ForeverXP uses its own implementation and guarded runtime
+capabilities, with no copied library or native-map mutation. Additional optional
+C_Map map discovery/canvas behavior is runtime-checked and still needs live tests.
+See NAVIGATION.md for limits and axis conversions.
+
+Horde facts use the same pinned Classic database revision and four hashes as
+Alliance1_60.md. Source literal records were parsed as data; selection, prose,
+chapters and planner remain original. Horde1_60.md records race masks, counts,
+optional exclusions and unverified server scope. Offline checks do not assert
+live API or quest availability.

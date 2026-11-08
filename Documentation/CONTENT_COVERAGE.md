@@ -1,26 +1,24 @@
-# Content coverage
+# Content coverage — 0.7
 
-No authored route has been live-verified end to end on Forever. Version 0.6 ships
-an Elwynn reference route (34 quests), the retained 1–20 test (97 quests), and an
-Alliance 1–60 level-aware guide (556 quests / 1,670 steps). These overlap; there
-are 556 distinct shared reference quests, not the sum of all guide counts. Source
-evidence is in Reference/Alliance1_60.md and the earlier reference documents. All synthetic IDs in Tests/ and
-documentation exist only to exercise formats and logic; they are not playable.
+No authored route has been live-verified end to end on Forever. The reference
+campaign pools contain 556 Alliance quests and 821 Horde quests, sharing 218
+neutral records: **1,159 distinct quests** overall. Elwynn (34) and the earlier
+Alliance 1–20 test (97) are subsets of Alliance 1–60; do not add them again.
+Synthetic IDs in Tests/ and examples are never packaged as playable content.
 
-| Target | Verified content | Status |
+| Target | Reference content | Live status |
 | --- | --- | --- |
-| Alliance starting zones | 0 live-verified; 1 Elwynn reference guide | Shared class-independent quest core; Forever validation pending |
-| Horde race starting zones | 0 guides | Missing live observations |
-| Alliance 1–20 test | 0 live-verified; 1 reference campaign | Level-aware selection; no measured XP budget or completed live playthrough |
-| Alliance 1–60 progression | 0 live-verified; 1 reference guide | 556 quests and chapters through target 60; measured XP budget and completed Forever playthrough pending |
-| Horde 1–60 progression | 0 routes | Missing; level cap unverified |
-| Class instructions / dungeons / flight paths | 0 | Missing |
-| Professions 1–300 | 0 live-verified; 12 reference guides | 8 crafting + 4 gathering; observed skill/rank/stock tracking added |
-| Recipes and learning sources | 0 live-verified; 132 selected recipes | Reference reagent/learning facts and training reminders; 146 total profession stages |
-| Gathering routes and spawns | 0 surveyed loops | Broad resource/area stages for Herbalism, Mining, Skinning and Fishing; no measured spawns |
-| Custom server content | 0 | Unknown |
+| Alliance shared leveling | 556 quests / 1,670 steps; 12 chapters through 60 | Full playthrough and XP budget pending |
+| Elwynn shared route | 34 quests / 113 steps; retained area guide | User reports catch-up works; full route pending |
+| Horde shared leveling | 821 quests / 2,465 steps; 12 chapters through 60 | All content needs live validation |
+| Horde starts | Orc/Troll Durotar, Tauren Mulgore, Undead Tirisfal | Offline race/level tests only |
+| Class tasks / dungeon routes / flight network | No authored coverage | Missing |
+| Professions 1–300 | 12 guides, 132 recipes, 146 stages | Live skill/rank/knowledge/material checks pending |
+| Gathering | Four resource/area guides; no surveyed loops | No measured spawn routes |
+| Custom Forever content and races | Unknown | Needs server observations |
 
-For every added guide/recipe/route, record author, client build, server, observation
-date, source, completeness and live-validation outcome. Schema validation is a
-structural check, not evidence that a quest, item or spawn exists on the server.
-No full-level coverage or production readiness claim is justified yet.
+Selected facts, source hashes and scope are in Reference/Alliance1_60.md,
+Reference/Horde1_60.md and Reference/Professions1_300.md. For live verification,
+record client build/interface, server, date, quest/recipe IDs and actual outcomes.
+Schema and synthetic progression tests establish structure and algorithm behavior;
+they do not establish server availability, enough XP, travel efficiency or caps.

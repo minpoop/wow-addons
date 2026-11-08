@@ -1,26 +1,34 @@
-# The field journal
+# The field journal — 0.7
 
-Version 0.5.1 removes the character portrait, its frame, nameplate and sidebar.
-Guide text, progress, settings and profession controls now use the full 540-pixel
-content width in the existing 576-pixel window. Compact mode also uses that width.
-James Sunderland remains only in the original companion header notes, separate
-from quest instructions. Those notes change with the active view and guide state.
+The main window centers a current-task card with a phase label, title, context,
+scrollable instruction body and a thin progress line. A separate navigation strip
+keeps the destination visible. No action buttons or portrait occupy the reading
+area. Right-click opens a cursor-anchored, screen-clamped dropdown; submenus expose
+all previous window actions. Click outside, choose an action or press Escape to
+close it. `/fxp menu` is the keyboard fallback.
 
-Options provides four persisted choices:
+Default size is 620×420 UI units. The lower-right grip resizes between 380×260 and
+980×820 using native frame sizing; both dimensions persist per character. Text
+reflows and scrolls within the card. Small/compact layouts reduce spacing and hide
+the companion line; they retain the chosen dimensions. Lock prevents moving and
+resizing. Window & text provides font sizes, presets and opacity. Shared account
+preferences remain distinct from per-character position, size and progress.
 
-1. Silent Hill: low-saturation gray-green panels, static fog bands, oxidized edges,
-   pale text and a thin progress line. This remains the default.
-2. Warcraft: parchment, brown ink, brass framing and an adventurer’s journal header.
-3. Warhammer 40K: gunmetal, crimson, bone text, corner studs and a crusade log header.
-4. High contrast: the existing brighter-text variant of the field journal.
+Four themes apply immediately without changing gameplay progress:
 
-Selection applies immediately to all tabs. Compact Options offers one cycling
-button. Slash alternatives are `/fxp theme fog`, `warcraft`, `warhammer` or
-`contrast`. Existing settings and gameplay progress are retained.
+1. Silent Hill: gray-green card, muted fog bands, oxidized frame and pale text.
+2. Warcraft: dark leather-colored surround, parchment card, brown ink and brass.
+3. Warhammer 40K: gunmetal, crimson, bone text and gold headings.
+4. High contrast: brighter field-journal text and stronger separation.
 
-All current visuals use procedural color textures and existing client fonts.
-No image asset, franchise music or copied dialogue is included in the addon ZIP.
-The old generated portrait source remains in art/ as an unused development
-reference. Source-rendered previews use mocked client frames; they are not game
-screenshots. Tests exercise theme application, state, full-width layout and
-portrait exclusion from packaging. Live font and layout review remains pending.
+James Sunderland remains in original companion header notes when space permits.
+The portrait and nameplate remain removed. Native client fonts and procedural
+textures supply the styling. The only packaged image is a small original arrow
+(`art/NavigationArrow.svg` is its authoring source); no extracted franchise art,
+copied dialogue or music is included. Historical portrait art is unused.
+
+Source-rendered previews use the actual UI modules and mocked frame geometry.
+They are not game screenshots, and font metrics/wrapping may differ. Offline tests
+cover native resize callbacks, persistence, scrolling, locking, menu dismissal,
+button removal and theme/state separation. Native rendering and interaction still
+need the live checklist.

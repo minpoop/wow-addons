@@ -96,6 +96,7 @@ function A:Collect()
         for _,step in ipairs(guide.steps) do
             if step.questId then quests[step.questId] = true end
             for _,id in ipairs(step.prerequisiteQuestsAny or {}) do quests[id]=true end
+            for _,id in ipairs(step.prerequisiteQuestsAll or {}) do quests[id]=true end
             for _,id in ipairs(step.exclusiveQuests or {}) do quests[id]=true end
             if step.itemId then items[step.itemId] = true end
         end

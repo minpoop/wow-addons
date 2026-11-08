@@ -1,66 +1,61 @@
-# Interface previews
+# Interface previews — 0.7
 
-These are source-rendered previews using mocked client frames and synthetic
-layout data. They are not in-game screenshots. Font metrics and texture loading
-still need live-client verification.
+These are source-rendered layouts from actual UI modules with mocked client
+frames and synthetic observations. **They are not in-game screenshots.** Native
+font metrics, textures and interaction still need live-client review. The portrait
+remains removed; James's original text notes appear when window space permits.
 
-## Route journal
-
-![Route journal](guide.png)
-
-## Supply ledger
-
-![Profession planning](professions.png)
-
-## Options
-
-![Higher contrast settings](settings.png)
-
-## Elwynn reference route
-
-This view uses the authored reference guide, with live route validation pending.
-
-![Elwynn reference route introduction](elwynn.png)
-
-## Level-aware Alliance 1–60
-
-The mocked character is level 14; older quests remain saved while the campaign
-selects a suitable quest from its reference pool. Live validation is pending.
+## Silent Hill field journal
 
 ![Level-aware Alliance campaign](leveling.png)
 
-## Warcraft journal
-
-Original parchment and brass styling, rendered with a mocked level-35 character.
+## Warcraft parchment journal
 
 ![Warcraft theme](leveling-warcraft.png)
 
 ## Warhammer 40K field log
 
-Original gunmetal, crimson and bone styling, rendered at level 58.
-
 ![Warhammer theme](leveling-warhammer.png)
 
-## Theme selection
+## Right-click dropdown
 
-Options provides immediate, persistent theme choices. These are source-rendered
-layouts, not screenshots from the live game.
+All window actions are available from the dropdown, leaving the task card clear.
 
-![Theme settings menu](themes.png)
+![Right-click menu](context-menu.png)
 
-Version 0.5.1 removes the portrait sidebar. These previews use the wider
-text and control layout; James’s original header notes remain.
+## Appearance submenu
 
-## Crafting guide with tracking
+![Theme selection](themes.png)
 
-A synthetic skill-160 Alchemy observation drives the actual reference guide UI.
+## Resized window
 
-![Alchemy guide tracking](profession-tracking.png)
+Small layouts reflow, hide the companion line and scroll longer instructions.
 
-## Gathering guide with tracking
+![Small window](resized.png)
 
-A synthetic Mining observation shows the matching resource stage and carried ore.
+## Horde 1–60 reference content
 
-![Mining guide tracking](profession-gathering.png)
+Synthetic Orc level 12 in the Barrens; this is not live-verified quest availability.
 
-These remain source-rendered layouts, not in-game screenshots.
+![Horde guide](horde.png)
+
+## Navigation layout
+
+The arrow direction and 148-yard distance here are explicitly synthetic layout
+values; actual runtime display requires supported map geometry and facing.
+
+![Navigation sample](navigation.png)
+
+## Profession tracking
+
+Synthetic skill-160 Alchemy and skill-184 Mining observations drive the guides.
+
+![Alchemy guide](profession-tracking.png)
+
+![Mining guide](profession-gathering.png)
+
+## Elwynn route and preferences
+
+![Elwynn introduction](elwynn.png)
+
+![Preferences](settings.png)

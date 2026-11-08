@@ -15,7 +15,7 @@ end
 function V:Guide(guide, production)
     local errors, seen = {}, {}
     local function fail(message) errors[#errors+1] = message end
-    if type(guide) ~= "table" or not self.DataOnly(guide) then return nil, { "guide must contain only finite, acyclic data" } end
+    if type(guide) ~= "table" or not self.DataOnly(guide,100000) then return nil, { "guide must contain only finite, acyclic data" } end
     if not Check.String(guide.id) then fail("guide id required") end
     if not Check.String(guide.title) then fail("guide title required") end
     if guide.autoResume~=nil and type(guide.autoResume)~="boolean" then fail("autoResume must be boolean") end
@@ -29,7 +29,7 @@ function V:Guide(guide, production)
     if production and (guide.verification ~= "live-verified" or type(guide.source) ~= "string" or guide.source == "") then
         fail("live verification and source required for production guides")
     end
-    if not Check.Array(guide.steps, true) then return nil, { "nonempty dense steps array required" } end
+    if not Check.Array(guide.steps, true) or #guide.steps>4096 then return nil, { "dense steps array of at most 4096 entries required" } end
     for i, step in ipairs(guide.steps) do
         local prefix = "step " .. i .. ": "
         if type(step) ~= "table" then fail(prefix .. "must be a table")
@@ -98,7 +98,7 @@ function V:Guide(guide, production)
             local positions={}; for i,step in ipairs(guide.steps) do if type(step)=="table" and step.type=="ACCEPT_QUEST" and positive(step.questId) then positions[step.questId]=i end end
             for i,step in ipairs(guide.steps) do
                 if type(step)=="table" then
-                    for _,field in ipairs({"prerequisiteQuestsAny","exclusiveQuests"}) do
+                    for _,field in ipairs({"prerequisiteQuestsAny","prerequisiteQuestsAll","exclusiveQuests"}) do
                         if step[field]~=nil then
                             if step.type~="ACCEPT_QUEST" or not Check.Array(step[field]) then fail("campaign quest relationships require dense accept-step arrays")
                             else
@@ -106,10 +106,14 @@ function V:Guide(guide, production)
                                 for _,id in ipairs(step[field]) do
                                     if not positive(id) or ids[id] or id==step.questId then fail("invalid campaign quest relationship") end
                                     ids[id]=true
-                                    if field=="prerequisiteQuestsAny" and positions[id] and positions[id]>=i then fail("campaign alternative must precede dependent quest") end
+                                    if field~="exclusiveQuests" and positions[id] and positions[id]>=i then fail("campaign prerequisite must precede dependent quest") end
                                 end
                             end
                         end
+                    end
+                    if step.allowedRaces~=nil then
+                        if step.type~="ACCEPT_QUEST" or not Check.Array(step.allowedRaces,true) then fail("invalid race eligibility")
+                        else for _,race in ipairs(step.allowedRaces) do if not Check.String(race) then fail("invalid race eligibility") end end end
                     end
                 end
             end

@@ -30,10 +30,14 @@ class PackagingTests(unittest.TestCase):
             with zipfile.ZipFile(root / 'dist/ForeverXP-dev.zip') as archive:
                 self.assertIn('## Interface: 999999\n', archive.read('ForeverXP/ForeverXP.toc').decode())
                 self.assertIn('ForeverXP/Core/Bootstrap.lua', archive.namelist())
-                for module in ('Questing/LevelingCampaign.lua', 'Data/QuestGuides/Alliance/Levels1_20.lua', 'Data/QuestGuides/Alliance/Levels1_60.lua', 'Core/ProfessionAdapter.lua', 'Professions/ProfessionGuides.lua', 'Data/ProfessionGuides/Classic.lua'):
+                for module in ('Questing/LevelingCampaign.lua', 'Data/QuestGuides/Alliance/Levels1_20.lua', 'Data/QuestGuides/Alliance/Levels1_60.lua', 'Core/ProfessionAdapter.lua', 'Professions/ProfessionGuides.lua', 'Data/ProfessionGuides/Classic.lua', 'Data/QuestGuides/Horde/Levels1_60.lua', 'UI/ContextMenu.lua', 'Navigation/Navigation.lua'):
                     self.assertIn('ForeverXP/' + module, archive.namelist())
                     self.assertIn(module, archive.read('ForeverXP/ForeverXP.toc').decode())
                 self.assertNotIn('ForeverXP/Assets/JamesSunderland.tga', archive.namelist())
+                arrow=archive.read('ForeverXP/Assets/NavigationArrow.tga')
+                self.assertEqual(arrow[2],2)
+                self.assertEqual(int.from_bytes(arrow[12:14],'little'),64)
+                self.assertEqual(int.from_bytes(arrow[14:16],'little'),64)
                 self.assertFalse(any('Tests/' in name for name in archive.namelist()))
                 self.assertTrue(all(name.startswith('ForeverXP/') for name in archive.namelist()))
 
