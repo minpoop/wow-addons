@@ -42,15 +42,28 @@ def square(img):
     return img.crop(((w - s) // 2, (h - s) // 2, (w - s) // 2 + s, (h - s) // 2 + s))
 
 
+def needs_blend(a, axis):
+    """True if wrapping along this axis shows a seam (edge jump clearly bigger than a typical step)."""
+    edge = np.take(a, 0, axis) - np.take(a, -1, axis)
+    steps = np.abs(np.diff(a, axis=axis)).mean()
+    return np.abs(edge).mean() > 1.6 * steps + 0.01
+
+
 def seamless(a, band=0.18):
-    """Cross-fades the edges with a half-offset copy so the tile wraps without a seam."""
+    """Cross-fades the edges with a half-offset copy so the tile wraps without a seam.
+    Axes that already wrap cleanly (generated "seamless" images often do) are left alone, so regular
+    patterns like hex grids or arches don't get ghosted double lines."""
     n = a.shape[0]
-    rolled = np.roll(a, (n // 2, n // 2), axis=(0, 1))
     t = np.minimum(np.arange(n), np.arange(n)[::-1]) / (band * n)  # 0 at the edge, 1 inside the band
     t = np.clip(t, 0, 1)
     t = t * t * (3 - 2 * t)
-    w = np.minimum(t[:, None], t[None, :])[..., None]
-    return a * w + rolled * (1 - w)
+    for axis in (0, 1):
+        if not needs_blend(a, axis):
+            continue
+        rolled = np.roll(a, n // 2, axis=axis)
+        w = (t[:, None] if axis == 0 else t[None, :])[..., None]
+        a = a * w + rolled * (1 - w)
+    return a
 
 
 def unmatte_white(rgb):
@@ -79,8 +92,35 @@ def write(name, rgb, alpha):
     return path
 
 
+def period_crop(a, axis, min_keep=0.8):
+    """For regular patterns (mesh, hex grid, arches): trims this axis so it holds a whole number of
+    repeats, choosing the length whose first line best matches the line just past its end.
+    Returns the trimmed array, or None if no length wraps cleanly (then the edges get blended)."""
+    n = a.shape[axis]
+    small = a[::4, ::4] if a.shape[0] > 512 else a
+    k = n / small.shape[axis]
+    first = np.take(small, 0, axis)
+    steps = np.abs(np.diff(small, axis=axis)).mean()
+    best, best_len = None, None
+    for ln in range(int(small.shape[axis] * min_keep), small.shape[axis]):
+        d = np.abs(np.take(small, ln, axis) - first).mean()
+        if best is None or d < best:
+            best, best_len = d, ln
+    if best is None or best > 1.2 * steps + 0.01:
+        return None
+    return np.take(a, range(int(best_len * k)), axis)
+
+
 def convert_tile(name, src):
-    img = square(Image.open(src).convert("RGB")).resize((N, N), Image.LANCZOS)
+    img = square(Image.open(src).convert("RGB"))
+    rgb = np.asarray(img, float) / 255.0
+    small = np.asarray(img.resize((N, N), Image.LANCZOS), float) / 255.0
+    for axis in (0, 1):  # crop to whole pattern repeats where the image doesn't already wrap
+        if needs_blend(small, axis):
+            cropped = period_crop(rgb, axis)
+            if cropped is not None:
+                rgb = cropped
+    img = Image.fromarray((rgb * 255 + 0.5).astype(np.uint8)).resize((N, N), Image.LANCZOS)
     rgb = np.asarray(img, float) / 255.0
     alpha = None
     if name in ALPHA_FROM_WHITE:
