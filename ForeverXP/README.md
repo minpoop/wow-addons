@@ -34,6 +34,7 @@
 | `/fxp arrow` | Toggle the waypoint arrow |
 | `/fxp lock` | Lock/unlock frame dragging |
 | `/fxp pos` | Print your map ID and coords (for writing guides) |
+| `/fxp tier 45` / `/fxp tier` | Preview the Ascension theme at any level / back to your real level |
 
 ## Questie
 ForeverXP reads Questie's quest database (Questie for WoW Forever + its QuestieDB) while you play.
@@ -79,6 +80,24 @@ Shen'dralas 40-45 (WoW Forever), Azshara 48-50, Silithus 55-58.
 
 All of levels 1-60 are step-by-step: named quests, quest givers, coordinates, hard-quest warnings,
 trainer stops, and optional steps for quests WoW Forever may not offer (they skip themselves with no XP debt).
+
+## Changes in 2.7 - new themes
+Pick a theme in Options (Display > Theme). Five new ones:
+- Default UI - the game's own dialog border and background with gold titles.
+- Blocky (block-building sandbox homage) - pixel-art stone with ores, a green XP-orb bar, orbs drifting up,
+  and the step bursts into block fragments when you complete it. "LEVEL UP!" banner.
+- Abyssal Dragon (dark-fantasy dragon homage) - black-violet scales, rising violet wisps; on danger steps the
+  wisps surge and the darkness closes in.
+- Frostbound (undead frost-king homage) - rune-carved black ice, falling snow, an icy glow under the title,
+  "Whisper of the blade" tips and cold sayings.
+- Ascension - grows with you. Every 5 levels the window upgrades, 13 looks in all: Mudwood, Rough Timber,
+  Settler's Planks, Fieldstone, Ironbound Oak, Dressed Granite, Bronzework, Forged Steel, Silver Filigree,
+  Royal Gold, Arcane Runestone, Celestial Marble and, at 60, Ascendant (prismatic border and bar). From 30 on,
+  sparkles appear and multiply each tier. Reaching a new tier shows an ASCENDED banner.
+  Try any tier with `/fxp tier <level>`; `/fxp tier` goes back to your real level.
+Also:
+- The theme textures are new generated art (Fog Town, Spartan HUD, Ashen Bonfire, Imperial Gothic).
+- Fix: Ashen's embers, Imperial's glow, Fog Town's static and fog, and Spartan's shield sweep were invisible.
 
 ## Changes in 2.6 - theme textures
 Original, procedurally generated textures (Media/Themes, made by Tools/make_textures.py - rerun it to tweak them):

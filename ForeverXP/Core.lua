@@ -848,6 +848,8 @@ SlashCmdList.FOREVERXP = function(msg)
     FXP.db.arrow = not FXP.db.arrow; FXP:RefreshArrow(); Print("Arrow: %s", FXP.db.arrow and "ON" or "OFF")
   elseif cmd == "lock" then
     FXP.db.locked = not FXP.db.locked; Print("Frames %s", FXP.db.locked and "locked" or "unlocked")
+  elseif cmd == "tier" then
+    FXP:PreviewAscension(arg)
   elseif cmd == "pos" then
     local map = C_Map.GetBestMapForUnit("player")
     local p = map and C_Map.GetPlayerMapPosition(map, "player")
@@ -859,7 +861,7 @@ SlashCmdList.FOREVERXP = function(msg)
     end
   else
     Print("/fxp — options and guide picker")
-    Print("/fxp toggle | next | prev | step N | load <name> | reset | dungeons | xp | forgive | questie | arrow | lock | pos")
+    Print("/fxp toggle | next | prev | step N | load <name> | reset | dungeons | xp | forgive | questie | arrow | lock | pos | tier [level]")
     Print("Hold SHIFT while talking to an NPC to skip auto accept/turn-in.")
   end
 end

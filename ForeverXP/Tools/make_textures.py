@@ -1,6 +1,10 @@
 """Procedurally generates ForeverXP's theme textures (original art, no game assets).
 
-Run:  python Tools/make_textures.py    -> writes Media/Themes/*.tga (32-bit, power-of-two, WoW-ready)
+Run:  python Tools/make_textures.py          -> writes the procedural-only textures (block_stone)
+      python Tools/make_textures.py --all    -> also rewrites the textures that now come from generated art
+                                                (Tools/import_textures.py), restoring the procedural originals
+      python Tools/make_textures.py <name>   -> just that texture
+Writes Media/Themes/*.tga (32-bit, power-of-two, WoW-ready).
 Backgrounds are periodic (FFT noise / periodic patterns), so they tile seamlessly with REPEAT wrap.
 """
 import os
@@ -240,7 +244,52 @@ def imperial_seal():
     return img
 
 
+# ---------------------------------------------------------------------------
+# Blocky: pixel-art stone with ores (4x4 blocks of 16x16 texels, 4 px per texel)
+# ---------------------------------------------------------------------------
+def block_stone():
+    """Crisp pixel-art stone wall with a few ore blocks. Blocks align to the tile, so it wraps exactly."""
+    r = np.random.default_rng(64)
+    B, T = 16, 4  # texels per block, pixels per texel
+    tex = np.zeros((64, 64, 3))
+    stone = np.array([[0.42, 0.42, 0.43], [0.36, 0.36, 0.37], [0.30, 0.30, 0.31], [0.47, 0.47, 0.48]])
+    ores = {  # generic ores: coal, iron, gold, gem
+        "coal": [[0.10, 0.10, 0.10], [0.18, 0.18, 0.18]],
+        "iron": [[0.78, 0.62, 0.50], [0.62, 0.48, 0.38]],
+        "gold": [[0.98, 0.84, 0.25], [0.80, 0.62, 0.12]],
+        "gem": [[0.40, 0.95, 0.90], [0.20, 0.70, 0.70]],
+    }
+    layout = {(0, 1): "coal", (1, 3): "iron", (2, 0): "gem", (3, 2): "gold", (2, 2): "coal"}
+    for by in range(4):
+        for bx in range(4):
+            blk = stone[r.integers(0, 4, (B, B))]
+            # bevel: light top/left edge, dark bottom/right edge
+            blk[0, :] *= 1.18; blk[:, 0] *= 1.12; blk[-1, :] *= 0.72; blk[:, -1] *= 0.78
+            ore = layout.get((by, bx))
+            if ore:
+                pal = np.array(ores[ore])
+                for _ in range(5):  # small clumps
+                    cy, cx = r.integers(2, B - 3, 2)
+                    for dy, dx in ((0, 0), (0, 1), (1, 0), (1, 1), (r.integers(-1, 2), r.integers(-1, 2))):
+                        blk[cy + dy, cx + dx] = pal[r.integers(0, 2)]
+            tex[by * B:(by + 1) * B, bx * B:(bx + 1) * B] = blk
+    col = np.kron(tex, np.ones((T, T, 1)))  # nearest-neighbour upscale keeps the pixels crisp
+    return save("block_stone", col * 0.62)
+
+
+PROCEDURAL_ONLY = (block_stone,)
+REPLACED_BY_ART = (fog_world, fog_rust, fog_grate, hud_hex, ashen_stone, imperial_plate, imperial_seal)
+
 if __name__ == "__main__":
-    for fn in (fog_world, fog_rust, fog_grate, hud_hex, ashen_stone, imperial_plate, imperial_seal):
+    import sys
+    args = sys.argv[1:]
+    fns = {fn.__name__: fn for fn in PROCEDURAL_ONLY + REPLACED_BY_ART}
+    if args == ["--all"]:
+        todo = list(fns.values())
+    elif args:
+        todo = [fns[a] for a in args]
+    else:
+        todo = list(PROCEDURAL_ONLY)
+    for fn in todo:
         fn()
         print("wrote", fn.__name__)

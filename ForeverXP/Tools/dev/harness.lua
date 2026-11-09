@@ -213,4 +213,40 @@ local imp = FXP:StepText({ text = "x", key = "t" }, true)
 check(imp:find("Thought for the day") ~= nil, "Imperial shows a thought for the day")
 local sp = (function() FXP.db.theme = "spartan"; FXP:ApplyTheme(); return FXP:StepText({ warn = "w", tip = "t", key = "k" }, true) end)()
 check(sp:find("WARNING") and sp:find("INTEL"), "Spartan relabels warnings and tips")
+
+-- 9b. new themes: Ascension tiers, level-up re-skin, preview, Blocky burst, Abyssal danger
+local function tick(n) local fx = FXP.frame.fx; local upd = fx:GetScript("OnUpdate"); for i = 1, n or 40 do upd(fx, 0.05) end end
+FXP.db.theme = "ascend"; FXP.db.ascendPreview = nil; FXP.levelSeen = nil
+local tiersOk = true
+for _, case in ipairs({ { 1, 1, "Mudwood" }, { 4, 1, "Mudwood" }, { 5, 2, "Rough Timber" }, { 29, 6, "Dressed Granite" },
+    { 30, 7, "Bronzework" }, { 59, 12, "Celestial Marble" }, { 60, 13, "Ascendant" } }) do
+  PLAYER.level = case[1]; FXP:ApplyTheme(); tick(30)
+  if FXP.theme.tierIndex ~= case[2] or FXP.theme.name ~= case[3] then
+    tiersOk = false; print("tier mismatch at level " .. case[1] .. ": " .. tostring(FXP.theme.name))
+  end
+end
+check(tiersOk, "Ascension picks the right tier every 5 levels")
+check(FXP.theme.key == "ascend" and FXP.theme.prismatic and FXP.theme.tex == "asc_12", "Ascension top tier is prismatic with its own texture")
+PLAYER.level = 9; FXP.levelSeen = nil; FXP:ApplyTheme()
+local lvlHandlers = {}
+for _, o in ipairs(ALLOBJ) do if o._scripts.OnEvent then lvlHandlers[#lvlHandlers + 1] = o._scripts.OnEvent end end
+for _, h in ipairs(lvlHandlers) do pcall(h, nil, "PLAYER_LEVEL_UP", 10) end
+check(FXP.theme.tierIndex == 3 and FXP.theme.name == "Settler's Planks", "Ascension re-skins on the level-up that reaches a new tier")
+FXP:PreviewAscension("47")
+check(FXP.db.ascendPreview == 47 and FXP.theme.name == "Royal Gold", "/fxp tier previews a level")
+FXP:PreviewAscension("")
+check(FXP.db.ascendPreview == nil and FXP.theme.name == "Settler's Planks", "/fxp tier with no level goes back to live")
+FXP.levelSeen = nil; PLAYER.level = 1
+FXP.db.theme = "blocky"; FXP:ApplyTheme(); FXP:FlashUI(); tick(2)
+local flying = 0
+for _, p in ipairs(FXP.frame.fx.parts) do if p.life > 0 and not p.orb then flying = flying + 1 end end
+check(flying > 10, "Blocky bursts into block fragments on completion")
+FXP.db.theme = "abyss"; FXP:ApplyTheme()
+local darkA = 0
+FXP.frame.fx.dark.SetAlpha = function(_, a) darkA = a end
+FXP.guide.steps[FXP.db.step].warn = FXP.guide.steps[FXP.db.step].warn or "test danger"
+tick(5)
+check(darkA > 0.2, "Abyssal darkness thickens on a danger step")
+FXP.db.theme = "wow"; FXP:ApplyTheme()
+check(FXP.theme.tileSize == 64, "Default UI uses the game's own 64px dialog background")
 print(("\n%d failures"):format(fails))

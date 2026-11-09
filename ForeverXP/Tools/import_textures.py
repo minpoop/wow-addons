@@ -28,8 +28,15 @@ TARGET = {
     "ashen_stone": (36, 30, 25),
     "imperial_plate": (43, 7, 5),
 }
+# Luminance targets (0-1) for textures without a procedural original. The Ascension tiers get a little
+# brighter as they climb, so the late tiers keep their shine while text stays readable.
+LUM = {"abyss_scale": 0.10, "frost_ice": 0.13}
+for i in range(13):
+    LUM["asc_%02d" % i] = 0.13 + 0.006 * i
+# Busy, high-contrast art gets its contrast squeezed (1 = unchanged) so text on top stays readable.
+CONTRAST = {"abyss_scale": 0.55, "asc_08": 0.5, "asc_09": 0.5, "asc_10": 0.38, "asc_11": 0.4, "asc_12": 0.5}
 ALPHA_FROM_WHITE = {"fog_grate", "imperial_seal"}
-ALL = list(TARGET) + ["imperial_seal"]
+ALL = list(TARGET) + list(LUM) + ["imperial_seal"]
 
 
 def lum(rgb):
@@ -75,10 +82,10 @@ def unmatte_white(rgb):
     return col, alpha
 
 
-def match_brightness(rgb, alpha, target):
+def match_brightness(rgb, alpha, name):
     weight = alpha if alpha is not None else np.ones(rgb.shape[:2])
     cur = (lum(rgb) * weight).sum() / max(weight.sum(), 1)
-    want = lum(np.array(target, float) / 255.0)
+    want = LUM[name] if name in LUM else lum(np.array(TARGET[name], float) / 255.0)
     return np.clip(rgb * (want / max(cur, 1e-4)), 0, 1)
 
 
@@ -130,7 +137,10 @@ def convert_tile(name, src):
         rgb = both[..., :3] / np.maximum(alpha, 1e-3)[..., None]
     else:
         rgb = seamless(rgb)
-    rgb = match_brightness(rgb, alpha, TARGET[name])
+    if name in CONTRAST:
+        mean = rgb.reshape(-1, 3).mean(axis=0)
+        rgb = mean + (rgb - mean) * CONTRAST[name]
+    rgb = match_brightness(rgb, alpha, name)
     return write(name, rgb, alpha)
 
 
