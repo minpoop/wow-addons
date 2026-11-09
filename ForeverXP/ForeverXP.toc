@@ -1,43 +1,26 @@
-## Interface: 16001
-## Title: ForeverXP [DEVELOPMENT BUILD]
-## Notes: Targets Forever interface 16001. Live API validation pending; see Documentation/COMPATIBILITY.md.
-## Author: ForeverXP contributors
-## Version: 0.8.0-dev
-## SavedVariables: ForeverXPDB
-## LoadSavedVariablesFirst: 1
-Core/Namespace.lua
-Core/Compatibility.lua
-Core/Events.lua
-Core/SavedVariables.lua
-Core/Settings.lua
-Core/Validation.lua
-Questing/StepValidator.lua
-Questing/GuideEngine.lua
-Questing/RecoveryEngine.lua
-Questing/LevelingCampaign.lua
-Questing/QuestAdvice.lua
-Questing/RoutePlanner.lua
-Questing/RunTracker.lua
-Questing/LiveJournal.lua
-Core/ForeverAdapter.lua
-Professions/MaterialCalculator.lua
-Professions/RecipeDatabase.lua
-Professions/ProfessionPlanner.lua
-Professions/ProfessionGuides.lua
-Professions/ProfessionController.lua
-Core/ProfessionAdapter.lua
-Navigation/Waypoints.lua
-Navigation/Navigation.lua
-Navigation/GatheringRoutes.lua
-Navigation/Detours.lua
-UI/Themes.lua
-UI/ContextMenu.lua
-UI/MainWindow.lua
-Data/QuestGuides/Alliance/Elwynn.lua
-Data/QuestGuides/Alliance/Levels1_20.lua
-Data/QuestGuides/Alliance/Levels1_60.lua
-Data/QuestGuides/Horde/Levels1_60.lua
-Data/ProfessionGuides/Classic.lua
-Data/QuestAdvice/Classic.lua
-Data/RoutePlans/ElwynnWestfall1_20.lua
-Core/Bootstrap.lua
+## Interface: 16001, 120107, 11507, 20504, 40402, 50500
+## Title: ForeverXP |cff33ff99Leveling Guide|r
+## Notes: Free step-by-step leveling guide with quest tracking, auto accept/turn-in, XP/hour and a waypoint arrow.
+## Author: You
+## Version: 2.6.0
+## IconTexture: Interface\Icons\INV_Misc_Book_09
+## SavedVariablesPerCharacter: ForeverXPCharDB
+## OptionalDeps: TomTom, Questie, QuestieDB
+
+Compat.lua
+Data\QuestDB.lua
+Data\ClassQuests.lua
+Data\Dungeons.lua
+Core.lua
+Questie.lua
+UI.lua
+Themes.lua
+Arrow.lua
+Options.lua
+DungeonUI.lua
+Guides\Human_Northshire.lua
+Guides\Elwynn_6-10.lua
+Guides\Alliance_Starts.lua
+Guides\Alliance_10-30.lua
+Guides\Alliance_30-60.lua
+Guides\Alliance_Extra.lua

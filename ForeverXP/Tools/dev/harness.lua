@@ -1,0 +1,216 @@
+-- Minimal WoW stub environment to execute ForeverXP and test step logic.
+local ROOT = arg_root
+local noop = function() end
+ALLOBJ = {}
+function Obj()
+  local o = { _scripts = {} }
+  ALLOBJ[#ALLOBJ + 1] = o
+  o.SetScript = function(self, n, fn) self._scripts[n] = fn end
+  o.HookScript = function(self, n, fn) self._scripts[n] = fn end
+  o.GetScript = function(self, n) return self._scripts[n] end
+  o.CreateTexture = function() return Obj() end
+  o.CreateFontString = function() return Obj() end
+  o.IsShown = function() return true end
+  o.GetText = function() return "" end
+  return setmetatable(o, { __index = function(t, k)
+    if type(k) == "string" and k:match("^Get") then return function() return 100 end end
+    if type(k) == "string" and k:match("^%u") then return function(...) return nil end end
+    return nil
+  end })
+end
+unpack = unpack or table.unpack
+CreateFrame = function() return Obj() end
+UIParent = Obj(); Minimap = Obj(); UISpecialFrames = {}; SlashCmdList = {}
+BackdropTemplateMixin = {}
+C_Timer = { After = noop, NewTicker = function() return { Cancel = noop } end }
+C_Map = { GetBestMapForUnit = function() return nil end, GetMapInfo = function() return nil end,
+  GetPlayerMapPosition = function() return nil end, GetWorldPosFromMapPos = function() return nil end }
+GetTime = function() return 100 end
+GetMoney = function() return 954321 end
+print = function(...) io.write(table.concat({ ... }, " "), "\n") end
+PLAYER = { level = 1, class = "HUNTER", race = "Human", faction = "Alliance" }
+UnitLevel = function() return PLAYER.level end
+UnitClass = function() return PLAYER.class:lower(), PLAYER.class end
+UnitRace = function() return PLAYER.race, PLAYER.race end
+UnitFactionGroup = function() return PLAYER.faction end
+UnitXP = function() return 0 end; UnitXPMax = function() return 1000 end
+GetMaxPlayerLevel = function() return 60 end
+QS = { done = {}, on = {}, comp = {} }
+C_QuestLog = {
+  IsQuestFlaggedCompleted = function(id) return QS.done[id] end,
+  IsOnQuest = function(id) return QS.on[id] end,
+  IsComplete = function(id) return QS.comp[id] end,
+  GetLogIndexForQuestID = function() return nil end,
+  GetNumQuestLogEntries = function() return 0 end,
+}
+SKILLS = {}
+GetNumSkillLines = function() return #SKILLS end
+GetSkillLineInfo = function(i) return SKILLS[i] end
+IsMounted = function() return false end
+
+local ns = {}
+local files = { "Compat.lua", "Data/QuestDB.lua", "Data/ClassQuests.lua", "Data/Dungeons.lua", "Core.lua", "Questie.lua",
+  "UI.lua", "Themes.lua", "Arrow.lua", "Options.lua", "DungeonUI.lua", "Guides/Human_Northshire.lua", "Guides/Elwynn_6-10.lua",
+  "Guides/Alliance_Starts.lua", "Guides/Alliance_10-30.lua", "Guides/Alliance_30-60.lua", "Guides/Alliance_Extra.lua" }
+for _, f in ipairs(files) do
+  local chunk, err = loadfile(ROOT .. "/" .. f)
+  if not chunk then error(err) end
+  local ok, e = pcall(chunk, "ForeverXP", ns)
+  if not ok then error(f .. ": " .. tostring(e)) end
+end
+local FXP = ns.FXP
+local fails = 0
+local function check(cond, msg) if not cond then fails = fails + 1; print("FAIL: " .. msg) else print("ok   " .. msg) end end
+
+-- db defaults
+FXP.db = { step = 1, trained = {}, catchUp = true, skipGroup = false }
+
+-- fake quest resolution
+local ids, nextId, unavailable = {}, 1000, {}
+FXP.Resolve = function(self, q)
+  if type(q) == "number" then return q end
+  if not ids[q] then nextId = nextId + 1; ids[q] = nextId end
+  return ids[q]
+end
+FXP.Unavailable = function(self, id, q) return unavailable[q] or false end
+
+print(("guides: %d"):format(#FXP.guideOrder))
+-- 1. class step injection
+local function countClass(g, cls)
+  local n = 0
+  for _, s in ipairs(FXP.guides[g].steps) do
+    if s.classStep and s.class[1] == cls then n = n + 1 end
+  end
+  return n
+end
+check(countClass("Westfall 10-14", "HUNTER") == 2, "hunter L10 block injected into Westfall 10-14")
+check(countClass("Elwynn Forest 6-10", "HUNTER") == 0, "no L10 block in Elwynn 6-10 (half-open range)")
+check(countClass("Dun Morogh 6-11", "HUNTER") == 2, "hunter block in Dun Morogh 6-11")
+check(countClass("Coldridge Valley 1-6", "SHAMAN") == 2, "shaman L4 block in Coldridge")
+-- keys unique per guide
+for _, n in ipairs(FXP.guideOrder) do
+  local seen = {}
+  for _, s in ipairs(FXP.guides[n].steps) do
+    if seen[s.key] then fails = fails + 1; print("FAIL dup key " .. s.key) end
+    seen[s.key] = true
+  end
+end
+
+-- 2. render every step for every guide (catches runtime errors in StepText/StepCoords)
+local rendered, errs = 0, 0
+for _, n in ipairs(FXP.guideOrder) do
+  FXP.guide = FXP.guides[n]
+  for i, s in ipairs(FXP.guide.steps) do
+    local ok, e = pcall(FXP.StepText, FXP, s, true)
+    rendered = rendered + 1
+    if not ok then errs = errs + 1; print("RENDER ERROR " .. n .. " #" .. i .. ": " .. tostring(e)) end
+    local ok2, e2 = pcall(FXP.IsStepDone, FXP, s)
+    if not ok2 then errs = errs + 1; print("DONE ERROR " .. n .. " #" .. i .. ": " .. tostring(e2)) end
+  end
+end
+check(errs == 0, ("rendered + evaluated %d steps without errors"):format(rendered))
+
+-- 3. class filter
+local g = FXP.guides["Westfall 10-14"]
+local hunterStep
+for _, s in ipairs(g.steps) do if s.classStep and s.anyQuest then hunterStep = hunterStep or (s.class[1] == "HUNTER" and s) end end
+PLAYER.level = 10; PLAYER.class = "WARRIOR"
+check(FXP:IsStepDone(hunterStep) == true, "hunter step skipped for a warrior")
+PLAYER.class = "HUNTER"
+check(FXP:IsStepDone(hunterStep) == false, "hunter step waits for a hunter without the quest")
+QS.on[FXP:Resolve("Taming the Beast#1")] = true
+check(FXP:IsStepDone(hunterStep) == true, "hunter step done once Taming the Beast is on the log")
+PLAYER.level = 9; QS.on = {}
+check(FXP:IsStepDone(hunterStep) == true, "hunter step skipped below level 10")
+-- anyQuest all unavailable -> skipped
+PLAYER.level = 10; unavailable["Taming the Beast#1"] = true
+check(FXP:IsStepDone(hunterStep) == true, "anyQuest step skipped when the game has none of the quests")
+unavailable = {}
+
+-- 4. chain turn-in step waits through the chain
+local chainStep
+for _, s in ipairs(g.steps) do if s.classStep and s.turnin and #s.turnin > 0 and s.class[1] == "HUNTER" then chainStep = s end end
+QS.done[FXP:Resolve("Taming the Beast#1")] = true
+check(FXP:IsStepDone(chainStep) == false, "hunter chain step not done after only part 1")
+for _, q in ipairs(chainStep.turnin) do QS.done[FXP:Resolve(q)] = true end
+check(FXP:IsStepDone(chainStep) == true, "hunter chain step done after the whole chain")
+
+-- 5. mount stop by race
+local bad = FXP.guides["Badlands 38-40"]
+local mounts = {}
+for _, s in ipairs(bad.steps) do if s.mount then mounts[#mounts + 1] = s end end
+check(#mounts == 5, "five race-specific mount steps")
+PLAYER.level = 40; PLAYER.race = "Dwarf"
+local dwarfPending = 0
+for _, s in ipairs(mounts) do if not FXP:IsStepDone(s) then dwarfPending = dwarfPending + 1 end end
+check(dwarfPending == 1, "exactly one mount step shows for a Dwarf")
+SKILLS = { "Riding" }
+local after = 0
+for _, s in ipairs(mounts) do if not FXP:IsStepDone(s) then after = after + 1 end end
+check(after == 0, "mount step completes once Riding is learned")
+check(FXP:StepText(mounts[1], true):find("95g") ~= nil, "mount step shows your gold (95g)")
+
+-- 6. PickGuide by race and level
+local function pick(race, lvl) PLAYER.race = race; PLAYER.level = lvl; return FXP:PickGuide() end
+check(pick("Human", 1) == "Northshire 1-6", "Human 1 -> Northshire")
+check(pick("Dwarf", 1) == "Coldridge Valley 1-6", "Dwarf 1 -> Coldridge")
+check(pick("Gnome", 8) == "Dun Morogh 6-11", "Gnome 8 -> Dun Morogh")
+check(pick("NightElf", 1) == "Shadowglen 1-6", "Night Elf 1 -> Shadowglen")
+check(pick("NightElf", 13) == "Darkshore 11-16", "Night Elf 13 -> Darkshore")
+check(pick("Skyborne", 1) == "Zephras Isle 1-12", "Skyborne 1 -> Zephras Isle")
+local p = pick("Human", 49)
+check(not FXP.guides[p].side, "side guides never auto-picked (Human 49 -> " .. tostring(p) .. ")")
+
+-- 7. chains
+for _, start in ipairs({ "Northshire 1-6", "Coldridge Valley 1-6", "Shadowglen 1-6", "Zephras Isle 1-12" }) do
+  local cur, n, path = start, 0, {}
+  while cur and n < 60 do
+    check(FXP.guides[cur] ~= nil, "guide exists: " .. cur); n = n + 1; path[#path + 1] = cur
+    cur = FXP.guides[cur].next
+  end
+  print("   " .. start .. ": " .. n .. " guides -> " .. path[#path])
+end
+
+-- 8. dungeon window text
+local ok, txt = pcall(FXP.DungeonText, FXP, true)
+check(ok and txt:find("Krol'dok") ~= nil, "dungeon text renders (all dungeons)")
+PLAYER.level = 25
+local ok2, txt2 = pcall(FXP.DungeonText, FXP, false)
+check(ok2 and txt2:find("Stockade") and not txt2:find("Stratholme"), "dungeon list filtered by level")
+
+-- 9. themes
+FXP.db.theme = "classic"; FXP.db.scale = 1; FXP.db.upcoming = 2
+FXP:BuildUI()
+check(FXP.theme and FXP.theme.key == "classic", "UI builds with the Classic theme")
+FXP.guide = FXP.guides["Westfall 10-14"]; FXP.db.step = 3
+for _, th in ipairs(ns.Themes) do
+  FXP.db.theme = th.key
+  local ok, e = pcall(function()
+    FXP:ApplyTheme()
+    local fx = FXP.frame.fx
+    local upd = fx:GetScript("OnUpdate")
+    for i = 1, 200 do upd(fx, 0.05) end
+    FXP:FlashUI()
+    for i = 1, 60 do upd(fx, 0.05) end
+    FXP:RefreshUI()
+    for _, s in ipairs(FXP.guide.steps) do FXP:StepText(s, true) end
+  end)
+  check(ok, "theme runs: " .. th.label .. (ok and "" or (" -> " .. tostring(e))))
+  check(FXP.theme.key == th.key, "theme applied: " .. th.label)
+end
+FXP.db.theme = "ashen"; FXP:ApplyTheme()
+local fired = 0
+for _, o in ipairs(ALLOBJ) do
+  local h = o._scripts.OnEvent
+  if h then
+    local ok, e = pcall(h, o, "PLAYER_DEAD"); if not ok then print("banner err " .. tostring(e)) else fired = fired + 1 end
+    pcall(h, o, "PLAYER_LEVEL_UP")
+  end
+end
+check(fired > 0, "death / level-up banner events run")
+FXP.db.theme = "imperial"; FXP:ApplyTheme()
+local imp = FXP:StepText({ text = "x", key = "t" }, true)
+check(imp:find("Thought for the day") ~= nil, "Imperial shows a thought for the day")
+local sp = (function() FXP.db.theme = "spartan"; FXP:ApplyTheme(); return FXP:StepText({ warn = "w", tip = "t", key = "k" }, true) end)()
+check(sp:find("WARNING") and sp:find("INTEL"), "Spartan relabels warnings and tips")
+print(("\n%d failures"):format(fails))
