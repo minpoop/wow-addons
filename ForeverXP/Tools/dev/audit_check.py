@@ -1,6 +1,6 @@
 import json,re,collections
 G=json.load(open('Tools/dev/guides.json'))
-KNOWN={'accept','complete','turnin','text','coords','radius','warn','tip','optional','train','zone','level','npc','elite','group','ifLevel','noArrow','xp','_line'}
+KNOWN={'accept','complete','turnin','text','coords','radius','warn','tip','optional','train','zone','level','npc','elite','group','ifLevel','noArrow','xp','_line','mount','races','class','anyQuest','fly','fp','bind','hearth','target','useItem'}
 by={g['name']:g for g in G}
 def L(x): return x if isinstance(x,list) else [x]
 issues=collections.defaultdict(list)

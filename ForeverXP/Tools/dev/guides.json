@@ -70,6 +70,8 @@
 "_line": 26
 },
 {
+"fp": "Sentinel Hill",
+"bind": "Sentinel Hill",
 "text": "Sentinel Hill: get the flight path from Thor and set your Hearthstone.",
 "coords": [
 56.6,
@@ -279,6 +281,7 @@
 42.0
 ],
 "radius": 200.0,
+"fly": "Stormwind",
 "text": "Grind gnolls/Defias to 14 if needed. Fly to Stormwind.",
 "_line": 58
 },
@@ -364,6 +367,8 @@
 "_line": 83
 },
 {
+"fp": "Thelsamar",
+"bind": "Thelsamar",
 "text": "Run north to Thelsamar. Get the flight path and set your Hearthstone.",
 "coords": [
 33.9,
@@ -500,6 +505,7 @@
 {
 "train": "Ironforge",
 "zone": "Ironforge",
+"fly": "Ironforge",
 "text": "Fly to Ironforge, train, tram to Stormwind and run east through Elwynn to Redridge.",
 "_line": 102
 }
@@ -541,6 +547,7 @@
 "_line": 118
 },
 {
+"fp": "Lakeshire",
 "text": "Get the Lakeshire flight path.",
 "coords": [
 30.6,
@@ -568,6 +575,7 @@
 "_line": 121
 },
 {
+"bind": "Lakeshire",
 "text": "Set your Hearthstone at the Lakeshire inn.",
 "coords": [
 26.6,
@@ -799,6 +807,7 @@
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
+"fly": "Stormwind",
 "text": "Fly to Stormwind and train. Then run out the gate to Goldshire for the shoes delivery.",
 "_line": 156
 },
@@ -955,6 +964,7 @@
 },
 {
 "level": 19.0,
+"fly": "Sentinel Hill",
 "text": "Grind Blackrock orcs / whelps to 19 if needed. Then fly Lakeshire -> Stormwind -> Sentinel Hill.",
 "coords": [
 40.0,
@@ -1034,6 +1044,7 @@
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
+"fly": "Stormwind",
 "text": "Fly to Stormwind and train, then fly to Darkshire (or run south through Elwynn).",
 "_line": 204
 }
@@ -1050,6 +1061,8 @@
 "next": "Wetlands 24-27",
 "steps": [
 {
+"fp": "Darkshire",
+"bind": "Darkshire",
 "text": "Darkshire: get the flight path and set your Hearthstone at the inn.",
 "coords": [
 73.9,
@@ -1285,6 +1298,7 @@
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
+"fly": "Stormwind",
 "text": "Fly to Stormwind and train. Then tram to Ironforge, fly to Thelsamar and run north through Dun Algaz into the Wetlands (or fly to Menethil if you have it).",
 "_line": 260
 }
@@ -1301,6 +1315,8 @@
 "next": "Duskwood 27-30",
 "steps": [
 {
+"fp": "Menethil Harbor",
+"bind": "Menethil Harbor",
 "text": "Menethil Harbor: get the flight path and set your Hearthstone.",
 "coords": [
 10.6,
@@ -1571,6 +1587,7 @@
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
+"fly": "Stormwind",
 "text": "Fly to Stormwind, train, then fly to Darkshire.",
 "_line": 313
 }
@@ -1885,6 +1902,7 @@
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
+"fly": "Stormwind",
 "text": "Fly to Stormwind and train level 30 skills, then head south to Stranglethorn Vale.",
 "_line": 370
 }
@@ -1901,6 +1919,7 @@
 "next": "Stranglethorn Vale 30-34",
 "steps": [
 {
+"fp": "Auberdine",
 "text": "From Auberdine, get the flight path and run south through Darkshore into Ashenvale.",
 "coords": [
 36.5,
@@ -1910,6 +1929,8 @@
 "_line": 381
 },
 {
+"fp": "Astranaar",
+"bind": "Astranaar",
 "text": "Get the Astranaar flight path, set your Hearthstone, and accept all quests in town (Raene's Cleansing chain, The Ruins of Stardust, An Aggressive Defense, Culling the Threat, A Helping Hand, Fallen Sky Lake).",
 "coords": [
 36.6,
@@ -1952,6 +1973,7 @@
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
+"fly": "Auberdine",
 "text": "Fly to Auberdine -> boat to Menethil -> fly to Stormwind and train (night elves can train in Darnassus instead).",
 "_line": 392
 }
@@ -1968,6 +1990,7 @@
 "next": "Arathi Highlands 34-36",
 "steps": [
 {
+"fp": "Rebel Camp",
 "text": "From Darkshire, take the road south out of Duskwood into Stranglethorn. Get the Rebel Camp flight path.",
 "coords": [
 37.9,
@@ -2151,6 +2174,8 @@
 "_line": 43
 },
 {
+"fp": "Booty Bay",
+"bind": "Booty Bay",
 "text": "Run south to Booty Bay: get the flight path and set your Hearthstone at the Salty Sailor Tavern.",
 "coords": [
 27.0,
@@ -2185,6 +2210,7 @@
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
+"fly": "Stormwind",
 "text": "Fly to Stormwind and train, then tram to Ironforge and fly to Menethil. Run north over Thandol Span into Arathi.",
 "_line": 50
 }
@@ -2201,6 +2227,7 @@
 "next": "Dustwallow Marsh 36-38",
 "steps": [
 {
+"fp": "Refuge Pointe",
 "text": "Cross Thandol Span and follow the road to Refuge Pointe. Get the flight path.",
 "coords": [
 45.8,
@@ -2339,6 +2366,7 @@
 {
 "train": "Ironforge",
 "zone": "Ironforge",
+"fly": "Ironforge",
 "text": "Fly to Ironforge and train, then fly to Menethil and take the boat to Theramore.",
 "_line": 86
 }
@@ -2355,6 +2383,8 @@
 "next": "Badlands 38-40",
 "steps": [
 {
+"fp": "Theramore",
+"bind": "Theramore",
 "text": "Theramore: get the flight path at the gates and set your Hearthstone at the inn.",
 "coords": [
 66.5,
@@ -2529,6 +2559,7 @@
 "_line": 123
 },
 {
+"hearth": "Theramore",
 "text": "Hearth to Theramore.",
 "coords": [
 66.5,
@@ -2598,6 +2629,7 @@
 "next": "Swamp of Sorrows 41-42",
 "steps": [
 {
+"fly": "Booty Bay",
 "text": "Fly to Booty Bay (boat Theramore -> Menethil, fly to Stormwind, then Booty Bay).",
 "coords": [
 27.0,
@@ -2639,6 +2671,7 @@
 "_line": 148
 },
 {
+"fly": "Rebel Camp",
 "text": "Fly to the Rebel Camp and walk to Nesingwary's.",
 "coords": [
 35.6,
@@ -2731,6 +2764,7 @@
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
+"fly": "Stormwind",
 "text": "At 40, fly to Stormwind, train and buy your mount if you can afford it.",
 "_line": 162
 },
@@ -2804,6 +2838,7 @@
 50.0
 ],
 "radius": 400.0,
+"fly": "Darkshire",
 "text": "Grind to 41 if needed, then fly Booty Bay -> Darkshire for the Swamp of Sorrows.",
 "_line": 175
 }
@@ -2829,6 +2864,8 @@
 "_line": 185
 },
 {
+"fp": "Gadgetzan",
+"bind": "Gadgetzan",
 "text": "Gadgetzan: get the flight path and set your Hearthstone at the inn.",
 "coords": [
 52.5,
@@ -3116,6 +3153,8 @@
 "_line": 238
 },
 {
+"fp": "Feathermoon",
+"bind": "Feathermoon",
 "text": "Take the boat to Feathermoon Stronghold. Flight path and Hearthstone here.",
 "coords": [
 30.5,
@@ -3299,6 +3338,7 @@
 {
 "train": "Ironforge",
 "zone": "Ironforge",
+"fly": "Auberdine",
 "text": "Fly Feathermoon -> Auberdine, boat to Menethil, fly to Ironforge. Train level 46 skills and fly on to Aerie Peak.",
 "warn": "No Aerie Peak flight path yet? Fly to Refuge Pointe (Arathi) and ride north into the Hinterlands.",
 "tip": "Stick to the roads through Arathi; Hinterlands mobs near the gate are 45+.",
@@ -3326,6 +3366,8 @@
 "_line": 281
 },
 {
+"fp": "Aerie Peak",
+"bind": "Aerie Peak",
 "text": "Aerie Peak: flight path, Hearthstone, and grab everything on the cliffs.",
 "coords": [
 11.0,
@@ -3504,6 +3546,7 @@
 {
 "train": "Ironforge",
 "zone": "Ironforge",
+"fly": "Ironforge",
 "text": "Fly to Ironforge and train level 48 skills, then take the tram to Stormwind and fly to Lakeshire for the Searing Gorge.",
 "_line": 309
 }
@@ -3643,6 +3686,8 @@
 "_line": 335
 },
 {
+"fp": "Marshal's Refuge",
+"bind": "Marshal's Refuge",
 "text": "Head north to Marshal's Refuge: flight path, Hearthstone.",
 "coords": [
 43.5,
@@ -3832,6 +3877,7 @@
 "Expedition Salvation"
 ],
 "optional": true,
+"fly": "Gadgetzan",
 "text": "Fly to Gadgetzan to hand in, then back.",
 "_line": 364
 },
@@ -3873,6 +3919,7 @@
 "_line": 377
 },
 {
+"fp": "Emerald Sanctuary",
 "text": "Emerald Sanctuary: flight path (Alliance-usable).",
 "coords": [
 51.0,
@@ -4015,6 +4062,7 @@
 "_line": 397
 },
 {
+"fp": "Talonbranch Glade",
 "text": "Ride north to Talonbranch Glade (flight path).",
 "coords": [
 62.5,
@@ -4194,6 +4242,8 @@
 "_line": 430
 },
 {
+"fp": "Everlook",
+"bind": "Everlook",
 "text": "Ride north-east to Everlook: flight path and Hearthstone.",
 "coords": [
 61.4,
@@ -4308,6 +4358,7 @@
 {
 "train": "Ironforge",
 "zone": "Ironforge",
+"fly": "Rut'theran Village",
 "text": "Fly Everlook -> Rut'theran -> Auberdine, boat to Menethil, fly to Ironforge. Train 54/56 skills, then fly to Chillwind Camp (or Southshore and ride north).",
 "_line": 445
 }
@@ -4330,6 +4381,8 @@
 "_line": 455
 },
 {
+"fp": "Chillwind Camp",
+"bind": "Chillwind Camp",
 "text": "Chillwind Camp: flight path (if you didn't fly in) and Hearthstone.",
 "coords": [
 42.9,
@@ -4680,6 +4733,7 @@
 {
 "train": "Ironforge",
 "zone": "Ironforge",
+"fly": "Ironforge",
 "text": "Fly to Ironforge and train level 58 skills, then fly back to Chillwind Camp.",
 "_line": 502
 }
@@ -4757,6 +4811,8 @@
 "_line": 519
 },
 {
+"fp": "Light's Hope Chapel",
+"bind": "Light's Hope Chapel",
 "text": "Ride east to Light's Hope Chapel: flight path and Hearthstone.",
 "coords": [
 81.0,
@@ -4904,6 +4960,7 @@
 {
 "train": "Ironforge",
 "zone": "Ironforge",
+"fly": "Ironforge",
 "text": "Hearth or fly to Ironforge and train level 58/60 skills.",
 "_line": 540
 },
@@ -5203,6 +5260,7 @@
 "next": "The Riverglades 42-44",
 "steps": [
 {
+"fly": "Darkshire",
 "text": "Fly Booty Bay -> Darkshire, ride east through Deadwind Pass into the Swamp of Sorrows.",
 "coords": [
 4.0,
@@ -5279,6 +5337,8 @@
 "next": "Tanaris 42-45",
 "steps": [
 {
+"fp": "Farholde Keep",
+"bind": "Farholde Keep",
 "text": "From Redridge Pass, head to Farholde Keep - the Alliance town on the island in the south-east. Take the flight path and set your Hearthstone.",
 "tip": "Arriving from Lakeshire instead: go east through Redridge Pass south of the Bristle Hills.",
 "_line": 88
@@ -5319,6 +5379,7 @@
 "next": "Blasted Lands 50-51",
 "steps": [
 {
+"fly": "Lakeshire",
 "text": "Fly to Lakeshire (Redridge), ride north into the Burning Steppes and grab the Morgan's Vigil flight path, then ride west along the road to Blackrock Mountain and through to the Searing Gorge.",
 "zone": "Burning Steppes",
 "coords": [
@@ -6333,6 +6394,7 @@
 "next": "Westfall 10-14",
 "steps": [
 {
+"bind": "Kharanos",
 "text": "Go through the tunnel and follow the road east to Kharanos. Set your Hearthstone at the Thunderbrew inn.",
 "coords": [
 47.4,
@@ -7052,6 +7114,7 @@
 "next": "Darkshore 11-16",
 "steps": [
 {
+"bind": "Dolanaar",
 "text": "Follow the road south-west to Dolanaar and set your Hearthstone.",
 "coords": [
 55.6,
@@ -7437,6 +7500,8 @@
 "next": "Redridge Mountains 16-20",
 "steps": [
 {
+"fp": "Auberdine",
+"bind": "Auberdine",
 "text": "Auberdine: flight path and Hearthstone.",
 "coords": [
 36.3,
@@ -7728,6 +7793,7 @@
 "_line": 269
 },
 {
+"fly": "Ironforge",
 "text": "Boat Auberdine -> Menethil Harbor, fly to Ironforge, take the tram to Stormwind and ride east to Lakeshire (Redridge).",
 "coords": [
 32.4,
@@ -7867,6 +7933,7 @@
 "_line": 28
 },
 {
+"bind": "Goldshire",
 "text": "Set your Hearthstone at Innkeeper Farley.",
 "coords": [
 43.8,
@@ -8042,6 +8109,7 @@
 "_line": 55
 },
 {
+"hearth": "Goldshire",
 "text": "Hearth (or run) to Goldshire.",
 "coords": [
 42.5,

@@ -82,6 +82,20 @@ Shen'dralas 40-45 (WoW Forever), Azshara 48-50, Silithus 55-58.
 All of levels 1-60 are step-by-step: named quests, quest givers, coordinates, hard-quest warnings,
 trainer stops, and optional steps for quests WoW Forever may not offer (they skip themselves with no XP debt).
 
+## Changes in 2.10 - travel (phase 2)
+- Flight masters: on a guide "fly" step, talking to the flight master opens the map and flies you to the
+  guide's destination. If you don't have that flight path yet, it says so and lets you pick.
+- Flight timer: a bar at the top of the screen counts down your flight. The first trip on a route shows the
+  time so far; after that ForeverXP knows how long it takes (shared by all your characters).
+- Hearthstone: on "set your Hearthstone" steps the innkeeper's "make this inn your home" is picked and
+  confirmed for you, and the step waits until it's done. On "hearth to" steps a Hearthstone button pops up
+  (with its cooldown in the step text) and the step finishes when you arrive.
+- Flight paths: "get the flight path" steps finish once you have it. Entering a zone with a flight path you
+  haven't got gives you a one-time reminder.
+- 52 guide steps now use these (every flight path, inn and flight in the Alliance route).
+- Hold Shift at a flight master or innkeeper to choose yourself. Options > Travel turns each part off.
+- The options window now has two columns so it fits on screen.
+
 ## Changes in 2.9 - quest helpers (phase 1)
 - Quest item buttons: when the current step's quest has an item you need to use (and you're carrying it),
   a button for it pops up. Click it, or bind the first one in Key Bindings > AddOns > ForeverXP.

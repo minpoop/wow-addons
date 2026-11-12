@@ -1,7 +1,7 @@
 # ForeverXP: project notes for Claude Code
 
 A free RestedXP-style leveling guide addon for **WoW Forever** (Blizzard's Classic+, launched Nov 4 2026, interface 16001).
-Alliance only. Current version **2.9.0** (see `ForeverXP.toc` and the changelog in `README.md`).
+Alliance only. Current version **2.10.0** (see `ForeverXP.toc` and the changelog in `README.md`).
 Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
 
 ## Ground rules from the owner
@@ -47,7 +47,14 @@ Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
     out-of-combat changes only), auto-train on `train` steps (`AutoTrain`, bottom-up, gold reserve, Shift
     skips, not at profession trainers) and quest cleanup (`OrphanQuests` / `/fxp cleanup`, confirm popup,
     finished quests kept).
-  - `Options.lua`: the options panel, guide picker and theme picker.
+  - `Travel.lua`: phase 2 travel. `fly` (auto-pick at the flight master via TAXIMAP_OPENED; gossip opens the
+    map), `bind` (innkeeper gossip + CONFIRM_BINDER), `hearth` (Hearthstone 6948 via the item bar), `fp`
+    (known flights learned from every flight map and ERR_NEWTAXIPATH), the flight timer (route times in the
+    account-wide `ForeverXPDB.flightTimes`) and zone reminders from `Data/FlightPoints.lua`. In `IsStepDone`,
+    `fp`/`bind` are hard goals; `fly`/`hearth` only finish a step that has nothing else to check (no other
+    goal and no coords). `SamePlace` matches names ignoring case and the ", Zone" suffix.
+  - `Options.lua`: the options panel (two columns: left automation/display/guides, right targeting/travel),
+    guide picker and theme picker.
   - `DungeonUI.lua`: the dungeon quest window (`/fxp dungeons`).
 - Guide files:
   - `Guides/Human_Northshire.lua` and `Guides/Elwynn_6-10.lua`: the Human start.
@@ -72,6 +79,7 @@ Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
   elite = true, group = 3, coords = { x, y }, zone = "Tanaris", radius = 20, npc = "...",
   target = "Mob Name" | { ... },  -- extra names for the target buttons (rare spawns, named mobs Questie lacks)
   useItem = 1234 | { ... },       -- quest items to offer as buttons (when Questie doesn't link them)
+  fly = "Stormwind", fp = "Sentinel Hill", bind = "Lakeshire", hearth = "Theramore",  -- travel (Travel.lua)
   text = "...", warn = "...", tip = "..." }
 ```
 - A step with only text and no coords waits for a manual Next.
@@ -104,7 +112,9 @@ python3 Tools/make_textures.py                   # procedural-only textures (blo
   (solo only), the FXP Target macro creation, and that nothing errors when the step changes in combat.
 - Phase 1 helpers are untested in the live game: item buttons (use, cooldown, count, key binding), auto-train
   at a real class trainer (filter, purchase order, reserve) and the cleanup popup's abandon.
-- Roadmap agreed with the owner: phase 2 travel (flight master automation, flight timer, hearth steps, new
-  flight path reminders), phase 3 map pins, phase 4 route quality from in-game reports, phase 5 talents /
+- Phase 2 travel is untested in the live game: gossip option icons (taxi 132057, binder 132052), auto-flying,
+  CONFIRM_BINDER confirm, the flight timer start (PLAYER_CONTROL_LOST + UnitOnTaxi) and the reminders.
+  `fp` steps only learn a flight path you already had once you open a flight map there.
+- Roadmap agreed with the owner: phase 1 quest helpers (done), phase 2 travel (done), phase 3 map pins, phase 4 route quality from in-game reports, phase 5 talents /
   upgrades / group sync / hardcore mode, phase 6 Horde 1-60.
 - There's no Horde route.

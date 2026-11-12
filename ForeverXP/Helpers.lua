@@ -56,6 +56,7 @@ function FXP:StepItems(s)
   end
   if not s then return out end
   for _, item in ipairs(AsList(s.useItem)) do add(item) end
+  if self.TravelItems then for _, item in ipairs(self:TravelItems(s)) do add(item) end end
   local QZ = ns.Questie
   if QZ and QZ.ready then
     for _, list in ipairs({ s.complete or {}, s.turnin or {}, s.accept or {} }) do
@@ -291,7 +292,8 @@ end
 -- Events
 ---------------------------------------------------------------------------
 local ev = CreateFrame("Frame")
-for _, e in ipairs({ "TRAINER_SHOW", "BAG_UPDATE_DELAYED", "BAG_UPDATE_COOLDOWN", "PLAYER_REGEN_ENABLED", "QUEST_LOG_UPDATE" }) do
+for _, e in ipairs({ "TRAINER_SHOW", "BAG_UPDATE_DELAYED", "BAG_UPDATE_COOLDOWN", "PLAYER_REGEN_ENABLED", "QUEST_LOG_UPDATE",
+  "ZONE_CHANGED", "ZONE_CHANGED_NEW_AREA" }) do
   pcall(ev.RegisterEvent, ev, e)
 end
 ev:SetScript("OnEvent", function(_, event)

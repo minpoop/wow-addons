@@ -46,7 +46,7 @@ end
 
 function FXP:BuildOptions()
   local f = CreateFrame("Frame", "ForeverXPOptions", UIParent, BackdropTemplateMixin and "BackdropTemplate" or nil)
-  f:SetSize(340, 876)
+  f:SetSize(680, 660)
   f:SetPoint("CENTER")
   f:SetFrameStrata("DIALOG")
   f:SetBackdrop({
@@ -71,14 +71,16 @@ function FXP:BuildOptions()
   local close = CreateFrame("Button", nil, f, "UIPanelCloseButton")
   close:SetPoint("TOPRIGHT", 0, 0)
 
-  local function Header(text, y)
+  -- two columns: left at x = 14, right at x = 354; each header's rule stops at its column's edge
+  local function Header(text, y, x)
+    x = x or 14
     local h = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    h:SetPoint("TOPLEFT", 14, y)
+    h:SetPoint("TOPLEFT", x, y)
     h:SetText(text)
     local line = f:CreateTexture(nil, "ARTWORK")
     line:SetHeight(1)
     line:SetPoint("LEFT", h, "RIGHT", 8, 0)
-    line:SetPoint("RIGHT", f, "RIGHT", -14, 0)
+    line:SetPoint("RIGHT", f, "LEFT", x + 312, 0)
     line:SetColorTexture(1, 1, 1, 0.12)
   end
 
@@ -104,40 +106,51 @@ function FXP:BuildOptions()
   Checkbox(f, "Hide minimap button", "minimapHide", 12, -372, function() FXP:RefreshMinimapButton() end)
   Checkbox(f, "Show hard-step warnings on screen", "announceWarnings", 12, -396)
 
-  Header("Targeting", -426)
-  Checkbox(f, "Pop up target buttons for the step's NPCs and mobs", "targetButtons", 12, -444, function() FXP:RefreshTargets() end)
-  Checkbox(f, "Put a skull on targeted mobs when solo", "targetMark", 12, -468, function() FXP.lastMacroBody = nil; FXP:RefreshTargets() end)
-  Checkbox(f, "Keep an 'FXP Target' macro for your action bar", "targetMacro", 12, -492, function() FXP.lastMacroBody = nil; FXP:RefreshTargets() end)
-  Checkbox(f, "Pop up an on-screen target button when one is nearby", "targetPop", 12, -516, function() FXP:RefreshTargets() end)
-  Checkbox(f, "...keep it on screen whenever the step has targets", "targetPopAlways", 12, -540, function() FXP:RefreshTargets() end)
+  -- right column
+  Header("Targeting", -44, 354)
+  Checkbox(f, "Pop up target buttons for the step's NPCs and mobs", "targetButtons", 352, -62, function() FXP:RefreshTargets() end)
+  Checkbox(f, "Put a skull on targeted mobs when solo", "targetMark", 352, -86, function() FXP.lastMacroBody = nil; FXP:RefreshTargets() end)
+  Checkbox(f, "Keep an 'FXP Target' macro for your action bar", "targetMacro", 352, -110, function() FXP.lastMacroBody = nil; FXP:RefreshTargets() end)
+  Checkbox(f, "Pop up an on-screen target button when one is nearby", "targetPop", 352, -134, function() FXP:RefreshTargets() end)
+  Checkbox(f, "...keep it on screen whenever the step has targets", "targetPopAlways", 352, -158, function() FXP:RefreshTargets() end)
 
-  Stepper(f, "Scale", 16, -574,
+  Header("Travel", -188, 354)
+  Checkbox(f, "Pick the guide's destination at flight masters", "autoFly", 352, -206)
+  Checkbox(f, "Set your Hearthstone on guide inn steps", "autoBind", 352, -230)
+  Checkbox(f, "Show a flight timer", "flightTimer", 352, -254)
+  Checkbox(f, "Remind me about flight paths I haven't got", "fpReminders", 352, -278)
+  local hint2 = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+  hint2:SetPoint("TOPLEFT", 380, -304)
+  hint2:SetText("Hold Shift at a flight master or innkeeper to choose yourself.")
+
+  -- left column, continued
+  Stepper(f, "Scale", 16, -430,
     function() return string.format("%d%%", math.floor(FXP.db.scale * 100 + 0.5)) end,
     function(d) FXP.db.scale = math.max(0.6, math.min(1.6, FXP.db.scale + d * 0.1)); ApplyScale() end)
-  Stepper(f, "Upcoming steps", 170, -574,
+  Stepper(f, "Upcoming steps", 170, -430,
     function() return FXP.db.upcoming end,
     function(d) FXP.db.upcoming = math.max(0, math.min(5, FXP.db.upcoming + d)); FXP:RefreshUI() end)
 
   local themeLabel = f:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-  themeLabel:SetPoint("TOPLEFT", 16, -604)
+  themeLabel:SetPoint("TOPLEFT", 16, -460)
   local function DrawTheme()
     local t = ns.Themes and ns.Themes[FXP:ThemeIndex()]
     themeLabel:SetText("Theme: |cffffffff" .. (t and t.label or "Classic") .. "|r")
   end
   local tPrev = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-  tPrev:SetSize(22, 20); tPrev:SetPoint("TOPRIGHT", -42, -600); tPrev:SetText("<")
+  tPrev:SetSize(22, 20); tPrev:SetPoint("TOPLEFT", 280, -456); tPrev:SetText("<")
   tPrev:SetScript("OnClick", function() FXP:CycleTheme(-1); DrawTheme() end)
   local tNext = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-  tNext:SetSize(22, 20); tNext:SetPoint("TOPRIGHT", -16, -600); tNext:SetText(">")
+  tNext:SetSize(22, 20); tNext:SetPoint("TOPLEFT", 304, -456); tNext:SetText(">")
   tNext:SetScript("OnClick", function() FXP:CycleTheme(1); DrawTheme() end)
   f:HookScript("OnShow", DrawTheme)
 
-  Header("Guides", -630)
+  Header("Guides", -486)
   f.guideButtons = {}
   for i = 1, 6 do
     local b = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     b:SetSize(312, 20)
-    b:SetPoint("TOPLEFT", 14, -650 - (i - 1) * 22)
+    b:SetPoint("TOPLEFT", 14, -506 - (i - 1) * 22)
     b:SetScript("OnClick", function(self)
       if self.guideName then FXP:LoadGuide(self.guideName); FXP:RefreshOptions() end
     end)
@@ -162,13 +175,13 @@ function FXP:BuildOptions()
 
   local dungeons = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
   dungeons:SetSize(312, 20)
-  dungeons:SetPoint("BOTTOMLEFT", 14, 60)
+  dungeons:SetPoint("BOTTOMLEFT", 354, 60)
   dungeons:SetText("Dungeon quests  (/fxp dungeons)")
   dungeons:SetScript("OnClick", function() FXP:ToggleDungeons() end)
 
   local cleanup = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
   cleanup:SetSize(312, 20)
-  cleanup:SetPoint("BOTTOMLEFT", 14, 36)
+  cleanup:SetPoint("BOTTOMLEFT", 354, 36)
   cleanup:SetText("Clean up quests no guide uses  (/fxp cleanup)")
   cleanup:SetScript("OnClick", function() FXP:CleanupQuests() end)
 

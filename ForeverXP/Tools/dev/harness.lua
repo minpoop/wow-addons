@@ -75,8 +75,8 @@ BuyTrainerService = function(i) BOUGHT[#BOUGHT + 1] = TRAINER[i][1] end
 IsTradeskillTrainer = function() return false end
 
 local ns = {}
-local files = { "Compat.lua", "Data/QuestDB.lua", "Data/ClassQuests.lua", "Data/Dungeons.lua", "Core.lua", "Questie.lua",
-  "UI.lua", "Themes.lua", "Arrow.lua", "Targeting.lua", "Helpers.lua", "Options.lua", "DungeonUI.lua", "Guides/Human_Northshire.lua", "Guides/Elwynn_6-10.lua",
+local files = { "Compat.lua", "Data/QuestDB.lua", "Data/ClassQuests.lua", "Data/Dungeons.lua", "Data/FlightPoints.lua", "Core.lua", "Questie.lua",
+  "UI.lua", "Themes.lua", "Arrow.lua", "Targeting.lua", "Helpers.lua", "Travel.lua", "Options.lua", "DungeonUI.lua", "Guides/Human_Northshire.lua", "Guides/Elwynn_6-10.lua",
   "Guides/Alliance_Starts.lua", "Guides/Alliance_10-30.lua", "Guides/Alliance_30-60.lua", "Guides/Alliance_Extra.lua" }
 for _, f in ipairs(files) do
   local chunk, err = loadfile(ROOT .. "/" .. f)
@@ -403,5 +403,106 @@ C_QuestLog.SetAbandonQuest = function() end
 C_QuestLog.AbandonQuest = function() end
 check(FXP:AbandonQuests(orphans) == 1 and abandoned[1] == 99001, "abandons exactly the confirmed list")
 FXP.guides["__phase1"] = nil
+
+-- 12. Phase 2: travel
+local SAME = FXP.SamePlace
+check(SAME("Sentinel Hill, Westfall", "sentinel hill") and SAME("Theramore Isle", "Theramore") and not SAME("Stormwind", "Ironforge"),
+  "place names match ignoring case and the ', Zone' part")
+FXP.db.autoFly, FXP.db.autoBind, FXP.db.flightTimer, FXP.db.fpReminders = true, true, true, true
+FXP.db.knownFlights, FXP.db.flown, FXP.db.hearthed = nil, nil, nil
+ZONE, SUBZONE, HOME = "Westfall", "Sentinel Hill", "Goldshire"
+GetZoneText = function() return ZONE end; GetRealZoneText = GetZoneText
+GetSubZoneText = function() return SUBZONE end; GetMinimapZoneText = GetSubZoneText
+GetBindLocation = function() return HOME end
+TAXI = {}; TAKEN = nil
+NumTaxiNodes = function() return #TAXI end
+TaxiNodeName = function(i) return TAXI[i][1] end
+TaxiNodeGetType = function(i) return TAXI[i][2] end
+TakeTaxiNode = function(i) TAKEN = TAXI[i][1] end
+local function fireT(ev, a1, a2) for _, o in ipairs(ALLOBJ) do local h = o._scripts.OnEvent; if h then pcall(h, o, ev, a1, a2) end end end
+
+local fpStep = { fp = "Sentinel Hill", bind = "Sentinel Hill", coords = { 56.6, 52.6 }, key = "fp1" }
+check(not FXP:IsStepDone(fpStep), "flight path step waits until you know the flight path")
+TAXI = { { "Sentinel Hill, Westfall", "CURRENT" }, { "Stormwind, Elwynn", "REACHABLE" } }
+FXP.guide = { name = "T", steps = { fpStep } }; FXP.db.step = 1
+fireT("TAXIMAP_OPENED")
+check(FXP:KnowsFlight("Sentinel Hill") and FXP:KnowsFlight("Stormwind"), "opening a flight map learns every flight path on it")
+check(not FXP:IsStepDone(fpStep), "...but the step also waits for the Hearthstone")
+local picked
+C_GossipInfo = C_GossipInfo or {}
+C_GossipInfo.GetOptions = function() return { { name = "Make this inn your home.", icon = 132052, gossipOptionID = 77 } } end
+C_GossipInfo.SelectOption = function(id) picked = id end
+C_GossipInfo.GetActiveQuests = function() return {} end
+C_GossipInfo.GetAvailableQuests = function() return {} end
+FXP:OnGossip()
+check(picked == 77, "innkeeper: picks 'make this inn your home' on a bind step")
+local confirmed = false
+ConfirmBinder = function() confirmed = true; HOME = "Sentinel Hill" end
+fireT("CONFIRM_BINDER")
+check(confirmed and FXP:IsStepDone(fpStep), "confirms the bind, and the step completes")
+HOME = "Goldshire"; picked = nil; SHIFT = true; FXP:OnGossip(); SHIFT = false
+check(picked == nil, "Shift at the innkeeper skips it")
+
+local flyStep = { fly = "Stormwind", key = "fly1" }
+FXP.guide = { name = "T", steps = { flyStep } }; FXP.db.step = 1
+C_GossipInfo.GetOptions = function() return { { name = "Show me where I can fly.", icon = 132057, gossipOptionID = 5 } } end
+picked = nil; FXP:OnGossip()
+check(picked == 5, "flight master: opens the flight map on a fly step")
+TAKEN = nil; fireT("TAXIMAP_OPENED")
+check(TAKEN == "Stormwind, Elwynn", "flight map: flies to the guide's destination")
+check(FXP:IsStepDone(flyStep), "a pure fly step is done once you've taken the flight")
+FXP.db.flown = nil; TAKEN = nil; SHIFT = true; fireT("TAXIMAP_OPENED"); SHIFT = false
+check(TAKEN == nil, "Shift at the flight master lets you choose")
+TAXI = { { "Sentinel Hill, Westfall", "CURRENT" } }; TAKEN = nil; fireT("TAXIMAP_OPENED")
+check(TAKEN == nil, "no flight to an unknown destination")
+ZONE, SUBZONE = "Stormwind City", "Trade District"
+check(FXP:IsStepDone(flyStep), "...and a fly step is done anyway once you're there")
+local trainFly = { train = true, fly = "Ironforge", key = "tf1" }
+check(not FXP:IsStepDone(trainFly), "fly on a train step doesn't finish it - training does")
+
+FXP.pendingFlight = { from = "Sentinel Hill, Westfall", to = "Stormwind, Elwynn" }
+local clock = 100; GetTime = function() return clock end
+ForeverXPDB = nil
+FXP:StartFlight(); clock = 190; FXP:FlightTick(); FXP:EndFlight()
+check(ForeverXPDB.flightTimes["Sentinel Hill, Westfall > Stormwind, Elwynn"] == 90, "flight timer learns how long a route takes (account-wide)")
+FXP.pendingFlight = { from = "Sentinel Hill, Westfall", to = "Stormwind, Elwynn" }
+FXP:StartFlight()
+check(FXP.flight.known == 90, "next time on that route it counts down")
+FXP:EndFlight(); GetTime = function() return 100 end
+
+local hearthStep = { hearth = "Theramore", key = "h1" }
+FXP.guide = { name = "T", steps = { hearthStep } }; FXP.db.step = 1
+BAGS[6948] = 1; USABLE[6948] = "Hearthstone"
+local hs = FXP:StepItems(hearthStep)
+check(hs[1] == 6948, "hearth step offers the Hearthstone as a button")
+check(not FXP:IsStepDone(hearthStep), "hearth step waits until you arrive")
+ZONE, SUBZONE = "Dustwallow Marsh", "Theramore Isle"
+fireT("ZONE_CHANGED_NEW_AREA")
+check(FXP:IsStepDone(hearthStep) and #FXP:StepItems(hearthStep) == 0, "arriving finishes it and the button goes away")
+
+local said = {}
+local realPrint = FXP.Print
+FXP.Print = function(fmt, ...) said[#said + 1] = string.format(fmt, ...) end
+ZONE, SUBZONE = "Redridge Mountains", "Lakeshire"
+fireT("ZONE_CHANGED_NEW_AREA"); fireT("ZONE_CHANGED_NEW_AREA")
+local lr = 0
+for _, l in ipairs(said) do if l:find("Lakeshire", 1, true) and l:find("flight path", 1, true) then lr = lr + 1 end end
+check(lr == 1, "entering a zone reminds you once about a flight path you haven't got")
+ERR_NEWTAXIPATH = "New flight path discovered!"
+fireT("UI_INFO_MESSAGE", 0, ERR_NEWTAXIPATH)
+check(FXP:KnowsFlight("Lakeshire"), "'new flight path discovered' learns it")
+FXP.Print = realPrint
+
+local nTravel, unknownFP = 0, {}
+local allFP = {}
+for _, list in pairs(ns.FlightPoints) do for _, n in ipairs(list) do allFP[n] = true end end
+for _, g in pairs(FXP.guides) do
+  for _, st in ipairs(g.steps) do
+    if st.fly or st.fp or st.bind or st.hearth then nTravel = nTravel + 1 end
+    if st.fp and not allFP[st.fp] and st.fp ~= "Farholde Keep" then unknownFP[#unknownFP + 1] = st.fp end
+  end
+end
+check(nTravel >= 45, "guides use the travel fields (" .. nTravel .. " steps)")
+check(#unknownFP == 0, "every guide flight path is in the flight path list" .. (#unknownFP > 0 and (": " .. table.concat(unknownFP, ", ")) or ""))
 ns.Questie = realQZ
 print(("\n%d failures"):format(fails))

@@ -26,7 +26,7 @@ ns.FXP:RegisterGuide("Elwynn Forest 6-10", {
     { accept = 62, npc = "Marshal Dughan", coords = { 42.1, 65.9 } },
     { accept = 47, npc = "Remy \"Two Times\"", coords = { 42.1, 67.3 } },
     { accept = 60, npc = "William Pestle", coords = { 43.3, 65.7 } },
-    { text = "Set your Hearthstone at Innkeeper Farley.", coords = { 43.8, 65.8 }, radius = 8 },
+    { bind = "Goldshire", text = "Set your Hearthstone at Innkeeper Farley.", coords = { 43.8, 65.8 }, radius = 8 },
     { train = "Goldshire", coords = { 43.0, 65.5 }, text = "Most class trainers are in and around the Lion's Pride Inn." },
 
     -- Farms
@@ -55,7 +55,7 @@ ns.FXP:RegisterGuide("Elwynn Forest 6-10", {
     { turnin = 87, npc = "\"Auntie\" Bernice Stonefield", coords = { 34.5, 84.3 } },
 
     -- Back to Goldshire
-    { text = "Hearth (or run) to Goldshire.", coords = { 42.5, 66.0 }, radius = 25 },
+    { hearth = "Goldshire", text = "Hearth (or run) to Goldshire.", coords = { 42.5, 66.0 }, radius = 25 },
     { turnin = 62, npc = "Marshal Dughan", coords = { 42.1, 65.9 } },
     { train = "Goldshire", coords = { 43.0, 65.5 } },
     { accept = 76, npc = "Marshal Dughan", coords = { 42.1, 65.9 } },

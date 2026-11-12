@@ -60,7 +60,7 @@ FXP:RegisterGuide("Dun Morogh 6-11", {
   minLevel = 6, maxLevel = 11, zone = "Dun Morogh",
   next = "Westfall 10-14",
   steps = {
-    { text = "Go through the tunnel and follow the road east to Kharanos. Set your Hearthstone at the Thunderbrew inn.",
+    { bind = "Kharanos", text = "Go through the tunnel and follow the road east to Kharanos. Set your Hearthstone at the Thunderbrew inn.",
       coords = { 47.4, 52.6 }, radius = 15 },
     { turnin = "Senir's Observations#2", npc = "Senir Whitebeard", coords = { 46.8, 53.0 } },
     { turnin = "Bring Back the Mug", optional = true, coords = { 47.4, 52.6 } },
@@ -175,7 +175,7 @@ FXP:RegisterGuide("Teldrassil 6-11", {
   minLevel = 6, maxLevel = 11, zone = "Teldrassil",
   next = "Darkshore 11-16",
   steps = {
-    { text = "Follow the road south-west to Dolanaar and set your Hearthstone.", coords = { 55.6, 59.8 }, radius = 15 },
+    { bind = "Dolanaar", text = "Follow the road south-west to Dolanaar and set your Hearthstone.", coords = { 55.6, 59.8 }, radius = 15 },
     { turnin = "Dolanaar Delivery", optional = true, npc = "Innkeeper Keldamyr", coords = { 55.6, 59.8 } },
     { turnin = "Crown of the Earth#2", npc = "Corithras Moonrage", coords = { 56.2, 61.6 } },
     { accept = "Crown of the Earth#3", npc = "Corithras Moonrage", coords = { 56.2, 61.6 } },
@@ -229,7 +229,7 @@ FXP:RegisterGuide("Darkshore 11-16", {
   minLevel = 11, maxLevel = 16, zone = "Darkshore",
   next = "Redridge Mountains 16-20",
   steps = {
-    { text = "Auberdine: flight path and Hearthstone.", coords = { 36.3, 45.6 }, radius = 15 },
+    { fp = "Auberdine", bind = "Auberdine", text = "Auberdine: flight path and Hearthstone.", coords = { 36.3, 45.6 }, radius = 15 },
     { accept = "Washed Ashore#1", optional = true, npc = "Gwennyth Bly'Leggonde", coords = { 36.6, 45.6 } },
     { accept = "Bashal'Aran#1", optional = true, npc = "Asterion", coords = { 44.2, 36.3 } },
     { accept = "The Red Crystal", optional = true, npc = "Sentinel Glynda Nal'Shea", coords = { 37.7, 43.4 } },
@@ -267,7 +267,7 @@ FXP:RegisterGuide("Darkshore 11-16", {
     { level = 16, coords = { 45.0, 30.0 }, radius = 500,
       text = "Finish your open Darkshore quests and grind to 16 north of Auberdine." },
     { train = "Darnassus", zone = "Darnassus", text = "Boat to Rut'theran, train in Darnassus, then boat back." },
-    { text = "Boat Auberdine -> Menethil Harbor, fly to Ironforge, take the tram to Stormwind and ride east to Lakeshire (Redridge).",
+    { fly = "Ironforge", text = "Boat Auberdine -> Menethil Harbor, fly to Ironforge, take the tram to Stormwind and ride east to Lakeshire (Redridge).",
       coords = { 32.4, 43.8 }, radius = 15,
       warn = "The Wetlands road and the Elwynn-Redridge border are far above your level.",
       tip = "Fly and take the tram - don't run through the Wetlands at 16." },

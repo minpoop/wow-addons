@@ -63,7 +63,7 @@ FXP:RegisterGuide("Swamp of Sorrows 41-42", {
   faction = "Alliance", minLevel = 41, maxLevel = 42, zone = "Swamp of Sorrows",
   next = "The Riverglades 42-44",
   steps = {
-    { text = "Fly Booty Bay -> Darkshire, ride east through Deadwind Pass into the Swamp of Sorrows.",
+    { fly = "Darkshire", text = "Fly Booty Bay -> Darkshire, ride east through Deadwind Pass into the Swamp of Sorrows.",
       coords = { 4.0, 62.0 }, radius = 25,
       warn = "Deadwind Pass ogres and Swamp crocolisks are 40+.", tip = "Ride through the pass without stopping." },
     { accept = "Galen's Escape", optional = true, npc = "Galen Goodward", coords = { 53.2, 29.6 },
@@ -85,7 +85,7 @@ FXP:RegisterGuide("The Riverglades 42-44", {
   faction = "Alliance", minLevel = 42, maxLevel = 44, zone = "Riverglades",
   next = "Tanaris 42-45",
   steps = {
-    { text = "From Redridge Pass, head to Farholde Keep - the Alliance town on the island in the south-east. Take the flight path and set your Hearthstone.",
+    { fp = "Farholde Keep", bind = "Farholde Keep", text = "From Redridge Pass, head to Farholde Keep - the Alliance town on the island in the south-east. Take the flight path and set your Hearthstone.",
       tip = "Arriving from Lakeshire instead: go east through Redridge Pass south of the Bristle Hills." },
     { level = 43, text = "Farholde Keep hub: take every quest (Questie '!' marks) and work the southern settlements - Wheeler's Grange and Windstead.",
       warn = "Riverglades is contested: expect Horde from Rog'mar in the middle of the zone.",
@@ -104,7 +104,7 @@ FXP:RegisterGuide("Searing Gorge 48-50", {
   faction = "Alliance", minLevel = 48, maxLevel = 50, zone = "Searing Gorge",
   next = "Blasted Lands 50-51",
   steps = {
-    { text = "Fly to Lakeshire (Redridge), ride north into the Burning Steppes and grab the Morgan's Vigil flight path, then ride west along the road to Blackrock Mountain and through to the Searing Gorge.",
+    { fly = "Lakeshire", text = "Fly to Lakeshire (Redridge), ride north into the Burning Steppes and grab the Morgan's Vigil flight path, then ride west along the road to Blackrock Mountain and through to the Searing Gorge.",
       zone = "Burning Steppes", coords = { 84.4, 68.3 }, radius = 20,
       warn = "Burning Steppes mobs are 50-55; stay on the road at 48.", tip = "Take the Burning Steppes quests later - you'll be back at 51." },
     { text = "Thorium Point (north-west Searing Gorge): flight path.", coords = { 37.9, 30.8 }, radius = 20 },

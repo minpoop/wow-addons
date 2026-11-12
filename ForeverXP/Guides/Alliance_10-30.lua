@@ -24,7 +24,7 @@ FXP:RegisterGuide("Westfall 10-14", {
     { accept = { 38, 22 }, npc = "Salma Saldean", coords = { 56.4, 30.6 },
       text = "Hand in the Westfall Stew delivery first, then take the cooking quests." },
     { accept = 9, npc = "Farmer Saldean", coords = { 56.4, 30.5 } },
-    { text = "Sentinel Hill: get the flight path from Thor and set your Hearthstone.", coords = { 56.6, 52.6 }, radius = 15 },
+    { fp = "Sentinel Hill", bind = "Sentinel Hill", text = "Sentinel Hill: get the flight path from Thor and set your Hearthstone.", coords = { 56.6, 52.6 }, radius = 15 },
     { accept = 12, npc = "Gryan Stoutmantle", coords = { 56.3, 47.5 }, text = "Top of Sentinel Tower." },
     { accept = 102, npc = "Captain Danuvin", coords = { 56.3, 47.5 } },
     { accept = 153, npc = "Scout Galiaan", coords = { 54.0, 52.9 } },
@@ -56,7 +56,7 @@ FXP:RegisterGuide("Westfall 10-14", {
     { turnin = 102, npc = "Captain Danuvin", coords = { 56.3, 47.5 } },
     { turnin = 13, npc = "Gryan Stoutmantle", coords = { 56.3, 47.5 } },
     { level = 14, coords = { 47.0, 42.0 }, radius = 200,
-      text = "Grind gnolls/Defias to 14 if needed. Fly to Stormwind." },
+      fly = "Stormwind", text = "Grind gnolls/Defias to 14 if needed. Fly to Stormwind." },
     { train = "Stormwind City", zone = "Stormwind City", text = "Then take the Deeprun Tram to Ironforge and run east to Loch Modan." },
   },
 })
@@ -81,7 +81,7 @@ FXP:RegisterGuide("Loch Modan 14-16", {
     { turnin = 224, npc = "Mountaineer Cobbleflint", coords = { 22.0, 73.0 },
       text = "Take the next In Defense of the King's Lands steps from the tower if you want more trogg XP." },
     { turnin = 267, npc = "Captain Rugelfuss", coords = { 23.4, 75.0 } },
-    { text = "Run north to Thelsamar. Get the flight path and set your Hearthstone.", coords = { 33.9, 50.9 }, radius = 20 },
+    { fp = "Thelsamar", bind = "Thelsamar", text = "Run north to Thelsamar. Get the flight path and set your Hearthstone.", coords = { 33.9, 50.9 }, radius = 20 },
     { accept = { 416, 1339 }, npc = "Mountaineer Kadrell", coords = { 37.2, 47.4 } },
     { accept = 418, npc = "Vidra Hearthstove", coords = { 34.8, 49.1 } },
     { turnin = 1339, npc = "Mountaineer Stormpike", coords = { 25.0, 18.2 }, text = "Algaz Station, the tower at the north end of the road." },
@@ -100,7 +100,7 @@ FXP:RegisterGuide("Loch Modan 14-16", {
     { level = 16, coords = { 52.0, 50.0 }, radius = 300,
       text = "Grind to 16 if needed. Optional extra quests here: Ironband's Excavation, A Dark Threat Looms (dam), WANTED: Chok'sul." },
     { train = "Ironforge", zone = "Ironforge",
-      text = "Fly to Ironforge, train, tram to Stormwind and run east through Elwynn to Redridge." },
+      fly = "Ironforge", text = "Fly to Ironforge, train, tram to Stormwind and run east through Elwynn to Redridge." },
   },
 })
 
@@ -116,10 +116,10 @@ FXP:RegisterGuide("Redridge Mountains 16-20", {
   },
   steps = {
     { accept = "Encroaching Gnolls", npc = "Guard Parker", coords = { 15.4, 71.5 }, text = "Three Corners, at the Elwynn border." },
-    { text = "Get the Lakeshire flight path.", coords = { 30.6, 59.4 }, radius = 10 },
+    { fp = "Lakeshire", text = "Get the Lakeshire flight path.", coords = { 30.6, 59.4 }, radius = 10 },
     { turnin = "Encroaching Gnolls", npc = "Deputy Feldon", coords = { 30.6, 60.0 } },
     { accept = 246, npc = "Deputy Feldon", coords = { 30.6, 60.0 } },
-    { text = "Set your Hearthstone at the Lakeshire inn.", coords = { 26.6, 44.5 }, radius = 8 },
+    { bind = "Lakeshire", text = "Set your Hearthstone at the Lakeshire inn.", coords = { 26.6, 44.5 }, radius = 8 },
     { turnin = 65, optional = true, npc = "Wiley the Black", coords = { 26.6, 44.5 }, text = "Upstairs in the inn." },
     { accept = 125, npc = "Foreman Oslow", coords = { 32.1, 48.6 } },
     { accept = "Alther's Mill", optional = true, npc = "Foreman Oslow", coords = { 32.1, 48.6 },
@@ -154,7 +154,7 @@ FXP:RegisterGuide("Redridge Mountains 16-20", {
     { turnin = 89, npc = "Foreman Oslow", coords = { 32.1, 48.6 } },
     { level = 19, coords = { 26.0, 32.0 }, radius = 200, text = "Grind gnolls to 19 if needed." },
     { train = "Stormwind City", zone = "Stormwind City",
-      text = "Fly to Stormwind and train. Then run out the gate to Goldshire for the shoes delivery." },
+      fly = "Stormwind", text = "Fly to Stormwind and train. Then run out the gate to Goldshire for the shoes delivery." },
     { turnin = "The Price of Shoes", npc = "Smith Argus", coords = { 41.7, 65.5 },
       text = "Goldshire smithy (Elwynn Forest).", zone = "Elwynn Forest" },
     { accept = 119, npc = "Smith Argus", coords = { 41.7, 65.5 }, zone = "Elwynn Forest",
@@ -178,7 +178,7 @@ FXP:RegisterGuide("Redridge Mountains 16-20", {
       text = "Optional: Stonewatch Keep and Tower of Ilgalar elite quests (Wanted: Gath'Ilzogg, Solomon's Law). Skip these solo.",
       coords = { 65.0, 50.0 }, radius = 30,
       tip = "Pull outside the keep walls, crowd-control the casters, and let the tank hold the elite." },
-    { level = 19, text = "Grind Blackrock orcs / whelps to 19 if needed. Then fly Lakeshire -> Stormwind -> Sentinel Hill.",
+    { level = 19, fly = "Sentinel Hill", text = "Grind Blackrock orcs / whelps to 19 if needed. Then fly Lakeshire -> Stormwind -> Sentinel Hill.",
       coords = { 40.0, 30.0 }, radius = 200 },
   },
 })
@@ -202,7 +202,7 @@ FXP:RegisterGuide("Westfall 19-20", {
     { level = 20, coords = { 45.0, 70.0 }, radius = 250,
       text = "Grind Defias / coastal murlocs to 20 if needed." },
     { train = "Stormwind City", zone = "Stormwind City",
-      text = "Fly to Stormwind and train, then fly to Darkshire (or run south through Elwynn)." },
+      fly = "Stormwind", text = "Fly to Stormwind and train, then fly to Darkshire (or run south through Elwynn)." },
   },
 })
 
@@ -212,7 +212,7 @@ FXP:RegisterGuide("Duskwood 20-24", {
   next = "Wetlands 24-27",
   -- Questie supplies NPC positions; "Name#2" = second quest of that name in a chain
   steps = {
-    { text = "Darkshire: get the flight path and set your Hearthstone at the inn.", coords = { 73.9, 44.4 }, radius = 12 },
+    { fp = "Darkshire", bind = "Darkshire", text = "Darkshire: get the flight path and set your Hearthstone at the inn.", coords = { 73.9, 44.4 }, radius = 12 },
     { accept = "Seasoned Wolf Kabobs", npc = "Chef Grual" },
     { accept = "The Night Watch#1", npc = "Commander Althea Ebonlocke" },
     { accept = "Raven Hill", npc = "Elaine Carevin" },
@@ -258,7 +258,7 @@ FXP:RegisterGuide("Duskwood 20-24", {
     { level = 24, coords = { 40.0, 40.0 }, radius = 400,
       text = "Grind wolves, spiders or skeletons to 24 if needed." },
     { train = "Stormwind City", zone = "Stormwind City",
-      text = "Fly to Stormwind and train. Then tram to Ironforge, fly to Thelsamar and run north through Dun Algaz into the Wetlands (or fly to Menethil if you have it)." },
+      fly = "Stormwind", text = "Fly to Stormwind and train. Then tram to Ironforge, fly to Thelsamar and run north through Dun Algaz into the Wetlands (or fly to Menethil if you have it)." },
   },
 })
 
@@ -267,7 +267,7 @@ FXP:RegisterGuide("Wetlands 24-27", {
   faction = "Alliance", minLevel = 24, maxLevel = 27, zone = "Wetlands",
   next = "Duskwood 27-30",
   steps = {
-    { text = "Menethil Harbor: get the flight path and set your Hearthstone.", coords = { 10.6, 60.6 }, radius = 20,
+    { fp = "Menethil Harbor", bind = "Menethil Harbor", text = "Menethil Harbor: get the flight path and set your Hearthstone.", coords = { 10.6, 60.6 }, radius = 20,
       warn = "The road from Dun Algaz to Menethil passes Dragonmaw orcs and raptors.",
       tip = "Stay on the road and mount up/run past; don't fight on the way." },
     { accept = "Report to Captain Stoutfist", npc = "Valstag Ironjaw" },
@@ -310,7 +310,7 @@ FXP:RegisterGuide("Wetlands 24-27", {
       text = "Optional (WoW Forever): Excavation Site: Wetlands dungeon (levels 26-33) with its quests.",
       coords = { 38.0, 50.0 }, radius = 30 },
     { level = 27, coords = { 30.0, 40.0 }, radius = 300, text = "Grind crocolisks or raptors to 27 if needed." },
-    { train = "Stormwind City", zone = "Stormwind City", text = "Fly to Stormwind, train, then fly to Darkshire." },
+    { train = "Stormwind City", zone = "Stormwind City", fly = "Stormwind", text = "Fly to Stormwind, train, then fly to Darkshire." },
   },
 })
 
@@ -368,7 +368,7 @@ FXP:RegisterGuide("Duskwood 27-30", {
     { level = 30, coords = { 50.0, 50.0 }, radius = 400,
       text = "Grind worgen, skeletons or ogres to 30 if needed." },
     { train = "Stormwind City", zone = "Stormwind City",
-      text = "Fly to Stormwind and train level 30 skills, then head south to Stranglethorn Vale." },
+      fly = "Stormwind", text = "Fly to Stormwind and train level 30 skills, then head south to Stranglethorn Vale." },
   },
 })
 
@@ -378,9 +378,9 @@ FXP:RegisterGuide("Ashenvale 27-30", {
   faction = "Alliance", minLevel = 27, maxLevel = 30, zone = "Ashenvale",
   next = "Stranglethorn Vale 30-34",
   steps = {
-    { text = "From Auberdine, get the flight path and run south through Darkshore into Ashenvale.",
+    { fp = "Auberdine", text = "From Auberdine, get the flight path and run south through Darkshore into Ashenvale.",
       coords = { 36.5, 49.6 }, radius = 25 },
-    { text = "Get the Astranaar flight path, set your Hearthstone, and accept all quests in town (Raene's Cleansing chain, The Ruins of Stardust, An Aggressive Defense, Culling the Threat, A Helping Hand, Fallen Sky Lake).",
+    { fp = "Astranaar", bind = "Astranaar", text = "Get the Astranaar flight path, set your Hearthstone, and accept all quests in town (Raene's Cleansing chain, The Ruins of Stardust, An Aggressive Defense, Culling the Threat, A Helping Hand, Fallen Sky Lake).",
       coords = { 36.6, 49.6 }, radius = 20 },
     { level = 28, coords = { 35.0, 40.0 }, radius = 300,
       text = "Do the Thistlefur furbolg, Ruins of Stardust and Lake Iris quests around Astranaar.",
@@ -390,6 +390,6 @@ FXP:RegisterGuide("Ashenvale 27-30", {
     { level = 30, coords = { 30.0, 40.0 }, radius = 400,
       text = "Finish the Ashenvale quests and turn in at Astranaar." },
     { train = "Stormwind City", zone = "Stormwind City",
-      text = "Fly to Auberdine -> boat to Menethil -> fly to Stormwind and train (night elves can train in Darnassus instead)." },
+      fly = "Auberdine", text = "Fly to Auberdine -> boat to Menethil -> fly to Stormwind and train (night elves can train in Darnassus instead)." },
   },
 })

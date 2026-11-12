@@ -143,6 +143,7 @@ function FXP:StepText(s, current)
       add((done and ICON.done or ICON.turnin) .. (done and GREEN or WHITE) .. "Turn in|r " .. YELLOW .. self:QuestName(q) .. "|r" .. npcFor(q, "finish"))
     end
   end
+  if self.TravelText then for _, l in ipairs(self:TravelText(s)) do add(l) end end
   if s.level then
     add(ICON.level .. WHITE .. "Grind to level " .. s.level .. "|r " .. GREY .. "(now " .. UnitLevel("player") .. ")|r")
   end

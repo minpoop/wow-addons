@@ -20,6 +20,7 @@ local DEFAULTS = {
   skipGroup = false, announceWarnings = true, theme = "classic", catchUp = true,
   targetButtons = true, targetMacro = true, targetMark = true, targetPop = true, targetPopAlways = false,
   questItems = true, autoTrain = true, trainReserve = 0,
+  autoFly = true, autoBind = true, flightTimer = true, fpReminders = true,
 }
 
 ---------------------------------------------------------------------------
@@ -411,6 +412,11 @@ function FXP:IsStepDone(s)
     checked = true
     if UnitLevel("player") < s.level then return false end
   end
+  if s.fp or s.bind or s.fly or s.hearth then -- travel fields (Travel.lua)
+    local hasOther = checked or (s.coords ~= nil)
+    checked = true
+    if self.TravelDone and not self:TravelDone(s, hasOther) then return false end
+  end
   if not checked and s.coords then -- pure travel step
     local d = self:DistanceTo(s)
     if not d or d > (s.radius or 12) then return false end
@@ -698,6 +704,8 @@ function FXP:OnGossip()
       if self:Wanted("accept", q.questID, q.title) then C.SelectGossipAvailable(q) return end
     end
   end
+  -- nothing quest-related left: flight master / innkeeper automation for travel steps
+  if self.TravelGossip then self:TravelGossip() end
 end
 
 function FXP:OnGreeting()
