@@ -35,6 +35,9 @@
 | `/fxp lock` | Lock/unlock frame dragging |
 | `/fxp pos` | Print your map ID and coords (for writing guides) |
 | `/fxp cleanup` | Offer to abandon quests no guide uses (asks first) |
+| `/fxp report [note]` | Report a problem with the current step |
+| `/fxp check` | Check every guide quest against Questie's WoW Forever data |
+| `/fxp export` | Show your reports, problem steps and check results as copyable text |
 | `/fxp tier 45` / `/fxp tier` | Preview the Ascension theme at any level / back to your real level |
 
 ## Questie
@@ -81,6 +84,23 @@ Shen'dralas 40-45 (WoW Forever), Azshara 48-50, Silithus 55-58.
 
 All of levels 1-60 are step-by-step: named quests, quest givers, coordinates, hard-quest warnings,
 trainer stops, and optional steps for quests WoW Forever may not offer (they skip themselves with no XP debt).
+
+## Changes in 2.12 - route feedback (phase 4)
+- Report a step: the note icon on the guide window (or `/fxp report`) opens a short form - pick what's
+  wrong (wrong place, quest missing, too hard, wrong order, unclear text) and add a note. `/fxp report
+  <note>` saves one straight away. Your level, position and quest state are saved with it.
+- Run log: ForeverXP quietly records how long each step takes, which steps you skip and where you die.
+- `/fxp check`: checks every guide quest against Questie's WoW Forever data - quests Questie doesn't know,
+  wrong faction, level requirements too high for where the step is, prerequisites the route never does, and
+  quest givers far from the step's map spot.
+- `/fxp export`: everything above as text you can copy.
+- Nothing leaves your computer: it's all in your saved variables until you choose to share it.
+
+### Helping fix the route
+1. Log in with Questie enabled, wait a few seconds, type `/fxp check`.
+2. Play as normal. When a step is wrong, click the note icon (or `/fxp report what happened`).
+3. Type `/reload` (or log out), then send `WTF/Account/<your account>/SavedVariables/ForeverXP.lua`
+   from your WoW folder. `Tools/read_reports.py` turns it into a fix list pointing at each guide line.
 
 ## Changes in 2.11 - map pins (phase 3)
 - World map: the current step is marked with a gold numbered pin and the next 2 steps with smaller blue

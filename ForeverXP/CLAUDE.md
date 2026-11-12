@@ -1,7 +1,7 @@
 # ForeverXP: project notes for Claude Code
 
 A free RestedXP-style leveling guide addon for **WoW Forever** (Blizzard's Classic+, launched Nov 4 2026, interface 16001).
-Alliance only. Current version **2.11.0** (see `ForeverXP.toc` and the changelog in `README.md`).
+Alliance only. Current version **2.12.0** (see `ForeverXP.toc` and the changelog in `README.md`).
 Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
 
 ## Ground rules from the owner
@@ -58,6 +58,11 @@ Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
     offsets divided by that scale; other maps via `C_Map.GetMapPosFromWorldPos`), minimap pins via
     `MinimapOffset` (yards per zoom, indoor table, rotate CVar, current step clamps to the rim). Pin art is
     `Media/Pin.tga` from `make_textures.py map_pin`, tinted per pin.
+  - `Feedback.lua`: phase 4 route feedback, all in account-wide `ForeverXPDB`: `reports` (`/fxp report`, note
+    icon on the header), `runLog` (per-step seconds, deaths, how it ended; capped at 3000; `LogStepChange` from
+    `Update`, `manualStep` set by `SetStep`), `routeCheck` (`/fxp check`: `CheckGuide` per guide against
+    Questie, 3 guides per tick) and `/fxp export`. Steps carry `src` = position in the guide file (class
+    quest steps are injected at runtime and have none), so reports map back to file lines.
   - `Options.lua`: the options panel (two columns: left automation/display/guides, right targeting/travel),
     guide picker and theme picker.
   - `DungeonUI.lua`: the dungeon quest window (`/fxp dungeons`).
@@ -98,6 +103,7 @@ lua -e "arg_root='.'" Tools/dev/harness.lua      # runs the whole addon against 
 python3 Tools/dev/audit_parse.py && python3 Tools/dev/audit_check.py   # quest flow: loose quests, chain links, coords
 python3 Tools/dev/audit_questlog.py | grep PEAK  # quest-log peak across the main route, must stay <= 20 (now 16)
 python3 Tools/import_textures.py <png_dir> [name ...]  # convert generated images into Media/Themes TGAs
+python3 Tools/read_reports.py <ForeverXP.lua> [out.md]  # owner's saved variables -> fix list with guide file:line
 python3 Tools/make_textures.py                   # procedural-only textures (block_stone, map pin); --all would overwrite the generated art
 ```
 
@@ -122,6 +128,12 @@ python3 Tools/make_textures.py                   # procedural-only textures (blo
   `fp` steps only learn a flight path you already had once you open a flight map there.
 - Phase 3 pins are untested in the live game: world map canvas scaling, the continent-map conversion, the
   minimap yard table (indoors especially) and the rotating minimap.
-- Roadmap agreed with the owner: phase 1 quest helpers (done), phase 2 travel (done), phase 3 map pins (done), phase 4 route quality from in-game reports, phase 5 talents /
+- Phase 4 is the feedback loop: ask the owner for their `WTF/Account/<account>/SavedVariables/ForeverXP.lua`
+  after a play session, run `Tools/read_reports.py` on it and fix the route from that. Known route gaps to
+  settle with real data: five optional chain starters are accepted and never handed in (Legend of
+  Stalvan#2, Seeking Wisdom, The Green Hills of Stranglethorn, The Missing Diplomat#1, Mor'Ladim), and
+  Burning Steppes 51-53 leads into Un'Goro 49-52.
+- Roadmap agreed with the owner: phase 1 quest helpers (done), phase 2 travel (done), phase 3 map pins (done),
+  phase 4 route feedback tools (done; fixes ongoing from reports), phase 4 route quality from in-game reports, phase 5 talents /
   upgrades / group sync / hardcore mode, phase 6 Horde 1-60.
 - There's no Horde route.

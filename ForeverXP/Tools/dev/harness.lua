@@ -76,7 +76,7 @@ IsTradeskillTrainer = function() return false end
 
 local ns = {}
 local files = { "Compat.lua", "Data/QuestDB.lua", "Data/ClassQuests.lua", "Data/Dungeons.lua", "Data/FlightPoints.lua", "Core.lua", "Questie.lua",
-  "UI.lua", "Themes.lua", "Arrow.lua", "Targeting.lua", "Helpers.lua", "Travel.lua", "Pins.lua", "Options.lua", "DungeonUI.lua", "Guides/Human_Northshire.lua", "Guides/Elwynn_6-10.lua",
+  "UI.lua", "Themes.lua", "Arrow.lua", "Targeting.lua", "Helpers.lua", "Travel.lua", "Pins.lua", "Feedback.lua", "Options.lua", "DungeonUI.lua", "Guides/Human_Northshire.lua", "Guides/Elwynn_6-10.lua",
   "Guides/Alliance_Starts.lua", "Guides/Alliance_10-30.lua", "Guides/Alliance_30-60.lua", "Guides/Alliance_Extra.lua" }
 for _, f in ipairs(files) do
   local chunk, err = loadfile(ROOT .. "/" .. f)
@@ -558,5 +558,83 @@ check(p1 and near(p1.s, 0.5) and near(p1.x * p1.s, 100) and near(p1.y * p1.s, -1
   "world map: pin sits at its map spot and keeps its size when the map is zoomed")
 check(placed[2] and near(placed[2].s, 0.4), "world map: upcoming pins are drawn smaller")
 WorldMapFrame = nil
+-- 14. Phase 4: reports, run log, route check, export
+ForeverXPDB = nil
+local fbGuide = FXP.guides["Westfall 10-14"]
+FXP.guide = fbGuide; FXP.db.step = 3
+local said4 = {}
+local realPrint4 = FXP.Print
+FXP.Print = function(fmt, ...) said4[#said4 + 1] = string.format(fmt, ...) end
+local rep = FXP:Report("arrow points into the sea")
+check(ForeverXPDB.reports[1] == rep and rep.reason == "other" and rep.note == "arrow points into the sea"
+  and rep.guide == "Westfall 10-14" and rep.step == 3 and rep.src and rep.text ~= "" and type(rep.quests) == "table",
+  "/fxp report <note> saves the step, file position, note and quest state")
+local srcOk, nClass, shifted = true, 0, false
+for i, st in ipairs(fbGuide.steps) do
+  if st.classStep then nClass = nClass + 1; if st.src then srcOk = false end
+  elseif st.src ~= i - nClass then srcOk = false
+  elseif nClass > 0 then shifted = true end
+end
+check(srcOk and nClass > 0, "every file step keeps its file position; injected class quest steps have none")
+
+local clock4 = 1000; GetTime = function() return clock4 end
+FXP.db.step = 1; FXP:LogStepChange(false)
+clock4 = 1300; FXP.db.step = 2; FXP:LogStepChange(false)
+FXP:NoteDeath(); FXP:NoteDeath()
+clock4 = 2300; FXP.db.step = 3; FXP:LogStepChange(true)
+local log = ForeverXPDB.runLog
+check(#log == 2 and log[1].secs == 300 and log[1].how == "done" and log[2].secs == 1000 and log[2].deaths == 2 and log[2].how == "manual",
+  "run log records time per step, deaths and manual skips")
+local sum = FXP:RunSummary()
+check(#sum == 1 and sum[1].name == "Westfall 10-14 #2", "run summary flags only the slow/skipped/deadly step")
+GetTime = function() return 100 end
+
+local realQZ4 = ns.Questie
+local rows = {
+  [FXP:Resolve("CK Good")] = { id = 1, name = "CK Good", req = 10 },
+  [FXP:Resolve("CK Horde")] = { id = 2, name = "CK Horde", req = 10, horde = true },
+  [FXP:Resolve("CK High")] = { id = 3, name = "CK High", req = 30 },
+  [FXP:Resolve("CK Pre")] = { id = 4, name = "CK Pre", req = 10, pre1 = { 424242 } },
+  [FXP:Resolve("CK Far")] = { id = 5, name = "CK Far", req = 10 },
+}
+ns.Questie = { ready = true,
+  Row = function(_, id) return rows[id] end,
+  FitsFaction = function(_, row) return not row.horde end,
+  Endpoint = function(_, row, key) if row.name == "CK Far" then return { name = "Farmer Far", x = 80, y = 80, map = 1436 } end end }
+local ckGuide = { name = "CK", minLevel = 10, maxLevel = 12, zone = "Westfall", steps = {
+  { accept = { "CK Good" }, src = 1 }, { accept = { "CK Unknown" }, src = 2 }, { accept = { "CK Horde" }, src = 3 },
+  { accept = { "CK High" }, src = 4 }, { accept = { "CK Pre" }, src = 5 }, { accept = { "CK Far" }, coords = { 20, 20 }, src = 6 },
+  { accept = { "CK Unknown" }, class = { "MAGE" }, src = 7 } } }
+local f = FXP:CheckGuide(ckGuide, {})
+local issues = {}
+for _, x in ipairs(f) do issues[x.quest] = x.issue end
+check(#f == 5 and issues["CK Unknown"]:find("doesn't know") and issues["CK Horde"]:find("Alliance") and issues["CK High"]:find("needs level 30")
+  and issues["CK Pre"]:find("424242") and issues["CK Far"]:find("Farmer Far") and not issues["CK Good"],
+  "route check flags unknown, wrong-faction, too-high, missing-prerequisite and misplaced quests (and skips class steps)")
+ns.Questie = realQZ4
+
+ForeverXPDB.routeCheck = { when = "today", version = "test", findings = f }
+local txt = FXP:ExportText()
+check(txt:find("== Reports (1)", 1, true) and txt:find("arrow points into the sea", 1, true) and txt:find("Westfall 10-14 #2", 1, true)
+  and txt:find("CK Horde", 1, true), "/fxp export lists reports, problem steps and route check findings")
+FXP.Print = realPrint4
+
+-- write ForeverXPDB the way WoW does, for Tools/read_reports.py (end-to-end test)
+if SV_OUT then
+  local function ser(v, ind)
+    if type(v) == "string" then return string.format("%q", v) end
+    if type(v) ~= "table" then return tostring(v) end
+    local out, n = { "{" }, #v
+    for k, x in pairs(v) do
+      if not (type(k) == "number" and k >= 1 and k <= n and k % 1 == 0) then
+        out[#out + 1] = ind .. "\t[" .. (type(k) == "string" and string.format("%q", k) or tostring(k)) .. "] = " .. ser(x, ind .. "\t") .. ","
+      end
+    end
+    for i = 1, n do out[#out + 1] = ind .. "\t" .. ser(v[i], ind .. "\t") .. ", -- [" .. i .. "]" end
+    out[#out + 1] = ind .. "}"
+    return table.concat(out, "\n")
+  end
+  local fh = io.open(SV_OUT, "w"); fh:write("\nForeverXPDB = " .. ser(ForeverXPDB, "") .. "\n"); fh:close()
+end
 ns.Questie = realQZ
 print(("\n%d failures"):format(fails))

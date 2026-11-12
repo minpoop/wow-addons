@@ -204,7 +204,7 @@ function FXP:BuildUI()
 
   f.title = h:CreateFontString(nil, "OVERLAY", "GameFontNormal")
   f.title:SetPoint("LEFT", icon, "RIGHT", 6, 0)
-  f.title:SetPoint("RIGHT", h, "RIGHT", -84, 0)
+  f.title:SetPoint("RIGHT", h, "RIGHT", -102, 0)
   f.title:SetJustifyH("LEFT")
   f.title:SetWordWrap(false)
 
@@ -218,6 +218,9 @@ function FXP:BuildUI()
   nextB:SetPoint("RIGHT", f.collapse, "LEFT", -2, 0)
   local prevB = IconButton(h, "Interface\\Buttons\\UI-SpellbookIcon-PrevPage", 22, "Previous step", function() SlashCmdList.FOREVERXP("prev") end)
   prevB:SetPoint("RIGHT", nextB, "LEFT", 2, 0)
+  local report = IconButton(h, "Interface\\Icons\\INV_Misc_Note_01", 14, "Report a problem with this step (/fxp report)",
+    function() FXP:Report() end)
+  report:SetPoint("RIGHT", prevB, "LEFT", -2, 0)
 
   -- Guide progress bar
   local bar = CreateFrame("StatusBar", nil, f)

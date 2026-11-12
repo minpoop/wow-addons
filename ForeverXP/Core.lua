@@ -86,6 +86,7 @@ end
 function FXP:RegisterGuide(name, info)
   info.name = name
   if info.zone then self.zoneNames[info.zone] = true end
+  for i, s in ipairs(info.steps) do s.src = i end -- position in the guide file (class steps get injected below)
   InjectClassSteps(info)
   for i, s in ipairs(info.steps) do
     s.accept, s.complete, s.turnin = AsList(s.accept), AsList(s.complete), AsList(s.turnin)
@@ -468,7 +469,7 @@ function FXP:Update()
       local st = steps[self.db.step]
       local done, skipped = self:IsStepDone(st)
       if not done then break end
-      if skipped then self:AddDebt(st) end
+      if skipped then self:AddDebt(st); if self.NoteSkip then self:NoteSkip() end end
       self.db.step = self.db.step + 1
     end
   end
@@ -495,6 +496,8 @@ function FXP:Update()
   if self.RefreshTargets then self:RefreshTargets() end
   if self.RefreshItems then self:RefreshItems() end
   self.pinCache = nil -- steps changed: map pins recompute
+  if self.LogStepChange then self:LogStepChange(self.manualStep) end
+  self.manualStep = nil
 end
 
 -- Big on-screen alert the first time a step with a warning becomes current.
@@ -541,6 +544,7 @@ function FXP:SetStep(n)
   end
   self.db.step = n
   self.hold = true -- don't auto-skip a step the player chose manually
+  self.manualStep = true
   self:Update()
 end
 
@@ -862,6 +866,12 @@ SlashCmdList.FOREVERXP = function(msg)
     FXP.db.arrow = not FXP.db.arrow; FXP:RefreshArrow(); Print("Arrow: %s", FXP.db.arrow and "ON" or "OFF")
   elseif cmd == "lock" then
     FXP.db.locked = not FXP.db.locked; Print("Frames %s", FXP.db.locked and "locked" or "unlocked")
+  elseif cmd == "report" then
+    FXP:Report(arg)
+  elseif cmd == "check" then
+    FXP:CheckRoute()
+  elseif cmd == "export" then
+    FXP:ShowExport()
   elseif cmd == "cleanup" then
     FXP:CleanupQuests()
   elseif cmd == "tier" then
@@ -878,6 +888,7 @@ SlashCmdList.FOREVERXP = function(msg)
   else
     Print("/fxp — options and guide picker")
     Print("/fxp toggle | next | prev | step N | load <name> | reset | dungeons | xp | forgive | questie | arrow | lock | pos | cleanup | tier [level]")
+    Print("Route feedback: /fxp report [note] | check | export")
     Print("Hold SHIFT while talking to an NPC to skip auto accept/turn-in.")
   end
 end
