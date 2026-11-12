@@ -1,7 +1,7 @@
 # ForeverXP: project notes for Claude Code
 
 A free RestedXP-style leveling guide addon for **WoW Forever** (Blizzard's Classic+, launched Nov 4 2026, interface 16001).
-Alliance only. Current version **2.7.0** (see `ForeverXP.toc` and the changelog in `README.md`).
+Alliance only. Current version **2.8.0** (see `ForeverXP.toc` and the changelog in `README.md`).
 Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
 
 ## Ground rules from the owner
@@ -33,6 +33,12 @@ Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
     - Effect layers are made with `Tex`, which keeps the colour opaque and animates the region alpha
       (a colour alpha of 0 multiplied with `SetAlpha` would never show).
   - `Arrow.lua`: the waypoint arrow, with TomTom support.
+  - `Targeting.lua`: up to three secure "Target <name>" macro buttons under the guide window for the step's
+    NPCs/mobs (`StepTargets`: authored `target`, turn-in NPC, quest giver, then Questie objective mobs via
+    `Questie:ObjectiveNames`), a nameplate/mouseover "nearby" glow and chat ping, and the "FXP Target"
+    character macro (max 255 chars). Secure frames: attributes, position and visibility only change out of
+    combat (`targetsDirty` is replayed on PLAYER_REGEN_ENABLED); they're placed by absolute coordinates, never
+    anchored to the guide window, so the guide window never becomes protected. `Bindings.xml` binds button 1.
   - `Options.lua`: the options panel, guide picker and theme picker.
   - `DungeonUI.lua`: the dungeon quest window (`/fxp dungeons`).
 - Guide files:
@@ -56,6 +62,7 @@ Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
   level = 40, train = "Ironforge", mount = true, anyQuest = { ... },  -- other step kinds
   class = { "HUNTER" }, races = { "Dwarf" }, ifLevel = 10,            -- filters (skipped = no XP debt)
   elite = true, group = 3, coords = { x, y }, zone = "Tanaris", radius = 20, npc = "...",
+  target = "Mob Name" | { ... },  -- extra names for the target buttons (rare spawns, named mobs Questie lacks)
   text = "...", warn = "...", tip = "..." }
 ```
 - A step with only text and no coords waits for a manual Next.
@@ -84,4 +91,6 @@ python3 Tools/make_textures.py                   # procedural-only textures (blo
 - The 42-60 quest names and coordinates come from Classic data and haven't been checked against Forever. That's why most steps there are optional.
 - Themes haven't been seen in the live game yet: check the new textures, the effects (embers, glow, static and fog
   were invisible before the `Tex` fix in 2.7), the MONOCHROME fonts on Blocky and the Ascension tier-up banner.
+- Targeting buttons are untested in the live game: check click-to-target, the key binding, the skull
+  (solo only), the FXP Target macro creation, and that nothing errors when the step changes in combat.
 - There's no Horde route.

@@ -47,10 +47,20 @@ SKILLS = {}
 GetNumSkillLines = function() return #SKILLS end
 GetSkillLineInfo = function(i) return SKILLS[i] end
 IsMounted = function() return false end
+COMBAT = false
+InCombatLockdown = function() return COMBAT end
+MACROS = {}
+GetMacroIndexByName = function(n) for i, m in ipairs(MACROS) do if m.name == n then return i end end return 0 end
+GetNumMacros = function() return 0, #MACROS end
+CreateMacro = function(n, icon, body) MACROS[#MACROS + 1] = { name = n, body = body }; return #MACROS end
+EditMacro = function(i, n, icon, body) MACROS[i].body = body end
+UnitName = function(u) return nil end
+UnitExists = function(u) return false end
+C_NamePlate = { GetNamePlates = function() return {} end }
 
 local ns = {}
 local files = { "Compat.lua", "Data/QuestDB.lua", "Data/ClassQuests.lua", "Data/Dungeons.lua", "Core.lua", "Questie.lua",
-  "UI.lua", "Themes.lua", "Arrow.lua", "Options.lua", "DungeonUI.lua", "Guides/Human_Northshire.lua", "Guides/Elwynn_6-10.lua",
+  "UI.lua", "Themes.lua", "Arrow.lua", "Targeting.lua", "Options.lua", "DungeonUI.lua", "Guides/Human_Northshire.lua", "Guides/Elwynn_6-10.lua",
   "Guides/Alliance_Starts.lua", "Guides/Alliance_10-30.lua", "Guides/Alliance_30-60.lua", "Guides/Alliance_Extra.lua" }
 for _, f in ipairs(files) do
   local chunk, err = loadfile(ROOT .. "/" .. f)
@@ -249,4 +259,41 @@ tick(5)
 check(darkA > 0.2, "Abyssal darkness thickens on a danger step")
 FXP.db.theme = "wow"; FXP:ApplyTheme()
 check(FXP.theme.tileSize == 64, "Default UI uses the game's own 64px dialog background")
+
+-- 10. targeting buttons and macro
+FXP.db.targetButtons, FXP.db.targetMacro, FXP.db.targetMark = true, true, true
+local npcStep = { accept = { "Targeting Test A" }, npc = "Marshal McBride", key = "tgt1" }
+local t1 = FXP:StepTargets(npcStep)
+check(#t1 == 1 and t1[1].name == "Marshal McBride" and t1[1].kind == "npc", "accept step targets the quest giver")
+QS.on[FXP:Resolve("Targeting Test A")] = true
+check(#FXP:StepTargets(npcStep) == 0, "no target once the quest is picked up")
+local realQZ = ns.Questie
+ns.Questie = { ready = true, ObjectiveNames = function() return { "Kobold Vermin", "Kobold Worker" } end }
+local killStep = { complete = { "Targeting Test K" }, target = "Hogger", key = "tgt2" }
+QS.on[FXP:Resolve("Targeting Test K")] = true
+local t2 = FXP:StepTargets(killStep)
+check(#t2 == 3 and t2[1].name == "Hogger" and t2[2].name == "Kobold Vermin" and t2[3].kind == "mob",
+  "kill step targets the authored mob, then Questie's objective mobs")
+local mt = FXP:TargetMacroText(t2[2])
+check(mt:find("/targetexact Kobold Vermin", 1, true) and mt:find("SetRaidTarget", 1, true), "mob macro targets exactly and marks a skull")
+check(not FXP:TargetMacroText(t1[1]):find("SetRaidTarget", 1, true), "NPCs are never marked")
+local body = FXP:TargetMacroBody(t2)
+check(#body <= 255 and body:find("Hogger") and body:find("Kobold Worker"), "action-bar macro fits 255 chars and has every target")
+local many = {}
+for i = 1, 20 do many[i] = { name = "A Very Long Creature Name Number " .. i, kind = "mob" } end
+check(#FXP:TargetMacroBody(many) <= 255, "action-bar macro stays within 255 chars with many targets")
+FXP.guide = { name = "T", steps = { killStep } }; FXP.db.step = 1; FXP.db.xpDebt = 0
+MACROS = {}; FXP.lastMacroBody = nil
+FXP:RefreshTargets()
+check(#FXP.targets == 3 and MACROS[1] and MACROS[1].name == "FXP Target" and MACROS[1].body:find("Hogger"), "refresh creates the FXP Target macro")
+COMBAT = true
+killStep.target = "Defias Bandit"
+FXP:RefreshTargets()
+check(FXP.targetsDirty and not MACROS[1].body:find("Defias"), "in combat nothing secure changes; the refresh is queued")
+COMBAT = false
+for _, o in ipairs(ALLOBJ) do local h = o._scripts.OnEvent; if h then pcall(h, o, "PLAYER_REGEN_ENABLED") end end
+check(not FXP.targetsDirty and MACROS[1].body:find("Defias Bandit"), "queued refresh runs when combat ends")
+FXP.db.targetMacro = false; MACROS[1].body = "x"; FXP.lastMacroBody = nil; FXP:RefreshTargets()
+check(MACROS[1].body == "x", "macro left alone when the option is off")
+ns.Questie = realQZ
 print(("\n%d failures"):format(fails))

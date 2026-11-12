@@ -81,6 +81,19 @@ Shen'dralas 40-45 (WoW Forever), Azshara 48-50, Silithus 55-58.
 All of levels 1-60 are step-by-step: named quests, quest givers, coordinates, hard-quest warnings,
 trainer stops, and optional steps for quests WoW Forever may not offer (they skip themselves with no XP debt).
 
+## Changes in 2.8 - targeting buttons
+- When a step needs an NPC or mobs, up to three "Talk to <NPC>" / "Target <mob>" buttons pop up under the
+  guide window. Click one to target it. The names come from the quest (giver, turn-in, mobs to kill and the
+  mobs that drop quest items), via Questie.
+- A button glows green and you get a chat line when that NPC or mob is nearby (its nameplate or your mouseover).
+- Mobs get a skull marker when you target them solo.
+- An "FXP Target" macro is kept up to date in your character macros: drag it to an action bar to target
+  whatever the current step needs. The first button can also be bound in Key Bindings > AddOns > ForeverXP.
+- WoW doesn't let addons change targeting buttons in combat, so new buttons appear as soon as combat ends.
+- Options > Targeting turns the buttons, the skull and the macro on or off.
+- Ascension has a new look: a climb from a muddy cave at 1 through forests, mountains and clouds to a
+  galaxy at 60.
+
 ## Changes in 2.7 - new themes
 Pick a theme in Options (Display > Theme). Five new ones:
 - Default UI - the game's own dialog border and background with gold titles.

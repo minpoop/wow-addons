@@ -190,6 +190,27 @@ function Q:ObjectivePos(id)
   end)
 end
 
+-- Names of the creatures a quest's objectives need: mobs to kill, then the mobs that drop the quest items
+-- (a few per item; objects can't be targeted). Used by the targeting buttons.
+function Q:ObjectiveNames(id)
+  if not self.ready then return {} end
+  return Cached(id .. "names", function()
+    local out, seen = {}, {}
+    local function add(npcId)
+      local name = npcId and QN(npcId, "name")
+      if type(name) == "string" and not seen[name] then seen[name] = true; out[#out + 1] = name end
+    end
+    local objs = QQ(id, "objectives")
+    if type(objs) ~= "table" then return out end
+    for _, o in ipairs(objs[1] or {}) do add(o[1]) end -- creatures
+    for _, o in ipairs(objs[3] or {}) do              -- items: who drops them
+      local drops = QI(o[1], "npcDrops") or {}
+      for i = 1, math.min(3, #drops) do add(drops[i]) end
+    end
+    return out
+  end) or {}
+end
+
 ---------------------------------------------------------------------------
 -- Quest names used by the guides -> Questie IDs (built in the background)
 ---------------------------------------------------------------------------

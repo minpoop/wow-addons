@@ -18,6 +18,7 @@ local DEFAULTS = {
   combatFade = true, locked = false, collapsed = false, hidden = false,
   scale = 1, upcoming = 2, minimapAngle = 215, minimapHide = false,
   skipGroup = false, announceWarnings = true, theme = "classic", catchUp = true,
+  targetButtons = true, targetMacro = true, targetMark = true,
 }
 
 ---------------------------------------------------------------------------
@@ -483,6 +484,7 @@ function FXP:Update()
   self:AnnounceWarning()
   if self.RefreshUI then self:RefreshUI() end
   if self.RefreshArrow then self:RefreshArrow() end
+  if self.RefreshTargets then self:RefreshTargets() end
 end
 
 -- Big on-screen alert the first time a step with a warning becomes current.
