@@ -32,9 +32,10 @@ TARGET = {
 # brighter as they climb, so the late tiers keep their shine while text stays readable.
 LUM = {"abyss_scale": 0.10, "frost_ice": 0.13}
 for i in range(13):
-    LUM["asc_%02d" % i] = 0.13 + 0.006 * i
+    LUM["asc_%02d" % i] = 0.13 + 0.004 * i
+LUM["asc_12"] = 0.17  # the level-60 galaxy may shine a little more
 # Busy, high-contrast art gets its contrast squeezed (1 = unchanged) so text on top stays readable.
-CONTRAST = {"abyss_scale": 0.55, "asc_08": 0.5, "asc_09": 0.5, "asc_10": 0.38, "asc_11": 0.4, "asc_12": 0.5}
+CONTRAST = {"abyss_scale": 0.55, "asc_10": 0.6, "asc_11": 0.6, "asc_12": 0.7}
 ALPHA_FROM_WHITE = {"fog_grate", "imperial_seal"}
 ALL = list(TARGET) + list(LUM) + ["imperial_seal"]
 

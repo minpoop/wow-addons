@@ -218,8 +218,8 @@ check(sp:find("WARNING") and sp:find("INTEL"), "Spartan relabels warnings and ti
 local function tick(n) local fx = FXP.frame.fx; local upd = fx:GetScript("OnUpdate"); for i = 1, n or 40 do upd(fx, 0.05) end end
 FXP.db.theme = "ascend"; FXP.db.ascendPreview = nil; FXP.levelSeen = nil
 local tiersOk = true
-for _, case in ipairs({ { 1, 1, "Mudwood" }, { 4, 1, "Mudwood" }, { 5, 2, "Rough Timber" }, { 29, 6, "Dressed Granite" },
-    { 30, 7, "Bronzework" }, { 59, 12, "Celestial Marble" }, { 60, 13, "Ascendant" } }) do
+for _, case in ipairs({ { 1, 1, "Cave" }, { 4, 1, "Cave" }, { 5, 2, "Forest Floor" }, { 29, 6, "Mountain Foothills" },
+    { 30, 7, "Mountain Lake" }, { 59, 12, "Aurora" }, { 60, 13, "Galactic Core" } }) do
   PLAYER.level = case[1]; FXP:ApplyTheme(); tick(30)
   if FXP.theme.tierIndex ~= case[2] or FXP.theme.name ~= case[3] then
     tiersOk = false; print("tier mismatch at level " .. case[1] .. ": " .. tostring(FXP.theme.name))
@@ -231,11 +231,11 @@ PLAYER.level = 9; FXP.levelSeen = nil; FXP:ApplyTheme()
 local lvlHandlers = {}
 for _, o in ipairs(ALLOBJ) do if o._scripts.OnEvent then lvlHandlers[#lvlHandlers + 1] = o._scripts.OnEvent end end
 for _, h in ipairs(lvlHandlers) do pcall(h, nil, "PLAYER_LEVEL_UP", 10) end
-check(FXP.theme.tierIndex == 3 and FXP.theme.name == "Settler's Planks", "Ascension re-skins on the level-up that reaches a new tier")
+check(FXP.theme.tierIndex == 3 and FXP.theme.name == "Old Woods", "Ascension re-skins on the level-up that reaches a new tier")
 FXP:PreviewAscension("47")
-check(FXP.db.ascendPreview == 47 and FXP.theme.name == "Royal Gold", "/fxp tier previews a level")
+check(FXP.db.ascendPreview == 47 and FXP.theme.name == "Starfield", "/fxp tier previews a level")
 FXP:PreviewAscension("")
-check(FXP.db.ascendPreview == nil and FXP.theme.name == "Settler's Planks", "/fxp tier with no level goes back to live")
+check(FXP.db.ascendPreview == nil and FXP.theme.name == "Old Woods", "/fxp tier with no level goes back to live")
 FXP.levelSeen = nil; PLAYER.level = 1
 FXP.db.theme = "blocky"; FXP:ApplyTheme(); FXP:FlashUI(); tick(2)
 local flying = 0

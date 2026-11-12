@@ -90,10 +90,10 @@ Pick a theme in Options (Display > Theme). Five new ones:
   wisps surge and the darkness closes in.
 - Frostbound (undead frost-king homage) - rune-carved black ice, falling snow, an icy glow under the title,
   "Whisper of the blade" tips and cold sayings.
-- Ascension - grows with you. Every 5 levels the window upgrades, 13 looks in all: Mudwood, Rough Timber,
-  Settler's Planks, Fieldstone, Ironbound Oak, Dressed Granite, Bronzework, Forged Steel, Silver Filigree,
-  Royal Gold, Arcane Runestone, Celestial Marble and, at 60, Ascendant (prismatic border and bar). From 30 on,
-  sparkles appear and multiply each tier. Reaching a new tier shows an ASCENDED banner.
+- Ascension - grows with you. Every 5 levels the window climbs higher, 13 looks in all: Cave, Forest Floor,
+  Old Woods, Twilight Hills, Heather Highland, Mountain Foothills, Mountain Lake, Snowy Peaks, Sea of Clouds,
+  Starfield, First Aurora, Aurora and, at 60, Galactic Core (prismatic border and bar). From 30 on, sparkles
+  appear and multiply each tier. Reaching a new tier shows an ASCENDED banner.
   Try any tier with `/fxp tier <level>`; `/fxp tier` goes back to your real level.
 Also:
 - The theme textures are new generated art (Fog Town, Spartan HUD, Ashen Bonfire, Imperial Gothic).
