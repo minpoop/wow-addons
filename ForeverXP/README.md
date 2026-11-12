@@ -34,6 +34,7 @@
 | `/fxp arrow` | Toggle the waypoint arrow |
 | `/fxp lock` | Lock/unlock frame dragging |
 | `/fxp pos` | Print your map ID and coords (for writing guides) |
+| `/fxp cleanup` | Offer to abandon quests no guide uses (asks first) |
 | `/fxp tier 45` / `/fxp tier` | Preview the Ascension theme at any level / back to your real level |
 
 ## Questie
@@ -80,6 +81,16 @@ Shen'dralas 40-45 (WoW Forever), Azshara 48-50, Silithus 55-58.
 
 All of levels 1-60 are step-by-step: named quests, quest givers, coordinates, hard-quest warnings,
 trainer stops, and optional steps for quests WoW Forever may not offer (they skip themselves with no XP debt).
+
+## Changes in 2.9 - quest helpers (phase 1)
+- Quest item buttons: when the current step's quest has an item you need to use (and you're carrying it),
+  a button for it pops up. Click it, or bind the first one in Key Bindings > AddOns > ForeverXP.
+  Shows the count and cooldown. Shift-drag to move.
+- Auto-train: on a guide trainer step, ForeverXP buys every class skill the trainer offers that you can
+  afford, then tells you what it bought. Never at profession trainers, never with Shift held, and never
+  below the gold you choose to keep (Options > Automation, handy when saving for a mount).
+- Quest cleanup: `/fxp cleanup` (or the button in Options) lists the quests in your log that no guide or
+  dungeon list uses and asks before abandoning them. Finished quests are always kept.
 
 ## Changes in 2.8 - targeting buttons
 - When a step needs an NPC or mobs, up to three "Talk to <NPC>" / "Target <mob>" buttons pop up under the

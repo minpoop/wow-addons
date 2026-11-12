@@ -211,6 +211,21 @@ function Q:ObjectiveNames(id)
   end) or {}
 end
 
+-- Item IDs tied to a quest: the item that starts it / is handed to you, items it needs you to carry, and
+-- items its objectives ask for. Used by the quest item buttons (which only show the usable ones you carry).
+function Q:QuestItems(id)
+  if not self.ready then return {} end
+  return Cached(id .. "items", function()
+    local out, seen = {}, {}
+    local function add(item) if type(item) == "number" and not seen[item] then seen[item] = true; out[#out + 1] = item end end
+    add(QQ(id, "sourceItemId"))
+    for _, item in ipairs(QQ(id, "requiredSourceItems") or {}) do add(item) end
+    local objs = QQ(id, "objectives")
+    if type(objs) == "table" then for _, o in ipairs(objs[3] or {}) do add(o[1]) end end
+    return out
+  end) or {}
+end
+
 ---------------------------------------------------------------------------
 -- Quest names used by the guides -> Questie IDs (built in the background)
 ---------------------------------------------------------------------------

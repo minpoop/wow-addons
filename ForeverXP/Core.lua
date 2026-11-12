@@ -19,6 +19,7 @@ local DEFAULTS = {
   scale = 1, upcoming = 2, minimapAngle = 215, minimapHide = false,
   skipGroup = false, announceWarnings = true, theme = "classic", catchUp = true,
   targetButtons = true, targetMacro = true, targetMark = true, targetPop = true, targetPopAlways = false,
+  questItems = true, autoTrain = true, trainReserve = 0,
 }
 
 ---------------------------------------------------------------------------
@@ -485,6 +486,7 @@ function FXP:Update()
   if self.RefreshUI then self:RefreshUI() end
   if self.RefreshArrow then self:RefreshArrow() end
   if self.RefreshTargets then self:RefreshTargets() end
+  if self.RefreshItems then self:RefreshItems() end
 end
 
 -- Big on-screen alert the first time a step with a warning becomes current.
@@ -850,6 +852,8 @@ SlashCmdList.FOREVERXP = function(msg)
     FXP.db.arrow = not FXP.db.arrow; FXP:RefreshArrow(); Print("Arrow: %s", FXP.db.arrow and "ON" or "OFF")
   elseif cmd == "lock" then
     FXP.db.locked = not FXP.db.locked; Print("Frames %s", FXP.db.locked and "locked" or "unlocked")
+  elseif cmd == "cleanup" then
+    FXP:CleanupQuests()
   elseif cmd == "tier" then
     FXP:PreviewAscension(arg)
   elseif cmd == "pos" then
@@ -863,7 +867,7 @@ SlashCmdList.FOREVERXP = function(msg)
     end
   else
     Print("/fxp — options and guide picker")
-    Print("/fxp toggle | next | prev | step N | load <name> | reset | dungeons | xp | forgive | questie | arrow | lock | pos | tier [level]")
+    Print("/fxp toggle | next | prev | step N | load <name> | reset | dungeons | xp | forgive | questie | arrow | lock | pos | cleanup | tier [level]")
     Print("Hold SHIFT while talking to an NPC to skip auto accept/turn-in.")
   end
 end

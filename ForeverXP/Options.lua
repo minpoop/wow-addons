@@ -46,7 +46,7 @@ end
 
 function FXP:BuildOptions()
   local f = CreateFrame("Frame", "ForeverXPOptions", UIParent, BackdropTemplateMixin and "BackdropTemplate" or nil)
-  f:SetSize(340, 764)
+  f:SetSize(340, 876)
   f:SetPoint("CENTER")
   f:SetFrameStrata("DIALOG")
   f:SetBackdrop({
@@ -87,52 +87,57 @@ function FXP:BuildOptions()
   Checkbox(f, "Auto turn in guide quests", "autoTurnin", 12, -86)
   Checkbox(f, "Skip elite / group steps (solo leveling)", "skipGroup", 12, -110, function() FXP:Update() end)
   Checkbox(f, "Catch-up grinding after skipped steps", "catchUp", 12, -134, function() FXP:Update() end)
+  Checkbox(f, "Pop up buttons for quest items to use", "questItems", 12, -158, function() FXP:RefreshItems() end)
+  Checkbox(f, "Auto-train skills on guide trainer steps", "autoTrain", 12, -182)
+  Stepper(f, "Keep at least (gold) when training", 16, -212,
+    function() return FXP.db.trainReserve or 0 end,
+    function(d) FXP.db.trainReserve = math.max(0, math.min(500, (FXP.db.trainReserve or 0) + d * 5)) end)
   local hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-  hint:SetPoint("TOPLEFT", 40, -160)
+  hint:SetPoint("TOPLEFT", 40, -236)
   hint:SetText("Hold Shift when talking to an NPC to skip automation.")
 
-  Header("Display", -182)
-  Checkbox(f, "Show waypoint arrow", "arrow", 12, -200, function() FXP:RefreshArrow() end)
-  Checkbox(f, "Play a sound when a step completes", "sound", 12, -224)
-  Checkbox(f, "Fade the guide in combat", "combatFade", 12, -248)
-  Checkbox(f, "Lock window and arrow position", "locked", 12, -272)
-  Checkbox(f, "Hide minimap button", "minimapHide", 12, -296, function() FXP:RefreshMinimapButton() end)
-  Checkbox(f, "Show hard-step warnings on screen", "announceWarnings", 12, -320)
+  Header("Display", -258)
+  Checkbox(f, "Show waypoint arrow", "arrow", 12, -276, function() FXP:RefreshArrow() end)
+  Checkbox(f, "Play a sound when a step completes", "sound", 12, -300)
+  Checkbox(f, "Fade the guide in combat", "combatFade", 12, -324)
+  Checkbox(f, "Lock window and arrow position", "locked", 12, -348)
+  Checkbox(f, "Hide minimap button", "minimapHide", 12, -372, function() FXP:RefreshMinimapButton() end)
+  Checkbox(f, "Show hard-step warnings on screen", "announceWarnings", 12, -396)
 
-  Header("Targeting", -350)
-  Checkbox(f, "Pop up target buttons for the step's NPCs and mobs", "targetButtons", 12, -368, function() FXP:RefreshTargets() end)
-  Checkbox(f, "Put a skull on targeted mobs when solo", "targetMark", 12, -392, function() FXP.lastMacroBody = nil; FXP:RefreshTargets() end)
-  Checkbox(f, "Keep an 'FXP Target' macro for your action bar", "targetMacro", 12, -416, function() FXP.lastMacroBody = nil; FXP:RefreshTargets() end)
-  Checkbox(f, "Pop up an on-screen target button when one is nearby", "targetPop", 12, -440, function() FXP:RefreshTargets() end)
-  Checkbox(f, "...keep it on screen whenever the step has targets", "targetPopAlways", 12, -464, function() FXP:RefreshTargets() end)
+  Header("Targeting", -426)
+  Checkbox(f, "Pop up target buttons for the step's NPCs and mobs", "targetButtons", 12, -444, function() FXP:RefreshTargets() end)
+  Checkbox(f, "Put a skull on targeted mobs when solo", "targetMark", 12, -468, function() FXP.lastMacroBody = nil; FXP:RefreshTargets() end)
+  Checkbox(f, "Keep an 'FXP Target' macro for your action bar", "targetMacro", 12, -492, function() FXP.lastMacroBody = nil; FXP:RefreshTargets() end)
+  Checkbox(f, "Pop up an on-screen target button when one is nearby", "targetPop", 12, -516, function() FXP:RefreshTargets() end)
+  Checkbox(f, "...keep it on screen whenever the step has targets", "targetPopAlways", 12, -540, function() FXP:RefreshTargets() end)
 
-  Stepper(f, "Scale", 16, -498,
+  Stepper(f, "Scale", 16, -574,
     function() return string.format("%d%%", math.floor(FXP.db.scale * 100 + 0.5)) end,
     function(d) FXP.db.scale = math.max(0.6, math.min(1.6, FXP.db.scale + d * 0.1)); ApplyScale() end)
-  Stepper(f, "Upcoming steps", 170, -498,
+  Stepper(f, "Upcoming steps", 170, -574,
     function() return FXP.db.upcoming end,
     function(d) FXP.db.upcoming = math.max(0, math.min(5, FXP.db.upcoming + d)); FXP:RefreshUI() end)
 
   local themeLabel = f:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-  themeLabel:SetPoint("TOPLEFT", 16, -528)
+  themeLabel:SetPoint("TOPLEFT", 16, -604)
   local function DrawTheme()
     local t = ns.Themes and ns.Themes[FXP:ThemeIndex()]
     themeLabel:SetText("Theme: |cffffffff" .. (t and t.label or "Classic") .. "|r")
   end
   local tPrev = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-  tPrev:SetSize(22, 20); tPrev:SetPoint("TOPRIGHT", -42, -524); tPrev:SetText("<")
+  tPrev:SetSize(22, 20); tPrev:SetPoint("TOPRIGHT", -42, -600); tPrev:SetText("<")
   tPrev:SetScript("OnClick", function() FXP:CycleTheme(-1); DrawTheme() end)
   local tNext = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-  tNext:SetSize(22, 20); tNext:SetPoint("TOPRIGHT", -16, -524); tNext:SetText(">")
+  tNext:SetSize(22, 20); tNext:SetPoint("TOPRIGHT", -16, -600); tNext:SetText(">")
   tNext:SetScript("OnClick", function() FXP:CycleTheme(1); DrawTheme() end)
   f:HookScript("OnShow", DrawTheme)
 
-  Header("Guides", -554)
+  Header("Guides", -630)
   f.guideButtons = {}
   for i = 1, 6 do
     local b = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     b:SetSize(312, 20)
-    b:SetPoint("TOPLEFT", 14, -574 - (i - 1) * 22)
+    b:SetPoint("TOPLEFT", 14, -650 - (i - 1) * 22)
     b:SetScript("OnClick", function(self)
       if self.guideName then FXP:LoadGuide(self.guideName); FXP:RefreshOptions() end
     end)
@@ -157,9 +162,15 @@ function FXP:BuildOptions()
 
   local dungeons = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
   dungeons:SetSize(312, 20)
-  dungeons:SetPoint("BOTTOMLEFT", 14, 36)
+  dungeons:SetPoint("BOTTOMLEFT", 14, 60)
   dungeons:SetText("Dungeon quests  (/fxp dungeons)")
   dungeons:SetScript("OnClick", function() FXP:ToggleDungeons() end)
+
+  local cleanup = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+  cleanup:SetSize(312, 20)
+  cleanup:SetPoint("BOTTOMLEFT", 14, 36)
+  cleanup:SetText("Clean up quests no guide uses  (/fxp cleanup)")
+  cleanup:SetScript("OnClick", function() FXP:CleanupQuests() end)
 
   f:HookScript("OnShow", function() FXP:RefreshOptions() end)
   self.options = f

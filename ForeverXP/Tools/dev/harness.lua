@@ -57,10 +57,26 @@ EditMacro = function(i, n, icon, body) MACROS[i].body = body end
 UnitName = function(u) return nil end
 UnitExists = function(u) return false end
 C_NamePlate = { GetNamePlates = function() return {} end }
+BAGS = {}           -- itemID -> count
+USABLE = {}         -- itemID -> spell name
+GetItemCount = function(i) return BAGS[i] or 0 end
+GetItemSpell = function(i) return USABLE[i] end
+GetItemIcon = function(i) return "icon" .. tostring(i) end
+GetItemInfo = function(i) return "Item " .. tostring(i) end
+GetItemCooldown = function() return 0, 0 end
+SHIFT = false
+IsShiftKeyDown = function() return SHIFT end
+TRAINER = {}        -- { name, rank, category, cost }
+BOUGHT = {}
+GetNumTrainerServices = function() return #TRAINER end
+GetTrainerServiceInfo = function(i) local t = TRAINER[i]; return t[1], t[2], t[3] end
+GetTrainerServiceCost = function(i) return TRAINER[i][4] end
+BuyTrainerService = function(i) BOUGHT[#BOUGHT + 1] = TRAINER[i][1] end
+IsTradeskillTrainer = function() return false end
 
 local ns = {}
 local files = { "Compat.lua", "Data/QuestDB.lua", "Data/ClassQuests.lua", "Data/Dungeons.lua", "Core.lua", "Questie.lua",
-  "UI.lua", "Themes.lua", "Arrow.lua", "Targeting.lua", "Options.lua", "DungeonUI.lua", "Guides/Human_Northshire.lua", "Guides/Elwynn_6-10.lua",
+  "UI.lua", "Themes.lua", "Arrow.lua", "Targeting.lua", "Helpers.lua", "Options.lua", "DungeonUI.lua", "Guides/Human_Northshire.lua", "Guides/Elwynn_6-10.lua",
   "Guides/Alliance_Starts.lua", "Guides/Alliance_10-30.lua", "Guides/Alliance_30-60.lua", "Guides/Alliance_Extra.lua" }
 for _, f in ipairs(files) do
   local chunk, err = loadfile(ROOT .. "/" .. f)
@@ -324,5 +340,68 @@ check(not popShown, "never shows itself in combat (protected)")
 COMBAT = false
 FXP.db.targetPopAlways = true; plates[1] = nil; fire("NAME_PLATE_UNIT_REMOVED")
 check(popShown, "'keep it on screen' shows it whenever the step has targets")
+-- 11. Phase 1: quest item buttons, auto-train, quest cleanup
+ns.Questie = { ready = true, ObjectiveNames = function() return {} end,
+  QuestItems = function(_, id) return { 5001, 5002, 5003 } end }
+local itemStep = { complete = { "Item Test Q" }, useItem = 6000, key = "it1" }
+QS.on[FXP:Resolve("Item Test Q")] = true
+BAGS = { [5001] = 1, [5002] = 3, [6000] = 1 }      -- 5003 not carried
+USABLE = { [5001] = "Use", [6000] = "Use" }        -- 5002 carried but not usable (just a collect item)
+local items = FXP:StepItems(itemStep)
+check(#items == 2 and items[1] == 6000 and items[2] == 5001, "quest item buttons: authored item first, only usable items you carry")
+QS.comp[FXP:Resolve("Item Test Q")] = true
+check(#FXP:StepItems(itemStep) == 1, "objective items drop off once the quest is complete (authored item stays)")
+QS.comp[FXP:Resolve("Item Test Q")] = nil
+FXP.db.questItems = true
+FXP.guide = { name = "T", steps = { itemStep } }; FXP.db.step = 1
+FXP:RefreshItems()
+check(FXP.stepItems and #FXP.stepItems == 2 and FXP.itemBar ~= nil, "item bar refreshes with the step's items")
+COMBAT = true; BAGS[5001] = 0; FXP:RefreshItems()
+check(FXP.itemsDirty and #FXP.stepItems == 2, "item buttons don't change in combat; queued")
+COMBAT = false
+for _, o in ipairs(ALLOBJ) do local h = o._scripts.OnEvent; if h then pcall(h, o, "PLAYER_REGEN_ENABLED") end end
+check(not FXP.itemsDirty and #FXP.stepItems == 1, "queued item refresh runs after combat")
+
+local trainStep = { train = true, key = "tr1" }
+FXP.guide = { name = "T", steps = { trainStep } }; FXP.db.step = 1
+FXP.db.autoTrain = true; FXP.db.trainReserve = 0
+GetMoney = function() return 5000 end
+TRAINER = { { "Frostbolt", "Rank 2", "available", 1000 }, { "Arcane Intellect", "Rank 1", "used", 0 },
+  { "Fire Ward", "Rank 1", "available", 3000 }, { "Polymorph", "Rank 2", "unavailable", 100 } }
+BOUGHT = {}
+local nb = FXP:AutoTrain()
+check(nb == 2 and #BOUGHT == 2, "auto-train buys every available skill it can afford")
+FXP.db.trainReserve = 0.03 -- keep 3 silver = 300 copper: 5000 - 3000 - 1000 = 1000 >= 300, still both
+BOUGHT = {}; FXP:AutoTrain()
+check(#BOUGHT == 2, "reserve respected when there's enough")
+FXP.db.trainReserve = 0.25 -- keep 2500 copper: Fire Ward (3000) would leave 2000, skipped; Frostbolt leaves 4000
+BOUGHT = {}; FXP:AutoTrain()
+check(#BOUGHT == 1 and BOUGHT[1] == "Frostbolt", "never spends below the gold reserve")
+FXP.db.trainReserve = 0
+SHIFT = true; BOUGHT = {}; FXP:AutoTrain()
+check(#BOUGHT == 0, "holding Shift skips auto-train")
+SHIFT = false
+FXP.guide = { name = "T", steps = { { text = "not a train step", key = "x" } } }
+BOUGHT = {}; FXP:AutoTrain()
+check(#BOUGHT == 0, "only trains on guide trainer steps")
+
+FXP.knownQuests = nil
+LOG = { { id = FXP:Resolve("Item Test Q"), title = "Item Test Q" }, { id = 99001, title = "Some Random Quest" },
+  { id = 99002, title = "Finished Random Quest" } }
+C_QuestLog.GetNumQuestLogEntries = function() return #LOG end
+C_QuestLog.GetInfo = function(i) return { questID = LOG[i].id, title = LOG[i].title, isHeader = false } end
+C_QuestLog.GetTitleForQuestID = function(id) for _, q in ipairs(LOG) do if q.id == id then return q.title end end end
+QS.comp[99002] = true
+local guideQuest = next(FXP.guides["Westfall 10-14"].quests or {}) or FXP:Resolve(FXP.guides["Westfall 10-14"].steps[2].accept and FXP.guides["Westfall 10-14"].steps[2].accept[1] or "x")
+FXP.guides["__phase1"] = { name = "__phase1", steps = { { accept = { "Item Test Q" }, key = "p1" } } }
+FXP.knownQuests = nil
+local orphans = FXP:OrphanQuests()
+check(#orphans == 1 and orphans[1].id == 99001, "cleanup finds only quests no guide uses (and keeps finished ones)")
+local abandoned = {}
+C_QuestLog.SetSelectedQuest = function(id) abandoned[#abandoned + 1] = id end
+C_QuestLog.SetAbandonQuest = function() end
+C_QuestLog.AbandonQuest = function() end
+check(FXP:AbandonQuests(orphans) == 1 and abandoned[1] == 99001, "abandons exactly the confirmed list")
+FXP.guides["__phase1"] = nil
 ns.Questie = realQZ
 print(("\n%d failures"):format(fails))

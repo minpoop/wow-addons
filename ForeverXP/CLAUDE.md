@@ -1,7 +1,7 @@
 # ForeverXP: project notes for Claude Code
 
 A free RestedXP-style leveling guide addon for **WoW Forever** (Blizzard's Classic+, launched Nov 4 2026, interface 16001).
-Alliance only. Current version **2.8.0** (see `ForeverXP.toc` and the changelog in `README.md`).
+Alliance only. Current version **2.9.0** (see `ForeverXP.toc` and the changelog in `README.md`).
 Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
 
 ## Ground rules from the owner
@@ -42,6 +42,11 @@ Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
     The on-screen pop-up (`ForeverXPTargetPop`, `RefreshTargetPop`) shows while a target is nearby (or always,
     `targetPopAlways`); its macro lists nearby names last so `/targetexact` lands on one in sight. It can only
     appear or change out of combat.
+  - `Helpers.lua`: phase 1 quest helpers. Quest item buttons (`StepItems`: authored `useItem`, then
+    `Questie:QuestItems` for the step's quests, kept only if carried and usable; secure `type=item` buttons,
+    out-of-combat changes only), auto-train on `train` steps (`AutoTrain`, bottom-up, gold reserve, Shift
+    skips, not at profession trainers) and quest cleanup (`OrphanQuests` / `/fxp cleanup`, confirm popup,
+    finished quests kept).
   - `Options.lua`: the options panel, guide picker and theme picker.
   - `DungeonUI.lua`: the dungeon quest window (`/fxp dungeons`).
 - Guide files:
@@ -66,6 +71,7 @@ Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
   class = { "HUNTER" }, races = { "Dwarf" }, ifLevel = 10,            -- filters (skipped = no XP debt)
   elite = true, group = 3, coords = { x, y }, zone = "Tanaris", radius = 20, npc = "...",
   target = "Mob Name" | { ... },  -- extra names for the target buttons (rare spawns, named mobs Questie lacks)
+  useItem = 1234 | { ... },       -- quest items to offer as buttons (when Questie doesn't link them)
   text = "...", warn = "...", tip = "..." }
 ```
 - A step with only text and no coords waits for a manual Next.
@@ -96,4 +102,9 @@ python3 Tools/make_textures.py                   # procedural-only textures (blo
   were invisible before the `Tex` fix in 2.7), the MONOCHROME fonts on Blocky and the Ascension tier-up banner.
 - Targeting buttons are untested in the live game: check click-to-target, the key binding, the skull
   (solo only), the FXP Target macro creation, and that nothing errors when the step changes in combat.
+- Phase 1 helpers are untested in the live game: item buttons (use, cooldown, count, key binding), auto-train
+  at a real class trainer (filter, purchase order, reserve) and the cleanup popup's abandon.
+- Roadmap agreed with the owner: phase 2 travel (flight master automation, flight timer, hearth steps, new
+  flight path reminders), phase 3 map pins, phase 4 route quality from in-game reports, phase 5 talents /
+  upgrades / group sync / hardcore mode, phase 6 Horde 1-60.
 - There's no Horde route.
