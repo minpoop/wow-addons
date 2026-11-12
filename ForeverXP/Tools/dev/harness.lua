@@ -76,7 +76,7 @@ IsTradeskillTrainer = function() return false end
 
 local ns = {}
 local files = { "Compat.lua", "Data/QuestDB.lua", "Data/ClassQuests.lua", "Data/Dungeons.lua", "Data/FlightPoints.lua", "Core.lua", "Questie.lua",
-  "UI.lua", "Themes.lua", "Arrow.lua", "Targeting.lua", "Helpers.lua", "Travel.lua", "Options.lua", "DungeonUI.lua", "Guides/Human_Northshire.lua", "Guides/Elwynn_6-10.lua",
+  "UI.lua", "Themes.lua", "Arrow.lua", "Targeting.lua", "Helpers.lua", "Travel.lua", "Pins.lua", "Options.lua", "DungeonUI.lua", "Guides/Human_Northshire.lua", "Guides/Elwynn_6-10.lua",
   "Guides/Alliance_Starts.lua", "Guides/Alliance_10-30.lua", "Guides/Alliance_30-60.lua", "Guides/Alliance_Extra.lua" }
 for _, f in ipairs(files) do
   local chunk, err = loadfile(ROOT .. "/" .. f)
@@ -504,5 +504,59 @@ for _, g in pairs(FXP.guides) do
 end
 check(nTravel >= 45, "guides use the travel fields (" .. nTravel .. " steps)")
 check(#unknownFP == 0, "every guide flight path is in the flight path list" .. (#unknownFP > 0 and (": " .. table.concat(unknownFP, ", ")) or ""))
+-- 13. Phase 3: map pins
+FXP.db.mapPins, FXP.db.minimapPins, FXP.db.mapPinsAhead = true, true, 2
+local pinGuide = { name = "PinT", steps = {
+  { text = "current", coords = { 10, 20, 1436 }, key = "p1" },
+  { text = "no place", key = "p2" },
+  { text = "next", coords = { 30, 40, 1436 }, key = "p3" },
+  { text = "after", coords = { 50, 60, 1436 }, key = "p4" },
+  { text = "too far ahead", coords = { 70, 80, 1436 }, key = "p5" } } }
+FXP.guide = pinGuide; FXP.db.step = 1; FXP.pinCache = nil
+local pins = FXP:PinSteps()
+check(#pins == 3 and pins[1].current and pins[1].x == 10 and pins[2].index == 3 and pins[3].index == 4 and not pins[2].current,
+  "pins: current step + the next 2 with a place (steps without one are skipped)")
+FXP.db.mapPinsAhead = 0; FXP.pinCache = nil
+check(#FXP:PinSteps() == 1, "pins: 'upcoming steps to pin' = 0 shows only the current step")
+FXP.db.mapPinsAhead = 2; FXP.db.mapPins, FXP.db.minimapPins = false, false; FXP.pinCache = nil
+check(#FXP:PinSteps() == 0, "pins: off when both map options are off")
+FXP.db.mapPins, FXP.db.minimapPins = true, true; FXP.pinCache = nil
+local px, py = FXP:PinOnMap({ map = 1436, x = 25, y = 75 }, 1436)
+check(px == 0.25 and py == 0.75, "pins: same-map position is the step's coords")
+
+local function near(a, b) return math.abs(a - b) < 0.01 end
+local mx, my, edge = FXP:MinimapOffset(100, 0, 0, false, 0, false, 140)
+check(near(mx, 0) and near(my, 30) and not edge, "minimap: 100 yards north at full zoom-out is 30 px up")
+mx, my = FXP:MinimapOffset(0, 50, 0, false, 0, false, 140)
+check(near(mx, -15) and near(my, 0), "minimap: west is left")
+mx, my = FXP:MinimapOffset(0, 50, math.pi / 2, true, 0, false, 140)
+check(near(mx, 0) and near(my, 15), "minimap: rotating minimap facing west puts west straight up")
+mx, my = FXP:MinimapOffset(30, 0, 0, false, 5, false, 140)
+local mx2, my2 = FXP:MinimapOffset(30, 0, 0, false, 0, false, 140)
+check(my > my2 * 3, "minimap: zooming in spreads pins out")
+mx, my, edge = FXP:MinimapOffset(5000, 0, 0, false, 0, false, 140)
+check(edge and near(math.sqrt(mx * mx + my * my), 64), "minimap: far targets clamp to the rim")
+
+local canvas = Obj()
+canvas.GetWidth = function() return 1000 end
+canvas.GetHeight = function() return 700 end
+canvas.GetFrameLevel = function() return 1 end
+WorldMapFrame = { GetCanvas = function() return canvas end, GetMapID = function() return 1436 end,
+  IsShown = function() return true end, ScrollContainer = { GetCanvasScale = function() return 2 end } }
+FXP.guide = pinGuide; FXP.db.step = 1; FXP.pinCache = nil
+FXP:RefreshWorldPins()
+local placed = {}
+for _, o in ipairs(ALLOBJ) do
+  if o.info then
+    o.SetPoint = function(self, _, _, _, x, y) placed[self.info.n] = { x = x, y = y, s = self._scale } end
+    o.SetScale = function(self, s) self._scale = s end
+  end
+end
+FXP:RefreshWorldPins()
+local p1 = placed[1]
+check(p1 and near(p1.s, 0.5) and near(p1.x * p1.s, 100) and near(p1.y * p1.s, -140),
+  "world map: pin sits at its map spot and keeps its size when the map is zoomed")
+check(placed[2] and near(placed[2].s, 0.4), "world map: upcoming pins are drawn smaller")
+WorldMapFrame = nil
 ns.Questie = realQZ
 print(("\n%d failures"):format(fails))

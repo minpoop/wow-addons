@@ -82,6 +82,14 @@ Shen'dralas 40-45 (WoW Forever), Azshara 48-50, Silithus 55-58.
 All of levels 1-60 are step-by-step: named quests, quest givers, coordinates, hard-quest warnings,
 trainer stops, and optional steps for quests WoW Forever may not offer (they skip themselves with no XP debt).
 
+## Changes in 2.11 - map pins (phase 3)
+- World map: the current step is marked with a gold numbered pin and the next 2 steps with smaller blue
+  ones. They also show when you zoom out to the continent, and stay the same size however far you zoom.
+- Minimap: the same pins, placed by distance, following the minimap's zoom and "rotate minimap" setting.
+  When the current step is off the edge its pin sticks to the rim, pointing the way.
+- Hover a pin to see that step.
+- Options > Maps: turn the world map or minimap pins off, and choose how many upcoming steps to pin (0-3).
+
 ## Changes in 2.10 - travel (phase 2)
 - Flight masters: on a guide "fly" step, talking to the flight master opens the map and flies you to the
   guide's destination. If you don't have that flight path yet, it says so and lets you pick.

@@ -21,6 +21,7 @@ local DEFAULTS = {
   targetButtons = true, targetMacro = true, targetMark = true, targetPop = true, targetPopAlways = false,
   questItems = true, autoTrain = true, trainReserve = 0,
   autoFly = true, autoBind = true, flightTimer = true, fpReminders = true,
+  mapPins = true, minimapPins = true, mapPinsAhead = 2,
 }
 
 ---------------------------------------------------------------------------
@@ -493,6 +494,7 @@ function FXP:Update()
   if self.RefreshArrow then self:RefreshArrow() end
   if self.RefreshTargets then self:RefreshTargets() end
   if self.RefreshItems then self:RefreshItems() end
+  self.pinCache = nil -- steps changed: map pins recompute
 end
 
 -- Big on-screen alert the first time a step with a warning becomes current.

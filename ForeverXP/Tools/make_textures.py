@@ -277,7 +277,26 @@ def block_stone():
     return save("block_stone", col * 0.62)
 
 
-PROCEDURAL_ONLY = (block_stone,)
+# ---------------------------------------------------------------------------
+# Map pin: white ring + dot on transparent, tinted per pin with SetVertexColor (32x32)
+# ---------------------------------------------------------------------------
+def map_pin():
+    n = 32
+    yy, xx = np.mgrid[:n, :n].astype(float)
+    r = np.hypot(xx - 15.5, yy - 15.5)
+    ring = np.clip(1.5 - np.abs(r - 12.5), 0, 1)            # crisp outer ring
+    dot = np.clip(9.0 - r, 0, 1)                             # filled centre
+    shadow = np.clip(15.5 - r, 0, 1) * 0.55                  # dark backing so it reads on any map
+    alpha = np.maximum(np.maximum(ring, dot), shadow)
+    shade = np.maximum(ring, dot * (0.75 + 0.25 * np.clip((15.5 - yy) / 15.5, 0, 1)))  # light from above
+    col = np.dstack([shade, shade, shade])
+    path = os.path.join(OUT, "..", "Pin.tga")
+    img = Image.fromarray((np.dstack([col, np.clip(alpha, 0, 1)]) * 255).astype(np.uint8), "RGBA")
+    img.save(path)
+    return img
+
+
+PROCEDURAL_ONLY = (block_stone, map_pin)
 REPLACED_BY_ART = (fog_world, fog_rust, fog_grate, hud_hex, ashen_stone, imperial_plate, imperial_seal)
 
 if __name__ == "__main__":

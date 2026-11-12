@@ -1,7 +1,7 @@
 # ForeverXP: project notes for Claude Code
 
 A free RestedXP-style leveling guide addon for **WoW Forever** (Blizzard's Classic+, launched Nov 4 2026, interface 16001).
-Alliance only. Current version **2.10.0** (see `ForeverXP.toc` and the changelog in `README.md`).
+Alliance only. Current version **2.11.0** (see `ForeverXP.toc` and the changelog in `README.md`).
 Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
 
 ## Ground rules from the owner
@@ -53,6 +53,11 @@ Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
     account-wide `ForeverXPDB.flightTimes`) and zone reminders from `Data/FlightPoints.lua`. In `IsStepDone`,
     `fp`/`bind` are hard goals; `fly`/`hearth` only finish a step that has nothing else to check (no other
     goal and no coords). `SamePlace` matches names ignoring case and the ", Zone" suffix.
+  - `Pins.lua`: phase 3 map pins. `PinSteps` (current + `mapPinsAhead` unfinished steps with `StepCoords`,
+    cached 0.5 s, cleared by `Update`), world-map pins on `WorldMapFrame:GetCanvas()` (scale 1/canvas zoom,
+    offsets divided by that scale; other maps via `C_Map.GetMapPosFromWorldPos`), minimap pins via
+    `MinimapOffset` (yards per zoom, indoor table, rotate CVar, current step clamps to the rim). Pin art is
+    `Media/Pin.tga` from `make_textures.py map_pin`, tinted per pin.
   - `Options.lua`: the options panel (two columns: left automation/display/guides, right targeting/travel),
     guide picker and theme picker.
   - `DungeonUI.lua`: the dungeon quest window (`/fxp dungeons`).
@@ -93,7 +98,7 @@ lua -e "arg_root='.'" Tools/dev/harness.lua      # runs the whole addon against 
 python3 Tools/dev/audit_parse.py && python3 Tools/dev/audit_check.py   # quest flow: loose quests, chain links, coords
 python3 Tools/dev/audit_questlog.py | grep PEAK  # quest-log peak across the main route, must stay <= 20 (now 16)
 python3 Tools/import_textures.py <png_dir> [name ...]  # convert generated images into Media/Themes TGAs
-python3 Tools/make_textures.py                   # procedural-only textures (block_stone); --all would overwrite the generated art
+python3 Tools/make_textures.py                   # procedural-only textures (block_stone, map pin); --all would overwrite the generated art
 ```
 
 ## Known limits and open work
@@ -115,6 +120,8 @@ python3 Tools/make_textures.py                   # procedural-only textures (blo
 - Phase 2 travel is untested in the live game: gossip option icons (taxi 132057, binder 132052), auto-flying,
   CONFIRM_BINDER confirm, the flight timer start (PLAYER_CONTROL_LOST + UnitOnTaxi) and the reminders.
   `fp` steps only learn a flight path you already had once you open a flight map there.
-- Roadmap agreed with the owner: phase 1 quest helpers (done), phase 2 travel (done), phase 3 map pins, phase 4 route quality from in-game reports, phase 5 talents /
+- Phase 3 pins are untested in the live game: world map canvas scaling, the continent-map conversion, the
+  minimap yard table (indoors especially) and the rotating minimap.
+- Roadmap agreed with the owner: phase 1 quest helpers (done), phase 2 travel (done), phase 3 map pins (done), phase 4 route quality from in-game reports, phase 5 talents /
   upgrades / group sync / hardcore mode, phase 6 Horde 1-60.
 - There's no Horde route.

@@ -123,6 +123,13 @@ function FXP:BuildOptions()
   hint2:SetPoint("TOPLEFT", 380, -304)
   hint2:SetText("Hold Shift at a flight master or innkeeper to choose yourself.")
 
+  Header("Maps", -330, 354)
+  Checkbox(f, "Pin the current and next steps on the world map", "mapPins", 352, -348, function() FXP.pinCache = nil end)
+  Checkbox(f, "...and on the minimap", "minimapPins", 352, -372, function() FXP.pinCache = nil end)
+  Stepper(f, "Upcoming steps to pin", 356, -402,
+    function() return FXP.db.mapPinsAhead or 2 end,
+    function(d) FXP.db.mapPinsAhead = math.max(0, math.min(3, (FXP.db.mapPinsAhead or 2) + d)); FXP.pinCache = nil end)
+
   -- left column, continued
   Stepper(f, "Scale", 16, -430,
     function() return string.format("%d%%", math.floor(FXP.db.scale * 100 + 0.5)) end,
