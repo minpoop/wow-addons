@@ -18,7 +18,7 @@ local DEFAULTS = {
   combatFade = true, locked = false, collapsed = false, hidden = false,
   scale = 1, upcoming = 2, minimapAngle = 215, minimapHide = false,
   skipGroup = false, announceWarnings = true, theme = "classic", catchUp = true,
-  targetButtons = true, targetMacro = true, targetMark = true,
+  targetButtons = true, targetMacro = true, targetMark = true, targetPop = true, targetPopAlways = false,
 }
 
 ---------------------------------------------------------------------------

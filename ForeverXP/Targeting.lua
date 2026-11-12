@@ -13,6 +13,7 @@ local SKULL = 8
 
 BINDING_HEADER_FOREVERXP = "ForeverXP"
 _G["BINDING_NAME_CLICK ForeverXPTarget1:LeftButton"] = "Target the step's NPC / mob"
+_G["BINDING_NAME_CLICK ForeverXPTargetPop:LeftButton"] = "Target what's nearby (on-screen button)"
 
 local function AsList(v)
   if v == nil then return {} end
@@ -90,7 +91,7 @@ end
 ---------------------------------------------------------------------------
 -- Buttons
 ---------------------------------------------------------------------------
-local holder, buttons
+local holder, buttons, pop
 local nearby, announced = {}, {}
 
 local function Build()
@@ -177,9 +178,99 @@ function FXP:UpdateTargetMacro(targets)
   if ok then self.lastMacroBody = body end
 end
 
+---------------------------------------------------------------------------
+-- The on-screen button: pops up when something the step needs is nearby
+---------------------------------------------------------------------------
+local function BuildPop()
+  pop = CreateFrame("Button", "ForeverXPTargetPop", UIParent, "SecureActionButtonTemplate")
+  pop:SetSize(44, 44)
+  pop:SetFrameStrata("MEDIUM")
+  pop:RegisterForClicks("AnyUp", "AnyDown")
+  pop:SetAttribute("type", "macro")
+  pop:SetMovable(true)
+  pop:SetClampedToScreen(true)
+  pop:RegisterForDrag("LeftButton")
+  pop:SetScript("OnDragStart", function(self)
+    if IsShiftKeyDown() and not InCombatLockdown() then self:StartMoving() end
+  end)
+  pop:SetScript("OnDragStop", function(self)
+    self:StopMovingOrSizing()
+    local point, _, rel, x, y = self:GetPoint()
+    FXP.db.targetPopPos = { point, rel, x, y }
+  end)
+  local p = FXP.db.targetPopPos
+  if p then pop:SetPoint(p[1], UIParent, p[2], p[3], p[4]) else pop:SetPoint("CENTER", UIParent, "CENTER", 0, -160) end
+
+  pop.glow = pop:CreateTexture(nil, "BACKGROUND")
+  pop.glow:SetPoint("CENTER")
+  pop.glow:SetSize(76, 76)
+  pop.glow:SetTexture("Interface\\Buttons\\UI-ActionButton-Border")
+  pop.glow:SetBlendMode("ADD")
+  pop.icon = pop:CreateTexture(nil, "ARTWORK")
+  pop.icon:SetAllPoints()
+  pop.frame = pop:CreateTexture(nil, "OVERLAY")
+  pop.frame:SetPoint("CENTER")
+  pop.frame:SetSize(78, 78)
+  pop.frame:SetTexture("Interface\\Buttons\\UI-Quickslot2")
+  pop.label = pop:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+  pop.label:SetPoint("TOP", pop, "BOTTOM", 0, -4)
+  pop.hint = pop:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+  pop.hint:SetPoint("TOP", pop.label, "BOTTOM", 0, -1)
+  pop:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square", "ADD")
+  pop:SetScript("OnEnter", function(self)
+    GameTooltip:SetOwner(self, "ANCHOR_TOP")
+    GameTooltip:AddLine("ForeverXP: target what's nearby", 1, 0.82, 0)
+    for _, t in ipairs(self.targets or {}) do
+      GameTooltip:AddLine((nearby[t.name] and "|cff40ff40nearby|r  " or "") .. t.name, 1, 1, 1)
+    end
+    GameTooltip:AddLine("Shift-drag to move. Key binding: Key Bindings > AddOns > ForeverXP.", 0.6, 0.6, 0.6)
+    GameTooltip:Show()
+  end)
+  pop:SetScript("OnLeave", function() GameTooltip:Hide() end)
+  pop:Hide()
+  FXP.targetPopButton = pop
+end
+
+-- Targets ordered so the nearby ones come last: /targetexact keeps the last unit it finds, so a click
+-- lands on something that's actually here rather than a name from across the zone.
+local function NearbyLast(targets)
+  local far, near = {}, {}
+  for _, t in ipairs(targets) do
+    if nearby[t.name] then near[#near + 1] = t else far[#far + 1] = t end
+  end
+  for _, t in ipairs(near) do far[#far + 1] = t end
+  return far, near
+end
+
+-- Out of combat only: show the button while a target is nearby (or always, if the player chose that).
+function FXP:RefreshTargetPop()
+  if not pop or (InCombatLockdown and InCombatLockdown()) then return end
+  local targets = self.targets or {}
+  local ordered, near = NearbyLast(targets)
+  local want = self.db.targetPop and #targets > 0 and (#near > 0 or self.db.targetPopAlways)
+  if not want then
+    if pop:IsShown() then pop:Hide() end
+    pop.key = nil
+    return
+  end
+  local key = table.concat((function() local n = {} for i, t in ipairs(ordered) do n[i] = t.name end return n end)(), "|")
+  if key ~= pop.key then
+    pop.key = key
+    pop.targets = targets
+    pop:SetAttribute("macrotext", self:TargetMacroBody(ordered))
+    local lead = near[#near] or targets[1]
+    pop.lead = lead
+    pop.icon:SetTexture(lead.kind == "npc" and "Interface\\Icons\\INV_Misc_Note_01" or "Interface\\Icons\\Ability_Hunter_SniperShot")
+    pop.label:SetText((lead.kind == "npc" and "|cffffd100" or "|cffff6060") .. lead.name .. "|r")
+    local extra = #near > 1 and ("+" .. (#near - 1) .. " more nearby") or (#near == 0 and "not in sight yet" or "click to target")
+    pop.hint:SetText(extra)
+  end
+  if not pop:IsShown() then pop:Show(); pop.popT = 0 end
+end
+
 function FXP:RefreshTargets()
   if not (self.db and self.frame) then return end
-  if not holder then Build() end
+  if not holder then Build(); BuildPop() end
   if InCombatLockdown and InCombatLockdown() then self.targetsDirty = true; return end
   self.targetsDirty = false
 
@@ -188,6 +279,7 @@ function FXP:RefreshTargets()
   self.targets = targets
   if (step and step.key) ~= self.targetStepKey then self.targetStepKey = step and step.key; wipe(announced) end
   self:UpdateTargetMacro(targets)
+  self:RefreshTargetPop()
 
   local n = math.min(#targets, MAX_BUTTONS)
   if not self.db.targetButtons or n == 0 or not self.frame:IsShown() then holder:Hide(); return end
@@ -249,13 +341,20 @@ driver:SetScript("OnEvent", function(_, event)
   else
     ScanNearby()
     Ping()
+    FXP:RefreshTargetPop()
   end
 end)
 
-local acc, t = 0, 0
+local acc, scan, t = 0, 0, 0
 driver:SetScript("OnUpdate", function(_, dt)
   t = t + dt
   acc = acc + dt
+  scan = scan + dt
+  if scan > 1 then -- mouseover and nameplates can go away without an event we listen to
+    scan = 0
+    ScanNearby()
+    FXP:RefreshTargetPop()
+  end
   if acc > 0.25 then
     acc = 0
     if holder and FXP.frame and not (InCombatLockdown and InCombatLockdown()) then
@@ -263,6 +362,17 @@ driver:SetScript("OnUpdate", function(_, dt)
       if shouldShow ~= holder:IsShown() then FXP:RefreshTargets()
       elseif holder:IsShown() and Moved(math.min(#FXP.targets, MAX_BUTTONS)) then Place(math.min(#FXP.targets, MAX_BUTTONS)) end
     end
+  end
+  if pop and pop:IsShown() then
+    -- pop in (the glow swells then settles) and keep breathing; dim when the target has gone out of sight
+    local any = false
+    for _, tg in ipairs(pop.targets or {}) do if nearby[tg.name] then any = true end end
+    pop.popT = (pop.popT or 1) + dt
+    local swell = pop.popT < 0.35 and (1 + 0.6 * (1 - pop.popT / 0.35)) or 1
+    pop.glow:SetSize(76 * swell, 76 * swell)
+    pop.glow:SetVertexColor(any and 0.3 or 1, 1, any and 0.3 or 0.6)
+    pop.glow:SetAlpha(any and (0.6 + 0.4 * math.sin(t * 6)) or 0.25)
+    pop.icon:SetAlpha(any and 1 or 0.55)
   end
   if holder and holder:IsShown() then
     local pulse = 0.55 + 0.45 * math.sin(t * 5)

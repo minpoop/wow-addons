@@ -86,6 +86,9 @@ trainer stops, and optional steps for quests WoW Forever may not offer (they ski
   guide window. Click one to target it. The names come from the quest (giver, turn-in, mobs to kill and the
   mobs that drop quest items), via Questie.
 - A button glows green and you get a chat line when that NPC or mob is nearby (its nameplate or your mouseover).
+- A big on-screen target button pops up in the middle of the screen when something the step needs is nearby,
+  and hides again when it's gone. One click (or its key binding) targets the one that's actually in sight.
+  Shift-drag to move it. Options > Targeting can keep it up whenever the step has targets.
 - Mobs get a skull marker when you target them solo.
 - An "FXP Target" macro is kept up to date in your character macros: drag it to an action bar to target
   whatever the current step needs. The first button can also be bound in Key Bindings > AddOns > ForeverXP.

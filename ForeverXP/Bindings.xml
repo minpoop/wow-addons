@@ -1,4 +1,6 @@
 <Bindings>
   <Binding name="CLICK ForeverXPTarget1:LeftButton" header="FOREVERXP" category="ADDONS">
   </Binding>
+  <Binding name="CLICK ForeverXPTargetPop:LeftButton" header="FOREVERXP" category="ADDONS">
+  </Binding>
 </Bindings>

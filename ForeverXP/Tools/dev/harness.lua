@@ -295,5 +295,34 @@ for _, o in ipairs(ALLOBJ) do local h = o._scripts.OnEvent; if h then pcall(h, o
 check(not FXP.targetsDirty and MACROS[1].body:find("Defias Bandit"), "queued refresh runs when combat ends")
 FXP.db.targetMacro = false; MACROS[1].body = "x"; FXP.lastMacroBody = nil; FXP:RefreshTargets()
 check(MACROS[1].body == "x", "macro left alone when the option is off")
+-- 10b. the on-screen button pops up for what's nearby
+FXP.db.targetMacro = true; FXP.db.targetPop = true; FXP.db.targetPopAlways = false
+killStep.target = nil
+local pop = FXP.targetPopButton
+check(pop ~= nil, "on-screen target button exists")
+local popAttr, popShown = nil, false
+pop.SetAttribute = function(_, k, v) if k == "macrotext" then popAttr = v end end
+pop.Show = function() popShown = true end
+pop.Hide = function() popShown = false end
+pop.IsShown = function() return popShown end
+FXP:RefreshTargets()
+check(not popShown, "no pop-up while nothing the step needs is nearby")
+local plates = {}
+C_NamePlate.GetNamePlates = function() return plates end
+UnitName = function(u) return u == "nameplate1" and "Kobold Vermin" or nil end
+plates[1] = { namePlateUnitToken = "nameplate1" }
+local function fire(ev) for _, o in ipairs(ALLOBJ) do local h = o._scripts.OnEvent; if h then pcall(h, o, ev) end end end
+fire("NAME_PLATE_UNIT_ADDED")
+check(popShown and popAttr and popAttr:find("Kobold Vermin"), "pops up when a needed mob's nameplate appears")
+local lastLine = popAttr and popAttr:gsub("\n/run.*$", ""):match("([^\n]+)$")
+check(lastLine == "/targetexact Kobold Vermin", "the nearby mob is targeted last, so the click lands on it")
+plates[1] = nil
+fire("NAME_PLATE_UNIT_REMOVED")
+check(not popShown, "hides again when it goes out of sight")
+COMBAT = true; plates[1] = { namePlateUnitToken = "nameplate1" }; fire("NAME_PLATE_UNIT_ADDED")
+check(not popShown, "never shows itself in combat (protected)")
+COMBAT = false
+FXP.db.targetPopAlways = true; plates[1] = nil; fire("NAME_PLATE_UNIT_REMOVED")
+check(popShown, "'keep it on screen' shows it whenever the step has targets")
 ns.Questie = realQZ
 print(("\n%d failures"):format(fails))

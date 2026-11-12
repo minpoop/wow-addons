@@ -46,7 +46,7 @@ end
 
 function FXP:BuildOptions()
   local f = CreateFrame("Frame", "ForeverXPOptions", UIParent, BackdropTemplateMixin and "BackdropTemplate" or nil)
-  f:SetSize(340, 716)
+  f:SetSize(340, 764)
   f:SetPoint("CENTER")
   f:SetFrameStrata("DIALOG")
   f:SetBackdrop({
@@ -103,34 +103,36 @@ function FXP:BuildOptions()
   Checkbox(f, "Pop up target buttons for the step's NPCs and mobs", "targetButtons", 12, -368, function() FXP:RefreshTargets() end)
   Checkbox(f, "Put a skull on targeted mobs when solo", "targetMark", 12, -392, function() FXP.lastMacroBody = nil; FXP:RefreshTargets() end)
   Checkbox(f, "Keep an 'FXP Target' macro for your action bar", "targetMacro", 12, -416, function() FXP.lastMacroBody = nil; FXP:RefreshTargets() end)
+  Checkbox(f, "Pop up an on-screen target button when one is nearby", "targetPop", 12, -440, function() FXP:RefreshTargets() end)
+  Checkbox(f, "...keep it on screen whenever the step has targets", "targetPopAlways", 12, -464, function() FXP:RefreshTargets() end)
 
-  Stepper(f, "Scale", 16, -450,
+  Stepper(f, "Scale", 16, -498,
     function() return string.format("%d%%", math.floor(FXP.db.scale * 100 + 0.5)) end,
     function(d) FXP.db.scale = math.max(0.6, math.min(1.6, FXP.db.scale + d * 0.1)); ApplyScale() end)
-  Stepper(f, "Upcoming steps", 170, -450,
+  Stepper(f, "Upcoming steps", 170, -498,
     function() return FXP.db.upcoming end,
     function(d) FXP.db.upcoming = math.max(0, math.min(5, FXP.db.upcoming + d)); FXP:RefreshUI() end)
 
   local themeLabel = f:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-  themeLabel:SetPoint("TOPLEFT", 16, -480)
+  themeLabel:SetPoint("TOPLEFT", 16, -528)
   local function DrawTheme()
     local t = ns.Themes and ns.Themes[FXP:ThemeIndex()]
     themeLabel:SetText("Theme: |cffffffff" .. (t and t.label or "Classic") .. "|r")
   end
   local tPrev = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-  tPrev:SetSize(22, 20); tPrev:SetPoint("TOPRIGHT", -42, -476); tPrev:SetText("<")
+  tPrev:SetSize(22, 20); tPrev:SetPoint("TOPRIGHT", -42, -524); tPrev:SetText("<")
   tPrev:SetScript("OnClick", function() FXP:CycleTheme(-1); DrawTheme() end)
   local tNext = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-  tNext:SetSize(22, 20); tNext:SetPoint("TOPRIGHT", -16, -476); tNext:SetText(">")
+  tNext:SetSize(22, 20); tNext:SetPoint("TOPRIGHT", -16, -524); tNext:SetText(">")
   tNext:SetScript("OnClick", function() FXP:CycleTheme(1); DrawTheme() end)
   f:HookScript("OnShow", DrawTheme)
 
-  Header("Guides", -506)
+  Header("Guides", -554)
   f.guideButtons = {}
   for i = 1, 6 do
     local b = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     b:SetSize(312, 20)
-    b:SetPoint("TOPLEFT", 14, -526 - (i - 1) * 22)
+    b:SetPoint("TOPLEFT", 14, -574 - (i - 1) * 22)
     b:SetScript("OnClick", function(self)
       if self.guideName then FXP:LoadGuide(self.guideName); FXP:RefreshOptions() end
     end)

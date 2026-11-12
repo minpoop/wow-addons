@@ -39,6 +39,9 @@ Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
     character macro (max 255 chars). Secure frames: attributes, position and visibility only change out of
     combat (`targetsDirty` is replayed on PLAYER_REGEN_ENABLED); they're placed by absolute coordinates, never
     anchored to the guide window, so the guide window never becomes protected. `Bindings.xml` binds button 1.
+    The on-screen pop-up (`ForeverXPTargetPop`, `RefreshTargetPop`) shows while a target is nearby (or always,
+    `targetPopAlways`); its macro lists nearby names last so `/targetexact` lands on one in sight. It can only
+    appear or change out of combat.
   - `Options.lua`: the options panel, guide picker and theme picker.
   - `DungeonUI.lua`: the dungeon quest window (`/fxp dungeons`).
 - Guide files:
