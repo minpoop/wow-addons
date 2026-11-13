@@ -2,8 +2,7 @@
 -- command, every theme, every step of every guide through the per-step helpers, every event and every script
 -- handler on every frame, and reports anything that throws.
 --   lua -e "arg_root='.'" Tools/dev/smoke.lua
--- Expected: 8 errors, all stub artifacts (QUEST_ACCEPTED gets a string id; GetQuestID / IsQuestCompletable are
--- not stubbed). Anything else is a bug.
+-- Expected: "0 errors". Handlers run in sorted order so the result is the same every run.
 assert(arg_root, 'set arg_root')
 local h = io.open(arg_root .. '/Tools/dev/harness.lua'):read('a')
 local cut = h:find("\nlocal fails = 0", 1, true)
@@ -24,6 +23,10 @@ UnitHealth = function() return 100 end; UnitHealthMax = function() return 100 en
 UnitOnTaxi = function() return true end; hooksecurefunc = function() end
 NumTaxiNodes = function() return 0 end; GetTime = function() return 100 end
 CreateVector2D = function(x, y) return { x = x, y = y } end
+GetCursorPosition = function() return 500, 400 end
+GetQuestID = function() return 783 end; GetTitleText = function() return "A Quest" end; IsQuestCompletable = function() return true end
+GetNumQuestChoices = function() return 0 end; AcceptQuest = function() end; CompleteQuest = function() end
+GetQuestReward = function() end; GetNumActiveQuests = function() return 0 end; GetNumAvailableQuests = function() return 0 end
 local errors, n = {}, 0
 local function try(what, fn, ...) n = n + 1; local ok, e = pcall(fn, ...); if not ok then errors[#errors + 1] = what .. " -> " .. tostring(e) end end
 for _, race in ipairs({ { "Human", "Alliance" }, { "Orc", "Horde" } }) do
@@ -68,12 +71,17 @@ for _, race in ipairs({ { "Human", "Alliance" }, { "Orc", "Horde" } }) do
   for _, ev in ipairs(events) do
     for _, o in ipairs(ALLOBJ) do
       local f = o._scripts.OnEvent
-      if f then try("event " .. ev, f, o, ev, ev == "PLAYER_LEVEL_UP" and 13 or (ev == "UNIT_HEALTH" and "player" or (ev == "CHAT_MSG_ADDON" and "FXPSYNC" or 5)), "S\tWestfall 10-14\t3", "PARTY", "Other") end
+      if f then try("event " .. ev, f, o, ev, ev == "PLAYER_LEVEL_UP" and 13 or (ev == "UNIT_HEALTH" and "player" or (ev == "CHAT_MSG_ADDON" and "FXPSYNC" or 5)),
+        ev == "CHAT_MSG_ADDON" and "S\tWestfall 10-14\t3" or 783, "PARTY", "Other") end
     end
   end
   -- every other script handler on every frame the addon created
   for _, o in ipairs(ALLOBJ) do
-    for name, f in pairs(o._scripts) do
+    local names = {}
+    for name in pairs(o._scripts) do names[#names + 1] = name end
+    table.sort(names)
+    for _, name in ipairs(names) do
+      local f = o._scripts[name]
       if name ~= "OnEvent" then
         for _ = 1, (name == "OnUpdate" and 30 or 1) do try("script " .. name, f, o, name == "OnUpdate" and 0.3 or "LeftButton") end
       end

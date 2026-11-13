@@ -121,7 +121,7 @@ Run these from the addon folder.
 ```bash
 luac -p $(find . -name '*.lua')                 # syntax (or: python3 Tools/dev/lua_run.py check $(find . -name '*.lua'), Linux liblua5.4 only)
 lua -e "arg_root='.'" Tools/dev/harness.lua      # runs the whole addon against stubbed WoW API, expect "0 failures"
-lua -e "arg_root='.'" Tools/dev/smoke.lua        # every command/theme/step/event/handler for both factions; expect 8 stub-artifact errors
+lua -e "arg_root='.'" Tools/dev/smoke.lua        # every command/theme/step/event/handler for both factions; expect "0 errors"
 python3 Tools/dev/audit_parse.py && python3 Tools/dev/audit_check.py   # quest flow: loose quests, chain links, coords
 python3 Tools/dev/audit_questlog.py | grep PEAK  # quest-log peak across the main route, must stay <= 20 (now 11)
 python3 Tools/import_textures.py <png_dir> [name ...]  # convert generated images into Media/Themes TGAs
