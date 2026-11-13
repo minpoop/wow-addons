@@ -232,10 +232,16 @@ function FXP:CheckGuide(g, before)
     if not (s.class or s.races) then -- class/race blocks can't be judged from one character's point of view
       local expect = (g.minLevel or 1) + ((g.maxLevel or 60) - (g.minLevel or 1)) * (i - 1) / math.max(1, n - 1)
       expect = math.max(expect, s.ifLevel or 0) -- an ifLevel step is only shown from that level on
-      for _, key in ipairs({ "accept", "complete", "turnin" }) do
+      for _, key in ipairs({ "turnin", "accept", "complete" }) do -- hand-ins first: a follow-up is taken after
         for _, q in ipairs(s[key] or {}) do
           local id = self:Resolve(q)
           local row = id and QZ:Row(id)
+          if key == "turnin" then -- prerequisites mean "handed in", so remember what the route has handed in
+            if id then before[id] = true end
+            before.names = before.names or {}
+            local name = type(q) == "string" and (q:gsub("#%d+$", "")) or (row and row.name)
+            if name then before.names[name] = true end
+          end
           if not row then
             -- without Questie's name index a quest named by text can't be looked up, so it proves nothing
             if not (QZ.indexFailed and type(q) == "string") then
@@ -250,9 +256,14 @@ function FXP:CheckGuide(g, before)
               local pre = row.pre1
               if type(pre) == "table" then pre = pre[1] end
               if type(pre) == "number" and not before[pre] and not s.optional then
-                add(i, s, string.format("needs quest %d first, which the route doesn't do before this", pre), q)
+                -- the route may name that quest by text: compare names too
+                local preRow = QZ:Row(pre)
+                local preName = preRow and preRow.name
+                if not (preName and before.names and before.names[preName]) then
+                  add(i, s, string.format("needs quest %d%s handed in first, which the route doesn't do before this", pre,
+                    preName and (" (" .. preName .. ")") or ""), q)
+                end
               end
-              before[id] = true
             end
             if s.coords and (key == "accept" or key == "turnin") then
               local e = QZ:Endpoint(row, key == "accept" and "start" or "finish")

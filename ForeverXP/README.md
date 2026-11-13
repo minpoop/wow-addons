@@ -85,6 +85,15 @@ Shen'dralas 40-45 (WoW Forever), Azshara 48-50, Silithus 55-58.
 All of levels 1-60 are step-by-step: named quests, quest givers, coordinates, hard-quest warnings,
 trainer stops, and optional steps for quests WoW Forever may not offer (they skip themselves with no XP debt).
 
+## Changes in 2.12.3 - Questie name lookup fix
+- ForeverXP couldn't build its quest-name lookup with the current Questie: Questie now fills its quest list late
+  in its own startup, and ForeverXP gave up straight away. It now reads the list from Questie's database library
+  directly and keeps retrying for a few minutes. Quests the guides name by text are recognised properly again
+  (this also helps auto accept/turn-in and skipping quests that aren't available).
+- `/fxp check`: "needs quest X first" now means handed in, and also counts quests the route names by text.
+- Wetlands: Fire Taboo is only offered once Tramping Paws is handed in, so the route now hands Tramping Paws in to
+  Rethiel, takes Fire Taboo, then goes back to the Mosshide gnolls for the flints.
+
 ## Changes in 2.12.2 - no more stuck travel steps
 - "Get the flight path / set your Hearthstone" steps can't trap you any more: once you've been there, the step
   finishes when you leave the area or do the next step, even if you skipped the flight path or the inn

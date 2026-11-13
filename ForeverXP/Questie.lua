@@ -229,9 +229,28 @@ end
 ---------------------------------------------------------------------------
 -- Quest names used by the guides -> Questie IDs (built in the background)
 ---------------------------------------------------------------------------
-function Q:BuildNameIndex()
-  local pointers = self.DB.QuestPointers or self.DB.questPointers
-  if type(pointers) ~= "table" then self.indexFailed = true; return end
+-- Every quest ID Questie knows. Current Questie fills QuestieDB.QuestPointers late in its own startup (after
+-- single-quest queries already work), and the IDs really live in the QuestieDB library (global LibQuestieDB),
+-- so ask that directly when the copy isn't there yet.
+function Q:AllQuestIds()
+  local p = self.DB and (self.DB.QuestPointers or self.DB.questPointers)
+  if type(p) == "table" and next(p) then return p end
+  local lib = _G.LibQuestieDB
+  if type(lib) == "table" and lib.Quest and lib.Quest.GetAllIds then
+    local ok, ids = pcall(lib.Quest.GetAllIds, true)
+    if ok and type(ids) == "table" and next(ids) then return ids end
+  end
+end
+
+function Q:BuildNameIndex(tries)
+  local pointers = self:AllQuestIds()
+  if not pointers then
+    -- not available yet: keep trying for a few minutes before giving up on the name index
+    tries = (tries or 0) + 1
+    if tries > 90 then self.indexFailed = true; return end
+    C_Timer.After(2, function() self:BuildNameIndex(tries) end)
+    return
+  end
   local wanted = {}
   for _, g in pairs(FXP.guides) do
     for _, n in pairs(g.quests or {}) do wanted[n] = true end

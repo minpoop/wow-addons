@@ -632,6 +632,17 @@ local lvlStep = { name = "LV", minLevel = 10, maxLevel = 12, steps = { { accept 
 check(#FXP:CheckGuide(lvlStep, {}) == 0, "route check respects ifLevel (a level-gated step isn't 'too high')")
 local sameStep = { name = "PS", minLevel = 10, maxLevel = 12, steps = { { accept = { "CK Pre" }, src = 1 } } }
 check(#FXP:CheckGuide(sameStep, { [424242] = true }) == 0, "prerequisite done earlier in the route isn't flagged")
+rows[FXP:Resolve("CK Paws")] = { id = 276, name = "CK Paws", req = 10 }
+rows[FXP:Resolve("CK Taboo")] = { id = 277, name = "CK Taboo", req = 10, pre1 = { 276 } }
+rows[276] = { id = 276, name = "CK Paws", req = 10 }
+local sameVisit = { name = "TB", minLevel = 10, maxLevel = 12, steps = { { accept = { "CK Paws", "CK Taboo" }, src = 1 } } }
+local fT = FXP:CheckGuide(sameVisit, {})
+check(#fT == 1 and fT[1].issue:find("handed in") and fT[1].issue:find("CK Paws"),
+  "taking a follow-up together with the quest it needs handed in is flagged (and names it)")
+local inOrder = { name = "TB2", minLevel = 10, maxLevel = 12, steps = { { accept = { "CK Paws" }, src = 1 },
+  { turnin = { "CK Paws" }, src = 2 }, { accept = { "CK Taboo" }, src = 3 } } }
+check(#FXP:CheckGuide(inOrder, {}) == 0, "...but not when the route hands the first one in before (matched by name)")
+
 -- the check waits for Questie's name index instead of reporting every named quest as unknown
 local timers = {}
 local realAfter = C_Timer.After
@@ -674,5 +685,25 @@ if SV_OUT then
   end
   local fh = io.open(SV_OUT, "w"); fh:write("\nForeverXPDB = " .. ser(ForeverXPDB, "") .. "\n"); fh:close()
 end
+-- 15. Questie quest list: QuestieDB.QuestPointers is filled late; fall back to LibQuestieDB and retry
+local QZ = realQZ
+local savedDB, savedLib = QZ.DB, _G.LibQuestieDB
+QZ.DB = {}
+_G.LibQuestieDB = { Quest = { GetAllIds = function(hash) return hash and { [783] = true, [7] = true } or nil end } }
+local ids = QZ:AllQuestIds()
+check(ids and ids[783], "quest list comes from LibQuestieDB when QuestieDB.QuestPointers isn't there yet")
+QZ.DB = { QuestPointers = { [1] = true } }
+check(QZ:AllQuestIds()[1] and not QZ:AllQuestIds()[783], "...and from QuestieDB.QuestPointers when it is")
+_G.LibQuestieDB = nil; QZ.DB = {}
+local laters = {}
+local realAfter2 = C_Timer.After
+C_Timer.After = function(_, fn) laters[#laters + 1] = fn end
+QZ.indexFailed = nil
+QZ:BuildNameIndex()
+check(not QZ.indexFailed and #laters == 1, "no quest list yet: the name index retries instead of giving up")
+for _ = 1, 95 do local fn = table.remove(laters, 1); if not fn then break end; fn() end
+check(QZ.indexFailed, "...and only gives up after a few minutes of retries")
+C_Timer.After = realAfter2
+QZ.DB, _G.LibQuestieDB, QZ.indexFailed = savedDB, savedLib, nil
 ns.Questie = realQZ
 print(("\n%d failures"):format(fails))

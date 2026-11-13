@@ -1,7 +1,7 @@
 # ForeverXP: project notes for Claude Code
 
 A free RestedXP-style leveling guide addon for **WoW Forever** (Blizzard's Classic+, launched Nov 4 2026, interface 16001).
-Alliance only. Current version **2.12.2** (see `ForeverXP.toc` and the changelog in `README.md`).
+Alliance only. Current version **2.12.3** (see `ForeverXP.toc` and the changelog in `README.md`).
 Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
 
 ## Ground rules from the owner
@@ -141,6 +141,12 @@ python3 Tools/make_textures.py                   # procedural-only textures (blo
 - Second owner file (2.12.x): still the old 2.12.0 check (not rerun); run log showed ~5 min stuck on Wetlands
   step 1 (fp + bind Menethil) then manual skipping. Fixed in 2.12.2 with MovedOn/NextStepDone.
   `ForeverXPDB.lastVersion` now records the installed build at login.
+- Third owner file (2.12.2 check): `nameIndex = unavailable`. Cause: current Questie (checked against
+  github.com/Questie/Questie, Nov 2026) sets `QuestieDB.QuestPointers` only in `QuestieDB.Initialize`, late in
+  its startup, from the global `LibQuestieDB.Quest.GetAllIds(true)`; we gave up at once. `Questie:AllQuestIds`
+  now falls back to LibQuestieDB and `BuildNameIndex` retries (2 s x 90). Prerequisite check now means
+  handed in (pre1 = preQuestSingle) and matches by name. Real finding fixed: Wetlands Fire Taboo needs
+  Tramping Paws handed in first (route reordered).
 - Roadmap agreed with the owner: phase 1 quest helpers (done), phase 2 travel (done), phase 3 map pins (done),
   phase 4 route feedback tools (done; fixes ongoing from reports), phase 4 route quality from in-game reports, phase 5 talents /
   upgrades / group sync / hardcore mode, phase 6 Horde 1-60.
