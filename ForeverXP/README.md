@@ -88,6 +88,11 @@ Shen'dralas 40-45 (WoW Forever), Azshara 48-50, Silithus 55-58.
 All of levels 1-60 are step-by-step: named quests, quest givers, coordinates, hard-quest warnings,
 trainer stops, and optional steps for quests WoW Forever may not offer (they skip themselves with no XP debt).
 
+## Changes in 2.15.1 - self-test fixes
+- Following the party leader's step no longer adds catch-up grinding for the steps you jumped over.
+- The faction check for quests now copes with WoW Forever's larger race values (new races), which could have
+  made it misjudge which faction a quest is for.
+
 ## Changes in 2.15.0 - Horde 1-60 (phase 6)
 - **Horde route, 1-60**: 540 quests in 27 guides, built from WoW Forever's own quest data and checked quest by
   quest against it (right faction, prerequisites done first, level requirements met, NPC positions).

@@ -52,7 +52,7 @@ function FXP:OnPartyMessage(msg, sender)
     if not self.guide or self.guide.name ~= guide then
       self:LoadGuide(guide, step)
     elseif self.db.step ~= step then
-      self:SetStep(step)
+      self:SetStep(step, true) -- no catch-up grind for steps skipped by following the party
     end
   end
   if self.RefreshUI then self:RefreshUI() end

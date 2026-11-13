@@ -796,8 +796,17 @@ local pl = FXP:PartyLine()
 check(pl and pl:find("Leader #7 %(3 ahead%)"), "party: the window shows where others are")
 check(FXP.db.step == 4, "party: not following unless you ask to")
 FXP.db.partyFollow = true
+FXP.db.xpDebt = 0; FXP.db.catchUp = true
 FXP:OnPartyMessage("S\tWestfall 10-14\t9", "Leader-Realm")
 check(FXP.db.step == 9, "party: following the leader jumps to their step")
+check((FXP.db.xpDebt or 0) == 0, "party: following doesn't add catch-up grinding for the skipped steps")
+local realBand = bit and bit.band
+bit = bit or {}
+bit.band = function(a, b) assert(a < 2 ^ 32 and b < 2 ^ 32, "bit.band got a value over 32 bits"); return math.floor(a) & math.floor(b) end
+PLAYER.faction = "Alliance"
+check(realQZ:FitsFaction({ races = 8589934770 }) == false and realQZ:FitsFaction({ races = 4294967373 }) == true,
+  "faction check copes with WoW Forever's 33-bit race masks")
+bit.band = realBand
 FXP.db.partyFollow = false
 FXP:OnPartyMessage("J\tWestfall 10-14\t11", "Leader-Realm")
 check(FXP.db.step == 11, "party: /fxp sync from the leader moves everyone")

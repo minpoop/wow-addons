@@ -543,13 +543,13 @@ function FXP:LoadGuide(name, step)
   self:Update()
 end
 
-function FXP:SetStep(n)
+function FXP:SetStep(n, noDebt)
   if not self.guide then return end
   n = math.max(1, math.min(n, #self.guide.steps))
-  -- moving forward past unfinished steps = skipped XP
+  -- moving forward past unfinished steps = skipped XP (not when following a party member's step)
   for i = self.db.step, n - 1 do
     local st = self.guide.steps[i]
-    if not self:IsStepDone(st) then self:AddDebt(st) end
+    if not noDebt and not self:IsStepDone(st) then self:AddDebt(st) end
   end
   self.db.step = n
   self.hold = true -- don't auto-skip a step the player chose manually

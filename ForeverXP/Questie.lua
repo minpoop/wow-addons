@@ -86,6 +86,10 @@ end
 function Q:FitsFaction(row)
   local r = row and row.races
   if not r or r == 0 or not bit then return true end
+  -- WoW Forever's race masks go past 32 bits (new races), which WoW's bit library can't take; the classic
+  -- races are all in the low byte, and that's all this check needs
+  r = r % 256
+  if r == 0 then return true end
   local horde = UnitFactionGroup("player") == "Horde"
   local mine, other = horde and HORDE_RACES or ALLIANCE_RACES, horde and ALLIANCE_RACES or HORDE_RACES
   -- only rule a quest out when it's clearly for the other faction (unknown race bits are allowed)
