@@ -321,6 +321,7 @@ function FXP:CheckRoute()
         if not QZ.indexDone then
           self.Print("Note: Questie's name index wasn't available, so quests the guides name by text weren't checked.")
         end
+        if self.TalentReport then self:TalentReport() end -- also check the talent build against the live tree
         self.Print("Route check done: %d thing%s to look at. /fxp export to see them; /reload saves them for me.",
           #all, #all == 1 and "" or "s")
         return
@@ -367,6 +368,10 @@ function FXP:ExportText()
     L(string.format("- %s #%s%s: %s%s", f.guide or "?", f.step or "?", f.src and (" (file step " .. f.src .. ")") or "",
       f.quest and (f.quest .. " - ") or "", f.issue or ""))
   end
+  local ti = db.talentIssues
+  L("")
+  L("== Talent build (" .. (ti and ti.class or "not checked yet") .. ", " .. (ti and #ti.problems or 0) .. " issues)")
+  for _, p in ipairs(ti and ti.problems or {}) do L("- " .. p.name .. ": " .. p.issue) end
   return table.concat(lines, "\n")
 end
 

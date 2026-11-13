@@ -1,7 +1,7 @@
 # ForeverXP: project notes for Claude Code
 
 A free RestedXP-style leveling guide addon for **WoW Forever** (Blizzard's Classic+, launched Nov 4 2026, interface 16001).
-Alliance only. Current version **2.13.1** (see `ForeverXP.toc` and the changelog in `README.md`).
+Alliance only. Current version **2.14.0** (see `ForeverXP.toc` and the changelog in `README.md`).
 Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
 
 ## Ground rules from the owner
@@ -64,6 +64,19 @@ Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
     `Update`, `manualStep` set by `SetStep`), `routeCheck` (`/fxp check`: `CheckGuide` per guide against
     Questie, 3 guides per tick) and `/fxp export`. Steps carry `src` = position in the guide file (class
     quest steps are injected at runtime and have none), so reports map back to file lines.
+  - Phase 5 (`Talents.lua`, `Gear.lua`, `Party.lua`, `Hardcore.lua`, `Data/Talents.lua`):
+    - Talents: one 51-point leveling build per class in `Data/Talents.lua` (original, Classic talent names).
+      `NextTalent` matches names against the live tree (`GetTalentInfo`), respects tiers (5 points each) and
+      `GetTalentPrereqs`, skips what's missing and reports it (`/fxp talents`, also run by `/fxp check`, saved
+      as `ForeverXPDB.talentIssues`). Auto-learn takes one point per CHARACTER_POINTS_CHANGED.
+    - Gear: per-class stat weights (hybrids switch to caster weights by talent spend), `UpgradeFor(link)` vs the
+      worst equipped item in the slot(s), armor class gate by item class/subclass IDs; tooltip line via
+      OnTooltipSetItem; `BestReward` names the best quest choice (never auto-picks).
+    - Party: addon prefix `FXPSYNC`, "S/J\tguide\tstep" messages, `PartyLine` in the window, follow-leader and
+      `/fxp sync`. Parse with a pattern, not `strsplit and strsplit(...)` (and-expressions keep one value).
+    - Hardcore: `Questie:ObjectiveMobs` levels/rank -> `DangerLine` (3+ levels, or 2+ in hardcore; elites =
+      rank 1-3), `SetHardcore` forces skipGroup and restores it, once-per-fight low-health raid warning.
+    - The guide window shows talent/danger/party lines above the step, plus the Learn button.
   - `Options.lua`: the options panel (two columns: left automation/display/guides, right targeting/travel),
     guide picker and theme picker.
   - `DungeonUI.lua`: the dungeon quest window (`/fxp dungeons`).
@@ -156,7 +169,10 @@ python3 Tools/make_textures.py                   # procedural-only textures (blo
   finding in 2.13.0 (Horde quests removed from Arathi/Feralas/Hinterlands, Dustwallow rebuilt from real quests,
   prerequisite orders in Coldridge/Wetlands/Arathi, misspellings). Offline check: 0 findings. When a guide
   references a quest, look it up in the Forever data first (name, races, pre1, start/finish NPC and spawns).
+- Phase 5 is untested in the live game: talent names in WoW Forever (watch `/fxp talents`), LearnTalent from
+  an addon, GetItemStats keys and the tooltip hook, addon messages in a real party, UNIT_HEALTH alerts.
 - Roadmap agreed with the owner: phase 1 quest helpers (done), phase 2 travel (done), phase 3 map pins (done),
+  phase 5 talents / upgrades / group sync / hardcore (done in 2.14.0),
   phase 4 route feedback tools (done; fixes ongoing from reports), phase 4 route quality from in-game reports, phase 5 talents /
   upgrades / group sync / hardcore mode, phase 6 Horde 1-60.
 - There's no Horde route.

@@ -184,6 +184,10 @@ def build(sv):
             md.append(f'- {f.get("guide")} #{f.get("step")} {where(lines, f.get("guide"), f.get("src"))} '
                       f'{f.get("quest") or ""}: {f.get("issue")}')
         md.append('')
+    ti = db.get('talentIssues') or {}
+    probs = as_list(ti.get('problems'))
+    md += [f'## Talent build ({ti.get("class", "not checked")}: {len(probs)} issues)', '']
+    md += [f'- {p.get("name")}: {p.get("issue")}' for p in probs]
     return '\n'.join(md)
 
 

@@ -75,8 +75,8 @@ BuyTrainerService = function(i) BOUGHT[#BOUGHT + 1] = TRAINER[i][1] end
 IsTradeskillTrainer = function() return false end
 
 local ns = {}
-local files = { "Compat.lua", "Data/QuestDB.lua", "Data/ClassQuests.lua", "Data/Dungeons.lua", "Data/FlightPoints.lua", "Core.lua", "Questie.lua",
-  "UI.lua", "Themes.lua", "Arrow.lua", "Targeting.lua", "Helpers.lua", "Travel.lua", "Pins.lua", "Feedback.lua", "Options.lua", "DungeonUI.lua", "Guides/Human_Northshire.lua", "Guides/Elwynn_6-10.lua",
+local files = { "Compat.lua", "Data/QuestDB.lua", "Data/ClassQuests.lua", "Data/Dungeons.lua", "Data/FlightPoints.lua", "Data/Talents.lua", "Core.lua", "Questie.lua",
+  "UI.lua", "Themes.lua", "Arrow.lua", "Targeting.lua", "Helpers.lua", "Travel.lua", "Pins.lua", "Feedback.lua", "Talents.lua", "Gear.lua", "Party.lua", "Hardcore.lua", "Options.lua", "DungeonUI.lua", "Guides/Human_Northshire.lua", "Guides/Elwynn_6-10.lua",
   "Guides/Alliance_Starts.lua", "Guides/Alliance_10-30.lua", "Guides/Alliance_30-60.lua", "Guides/Alliance_Extra.lua" }
 for _, f in ipairs(files) do
   local chunk, err = loadfile(ROOT .. "/" .. f)
@@ -685,6 +685,139 @@ if SV_OUT then
   end
   local fh = io.open(SV_OUT, "w"); fh:write("\nForeverXPDB = " .. ser(ForeverXPDB, "") .. "\n"); fh:close()
 end
+-- 16. Phase 5: talents, gear, party, hardcore
+ns.Questie = realQZ
+-- a fake warrior tree: Arms tab 1 (tier = index-based), Fury tab 2
+TREE = {
+  { name = "Arms", talents = { { "Improved Heroic Strike", 1, 3 }, { "Improved Rend", 1, 3 }, { "Tactical Mastery", 2, 5 },
+      { "Improved Charge", 2, 2 }, { "Anger Management", 3, 1 }, { "Deep Wounds", 3, 3 }, { "Improved Overpower", 3, 2 } } },
+  { name = "Fury", talents = { { "Cruelty", 1, 5 } } },
+}
+RANKS, POINTS = {}, 0
+GetNumTalentTabs = function() return #TREE end
+GetTalentTabInfo = function(t) local n = 0 for _, x in ipairs(TREE[t].talents) do n = n + (RANKS[x[1]] or 0) end return TREE[t].name, nil, n end
+GetNumTalents = function(t) return #TREE[t].talents end
+GetTalentInfo = function(t, i) local x = TREE[t].talents[i]; return x[1], nil, x[2], i, RANKS[x[1]] or 0, x[3] end
+GetTalentPrereqs = function() return nil end
+UnitCharacterPoints = function() return POINTS end
+LEARNED = {}
+LearnTalent = function(t, i) local x = TREE[t].talents[i]; RANKS[x[1]] = (RANKS[x[1]] or 0) + 1; POINTS = POINTS - 1; LEARNED[#LEARNED + 1] = x[1] end
+PLAYER.class = "WARRIOR"
+FXP.db.talents, FXP.db.autoTalents = true, false
+local t1 = FXP:NextTalent()
+check(t1 and t1.name == "Improved Heroic Strike" and t1.rank == 0, "talent guide starts with the build's first talent")
+RANKS["Improved Heroic Strike"] = 3; RANKS["Improved Rend"] = 2
+local t2 = FXP:NextTalent()
+check(t2 and t2.name == "Tactical Mastery", "...moves on in build order as ranks are taken")
+RANKS["Improved Rend"] = 0
+local t3 = FXP:NextTalent()
+check(t3 and t3.name == "Improved Rend", "...and goes back to fill a talent that was skipped")
+RANKS = { ["Improved Heroic Strike"] = 3, ["Improved Rend"] = 2, ["Tactical Mastery"] = 3, ["Improved Charge"] = 2 }
+local t4 = FXP:NextTalent()
+check(t4 and t4.name == "Anger Management", "tier 3 opens once 10 points are in the tree")
+RANKS["Improved Charge"] = 0
+local t5, probs5 = FXP:NextTalent()
+check(t5 and t5.name == "Improved Charge" and FXP:TalentLine() == nil, "no window line without an unspent point")
+POINTS = 1
+check(FXP:TalentLine() and FXP:TalentLine():find("Improved Charge"), "with a point waiting the window says what to take")
+local _, p6 = FXP:NextTalent()
+local missing = false
+for _, p in ipairs(p6) do if p.issue:find("not in this game") then missing = true end end
+check(missing, "talents the game doesn't have are listed (renamed in WoW Forever?)")
+FXP.db.autoTalents = true; LEARNED = {}
+FXP:OnTalentPoints()
+check(#LEARNED == 1 and LEARNED[1] == "Improved Charge" and POINTS == 0, "auto-learn takes exactly one point per event")
+FXP.db.autoTalents = false
+local function sum(b) local n = 0 for _, e in ipairs(b.build) do n = n + e[2] end return n end
+local all51 = true
+for cls, b in pairs(ns.TalentBuilds) do if sum(b) ~= 51 then all51 = false; print("build " .. cls .. " has " .. sum(b)) end end
+check(all51, "every class build is 51 points (levels 10-60)")
+
+-- gear: a strength chest vs what's equipped
+ITEMS = {
+  ["item:1"] = { stats = { ITEM_MOD_STRENGTH_SHORT = 10, ITEM_MOD_STAMINA_SHORT = 5 }, loc = "INVTYPE_CHEST", class = 4, sub = 3, req = 10, price = 100 },
+  ["item:2"] = { stats = { ITEM_MOD_STRENGTH_SHORT = 4 }, loc = "INVTYPE_CHEST", class = 4, sub = 3, req = 10, price = 50 },
+  ["item:3"] = { stats = { ITEM_MOD_INTELLECT_SHORT = 12 }, loc = "INVTYPE_CHEST", class = 4, sub = 1, req = 10, price = 900 },
+}
+GetItemStats = function(l) return ITEMS[l] and ITEMS[l].stats end
+GetItemInfo = function(l) local it = ITEMS[l]; if not it then return "Item " .. tostring(l) end
+  return "Item " .. l, l, 2, 20, it.req, "Armor", "x", 1, it.loc, nil, it.price, it.class, it.sub end
+EQUIPPED = { [5] = "item:2" }
+GetInventoryItemLink = function(_, slot) return EQUIPPED[slot] end
+PLAYER.level = 20
+local d = FXP:UpgradeFor("item:1")
+check(d and d > 0, "a stronger chest is an upgrade for a warrior")
+check(FXP:UpgradeFor("item:3") == nil, "cloth is never suggested to a warrior")
+QCHOICES = { "item:3", "item:1" }
+GetNumQuestChoices = function() return #QCHOICES end
+GetQuestItemLink = function(_, i) return QCHOICES[i] end
+GetQuestItemInfo = function(_, i) return "Choice " .. i end
+local best, _, up = FXP:BestReward()
+check(best == 2 and up, "quest reward: the upgrade beats a pricier item you can't use")
+QCHOICES = { "item:2", "item:3" }
+EQUIPPED[5] = "item:1"
+local b2, _, up2 = FXP:BestReward()
+check(b2 == 2 and not up2, "...and with no upgrade it picks the one that sells for most")
+
+-- party sync
+IN_GROUP = true
+IsInGroup = function() return IN_GROUP end
+SENT = {}
+C_ChatInfo = { SendAddonMessage = function(p, m, ch) SENT[#SENT + 1] = m end, RegisterAddonMessagePrefix = function() end }
+UnitName = function(u) if u == "player" then return "Me" elseif u == "party1" then return "Leader" end end
+UnitExists = function(u) return u == "party1" end
+UnitIsGroupLeader = function(u) return u == "party1" end
+strsplit = strsplit or function(sep, s) local out = {} for part in (s .. sep):gmatch("(.-)" .. sep) do out[#out + 1] = part end return table.unpack(out) end
+FXP.db.partySync, FXP.db.partyFollow = true, false
+local pg = FXP.guides["Westfall 10-14"]
+FXP.guide = pg; FXP.db.step = 4
+FXP:BroadcastStep()
+check(SENT[#SENT] == "S\tWestfall 10-14\t4", "party: your step is broadcast")
+FXP:OnPartyMessage("S\tWestfall 10-14\t7", "Leader-Realm")
+local pl = FXP:PartyLine()
+check(pl and pl:find("Leader #7 %(3 ahead%)"), "party: the window shows where others are")
+check(FXP.db.step == 4, "party: not following unless you ask to")
+FXP.db.partyFollow = true
+FXP:OnPartyMessage("S\tWestfall 10-14\t9", "Leader-Realm")
+check(FXP.db.step == 9, "party: following the leader jumps to their step")
+FXP.db.partyFollow = false
+FXP:OnPartyMessage("J\tWestfall 10-14\t11", "Leader-Realm")
+check(FXP.db.step == 11, "party: /fxp sync from the leader moves everyone")
+IN_GROUP = false
+
+-- hardcore and danger
+local realQZ6 = ns.Questie
+ns.Questie = { ready = true, Row = function() end, ObjectiveNames = function() return {} end,
+  QuestItems = function() return {} end, ObjectiveMobs = function(_, id)
+  if id == FXP:Resolve("HC Ogres") then return { { name = "Ogre", min = 25, max = 27, rank = 0 } } end
+  if id == FXP:Resolve("HC Boss") then return { { name = "Big Boss", min = 20, max = 20, rank = 1 } } end
+  return { { name = "Boar", min = 18, max = 20, rank = 0 } } end }
+PLAYER.level = 22
+QS.on[FXP:Resolve("HC Ogres")] = true
+FXP.db.dangerWarnings, FXP.db.hardcore = true, false
+local dl = FXP:DangerLine({ complete = { "HC Ogres" } })
+check(dl and dl:find("level 27") and dl:find("5 above"), "danger: mobs 5 levels up are flagged")
+check(FXP:DangerLine({ complete = { "HC Boars" } }) == nil, "danger: normal mobs aren't")
+local el = FXP:DangerLine({ complete = { "HC Boss" } })
+check(el and el:find("elite"), "danger: elites are flagged")
+FXP.db.skipGroup = false
+FXP:SetHardcore(true)
+check(FXP.db.hardcore and FXP.db.skipGroup, "hardcore: turns on solo routing")
+FXP:SetHardcore(false)
+check(not FXP.db.hardcore and FXP.db.skipGroup == false, "...and restores your choice when turned off")
+FXP.db.hardcore = true
+HP = 30
+UnitAffectingCombat = function() return true end
+UnitHealth = function() return HP end
+UnitHealthMax = function() return 100 end
+local alerts = {}
+local rp6 = FXP.Print
+FXP.Print = function(fmt, ...) alerts[#alerts + 1] = string.format(fmt, ...) end
+FXP:CheckHealth(); FXP:CheckHealth()
+check(#alerts == 1 and alerts[1]:find("LOW HEALTH"), "hardcore: one low-health alert per fight")
+FXP.Print = rp6; FXP.db.hardcore = false
+ns.Questie = realQZ6
+
 -- 15. Questie quest list: QuestieDB.QuestPointers is filled late; fall back to LibQuestieDB and retry
 local QZ = realQZ
 local savedDB, savedLib = QZ.DB, _G.LibQuestieDB

@@ -2,7 +2,7 @@
 ## Title: ForeverXP |cff33ff99Leveling Guide|r
 ## Notes: Free step-by-step leveling guide with quest tracking, auto accept/turn-in, XP/hour and a waypoint arrow.
 ## Author: You
-## Version: 2.13.1
+## Version: 2.14.0
 ## IconTexture: Interface\Icons\INV_Misc_Book_09
 ## SavedVariables: ForeverXPDB
 ## SavedVariablesPerCharacter: ForeverXPCharDB
@@ -13,6 +13,7 @@ Data\QuestDB.lua
 Data\ClassQuests.lua
 Data\Dungeons.lua
 Data\FlightPoints.lua
+Data\Talents.lua
 Core.lua
 Questie.lua
 UI.lua
@@ -23,6 +24,10 @@ Helpers.lua
 Travel.lua
 Pins.lua
 Feedback.lua
+Talents.lua
+Gear.lua
+Party.lua
+Hardcore.lua
 Options.lua
 DungeonUI.lua
 Guides\Human_Northshire.lua

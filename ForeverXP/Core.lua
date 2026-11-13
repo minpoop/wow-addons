@@ -22,6 +22,8 @@ local DEFAULTS = {
   questItems = true, autoTrain = true, trainReserve = 0,
   autoFly = true, autoBind = true, flightTimer = true, fpReminders = true,
   mapPins = true, minimapPins = true, mapPinsAhead = 2,
+  talents = true, autoTalents = false, gearHints = true, partySync = true, partyFollow = false,
+  hardcore = false, dangerWarnings = true, lowHealth = 0.35,
 }
 
 ---------------------------------------------------------------------------
@@ -497,6 +499,10 @@ function FXP:Update()
   if self.RefreshItems then self:RefreshItems() end
   self.pinCache = nil -- steps changed: map pins recompute
   if self.LogStepChange then self:LogStepChange(self.manualStep) end
+  if self.BroadcastStep and (self.lastSentStep ~= self.db.step or self.lastSentGuide ~= (self.guide and self.guide.name)) then
+    self.lastSentStep, self.lastSentGuide = self.db.step, self.guide and self.guide.name
+    self:BroadcastStep()
+  end
   self.manualStep = nil
 end
 
@@ -866,6 +872,13 @@ SlashCmdList.FOREVERXP = function(msg)
     FXP.db.arrow = not FXP.db.arrow; FXP:RefreshArrow(); Print("Arrow: %s", FXP.db.arrow and "ON" or "OFF")
   elseif cmd == "lock" then
     FXP.db.locked = not FXP.db.locked; Print("Frames %s", FXP.db.locked and "locked" or "unlocked")
+  elseif cmd == "talents" or cmd == "talent" then
+    FXP:TalentReport()
+  elseif cmd == "sync" then
+    FXP:PushStep()
+  elseif cmd == "hardcore" or cmd == "hc" then
+    FXP:SetHardcore(not FXP.db.hardcore)
+    Print("Hardcore mode %s.", FXP.db.hardcore and "|cffff4040ON|r (group/elite steps skipped, low-health alerts)" or "off")
   elseif cmd == "report" then
     FXP:Report(arg)
   elseif cmd == "check" then
@@ -889,6 +902,7 @@ SlashCmdList.FOREVERXP = function(msg)
     Print("/fxp — options and guide picker")
     Print("/fxp toggle | next | prev | step N | load <name> | reset | dungeons | xp | forgive | questie | arrow | lock | pos | cleanup | tier [level]")
     Print("Route feedback: /fxp report [note] | check | export")
+    Print("Extras: /fxp talents | sync (push your step to the party) | hardcore")
     Print("Hold SHIFT while talking to an NPC to skip auto accept/turn-in.")
   end
 end

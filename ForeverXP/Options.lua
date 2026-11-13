@@ -46,7 +46,7 @@ end
 
 function FXP:BuildOptions()
   local f = CreateFrame("Frame", "ForeverXPOptions", UIParent, BackdropTemplateMixin and "BackdropTemplate" or nil)
-  f:SetSize(680, 660)
+  f:SetSize(680, 740)
   f:SetPoint("CENTER")
   f:SetFrameStrata("DIALOG")
   f:SetBackdrop({
@@ -129,6 +129,16 @@ function FXP:BuildOptions()
   Stepper(f, "Upcoming steps to pin", 356, -402,
     function() return FXP.db.mapPinsAhead or 2 end,
     function(d) FXP.db.mapPinsAhead = math.max(0, math.min(3, (FXP.db.mapPinsAhead or 2) + d)); FXP.pinCache = nil end)
+
+  Header("Extras", -432, 354)
+  Checkbox(f, "Talent guide: show the next talent to take", "talents", 352, -450, function() FXP:RefreshUI() end)
+  Checkbox(f, "...and learn it for me automatically", "autoTalents", 352, -474, function() FXP:OnTalentPoints() end)
+  Checkbox(f, "Upgrade hints on item tooltips and quest rewards", "gearHints", 352, -498)
+  Checkbox(f, "Share my step with party members using ForeverXP", "partySync", 352, -522, function() FXP:BroadcastStep(); FXP:RefreshUI() end)
+  Checkbox(f, "...and follow the party leader's step", "partyFollow", 352, -546)
+  Checkbox(f, "Warn about steps with high-level or elite mobs", "dangerWarnings", 352, -570, function() FXP:RefreshUI() end)
+  local hc = Checkbox(f, "|cffff6040Hardcore mode|r: skip group steps, low-health alerts", "hardcore", 352, -594)
+  hc:SetScript("OnClick", function(self) FXP:SetHardcore(self:GetChecked()) end)
 
   -- left column, continued
   Stepper(f, "Scale", 16, -430,

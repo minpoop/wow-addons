@@ -38,6 +38,9 @@
 | `/fxp report [note]` | Report a problem with the current step |
 | `/fxp check` | Check every guide quest against Questie's WoW Forever data |
 | `/fxp export` | Show your reports, problem steps and check results as copyable text |
+| `/fxp talents` | Your class's talent build, the next pick, and anything that doesn't match the game |
+| `/fxp sync` | Send your current step to party members using ForeverXP |
+| `/fxp hardcore` | Toggle hardcore mode |
 | `/fxp tier 45` / `/fxp tier` | Preview the Ascension theme at any level / back to your real level |
 
 ## Questie
@@ -84,6 +87,20 @@ Shen'dralas 40-45 (WoW Forever), Azshara 48-50, Silithus 55-58.
 
 All of levels 1-60 are step-by-step: named quests, quest givers, coordinates, hard-quest warnings,
 trainer stops, and optional steps for quests WoW Forever may not offer (they skip themselves with no XP debt).
+
+## Changes in 2.14.0 - talents, upgrades, party sync, hardcore (phase 5)
+- **Talent guide**: a leveling build for every class (e.g. Arms warrior, Beast Mastery hunter, Frost mage, Shadow
+  priest). When you have a talent point, the guide window says what to take next with a **Learn** button, or
+  turn on auto-learn. `/fxp talents` shows the build and anything WoW Forever does differently.
+- **Upgrade hints**: item tooltips say "upgrade (+N)" or "not an upgrade" against what you're wearing, using
+  leveling stat weights for your class (casters vs melee hybrids follow your talents). On quest rewards it tells
+  you the best choice - an upgrade if there is one, otherwise the one that sells for most. It never picks for you.
+- **Party sync**: party members running ForeverXP see each other's step in the guide window ("Ann #12, 3
+  ahead"). Turn on "follow the party leader's step" to move with them, or the leader can type `/fxp sync`.
+- **Safety**: steps whose mobs are 3+ levels above you, or elite, get a warning line. **Hardcore mode**
+  (`/fxp hardcore` or Options) also skips group steps, warns from 2 levels up and gives a big low-health alert
+  in combat.
+- Options > Extras turns each of these on or off.
 
 ## Changes in 2.13.1 - no more dead-end quests
 - Five quests the route picked up but never came back for are sorted out, so they don't clutter your log:

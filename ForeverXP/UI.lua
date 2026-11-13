@@ -241,6 +241,18 @@ function FXP:BuildUI()
   f.current:SetJustifyH("LEFT")
   f.current:SetSpacing(3)
 
+  -- "Learn" for the suggested talent (shown only while a talent point is waiting; Talents.lua)
+  f.learn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+  f.learn:SetSize(52, 18)
+  f.learn:SetPoint("TOPRIGHT", bar, "BOTTOMRIGHT", -6, -5)
+  f.learn:SetText("Learn")
+  if f.learn.SetNormalFontObject then f.learn:SetNormalFontObject("GameFontNormalSmall") end
+  f.learn:SetScript("OnClick", function()
+    local t = FXP.NextTalent and FXP:NextTalent()
+    if t then FXP:LearnTalent(t) end
+  end)
+  f.learn:Hide()
+
   f.divider = f:CreateTexture(nil, "ARTWORK")
   f.divider:SetHeight(1)
   f.divider:SetPoint("TOPLEFT", f.current, "BOTTOMLEFT", 0, -8)
@@ -340,6 +352,13 @@ function FXP:RefreshUI()
       GREY .. "Quest XP doesn't count. /fxp forgive to skip the grind.|r\n\n" ..
       GREY .. "Then:|r\n" .. body
   end
+  -- lines from the phase 5 helpers, above the step: talent point, danger warning, party
+  local extra, talent = {}, nil
+  if self.TalentLine then talent = self:TalentLine(); if talent then extra[#extra + 1] = talent end end
+  if self.DangerLine then local l = self:DangerLine(steps[i]); if l then extra[#extra + 1] = l end end
+  if self.PartyLine then local l = self:PartyLine(); if l then extra[#extra + 1] = l end end
+  if #extra > 0 then body = table.concat(extra, "\n") .. "\n" .. body end
+  if f.learn then if talent then f.learn:Show() else f.learn:Hide() end end
   f.current:SetText(body)
 
   local height = HEADER + 3 + 8 + f.current:GetStringHeight() + 10

@@ -211,6 +211,30 @@ function Q:ObjectiveNames(id)
   end) or {}
 end
 
+-- The creatures a quest's objectives need, with level range and rank (1+ = elite), for danger warnings.
+function Q:ObjectiveMobs(id)
+  if not self.ready then return {} end
+  return Cached(id .. "mobs", function()
+    local out, seen = {}, {}
+    local function add(npcId)
+      if not npcId or seen[npcId] then return end
+      seen[npcId] = true
+      local name = QN(npcId, "name")
+      if name then
+        out[#out + 1] = { name = name, min = QN(npcId, "minLevel"), max = QN(npcId, "maxLevel"), rank = QN(npcId, "rank") or 0 }
+      end
+    end
+    local objs = QQ(id, "objectives")
+    if type(objs) ~= "table" then return out end
+    for _, o in ipairs(objs[1] or {}) do add(o[1]) end
+    for _, o in ipairs(objs[3] or {}) do
+      local drops = QI(o[1], "npcDrops") or {}
+      for i = 1, math.min(3, #drops) do add(drops[i]) end
+    end
+    return out
+  end) or {}
+end
+
 -- Item IDs tied to a quest: the item that starts it / is handed to you, items it needs you to carry, and
 -- items its objectives ask for. Used by the quest item buttons (which only show the usable ones you carry).
 function Q:QuestItems(id)
