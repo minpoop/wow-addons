@@ -231,12 +231,16 @@ function FXP:CheckGuide(g, before)
   for i, s in ipairs(g.steps) do
     if not (s.class or s.races) then -- class/race blocks can't be judged from one character's point of view
       local expect = (g.minLevel or 1) + ((g.maxLevel or 60) - (g.minLevel or 1)) * (i - 1) / math.max(1, n - 1)
+      expect = math.max(expect, s.ifLevel or 0) -- an ifLevel step is only shown from that level on
       for _, key in ipairs({ "accept", "complete", "turnin" }) do
         for _, q in ipairs(s[key] or {}) do
           local id = self:Resolve(q)
           local row = id and QZ:Row(id)
           if not row then
-            add(i, s, "Questie doesn't know this quest (renamed or not in WoW Forever?)", q)
+            -- without Questie's name index a quest named by text can't be looked up, so it proves nothing
+            if not (QZ.indexFailed and type(q) == "string") then
+              add(i, s, "Questie doesn't know this quest (renamed or not in WoW Forever?)", q)
+            end
           else
             if key == "accept" then
               if QZ.FitsFaction and not QZ:FitsFaction(row) then add(i, s, "Questie says this quest isn't for the Alliance", q) end
@@ -270,6 +274,28 @@ end
 function FXP:CheckRoute()
   local QZ = ns.Questie
   if not (QZ and QZ.ready) then self.Print("The route check needs Questie loaded. Try again in a few seconds.") return end
+  -- quests named by text are looked up through Questie's name index, built in the background after login;
+  -- checking before it's done reports most of them as unknown, so wait for it
+  if not QZ.indexDone and not QZ.indexFailed then
+    if not self.checkWaiting then
+      self.checkWaiting = true
+      local waited = 0
+      self.Print("Questie's quest index is still building (%d%%). The route check will run as soon as it's ready.",
+        QZ.indexTotal and QZ.indexTotal > 0 and math.floor((QZ.indexPos or 0) * 100 / QZ.indexTotal) or 0)
+      local function wait()
+        waited = waited + 1
+        if QZ.indexDone or QZ.indexFailed or waited > 180 then
+          self.checkWaiting = nil
+          if not QZ.indexDone then QZ.indexFailed = true end
+          self:CheckRoute()
+        else
+          C_Timer.After(1, wait)
+        end
+      end
+      C_Timer.After(1, wait)
+    end
+    return
+  end
   local order, seen = {}, {}
   for _, n in ipairs(self.guideOrder or {}) do if not seen[n] then seen[n] = true; order[#order + 1] = n end end
   local before, all, i = {}, {}, 0
@@ -279,7 +305,11 @@ function FXP:CheckRoute()
       i = i + 1
       local g = self.guides[order[i]]
       if not g then
-        DB().routeCheck = { when = date and date("%Y-%m-%d %H:%M") or "?", version = Version(), findings = all }
+        DB().routeCheck = { when = date and date("%Y-%m-%d %H:%M") or "?", version = Version(), findings = all,
+          nameIndex = QZ.indexDone and "complete" or "unavailable" }
+        if not QZ.indexDone then
+          self.Print("Note: Questie's name index wasn't available, so quests the guides name by text weren't checked.")
+        end
         self.Print("Route check done: %d thing%s to look at. /fxp export to see them; /reload saves them for me.",
           #all, #all == 1 and "" or "s")
         return
@@ -316,7 +346,8 @@ function FXP:ExportText()
   end
   L("")
   local rc = db.routeCheck
-  L("== Route check" .. (rc and (" (" .. rc.when .. ", " .. #rc.findings .. " findings)") or ": not run yet, type /fxp check"))
+  L("== Route check" .. (rc and (" (" .. rc.when .. ", v" .. (rc.version or "?") .. ", name index " .. (rc.nameIndex or "not recorded")
+    .. ", " .. #rc.findings .. " findings)") or ": not run yet, type /fxp check"))
   for _, f in ipairs(rc and rc.findings or {}) do
     L(string.format("- %s #%s%s: %s%s", f.guide or "?", f.step or "?", f.src and (" (file step " .. f.src .. ")") or "",
       f.quest and (f.quest .. " - ") or "", f.issue or ""))

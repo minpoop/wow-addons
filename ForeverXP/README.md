@@ -85,6 +85,14 @@ Shen'dralas 40-45 (WoW Forever), Azshara 48-50, Silithus 55-58.
 All of levels 1-60 are step-by-step: named quests, quest givers, coordinates, hard-quest warnings,
 trainer stops, and optional steps for quests WoW Forever may not offer (they skip themselves with no XP debt).
 
+## Changes in 2.12.1 - first route check fixes
+- `/fxp check` now waits for Questie's quest index to finish building (it shows progress and runs by itself
+  when ready). Run too early, it reported almost every quest named by text as unknown - those were false.
+- Level-gated steps (`ifLevel`) are no longer flagged as "needs level X".
+- Westfall: the route now actually picks up and hands in Verna's Westfall Stew delivery, which Salma's Westfall
+  Stew needs first. The Defias Brotherhood (needs level 14) is picked up from Gryan once you're 14, just before
+  flying out, instead of at about level 12 when you can't take it yet.
+
 ## Changes in 2.12 - route feedback (phase 4)
 - Report a step: the note icon on the guide window (or `/fxp report`) opens a short form - pick what's
   wrong (wrong place, quest missing, too hard, wrong order, unclear text) and add a note. `/fxp report

@@ -231,7 +231,7 @@ end
 ---------------------------------------------------------------------------
 function Q:BuildNameIndex()
   local pointers = self.DB.QuestPointers or self.DB.questPointers
-  if type(pointers) ~= "table" then return end
+  if type(pointers) ~= "table" then self.indexFailed = true; return end
   local wanted = {}
   for _, g in pairs(FXP.guides) do
     for _, n in pairs(g.quests or {}) do wanted[n] = true end
@@ -246,6 +246,7 @@ function Q:BuildNameIndex()
   local ids = {}
   for id in pairs(pointers) do ids[#ids + 1] = id end
   local i = 0
+  self.indexPos, self.indexTotal = 0, #ids
   local ticker
   ticker = C_Timer.NewTicker(0.05, function()
     for _ = 1, 400 do
@@ -267,14 +268,18 @@ function Q:BuildNameIndex()
         FXP:QueueUpdate()
         return
       end
-      local name = QQ(id, "name")
-      if name and wanted[name] then
-        local row = self:Row(id)
-        if self:FitsFaction(row) then
-          self.byNameList[name] = self.byNameList[name] or {}
-          table.insert(self.byNameList[name], id)
+      self.indexPos = i
+      -- one odd quest record must never stop the index from finishing
+      pcall(function()
+        local name = QQ(id, "name")
+        if name and wanted[name] then
+          local row = self:Row(id)
+          if self:FitsFaction(row) then
+            self.byNameList[name] = self.byNameList[name] or {}
+            table.insert(self.byNameList[name], id)
+          end
         end
-      end
+      end)
     end
   end)
 end

@@ -611,6 +611,27 @@ for _, x in ipairs(f) do issues[x.quest] = x.issue end
 check(#f == 5 and issues["CK Unknown"]:find("doesn't know") and issues["CK Horde"]:find("Alliance") and issues["CK High"]:find("needs level 30")
   and issues["CK Pre"]:find("424242") and issues["CK Far"]:find("Farmer Far") and not issues["CK Good"],
   "route check flags unknown, wrong-faction, too-high, missing-prerequisite and misplaced quests (and skips class steps)")
+local lvlStep = { name = "LV", minLevel = 10, maxLevel = 12, steps = { { accept = { "CK High" }, ifLevel = 30, src = 1 } } }
+check(#FXP:CheckGuide(lvlStep, {}) == 0, "route check respects ifLevel (a level-gated step isn't 'too high')")
+local sameStep = { name = "PS", minLevel = 10, maxLevel = 12, steps = { { accept = { "CK Pre" }, src = 1 } } }
+check(#FXP:CheckGuide(sameStep, { [424242] = true }) == 0, "prerequisite done earlier in the route isn't flagged")
+-- the check waits for Questie's name index instead of reporting every named quest as unknown
+local timers = {}
+local realAfter = C_Timer.After
+C_Timer.After = function(_, fn) timers[#timers + 1] = fn end
+ns.Questie.indexDone, ns.Questie.indexPos, ns.Questie.indexTotal = false, 500, 1000
+local before = ForeverXPDB.routeCheck
+local said5 = {}
+FXP.Print = function(fmt, ...) said5[#said5 + 1] = string.format(fmt, ...) end
+FXP:CheckRoute()
+check(ForeverXPDB.routeCheck == before and said5[1] and said5[1]:find("50%%") and #timers == 1,
+  "route check waits for Questie's name index (shows progress)")
+ns.Questie.indexDone = true
+local guard = 0
+while #timers > 0 and guard < 200 do guard = guard + 1; table.remove(timers, 1)() end
+check(ForeverXPDB.routeCheck ~= before and ForeverXPDB.routeCheck.nameIndex == "complete", "...and runs by itself once the index is ready")
+C_Timer.After = realAfter
+FXP.Print = function(fmt, ...) said4[#said4 + 1] = string.format(fmt, ...) end
 ns.Questie = realQZ4
 
 ForeverXPDB.routeCheck = { when = "today", version = "test", findings = f }

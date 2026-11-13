@@ -1,7 +1,7 @@
 # ForeverXP: project notes for Claude Code
 
 A free RestedXP-style leveling guide addon for **WoW Forever** (Blizzard's Classic+, launched Nov 4 2026, interface 16001).
-Alliance only. Current version **2.12.0** (see `ForeverXP.toc` and the changelog in `README.md`).
+Alliance only. Current version **2.12.1** (see `ForeverXP.toc` and the changelog in `README.md`).
 Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
 
 ## Ground rules from the owner
@@ -133,6 +133,10 @@ python3 Tools/make_textures.py                   # procedural-only textures (blo
   settle with real data: five optional chain starters are accepted and never handed in (Legend of
   Stalvan#2, Seeking Wisdom, The Green Hills of Stranglethorn, The Missing Diplomat#1, Mor'Ladim), and
   Burning Steppes 51-53 leads into Un'Goro 49-52.
+- First owner route check (v2.12.0) ran before Questie's name index finished, so ~700 "Questie doesn't know"
+  findings were false; numeric-ID quests were checked properly. Fixed: CheckRoute waits for `indexDone`
+  (or `indexFailed`, then skips text-named quests), and the result records `nameIndex`. Real findings fixed in
+  Westfall (stew delivery 36 before 38; Defias Brotherhood 65 needs 14). Ask the owner to rerun `/fxp check`.
 - Roadmap agreed with the owner: phase 1 quest helpers (done), phase 2 travel (done), phase 3 map pins (done),
   phase 4 route feedback tools (done; fixes ongoing from reports), phase 4 route quality from in-game reports, phase 5 talents /
   upgrades / group sync / hardcore mode, phase 6 Horde 1-60.

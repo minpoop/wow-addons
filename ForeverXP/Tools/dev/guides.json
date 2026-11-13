@@ -20,13 +20,16 @@
 },
 "steps": [
 {
-"accept": 151.0,
+"accept": [
+151.0,
+36.0
+],
 "npc": "Verna Furlbrow",
 "coords": [
 59.9,
 19.4
 ],
-"text": "Jansen Stead, just inside Westfall. Also take Verna's Westfall Stew delivery for Salma.",
+"text": "Jansen Stead, just inside Westfall. Take Poor Old Blanchy and Verna's Westfall Stew delivery for Salma.",
 "_line": 20
 },
 {
@@ -48,6 +51,16 @@
 "_line": 23
 },
 {
+"turnin": 36.0,
+"npc": "Salma Saldean",
+"coords": [
+56.4,
+30.6
+],
+"text": "Hand Verna's Westfall Stew delivery to Salma.",
+"_line": 24
+},
+{
 "accept": [
 38.0,
 22.0
@@ -57,8 +70,8 @@
 56.4,
 30.6
 ],
-"text": "Hand in the Westfall Stew delivery first, then take the cooking quests.",
-"_line": 24
+"text": "Then take her cooking quests.",
+"_line": 25
 },
 {
 "accept": 9.0,
@@ -215,12 +228,13 @@
 {
 "accept": 65.0,
 "optional": true,
+"ifLevel": 14.0,
 "npc": "Gryan Stoutmantle",
 "coords": [
 56.3,
 47.5
 ],
-"text": "The Defias Brotherhood: keep it, you'll hand it in at Lakeshire in Redridge.",
+"text": "Already 14? Take The Defias Brotherhood too (it needs level 14); you'll hand it in at Lakeshire in Redridge.",
 "_line": 47
 },
 {
@@ -281,15 +295,26 @@
 42.0
 ],
 "radius": 200.0,
-"fly": "Stormwind",
-"text": "Grind gnolls/Defias to 14 if needed. Fly to Stormwind.",
+"text": "Grind gnolls/Defias to 14 if needed.",
 "_line": 58
+},
+{
+"accept": 65.0,
+"ifLevel": 14.0,
+"npc": "Gryan Stoutmantle",
+"coords": [
+56.3,
+47.5
+],
+"fly": "Stormwind",
+"text": "Now you're 14: take The Defias Brotherhood from Gryan (you'll hand it in at Lakeshire), then fly to Stormwind.",
+"_line": 59
 },
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
 "text": "Then take the Deeprun Tram to Ironforge and run east to Loch Modan.",
-"_line": 60
+"_line": 61
 }
 ],
 "_line": 10,
@@ -310,7 +335,7 @@
 "385.0": "Crocolisk Hunting",
 "224.0": "In Defense of the King's Lands",
 "267.0": "The Trogg Threat",
-"_line": 69
+"_line": 70
 },
 "steps": [
 {
@@ -321,7 +346,7 @@
 73.0
 ],
 "text": "Southern Guard Tower, where the road from Dun Morogh enters Loch Modan.",
-"_line": 74
+"_line": 75
 },
 {
 "accept": 267.0,
@@ -330,7 +355,7 @@
 23.4,
 75.0
 ],
-"_line": 76
+"_line": 77
 },
 {
 "complete": [
@@ -345,7 +370,7 @@
 "text": "Stonesplinter Valley (entrance near 27, 65): kill troggs and scouts, loot Trogg Stone Teeth.",
 "warn": "Stonesplinter troggs stand very close together.",
 "tip": "Fight on the edges of the valley and use line of sight to pull single troggs.",
-"_line": 77
+"_line": 78
 },
 {
 "turnin": 224.0,
@@ -355,7 +380,7 @@
 73.0
 ],
 "text": "Take the next In Defense of the King's Lands steps from the tower if you want more trogg XP.",
-"_line": 81
+"_line": 82
 },
 {
 "turnin": 267.0,
@@ -364,7 +389,7 @@
 23.4,
 75.0
 ],
-"_line": 83
+"_line": 84
 },
 {
 "fp": "Thelsamar",
@@ -375,7 +400,7 @@
 50.9
 ],
 "radius": 20.0,
-"_line": 84
+"_line": 85
 },
 {
 "accept": [
@@ -387,7 +412,7 @@
 37.2,
 47.4
 ],
-"_line": 85
+"_line": 86
 },
 {
 "accept": 418.0,
@@ -396,7 +421,7 @@
 34.8,
 49.1
 ],
-"_line": 86
+"_line": 87
 },
 {
 "turnin": 1339.0,
@@ -406,7 +431,7 @@
 18.2
 ],
 "text": "Algaz Station, the tower at the north end of the road.",
-"_line": 87
+"_line": 88
 },
 {
 "accept": 307.0,
@@ -415,7 +440,7 @@
 25.0,
 18.2
 ],
-"_line": 88
+"_line": 89
 },
 {
 "complete": [
@@ -430,7 +455,7 @@
 "text": "Silver Stream Mine: Tunnel Rat ears from the kobolds, Miners' Gear from the crates inside.",
 "warn": "The kobold tunnels are crowded and respawn quickly.",
 "tip": "Grab crates along the walls and do not chase runners deeper into the mine.",
-"_line": 89
+"_line": 90
 },
 {
 "turnin": 307.0,
@@ -439,7 +464,7 @@
 25.0,
 18.2
 ],
-"_line": 93
+"_line": 94
 },
 {
 "complete": 418.0,
@@ -449,7 +474,7 @@
 ],
 "radius": 200.0,
 "text": "Bear meat, boar intestines and spider ichor from the wildlife west of the road.",
-"_line": 94
+"_line": 95
 },
 {
 "turnin": [
@@ -461,7 +486,7 @@
 35.5,
 48.5
 ],
-"_line": 96
+"_line": 97
 },
 {
 "accept": 385.0,
@@ -471,7 +496,7 @@
 63.5
 ],
 "text": "Farstrider Lodge on the east shore.",
-"_line": 97
+"_line": 98
 },
 {
 "complete": 385.0,
@@ -481,7 +506,7 @@
 ],
 "radius": 200.0,
 "text": "Loch crocolisks on the shores and southern island.",
-"_line": 98
+"_line": 99
 },
 {
 "turnin": 385.0,
@@ -490,7 +515,7 @@
 82.5,
 63.5
 ],
-"_line": 99
+"_line": 100
 },
 {
 "level": 16.0,
@@ -500,17 +525,17 @@
 ],
 "radius": 300.0,
 "text": "Grind to 16 if needed. Optional extra quests here: Ironband's Excavation, A Dark Threat Looms (dam), WANTED: Chok'sul.",
-"_line": 100
+"_line": 101
 },
 {
 "train": "Ironforge",
 "zone": "Ironforge",
 "fly": "Ironforge",
 "text": "Fly to Ironforge, train, tram to Stormwind and run east through Elwynn to Redridge.",
-"_line": 102
+"_line": 103
 }
 ],
-"_line": 66,
+"_line": 67,
 "name": "Loch Modan 14-16",
 "file": "Guides/Alliance_10-30.lua"
 },
@@ -533,7 +558,7 @@
 "124.0": "A Baying of Gnolls",
 "126.0": "Howling in the Hills",
 "65.0": "The Defias Brotherhood",
-"_line": 112
+"_line": 113
 },
 "steps": [
 {
@@ -544,7 +569,7 @@
 71.5
 ],
 "text": "Three Corners, at the Elwynn border.",
-"_line": 118
+"_line": 119
 },
 {
 "fp": "Lakeshire",
@@ -554,7 +579,7 @@
 59.4
 ],
 "radius": 10.0,
-"_line": 119
+"_line": 120
 },
 {
 "turnin": "Encroaching Gnolls",
@@ -563,7 +588,7 @@
 30.6,
 60.0
 ],
-"_line": 120
+"_line": 121
 },
 {
 "accept": 246.0,
@@ -572,7 +597,7 @@
 30.6,
 60.0
 ],
-"_line": 121
+"_line": 122
 },
 {
 "bind": "Lakeshire",
@@ -582,7 +607,7 @@
 44.5
 ],
 "radius": 8.0,
-"_line": 122
+"_line": 123
 },
 {
 "turnin": 65.0,
@@ -593,7 +618,7 @@
 44.5
 ],
 "text": "Upstairs in the inn.",
-"_line": 123
+"_line": 124
 },
 {
 "accept": 125.0,
@@ -602,7 +627,7 @@
 32.1,
 48.6
 ],
-"_line": 124
+"_line": 125
 },
 {
 "accept": "Alther's Mill",
@@ -613,7 +638,7 @@
 48.6
 ],
 "text": "New in WoW Forever.",
-"_line": 125
+"_line": 126
 },
 {
 "accept": "The Price of Shoes",
@@ -623,7 +648,7 @@
 47.3
 ],
 "text": "You'll deliver these shoes in Goldshire on your trainer trip; that unlocks Verner's best quests.",
-"_line": 127
+"_line": 128
 },
 {
 "accept": 3741.0,
@@ -632,7 +657,7 @@
 28.3,
 48.9
 ],
-"_line": 129
+"_line": 130
 },
 {
 "accept": 92.0,
@@ -641,7 +666,7 @@
 22.8,
 44.0
 ],
-"_line": 130
+"_line": 131
 },
 {
 "accept": 127.0,
@@ -650,7 +675,7 @@
 27.7,
 47.4
 ],
-"_line": 131
+"_line": 132
 },
 {
 "complete": 3741.0,
@@ -660,7 +685,7 @@
 ],
 "radius": 40.0,
 "text": "Search the Glinting Mud on the lake bottom west of the bridge.",
-"_line": 132
+"_line": 133
 },
 {
 "complete": 125.0,
@@ -672,7 +697,7 @@
 "text": "Dive for the sunken chest by the rowboat.",
 "warn": "The Lake Thresher patrols underwater near the chest.",
 "tip": "Wait for it to swim away and watch your breath bar.",
-"_line": 134
+"_line": 135
 },
 {
 "turnin": 3741.0,
@@ -681,7 +706,7 @@
 28.3,
 48.9
 ],
-"_line": 137
+"_line": 138
 },
 {
 "turnin": 125.0,
@@ -690,7 +715,7 @@
 32.1,
 48.6
 ],
-"_line": 138
+"_line": 139
 },
 {
 "accept": 89.0,
@@ -699,7 +724,7 @@
 32.1,
 48.6
 ],
-"_line": 139
+"_line": 140
 },
 {
 "complete": [
@@ -712,7 +737,7 @@
 ],
 "radius": 200.0,
 "text": "South of Lakeshire: gnoll Mongrels/Poachers, tarantulas, Great Goretusks and Dire Condors.",
-"_line": 140
+"_line": 141
 },
 {
 "complete": "Alther's Mill",
@@ -723,7 +748,7 @@
 ],
 "radius": 80.0,
 "text": "WoW Forever quest: Greater Tarantulas and Tarantula Eggs at Alther's Mill. Skip if you didn't get it.",
-"_line": 142
+"_line": 143
 },
 {
 "complete": 127.0,
@@ -734,7 +759,7 @@
 "radius": 60.0,
 "text": "Murlocs east of Lakeshire for Spotted Sunfish (keep any Murloc Fins).",
 "tip": "Pull murlocs one at a time to the shore; they flee and bring friends.",
-"_line": 144
+"_line": 145
 },
 {
 "turnin": 246.0,
@@ -743,7 +768,7 @@
 30.6,
 60.0
 ],
-"_line": 147
+"_line": 148
 },
 {
 "turnin": 92.0,
@@ -752,7 +777,7 @@
 22.8,
 44.0
 ],
-"_line": 148
+"_line": 149
 },
 {
 "turnin": 127.0,
@@ -761,7 +786,7 @@
 27.7,
 47.4
 ],
-"_line": 149
+"_line": 150
 },
 {
 "turnin": "Alther's Mill",
@@ -771,7 +796,7 @@
 32.1,
 48.6
 ],
-"_line": 150
+"_line": 151
 },
 {
 "complete": 89.0,
@@ -783,7 +808,7 @@
 "text": "Gnolls north-west of Lakeshire: Iron Pikes and Rivets.",
 "warn": "Redridge Brutes and Mystics come in packs of 2-3.",
 "tip": "Pull around tents with ranged/line of sight. Kill Mystics first.",
-"_line": 151
+"_line": 152
 },
 {
 "turnin": 89.0,
@@ -792,7 +817,7 @@
 32.1,
 48.6
 ],
-"_line": 154
+"_line": 155
 },
 {
 "level": 19.0,
@@ -802,14 +827,14 @@
 ],
 "radius": 200.0,
 "text": "Grind gnolls to 19 if needed.",
-"_line": 155
+"_line": 156
 },
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
 "fly": "Stormwind",
 "text": "Fly to Stormwind and train. Then run out the gate to Goldshire for the shoes delivery.",
-"_line": 156
+"_line": 157
 },
 {
 "turnin": "The Price of Shoes",
@@ -820,7 +845,7 @@
 ],
 "text": "Goldshire smithy (Elwynn Forest).",
 "zone": "Elwynn Forest",
-"_line": 158
+"_line": 159
 },
 {
 "accept": 119.0,
@@ -831,7 +856,7 @@
 ],
 "zone": "Elwynn Forest",
 "text": "Then run east back to Lakeshire (or fly from Stormwind).",
-"_line": 160
+"_line": 161
 },
 {
 "turnin": 119.0,
@@ -840,7 +865,7 @@
 31.0,
 47.3
 ],
-"_line": 162
+"_line": 163
 },
 {
 "accept": [
@@ -852,7 +877,7 @@
 31.0,
 47.3
 ],
-"_line": 163
+"_line": 164
 },
 {
 "accept": 150.0,
@@ -863,7 +888,7 @@
 ],
 "ifLevel": 20.0,
 "text": "Murloc Poachers needs level 20; skip if you're lower.",
-"_line": 164
+"_line": 165
 },
 {
 "complete": 124.0,
@@ -873,7 +898,7 @@
 ],
 "radius": 120.0,
 "text": "Redridge Brutes around 24, 35 and Mystics around 28, 29.",
-"_line": 166
+"_line": 167
 },
 {
 "complete": 122.0,
@@ -885,7 +910,7 @@
 "text": "Black Dragon Whelps south of the lake for Underbelly Whelp Scales.",
 "warn": "Whelps cast fireballs from range.",
 "tip": "Close the gap fast or use line of sight; don't trade spells with them at range.",
-"_line": 167
+"_line": 168
 },
 {
 "complete": 150.0,
@@ -896,7 +921,7 @@
 "radius": 80.0,
 "ifLevel": 20.0,
 "text": "Murloc Fins from the murlocs east of Lakeshire.",
-"_line": 170
+"_line": 171
 },
 {
 "turnin": [
@@ -908,7 +933,7 @@
 31.0,
 47.3
 ],
-"_line": 171
+"_line": 172
 },
 {
 "turnin": 150.0,
@@ -918,7 +943,7 @@
 47.4
 ],
 "ifLevel": 20.0,
-"_line": 172
+"_line": 173
 },
 {
 "accept": 126.0,
@@ -927,7 +952,7 @@
 31.0,
 47.3
 ],
-"_line": 173
+"_line": 174
 },
 {
 "complete": 126.0,
@@ -939,7 +964,7 @@
 "text": "Kill Yowler in the northernmost gnoll camp.",
 "warn": "Yowler is several levels higher than you.",
 "tip": "Be level 19-20, clear the gnolls nearby first, and use every cooldown or bring a friend.",
-"_line": 174
+"_line": 175
 },
 {
 "turnin": 126.0,
@@ -948,7 +973,7 @@
 31.0,
 47.3
 ],
-"_line": 176
+"_line": 177
 },
 {
 "elite": true,
@@ -960,7 +985,7 @@
 ],
 "radius": 30.0,
 "tip": "Pull outside the keep walls, crowd-control the casters, and let the tank hold the elite.",
-"_line": 177
+"_line": 178
 },
 {
 "level": 19.0,
@@ -971,10 +996,10 @@
 30.0
 ],
 "radius": 200.0,
-"_line": 181
+"_line": 182
 }
 ],
-"_line": 109,
+"_line": 110,
 "name": "Redridge Mountains 16-20",
 "file": "Guides/Alliance_10-30.lua"
 },
@@ -986,7 +1011,7 @@
 "next": "Duskwood 20-24",
 "quests": {
 "14.0": "The People's Militia",
-"_line": 190
+"_line": 191
 },
 "steps": [
 {
@@ -997,7 +1022,7 @@
 47.5
 ],
 "text": "Final part of The People's Militia. Also take any Defias Brotherhood follow-ups from Gryan.",
-"_line": 192
+"_line": 193
 },
 {
 "complete": 14.0,
@@ -1009,7 +1034,7 @@
 "text": "Defias Highwaymen, Pathstalkers and Knuckledusters in the Dagger Hills and around Moonbrook, south Westfall.",
 "warn": "Defias here are level 17-19 and pull in groups near Moonbrook.",
 "tip": "Work the Dagger Hills camps from the outside in and avoid the Moonbrook town square.",
-"_line": 194
+"_line": 195
 },
 {
 "turnin": 14.0,
@@ -1018,7 +1043,7 @@
 56.3,
 47.5
 ],
-"_line": 198
+"_line": 199
 },
 {
 "elite": true,
@@ -1029,7 +1054,7 @@
 71.5
 ],
 "radius": 25.0,
-"_line": 199
+"_line": 200
 },
 {
 "level": 20.0,
@@ -1039,17 +1064,17 @@
 ],
 "radius": 250.0,
 "text": "Grind Defias / coastal murlocs to 20 if needed.",
-"_line": 202
+"_line": 203
 },
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
 "fly": "Stormwind",
 "text": "Fly to Stormwind and train, then fly to Darkshire (or run south through Elwynn).",
-"_line": 204
+"_line": 205
 }
 ],
-"_line": 188,
+"_line": 189,
 "name": "Westfall 19-20",
 "file": "Guides/Alliance_10-30.lua"
 },
@@ -1069,60 +1094,60 @@
 44.4
 ],
 "radius": 12.0,
-"_line": 215
+"_line": 216
 },
 {
 "accept": "Seasoned Wolf Kabobs",
 "npc": "Chef Grual",
-"_line": 216
+"_line": 217
 },
 {
 "accept": "The Night Watch#1",
 "npc": "Commander Althea Ebonlocke",
-"_line": 217
+"_line": 218
 },
 {
 "accept": "Raven Hill",
 "npc": "Elaine Carevin",
-"_line": 218
-},
-{
-"accept": "Deliveries to Sven",
 "_line": 219
 },
 {
-"accept": "The Hermit",
+"accept": "Deliveries to Sven",
 "_line": 220
 },
 {
-"accept": "The Totem of Infliction",
+"accept": "The Hermit",
 "_line": 221
+},
+{
+"accept": "The Totem of Infliction",
+"_line": 222
 },
 {
 "accept": "Look to the Stars#1",
 "npc": "Viktori Prism'Antras",
-"_line": 222
+"_line": 223
 },
 {
 "accept": "The Legend of Stalvan#1",
 "npc": "Madame Eva",
-"_line": 223
+"_line": 224
 },
 {
 "turnin": "Look to the Stars#1",
 "text": "Hand this in right away in Darkshire.",
-"_line": 224
+"_line": 225
 },
 {
 "turnin": "The Legend of Stalvan#1",
 "text": "Hand this in right away in Darkshire.",
-"_line": 225
+"_line": 226
 },
 {
 "accept": "The Legend of Stalvan#2",
 "optional": true,
 "text": "The Stalvan chain sends you around Duskwood, Westfall and Stormwind; do its steps when you pass by.",
-"_line": 226
+"_line": 227
 },
 {
 "complete": "The Night Watch#1",
@@ -1134,17 +1159,17 @@
 "text": "Skeletal Fiends and Horrors at the Tranquil Gardens Cemetery south-east of Darkshire.",
 "warn": "Skeletons stand close together around the graves.",
 "tip": "Pull from the cemetery edge and never fight in the middle.",
-"_line": 228
+"_line": 229
 },
 {
 "turnin": "The Night Watch#1",
 "npc": "Commander Althea Ebonlocke",
-"_line": 231
+"_line": 232
 },
 {
 "accept": "The Night Watch#2",
 "optional": true,
-"_line": 232
+"_line": 233
 },
 {
 "complete": "Seasoned Wolf Kabobs",
@@ -1154,7 +1179,7 @@
 ],
 "radius": 200.0,
 "text": "Dire wolves along the northern riverbank for Lean Wolf Flanks. Kill spiders you meet for the totem quest.",
-"_line": 233
+"_line": 234
 },
 {
 "turnin": "Raven Hill",
@@ -1164,7 +1189,7 @@
 56.6
 ],
 "text": "Jitters hides by the well at Raven Hill.",
-"_line": 235
+"_line": 236
 },
 {
 "accept": "Jitters' Growling Gut",
@@ -1173,7 +1198,7 @@
 18.4,
 56.6
 ],
-"_line": 236
+"_line": 237
 },
 {
 "turnin": "The Hermit",
@@ -1181,12 +1206,12 @@
 "text": "Abercrombie's shack is north-east of Raven Hill Cemetery.",
 "warn": "Mor'Ladim (elite) patrols the cemetery path.",
 "tip": "Watch for his patrol and go around him.",
-"_line": 237
+"_line": 238
 },
 {
 "accept": "Supplies from Darkshire",
 "npc": "Abercrombie",
-"_line": 240
+"_line": 241
 },
 {
 "turnin": "Deliveries to Sven",
@@ -1196,7 +1221,7 @@
 34.1
 ],
 "text": "Sven's camp at the Hushed Bank, far west.",
-"_line": 241
+"_line": 242
 },
 {
 "accept": "Sven's Revenge",
@@ -1205,7 +1230,7 @@
 7.8,
 34.1
 ],
-"_line": 242
+"_line": 243
 },
 {
 "complete": "The Totem of Infliction",
@@ -1215,12 +1240,12 @@
 ],
 "radius": 250.0,
 "text": "Spiders and wolves around northern Duskwood for the totem items.",
-"_line": 243
+"_line": 244
 },
 {
 "turnin": "Seasoned Wolf Kabobs",
 "npc": "Chef Grual",
-"_line": 245
+"_line": 246
 },
 {
 "turnin": [
@@ -1228,7 +1253,7 @@
 "Supplies from Darkshire"
 ],
 "text": "Back in Darkshire: hand these in and take the follow-ups (Dusky Crab Cakes, Ghost Hair Thread).",
-"_line": 246
+"_line": 247
 },
 {
 "accept": [
@@ -1236,7 +1261,7 @@
 "Ghost Hair Thread"
 ],
 "optional": true,
-"_line": 248
+"_line": 249
 },
 {
 "complete": "Dusky Crab Cakes",
@@ -1247,28 +1272,28 @@
 ],
 "radius": 150.0,
 "text": "Crabs along the northern river.",
-"_line": 249
+"_line": 250
 },
 {
 "turnin": "Dusky Crab Cakes",
 "optional": true,
-"_line": 251
+"_line": 252
 },
 {
 "accept": "Return to Jitters",
 "optional": true,
-"_line": 252
+"_line": 253
 },
 {
 "turnin": "Ghost Hair Thread",
 "optional": true,
 "text": "Talk to Madame Eva, then take the thread to Abercrombie.",
-"_line": 253
+"_line": 254
 },
 {
 "accept": "Deliver the Thread",
 "optional": true,
-"_line": 254
+"_line": 255
 },
 {
 "turnin": [
@@ -1277,13 +1302,13 @@
 ],
 "optional": true,
 "text": "Jitters at the Raven Hill well, then Abercrombie's shack.",
-"_line": 255
+"_line": 256
 },
 {
 "accept": "Zombie Juice",
 "optional": true,
 "npc": "Abercrombie",
-"_line": 257
+"_line": 258
 },
 {
 "level": 24.0,
@@ -1293,17 +1318,17 @@
 ],
 "radius": 400.0,
 "text": "Grind wolves, spiders or skeletons to 24 if needed.",
-"_line": 258
+"_line": 259
 },
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
 "fly": "Stormwind",
 "text": "Fly to Stormwind and train. Then tram to Ironforge, fly to Thelsamar and run north through Dun Algaz into the Wetlands (or fly to Menethil if you have it).",
-"_line": 260
+"_line": 261
 }
 ],
-"_line": 211,
+"_line": 212,
 "name": "Duskwood 20-24",
 "file": "Guides/Alliance_10-30.lua"
 },
@@ -1325,22 +1350,22 @@
 "radius": 20.0,
 "warn": "The road from Dun Algaz to Menethil passes Dragonmaw orcs and raptors.",
 "tip": "Stay on the road and mount up/run past; don't fight on the way.",
-"_line": 270
+"_line": 271
 },
 {
 "accept": "Report to Captain Stoutfist",
 "npc": "Valstag Ironjaw",
-"_line": 273
+"_line": 274
 },
 {
 "accept": "Reclaiming Goods",
 "npc": "Karl Boran",
-"_line": 274
+"_line": 275
 },
 {
 "accept": "Young Crocolisk Skins",
 "optional": true,
-"_line": 275
+"_line": 276
 },
 {
 "text": "WoW Forever: Caitlin Grassman (house at 11.9, 58.8) starts the Excavation Site dungeon quests; take them if you'll run it.",
@@ -1349,7 +1374,7 @@
 58.8
 ],
 "radius": 10.0,
-"_line": 276
+"_line": 277
 },
 {
 "turnin": "Reclaiming Goods",
@@ -1360,7 +1385,7 @@
 "text": "Damaged Crate at the Bluegill murloc camp north of Menethil.",
 "warn": "Bluegill murlocs come in groups and flee to bring friends.",
 "tip": "Pull from the edge and click the crates once the area's clear.",
-"_line": 278
+"_line": 279
 },
 {
 "accept": "The Search Continues",
@@ -1368,7 +1393,7 @@
 13.5,
 41.4
 ],
-"_line": 280
+"_line": 281
 },
 {
 "turnin": "The Search Continues",
@@ -1377,7 +1402,7 @@
 38.0
 ],
 "text": "Sealed Barrel in the hovels just north.",
-"_line": 281
+"_line": 282
 },
 {
 "accept": "Search More Hovels",
@@ -1385,7 +1410,7 @@
 13.5,
 38.0
 ],
-"_line": 282
+"_line": 283
 },
 {
 "turnin": "Search More Hovels",
@@ -1394,7 +1419,7 @@
 37.0
 ],
 "text": "Half-buried Barrel a little further north.",
-"_line": 283
+"_line": 284
 },
 {
 "accept": "Return the Statuette",
@@ -1402,13 +1427,13 @@
 13.5,
 37.0
 ],
-"_line": 284
+"_line": 285
 },
 {
 "turnin": "Return the Statuette",
 "npc": "Karl Boran",
 "text": "Back in Menethil Harbor.",
-"_line": 285
+"_line": 286
 },
 {
 "complete": "Young Crocolisk Skins",
@@ -1419,7 +1444,7 @@
 ],
 "radius": 150.0,
 "text": "Young crocolisks around Menethil.",
-"_line": 286
+"_line": 287
 },
 {
 "turnin": "Young Crocolisk Skins",
@@ -1429,25 +1454,25 @@
 60.6
 ],
 "text": "Hand in at Menethil Harbor.",
-"_line": 288
+"_line": 289
 },
 {
 "turnin": "Report to Captain Stoutfist",
 "npc": "Captain Stoutfist",
 "text": "Whelgar's Excavation Site.",
-"_line": 289
+"_line": 290
 },
 {
 "accept": "War Banners",
 "npc": "Captain Stoutfist",
-"_line": 290
+"_line": 291
 },
 {
 "accept": [
 "Uncovering the Past",
 "Ormer's Revenge#1"
 ],
-"_line": 291
+"_line": 292
 },
 {
 "complete": "Ormer's Revenge#1",
@@ -1459,7 +1484,7 @@
 "text": "Raptors in the hills west of the excavation. Pick up excavation fragments as you go.",
 "warn": "Mottled raptors fight in pairs and hit hard.",
 "tip": "Pull with range and fight away from the next pack.",
-"_line": 292
+"_line": 293
 },
 {
 "complete": "Uncovering the Past",
@@ -1468,19 +1493,19 @@
 50.0
 ],
 "radius": 60.0,
-"_line": 295
+"_line": 296
 },
 {
 "turnin": [
 "Ormer's Revenge#1",
 "Uncovering the Past"
 ],
-"_line": 296
+"_line": 297
 },
 {
 "accept": "Ormer's Revenge#2",
 "optional": true,
-"_line": 297
+"_line": 298
 },
 {
 "complete": "Ormer's Revenge#2",
@@ -1490,12 +1515,12 @@
 46.0
 ],
 "radius": 150.0,
-"_line": 298
+"_line": 299
 },
 {
 "turnin": "Ormer's Revenge#2",
 "optional": true,
-"_line": 299
+"_line": 300
 },
 {
 "accept": [
@@ -1508,7 +1533,7 @@
 56.3,
 40.3
 ],
-"_line": 300
+"_line": 301
 },
 {
 "complete": [
@@ -1521,7 +1546,7 @@
 ],
 "radius": 150.0,
 "text": "Mosshide gnolls south-east and west of Rethiel; Crude Flints drop from them.",
-"_line": 301
+"_line": 302
 },
 {
 "complete": "War Banners",
@@ -1533,7 +1558,7 @@
 "text": "Angerfang Encampment.",
 "warn": "Dragonmaw orcs in the camp are in groups of 2-3.",
 "tip": "Clear the outer tents first and pull to the hillside.",
-"_line": 303
+"_line": 304
 },
 {
 "complete": "Blisters on The Land",
@@ -1543,7 +1568,7 @@
 ],
 "radius": 150.0,
 "text": "Fen Creepers in the swamp around the windmill.",
-"_line": 305
+"_line": 306
 },
 {
 "turnin": [
@@ -1556,12 +1581,12 @@
 56.3,
 40.3
 ],
-"_line": 307
+"_line": 308
 },
 {
 "turnin": "War Banners",
 "npc": "Captain Stoutfist",
-"_line": 308
+"_line": 309
 },
 {
 "elite": true,
@@ -1572,7 +1597,7 @@
 50.0
 ],
 "radius": 30.0,
-"_line": 309
+"_line": 310
 },
 {
 "level": 27.0,
@@ -1582,17 +1607,17 @@
 ],
 "radius": 300.0,
 "text": "Grind crocolisks or raptors to 27 if needed.",
-"_line": 312
+"_line": 313
 },
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
 "fly": "Stormwind",
 "text": "Fly to Stormwind, train, then fly to Darkshire.",
-"_line": 313
+"_line": 314
 }
 ],
-"_line": 267,
+"_line": 268,
 "name": "Wetlands 24-27",
 "file": "Guides/Alliance_10-30.lua"
 },
@@ -1606,7 +1631,7 @@
 {
 "turnin": "Zombie Juice",
 "optional": true,
-"_line": 322
+"_line": 323
 },
 {
 "accept": [
@@ -1614,7 +1639,7 @@
 "Worgen in the Woods#1"
 ],
 "optional": true,
-"_line": 323
+"_line": 324
 },
 {
 "turnin": "Sven's Revenge",
@@ -1623,7 +1648,7 @@
 77.7
 ],
 "text": "Dig at the Mound of Loose Dirt at the Yorgen Farmstead.",
-"_line": 324
+"_line": 325
 },
 {
 "accept": "Sven's Camp",
@@ -1631,7 +1656,7 @@
 49.8,
 77.7
 ],
-"_line": 325
+"_line": 326
 },
 {
 "complete": [
@@ -1646,7 +1671,7 @@
 "text": "Raven Hill Cemetery: Skeletal Fiends/Horrors and Skeleton Fingers; Rot Blossoms on the ground.",
 "warn": "The cemetery is crowded and Mor'Ladim (elite) patrols it.",
 "tip": "Work the edges and keep an eye out for his patrol.",
-"_line": 326
+"_line": 327
 },
 {
 "turnin": "Sven's Camp",
@@ -1655,7 +1680,7 @@
 7.8,
 34.1
 ],
-"_line": 329
+"_line": 330
 },
 {
 "accept": "The Shadowy Figure",
@@ -1664,7 +1689,7 @@
 7.8,
 34.1
 ],
-"_line": 330
+"_line": 331
 },
 {
 "turnin": [
@@ -1672,7 +1697,7 @@
 "Gather Rot Blossoms"
 ],
 "text": "Darkshire.",
-"_line": 331
+"_line": 332
 },
 {
 "accept": [
@@ -1680,34 +1705,34 @@
 "Juice Delivery"
 ],
 "optional": true,
-"_line": 332
+"_line": 333
 },
 {
 "turnin": "The Shadowy Figure",
 "text": "Darkshire: ask around town (the large house, town hall and the inn).",
-"_line": 333
-},
-{
-"accept": "The Shadowy Search Continues",
 "_line": 334
 },
 {
-"turnin": "The Shadowy Search Continues",
+"accept": "The Shadowy Search Continues",
 "_line": 335
 },
 {
-"accept": "Inquire at the Inn",
+"turnin": "The Shadowy Search Continues",
 "_line": 336
+},
+{
+"accept": "Inquire at the Inn",
+"_line": 337
 },
 {
 "turnin": "Inquire at the Inn",
 "npc": "Tavernkeep Smitts",
-"_line": 337
+"_line": 338
 },
 {
 "accept": "Finding the Shadowy Figure",
 "npc": "Tavernkeep Smitts",
-"_line": 338
+"_line": 339
 },
 {
 "complete": "Worgen in the Woods#1",
@@ -1720,19 +1745,19 @@
 "text": "Nightbane Shadow Weavers in Brightwood Grove, west of Darkshire.",
 "warn": "Nightbane worgen hit hard and Shadow Weavers cast shadow bolts.",
 "tip": "Fight one at a time on open ground.",
-"_line": 339
+"_line": 340
 },
 {
 "turnin": "Juice Delivery",
 "optional": true,
 "npc": "Abercrombie",
-"_line": 342
+"_line": 343
 },
 {
 "accept": "Ghoulish Effigy",
 "optional": true,
 "npc": "Abercrombie",
-"_line": 343
+"_line": 344
 },
 {
 "turnin": "Finding the Shadowy Figure",
@@ -1741,7 +1766,7 @@
 18.4,
 56.6
 ],
-"_line": 344
+"_line": 345
 },
 {
 "accept": "Return to Sven",
@@ -1750,7 +1775,7 @@
 18.4,
 56.6
 ],
-"_line": 345
+"_line": 346
 },
 {
 "turnin": "Return to Sven",
@@ -1759,7 +1784,7 @@
 7.8,
 34.1
 ],
-"_line": 346
+"_line": 347
 },
 {
 "accept": "Proving Your Worth",
@@ -1768,7 +1793,7 @@
 7.8,
 34.1
 ],
-"_line": 347
+"_line": 348
 },
 {
 "complete": [
@@ -1783,7 +1808,7 @@
 "text": "North-west mausoleum: Skeletal Raiders, Healers and Warders.",
 "warn": "Skeletal Healers heal everything near them.",
 "tip": "Kill Healers first and pull Warders away from the group.",
-"_line": 348
+"_line": 349
 },
 {
 "complete": "Ghoulish Effigy",
@@ -1794,19 +1819,19 @@
 ],
 "radius": 80.0,
 "text": "North-east mausoleum: Plague Spreaders for Ghoul Ribs and Fangs.",
-"_line": 351
+"_line": 352
 },
 {
 "turnin": "Ghoulish Effigy",
 "optional": true,
 "npc": "Abercrombie",
-"_line": 353
+"_line": 354
 },
 {
 "accept": "Ogre Thieves",
 "optional": true,
 "npc": "Abercrombie",
-"_line": 354
+"_line": 355
 },
 {
 "accept": "The Weathered Grave",
@@ -1816,7 +1841,7 @@
 29.0
 ],
 "text": "A Weathered Grave, north of the cemetery.",
-"_line": 355
+"_line": 356
 },
 {
 "turnin": "Proving Your Worth",
@@ -1825,14 +1850,14 @@
 7.8,
 34.1
 ],
-"_line": 356
+"_line": 357
 },
 {
 "accept": "Seeking Wisdom",
 "optional": true,
 "npc": "Sven Yorgen",
 "text": "Starts the Morbent Fel chain in Stormwind; finish it later at 30+.",
-"_line": 357
+"_line": 358
 },
 {
 "complete": "Ogre Thieves",
@@ -1845,7 +1870,7 @@
 "text": "Vul'Gol Ogre Mound.",
 "warn": "Ogres come in pairs and hit very hard.",
 "tip": "Pull singles from the mound's edge.",
-"_line": 359
+"_line": 360
 },
 {
 "turnin": "Ogre Thieves",
@@ -1855,7 +1880,7 @@
 28.0,
 31.5
 ],
-"_line": 361
+"_line": 362
 },
 {
 "turnin": [
@@ -1864,17 +1889,17 @@
 "The Totem of Infliction"
 ],
 "text": "Darkshire.",
-"_line": 362
+"_line": 363
 },
 {
 "accept": "Morgan Ladimore",
 "optional": true,
-"_line": 363
+"_line": 364
 },
 {
 "turnin": "Morgan Ladimore",
 "optional": true,
-"_line": 364
+"_line": 365
 },
 {
 "accept": "Mor'Ladim",
@@ -1882,12 +1907,12 @@
 "elite": true,
 "group": 3.0,
 "tip": "Mor'Ladim is an elite skeleton; bring 2-3 friends.",
-"_line": 365
+"_line": 366
 },
 {
 "turnin": "Worgen in the Woods#1",
 "optional": true,
-"_line": 367
+"_line": 368
 },
 {
 "level": 30.0,
@@ -1897,17 +1922,17 @@
 ],
 "radius": 400.0,
 "text": "Grind worgen, skeletons or ogres to 30 if needed.",
-"_line": 368
+"_line": 369
 },
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
 "fly": "Stormwind",
 "text": "Fly to Stormwind and train level 30 skills, then head south to Stranglethorn Vale.",
-"_line": 370
+"_line": 371
 }
 ],
-"_line": 319,
+"_line": 320,
 "name": "Duskwood 27-30",
 "file": "Guides/Alliance_10-30.lua"
 },
@@ -1926,7 +1951,7 @@
 49.6
 ],
 "radius": 25.0,
-"_line": 381
+"_line": 382
 },
 {
 "fp": "Astranaar",
@@ -1937,7 +1962,7 @@
 49.6
 ],
 "radius": 20.0,
-"_line": 383
+"_line": 384
 },
 {
 "level": 28.0,
@@ -1949,7 +1974,7 @@
 "text": "Do the Thistlefur furbolg, Ruins of Stardust and Lake Iris quests around Astranaar.",
 "warn": "Thistlefur Hold is a dense cave; on PvP realms Horde often quest here too.",
 "tip": "Do Thistlefur outside first; inside, pull one at a time from the ramps.",
-"_line": 385
+"_line": 386
 },
 {
 "text": "Visit Maestra's Post and the Zoram Strand to the west for more quests.",
@@ -1958,7 +1983,7 @@
 38.0
 ],
 "radius": 40.0,
-"_line": 388
+"_line": 389
 },
 {
 "level": 30.0,
@@ -1968,17 +1993,17 @@
 ],
 "radius": 400.0,
 "text": "Finish the Ashenvale quests and turn in at Astranaar.",
-"_line": 390
+"_line": 391
 },
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
 "fly": "Auberdine",
 "text": "Fly to Auberdine -> boat to Menethil -> fly to Stormwind and train (night elves can train in Darnassus instead).",
-"_line": 392
+"_line": 393
 }
 ],
-"_line": 378,
+"_line": 379,
 "name": "Ashenvale 27-30",
 "file": "Guides/Alliance_10-30.lua"
 },
