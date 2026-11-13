@@ -22,8 +22,6 @@ FXP:RegisterGuide("Stranglethorn Vale 30-34", {
     { accept = "Welcome to the Jungle", npc = "Barnil Stonepot" },
     { turnin = "Welcome to the Jungle", npc = "Hemet Nesingwary Jr." },
     { accept = { "Tiger Mastery#1", "Panther Mastery#1", "Raptor Mastery#1" }, coords = { 35.6, 10.6 } },
-    { accept = "The Green Hills of Stranglethorn", optional = true, npc = "Barnil Stonepot",
-      text = "Collect Green Hills pages as they drop; the full book is worth a lot of XP later." },
     { complete = { "Tiger Mastery#1", "Panther Mastery#1" },
       text = "Young Stranglethorn Tigers south-west of camp; Young Panthers along the road and river.",
       warn = "Young panthers are stealthed.", tip = "Walk slowly and pull panthers as soon as you spot the shimmer." },
@@ -97,7 +95,6 @@ FXP:RegisterGuide("Dustwallow Marsh 36-38", {
     { accept = 1204, npc = "Morgan Stern", coords = { 66.3, 45.5 }, text = "Mudrock Soup and Bugs (skipped if you didn't bring Angus's letter)." },
     { accept = 1282, optional = true, npc = "Guard Byron", coords = { 66.2, 46.1 } },
     { turnin = 1282, optional = true, npc = "Captain Garran Vimes", coords = { 68.2, 48.6 }, text = "Top floor of Foothold Citadel." },
-    { accept = "The Missing Diplomat#1", optional = true, text = "Long chain; take it if Theramore offers it." },
     { complete = 1204, coords = { 60.0, 60.0 }, radius = 200, text = "Mudrock tortoises along the coast for Forked Mudrock Tongues." },
     { accept = 1218, optional = true, npc = "Swamp Eye Jarl", coords = { 55.4, 26.3 },
       text = "Swamplight Manor, north of the road. Soothing Spices: buy 3 from a trade goods vendor (Theramore has one) and hand them straight back.",
@@ -304,9 +301,9 @@ FXP:RegisterGuide("The Hinterlands 47-49", {
 })
 
 ---------------------------------------------------------------------------
-FXP:RegisterGuide("Un'Goro Crater 49-52", {
-  faction = "Alliance", minLevel = 49, maxLevel = 52, zone = "Un'Goro Crater",
-  next = "Felwood 52-54",
+FXP:RegisterGuide("Un'Goro Crater 53-54", {
+  faction = "Alliance", minLevel = 53, maxLevel = 54, zone = "Un'Goro Crater",
+  next = "Felwood 54-55",
   steps = {
     { text = "Gadgetzan: grab the Un'Goro quests before you go.", zone = "Tanaris", coords = { 51.0, 28.0 }, radius = 25 },
     { turnin = "Screecher Spirits", optional = true, zone = "Tanaris", npc = "Yeh'kinya", coords = { 66.9, 22.4 },
@@ -352,19 +349,19 @@ FXP:RegisterGuide("Un'Goro Crater 49-52", {
       text = "Un'Goro Gorillas / Thunderers / Stompers in the north-east.",
       warn = "Un'Goro Stompers stun and hit hard.", tip = "Pull Stompers alone and kite if you can." },
     { turnin = { "The Apes of Un'Goro", "Crystals of Power" }, optional = true, coords = { 43.5, 8.5 } },
-    { level = 51, coords = { 50.0, 30.0 }, radius = 400, text = "Keep collecting crystals and grind dinosaurs until 51." },
+    { level = 53, coords = { 50.0, 30.0 }, radius = 400, text = "Keep collecting crystals and grind dinosaurs until 53." },
     { turnin = { "Super Sticky", "Bungle in the Jungle", "The Scent of Lar'korwi", "Expedition Salvation" }, optional = true,
       fly = "Gadgetzan", text = "Fly to Gadgetzan to hand in, then back." },
-    { level = 52, coords = { 50.0, 30.0 }, radius = 400, text = "Grind to 52 if you're short." },
+    { level = 54, coords = { 50.0, 30.0 }, radius = 400, text = "Grind to 54 if you're short." },
     { train = "Darnassus", zone = "Darnassus",
       text = "Fly Gadgetzan -> Theramore/Rut'theran (via Auberdine) and train level 52 skills in Darnassus. Then fly to Astranaar for Felwood." },
   },
 })
 
 ---------------------------------------------------------------------------
-FXP:RegisterGuide("Felwood 52-54", {
-  faction = "Alliance", minLevel = 52, maxLevel = 54, zone = "Felwood",
-  next = "Winterspring 54-56",
+FXP:RegisterGuide("Felwood 54-55", {
+  faction = "Alliance", minLevel = 54, maxLevel = 55, zone = "Felwood",
+  next = "Winterspring 55-56",
   steps = {
     { text = "From Astranaar ride east, then north up the road into Felwood to the Emerald Sanctuary.", coords = { 51.0, 81.0 }, radius = 20 },
     { fp = "Emerald Sanctuary", text = "Emerald Sanctuary: flight path (Alliance-usable).", coords = { 51.0, 81.0 }, radius = 15 },
@@ -397,14 +394,14 @@ FXP:RegisterGuide("Felwood 52-54", {
       warn = "Deadwood Shamans chain-heal the camp.", tip = "Kill shamans first and fight at the camp edge." },
     { turnin = "Deadwood of the North", optional = true, coords = { 64.8, 8.1 } },
     { accept = "Speak to Salfa", optional = true, coords = { 64.8, 8.1 } },
-    { level = 54, coords = { 60.0, 15.0 }, radius = 300,
-      text = "Grind Deadwood furbolgs to 54 - every kill also builds Timbermaw reputation." },
+    { level = 55, coords = { 60.0, 15.0 }, radius = 300,
+      text = "Grind Deadwood furbolgs to 55 - every kill also builds Timbermaw reputation." },
   },
 })
 
 ---------------------------------------------------------------------------
-FXP:RegisterGuide("Winterspring 54-56", {
-  faction = "Alliance", minLevel = 54, maxLevel = 56, zone = "Winterspring",
+FXP:RegisterGuide("Winterspring 55-56", {
+  faction = "Alliance", minLevel = 55, maxLevel = 56, zone = "Winterspring",
   next = "Western Plaguelands 56-58",
   steps = {
     { text = "Walk through Timbermaw Hold's tunnel to Winterspring.", coords = { 27.0, 34.0 }, radius = 20,

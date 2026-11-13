@@ -76,7 +76,7 @@ Northshire 1-6 → Elwynn Forest 6-10 → Westfall 10-14 → Loch Modan 14-16 �
 Duskwood 20-24 → Wetlands 24-27 → Duskwood 27-30 → Stranglethorn 30-34 → Arathi 34-36 →
 Dustwallow 36-38 → Badlands 38-40 (mount stop) → Stranglethorn 38-42 → Swamp of Sorrows 41-42 →
 The Riverglades 42-44 (WoW Forever) → Tanaris 42-45 → Feralas 45-47 → Hinterlands 47-49 → Searing Gorge 48-50 →
-Blasted Lands 50-51 → Burning Steppes 51-53 → Un'Goro 49-52 → Felwood 52-54 → Winterspring 54-56 →
+Blasted Lands 50-51 → Burning Steppes 51-53 → Un'Goro 53-54 → Felwood 54-55 → Winterspring 55-56 →
 Western Plaguelands 56-58 → Eastern Plaguelands 58-60
 
 Side guides (load from /fxp): Ashenvale 27-30, Thousand Needles 30-32, Desolace 32-35,
@@ -84,6 +84,17 @@ Shen'dralas 40-45 (WoW Forever), Azshara 48-50, Silithus 55-58.
 
 All of levels 1-60 are step-by-step: named quests, quest givers, coordinates, hard-quest warnings,
 trainer stops, and optional steps for quests WoW Forever may not offer (they skip themselves with no XP debt).
+
+## Changes in 2.13.1 - no more dead-end quests
+- Five quests the route picked up but never came back for are sorted out, so they don't clutter your log:
+  - Seeking Wisdom is now handed in to Bishop Farthing while you're in Stormwind at 30.
+  - The Legend of Stalvan: you still do the quick first part in Darkshire, but no longer take the 13-part chain
+    that runs through Westfall and Stormwind and ends in a level 35 kill.
+  - The Missing Diplomat (it actually starts in Stormwind, not Theramore), The Green Hills of Stranglethorn
+    (random page drops) and Mor'Ladim (level 35 elite at 30) are no longer offered.
+- Late-game zone levels now match their quests: Un'Goro Crater 53-54, Felwood 54-55, Winterspring 55-56 (Un'Goro's
+  quests are level 51-55, so the old "49-52" label made it look like a step backwards after Burning Steppes).
+- Your quest log peaks at 11 quests on the main route now (was 16).
 
 ## Changes in 2.13.0 - route checked against WoW Forever's quest data
 Every quest in the guides was checked against WoW Forever's real quest database (the one Questie uses).

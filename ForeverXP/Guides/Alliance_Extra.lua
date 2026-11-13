@@ -157,7 +157,7 @@ FXP:RegisterGuide("Blasted Lands 50-51", {
 ---------------------------------------------------------------------------
 FXP:RegisterGuide("Burning Steppes 51-53", {
   faction = "Alliance", minLevel = 51, maxLevel = 53, zone = "Burning Steppes",
-  next = "Un'Goro Crater 49-52",
+  next = "Un'Goro Crater 53-54",
   steps = {
     { text = "Fly Nethergarde -> Lakeshire -> Morgan's Vigil (or ride north from Redridge).", coords = { 84.4, 68.3 }, radius = 20 },
     { accept = { "Extinguish the Firegut", "FIFTY! YEP!" }, optional = true, npc = "Oralius", coords = { 84.6, 68.6 } },
@@ -232,7 +232,7 @@ FXP:RegisterGuide("Shen'dralas 40-45 (side)", {
 
 FXP:RegisterGuide("Azshara 48-50 (side)", {
   faction = "Alliance", minLevel = 48, maxLevel = 50, zone = "Azshara", side = true,
-  next = "Un'Goro Crater 49-52",
+  next = "Un'Goro Crater 53-54",
   steps = {
     { text = "Talrendis Point (south-west Azshara): flight path. Ride east from Ashenvale's Forest Song.",
       coords = { 11.9, 77.6 }, radius = 20,

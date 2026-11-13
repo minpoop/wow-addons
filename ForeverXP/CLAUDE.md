@@ -1,7 +1,7 @@
 # ForeverXP: project notes for Claude Code
 
 A free RestedXP-style leveling guide addon for **WoW Forever** (Blizzard's Classic+, launched Nov 4 2026, interface 16001).
-Alliance only. Current version **2.13.0** (see `ForeverXP.toc` and the changelog in `README.md`).
+Alliance only. Current version **2.13.1** (see `ForeverXP.toc` and the changelog in `README.md`).
 Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
 
 ## Ground rules from the owner
@@ -102,7 +102,7 @@ Run these from the addon folder.
 luac -p $(find . -name '*.lua')                 # syntax (or: python3 Tools/dev/lua_run.py check $(find . -name '*.lua'), Linux liblua5.4 only)
 lua -e "arg_root='.'" Tools/dev/harness.lua      # runs the whole addon against stubbed WoW API, expect "0 failures"
 python3 Tools/dev/audit_parse.py && python3 Tools/dev/audit_check.py   # quest flow: loose quests, chain links, coords
-python3 Tools/dev/audit_questlog.py | grep PEAK  # quest-log peak across the main route, must stay <= 20 (now 16)
+python3 Tools/dev/audit_questlog.py | grep PEAK  # quest-log peak across the main route, must stay <= 20 (now 11)
 python3 Tools/import_textures.py <png_dir> [name ...]  # convert generated images into Media/Themes TGAs
 python3 Tools/read_reports.py <ForeverXP.lua> [out.md]  # owner's saved variables -> fix list with guide file:line
 # offline /fxp check against WoW Forever's real data (git clone https://github.com/Questie/QuestieDB somewhere first):
@@ -132,10 +132,11 @@ python3 Tools/make_textures.py                   # procedural-only textures (blo
 - Phase 3 pins are untested in the live game: world map canvas scaling, the continent-map conversion, the
   minimap yard table (indoors especially) and the rotating minimap.
 - Phase 4 is the feedback loop: ask the owner for their `WTF/Account/<account>/SavedVariables/ForeverXP.lua`
-  after a play session, run `Tools/read_reports.py` on it and fix the route from that. Known route gaps to
-  settle with real data: five optional chain starters are accepted and never handed in (Legend of
-  Stalvan#2, Seeking Wisdom, The Green Hills of Stranglethorn, The Missing Diplomat#1, Mor'Ladim), and
-  Burning Steppes 51-53 leads into Un'Goro 49-52.
+  after a play session, run `Tools/read_reports.py` on it and fix the route from that. Settled in 2.13.1 with the
+  Forever data: Seeking Wisdom handed in at Bishop Farthing (Stormwind, end of Duskwood 27-30); Legend of Stalvan
+  #2, The Missing Diplomat (starts with Thomas in Stormwind), Green Hills of Stranglethorn and Mor'Ladim removed;
+  Un'Goro relabelled 53-54 (its quests are 51-55), Felwood 54-55, Winterspring 55-56. Audit: no quest accepted
+  and never turned in; quest-log peak 11.
 - First owner route check (v2.12.0) ran before Questie's name index finished, so ~700 "Questie doesn't know"
   findings were false; numeric-ID quests were checked properly. Fixed: CheckRoute waits for `indexDone`
   (or `indexFailed`, then skips text-named quests), and the result records `nameIndex`. Real findings fixed in
