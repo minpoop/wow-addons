@@ -85,6 +85,14 @@ Shen'dralas 40-45 (WoW Forever), Azshara 48-50, Silithus 55-58.
 All of levels 1-60 are step-by-step: named quests, quest givers, coordinates, hard-quest warnings,
 trainer stops, and optional steps for quests WoW Forever may not offer (they skip themselves with no XP debt).
 
+## Changes in 2.12.2 - no more stuck travel steps
+- "Get the flight path / set your Hearthstone" steps can't trap you any more: once you've been there, the step
+  finishes when you leave the area or do the next step, even if you skipped the flight path or the inn
+  (for example because you already had the flight path, or didn't want to bind there).
+- Those steps now remind you that talking to the flight master is enough if you already have the flight path.
+- `/fxp export` says when the route check is from an older version, and your saved file now records which
+  version you're running.
+
 ## Changes in 2.12.1 - first route check fixes
 - `/fxp check` now waits for Questie's quest index to finish building (it shows progress and runs by itself
   when ready). Run too early, it reported almost every quest named by text as unknown - those were false.

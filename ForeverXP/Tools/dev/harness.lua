@@ -443,6 +443,23 @@ check(confirmed and FXP:IsStepDone(fpStep), "confirms the bind, and the step com
 HOME = "Goldshire"; picked = nil; SHIFT = true; FXP:OnGossip(); SHIFT = false
 check(picked == nil, "Shift at the innkeeper skips it")
 
+-- leaving the area finishes an fp/bind step you chose not to complete
+local movedStep = { fp = "Menethil Harbor", bind = "Menethil Harbor", coords = { 10.6, 60.6 }, radius = 20, key = "mv1" }
+local dist = 500
+local realDist = FXP.DistanceTo
+FXP.DistanceTo = function() return dist end
+check(not FXP:IsStepDone(movedStep), "fp/bind step not done just because you're far away (never arrived)")
+dist = 10; check(not FXP:IsStepDone(movedStep), "...or while you're standing there")
+dist = 45; check(not FXP:IsStepDone(movedStep), "...or wandering around town")
+dist = 300; check(FXP:IsStepDone(movedStep), "...but done once you've left the area after arriving")
+FXP.DistanceTo = realDist
+local nextQ = "Report Next Test"
+FXP.guide = { name = "NX", steps = { { fp = "Menethil Harbor", bind = "Menethil Harbor", coords = { 10.6, 60.6 }, key = "NX:1" },
+  { accept = { nextQ }, key = "NX:2" } } }
+check(not FXP:IsStepDone(FXP.guide.steps[1]), "fp/bind step waits while the next step isn't done")
+QS.on[FXP:Resolve(nextQ)] = true
+check(FXP:IsStepDone(FXP.guide.steps[1]), "...and is moot once you've done the next step (same town)")
+
 local flyStep = { fly = "Stormwind", key = "fly1" }
 FXP.guide = { name = "T", steps = { flyStep } }; FXP.db.step = 1
 C_GossipInfo.GetOptions = function() return { { name = "Show me where I can fly.", icon = 132057, gossipOptionID = 5 } } end

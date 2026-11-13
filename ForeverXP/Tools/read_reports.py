@@ -136,7 +136,7 @@ def as_list(x):
 def build(sv):
     db = sv.get('ForeverXPDB') or {}
     lines = guide_lines()
-    md = ['# ForeverXP route feedback', '']
+    md = ['# ForeverXP route feedback', '', f'Installed version at last login: {db.get("lastVersion", "not recorded (before 2.12.2)")}', '']
 
     reports = as_list(db.get('reports'))
     md += [f'## Reports ({len(reports)})', '']

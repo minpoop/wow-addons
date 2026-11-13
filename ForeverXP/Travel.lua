@@ -56,12 +56,46 @@ end
 ---------------------------------------------------------------------------
 -- `fp` and `bind` are real goals: the step waits for them. `fly` and `hearth` are how you get somewhere, so
 -- they only finish a step on their own when it has nothing else to check.
+-- Getting a flight path or setting the Hearthstone is advice, not a wall: once you've been at the step's spot
+-- and then leave the area, the step counts as done (you either have it already or chose not to).
+function FXP:MovedOn(s)
+  if not (s.coords and self.DistanceTo) then return false end
+  local d = self:DistanceTo(s)
+  if not d then return false end
+  local r = s.radius or 12
+  self.db.arrived = self.db.arrived or {}
+  if d <= r then self.db.arrived[s.key] = true; return false end
+  if self.db.arrived[s.key] and d > math.max(r * 3, 60) then
+    if not (self.movedOnSaid and self.movedOnSaid[s.key]) then
+      self.movedOnSaid = self.movedOnSaid or {}
+      self.movedOnSaid[s.key] = true
+      if self.Print then self.Print("Moved on from %s - skipping its flight path / Hearthstone step.", s.fp or s.bind or "here") end
+    end
+    return true
+  end
+  return false
+end
+
+-- You've already done the step after this one (e.g. took the next quest in the same town): this one is moot.
+function FXP:NextStepDone(s)
+  if self.inNextCheck or not (self.guide and s.key) then return false end
+  local i = tonumber(s.key:match(":(%d+)$"))
+  local nxt = i and self.guide.steps[i + 1]
+  if not (nxt and (nxt.accept or nxt.turnin or nxt.complete)) then return false end
+  self.inNextCheck = true
+  local ok, done = pcall(self.IsStepDone, self, nxt)
+  self.inNextCheck = false
+  return ok and done or false
+end
+
 function FXP:TravelDone(s, hasOther)
-  if s.fp and not self:KnowsFlight(s.fp) then return false end
+  local missing = false
+  if s.fp and not self:KnowsFlight(s.fp) then missing = true end
   if s.bind then
     local home = GetBindLocation and GetBindLocation()
-    if not Same(home, s.bind) then return false end
+    if not Same(home, s.bind) then missing = true end
   end
+  if missing then return self:MovedOn(s) or self:NextStepDone(s) end
   if not hasOther then
     if s.fly and not (IsHere(s.fly) or (self.db.flown and self.db.flown[s.key])) then return false end
     if s.hearth and not (IsHere(s.hearth) or (self.db.hearthed and self.db.hearthed[s.key])) then return false end
@@ -82,7 +116,11 @@ function FXP:TravelText(s)
   local function line(icon, done, text) out[#out + 1] = icon .. (done and G or W) .. text .. "|r" end
   local FLY = "|TInterface\\GossipFrame\\TaxiGossipIcon:14:14|t "
   local INN = "|TInterface\\GossipFrame\\BinderGossipIcon:14:14|t "
-  if s.fp then line(FLY, self:KnowsFlight(s.fp), "Get the " .. Y .. s.fp .. "|r" .. W .. " flight path") end
+  if s.fp then
+    local known = self:KnowsFlight(s.fp)
+    line(FLY, known, "Get the " .. Y .. s.fp .. "|r" .. W .. " flight path" ..
+      (known and "" or (GR .. " (already have it? just talk to the flight master)")))
+  end
   if s.bind then
     local home = GetBindLocation and GetBindLocation()
     line(INN, Same(home, s.bind), "Set your Hearthstone in " .. Y .. s.bind .. "|r" ..

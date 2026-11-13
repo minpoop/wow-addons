@@ -330,6 +330,10 @@ function FXP:ExportText()
   local db, lines = DB(), {}
   local function L(s) lines[#lines + 1] = s end
   L("ForeverXP " .. Version() .. " route feedback")
+  local rc0 = db.routeCheck
+  if rc0 and rc0.version ~= Version() then
+    L("(The route check below is from v" .. (rc0.version or "?") .. " - type /fxp check to run it again on this version.)")
+  end
   L("")
   L("== Reports (" .. #db.reports .. ")")
   for _, r in ipairs(db.reports) do
@@ -397,7 +401,9 @@ end
 local ev = CreateFrame("Frame")
 pcall(ev.RegisterEvent, ev, "PLAYER_DEAD")
 pcall(ev.RegisterEvent, ev, "PLAYER_LOGOUT")
+pcall(ev.RegisterEvent, ev, "PLAYER_LOGIN")
 ev:SetScript("OnEvent", function(_, event)
+  if event == "PLAYER_LOGIN" then DB().lastVersion = Version(); return end -- so a shared file says which build it came from
   if not FXP.db then return end
   if event == "PLAYER_DEAD" then FXP:NoteDeath()
   elseif event == "PLAYER_LOGOUT" then cur = nil end -- don't count time logged out

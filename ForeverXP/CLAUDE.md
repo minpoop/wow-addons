@@ -1,7 +1,7 @@
 # ForeverXP: project notes for Claude Code
 
 A free RestedXP-style leveling guide addon for **WoW Forever** (Blizzard's Classic+, launched Nov 4 2026, interface 16001).
-Alliance only. Current version **2.12.1** (see `ForeverXP.toc` and the changelog in `README.md`).
+Alliance only. Current version **2.12.2** (see `ForeverXP.toc` and the changelog in `README.md`).
 Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
 
 ## Ground rules from the owner
@@ -51,8 +51,9 @@ Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
     map), `bind` (innkeeper gossip + CONFIRM_BINDER), `hearth` (Hearthstone 6948 via the item bar), `fp`
     (known flights learned from every flight map and ERR_NEWTAXIPATH), the flight timer (route times in the
     account-wide `ForeverXPDB.flightTimes`) and zone reminders from `Data/FlightPoints.lua`. In `IsStepDone`,
-    `fp`/`bind` are hard goals; `fly`/`hearth` only finish a step that has nothing else to check (no other
-    goal and no coords). `SamePlace` matches names ignoring case and the ", Zone" suffix.
+    `fp`/`bind` are goals but never walls: an unmet one still finishes the step once you've arrived and then
+    left the area (`MovedOn`: 3x radius, min 60 yd) or done the next step (`NextStepDone`); `fly`/`hearth` only
+    finish a step that has nothing else to check (no other goal and no coords). `SamePlace` matches names ignoring case and the ", Zone" suffix.
   - `Pins.lua`: phase 3 map pins. `PinSteps` (current + `mapPinsAhead` unfinished steps with `StepCoords`,
     cached 0.5 s, cleared by `Update`), world-map pins on `WorldMapFrame:GetCanvas()` (scale 1/canvas zoom,
     offsets divided by that scale; other maps via `C_Map.GetMapPosFromWorldPos`), minimap pins via
@@ -137,6 +138,9 @@ python3 Tools/make_textures.py                   # procedural-only textures (blo
   findings were false; numeric-ID quests were checked properly. Fixed: CheckRoute waits for `indexDone`
   (or `indexFailed`, then skips text-named quests), and the result records `nameIndex`. Real findings fixed in
   Westfall (stew delivery 36 before 38; Defias Brotherhood 65 needs 14). Ask the owner to rerun `/fxp check`.
+- Second owner file (2.12.x): still the old 2.12.0 check (not rerun); run log showed ~5 min stuck on Wetlands
+  step 1 (fp + bind Menethil) then manual skipping. Fixed in 2.12.2 with MovedOn/NextStepDone.
+  `ForeverXPDB.lastVersion` now records the installed build at login.
 - Roadmap agreed with the owner: phase 1 quest helpers (done), phase 2 travel (done), phase 3 map pins (done),
   phase 4 route feedback tools (done; fixes ongoing from reports), phase 4 route quality from in-game reports, phase 5 talents /
   upgrades / group sync / hardcore mode, phase 6 Horde 1-60.
