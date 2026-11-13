@@ -1,7 +1,9 @@
 import json
 G=json.load(open('Tools/dev/guides.json'));by={g['name']:g for g in G}
 def L(x): return x if isinstance(x,list) else [x]
-cur='Northshire 1-6';log=set();peak=(0,'')
+import sys
+START = sys.argv[1] if len(sys.argv) > 1 else 'Northshire 1-6'
+cur=START;log=set();peak=(0,'')
 places=['Gadgetzan','Steamwheedle','Ironforge','Stormwind','Darnassus','Auberdine','Menethil','Booty Bay','Theramore','Goldshire','Lakeshire','Sentinel Hill','Darkshire','Thelsamar','Refuge Pointe','Astranaar','Everlook','Southshore','Ratchet','Aerie Peak','Rut\'theran']
 while cur:
     g=by[cur]

@@ -290,7 +290,8 @@ local reminded = {}
 function FXP:FlightReminder()
   if not (self.db.fpReminders and self.db.knownFlights and next(self.db.knownFlights)) then return end
   local zone = GetRealZoneText and GetRealZoneText() or (GetZoneText and GetZoneText())
-  for _, fp in ipairs((ns.FlightPoints or {})[zone or ""] or {}) do
+  local list = (UnitFactionGroup and UnitFactionGroup("player") == "Horde") and ns.FlightPointsHorde or ns.FlightPoints
+  for _, fp in ipairs((list or {})[zone or ""] or {}) do
     if not self:KnowsFlight(fp) and not reminded[fp] then
       reminded[fp] = true
       self.Print("You don't have the |cffffff00%s|r flight path yet - grab it while you're here.", fp)
@@ -332,7 +333,8 @@ ev:SetScript("OnEvent", function(_, event, a1, a2)
       -- name the new flight path after where you're standing; the next flight map fixes the exact name
       local sub, zone = Here()
       local named
-      for _, fp in ipairs((ns.FlightPoints or {})[zone] or {}) do if Same(sub, fp) then named = fp end end
+      local fps = (UnitFactionGroup and UnitFactionGroup("player") == "Horde") and ns.FlightPointsHorde or ns.FlightPoints
+      for _, fp in ipairs((fps or {})[zone] or {}) do if Same(sub, fp) then named = fp end end
       local s = FXP:CurrentStep()
       LearnFlight(named or (s and s.fp) or sub)
       FXP:QueueUpdate()

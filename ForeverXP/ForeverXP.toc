@@ -2,7 +2,7 @@
 ## Title: ForeverXP |cff33ff99Leveling Guide|r
 ## Notes: Free step-by-step leveling guide with quest tracking, auto accept/turn-in, XP/hour and a waypoint arrow.
 ## Author: You
-## Version: 2.14.0
+## Version: 2.15.0
 ## IconTexture: Interface\Icons\INV_Misc_Book_09
 ## SavedVariables: ForeverXPDB
 ## SavedVariablesPerCharacter: ForeverXPCharDB
@@ -36,3 +36,6 @@ Guides\Alliance_Starts.lua
 Guides\Alliance_10-30.lua
 Guides\Alliance_30-60.lua
 Guides\Alliance_Extra.lua
+Guides\Horde_Starts.lua
+Guides\Horde_10-30.lua
+Guides\Horde_30-60.lua

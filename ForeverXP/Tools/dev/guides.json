@@ -8631,6 +8631,13195 @@
 "file": "Guides/Elwynn_6-10.lua"
 },
 {
+"faction": "Horde",
+"races": [
+"Orc",
+"Troll",
+"Tauren"
+],
+"minLevel": 12.0,
+"maxLevel": 16.0,
+"zone": "The Barrens",
+"next": "The Barrens 16-21",
+"steps": [
+{
+"accept": 860.0,
+"fp": "The Crossroads",
+"bind": "The Crossroads",
+"npc": "Melor Stonehoof",
+"coords": [
+61.5,
+80.9
+],
+"zone": "Thunder Bluff",
+"text": "Get the The Crossroads flight path and set your Hearthstone in The Crossroads.",
+"_line": 11
+},
+{
+"accept": 886.0,
+"npc": "Arch Druid Hamuul Runetotem",
+"coords": [
+78.6,
+28.6
+],
+"zone": "Thunder Bluff",
+"_line": 12
+},
+{
+"accept": 6361.0,
+"npc": "Jahan Hawkwing",
+"coords": [
+51.2,
+29.1
+],
+"_line": 13
+},
+{
+"accept": [
+1492.0,
+848.0
+],
+"npc": "Apothecary Helbrim",
+"coords": [
+51.4,
+30.1
+],
+"_line": 14
+},
+{
+"accept": 869.0,
+"npc": "Gazrog",
+"coords": [
+51.9,
+30.3
+],
+"_line": 15
+},
+{
+"accept": 867.0,
+"npc": "Darsok Swiftdagger",
+"coords": [
+51.6,
+30.9
+],
+"_line": 16
+},
+{
+"accept": 871.0,
+"npc": "Thork",
+"coords": [
+51.5,
+30.9
+],
+"_line": 17
+},
+{
+"accept": 844.0,
+"npc": "Sergra Darkthorn",
+"coords": [
+52.2,
+31.0
+],
+"_line": 18
+},
+{
+"accept": 870.0,
+"npc": "Tonga Runetotem",
+"coords": [
+52.3,
+31.9
+],
+"_line": 19
+},
+{
+"accept": 6365.0,
+"npc": "Zargh",
+"coords": [
+52.6,
+29.8
+],
+"_line": 20
+},
+{
+"accept": [
+855.0,
+850.0
+],
+"npc": "Regthar Deathgate",
+"coords": [
+45.3,
+28.4
+],
+"_line": 21
+},
+{
+"accept": 887.0,
+"npc": "Gazlowe",
+"coords": [
+62.7,
+36.2
+],
+"_line": 22
+},
+{
+"accept": 894.0,
+"npc": "Sputtervalve",
+"coords": [
+63.0,
+37.2
+],
+"_line": 23
+},
+{
+"complete": 869.0,
+"coords": [
+55.0,
+33.6
+],
+"radius": 80.0,
+"text": "Collect Raptor Head (from Sunscale Lashtail, Sunscale Screecher).",
+"_line": 24
+},
+{
+"complete": 844.0,
+"coords": [
+51.3,
+28.6
+],
+"radius": 80.0,
+"text": "Collect Plainstrider Beak (from Greater Plainstrider, Ornery Plainstrider).",
+"_line": 25
+},
+{
+"complete": 871.0,
+"coords": [
+55.1,
+25.8
+],
+"radius": 80.0,
+"text": "Kill Razormane Water Seeker; kill Razormane Thornweaver; kill Razormane Hunter.",
+"_line": 26
+},
+{
+"complete": 870.0,
+"coords": [
+45.1,
+22.5
+],
+"radius": 80.0,
+"text": "Explore: Explore the waters of the Forgotten Pools.",
+"_line": 27
+},
+{
+"complete": 850.0,
+"coords": [
+42.8,
+23.5
+],
+"radius": 80.0,
+"text": "Collect Barak's Head (from Barak Kodobane).",
+"_line": 28
+},
+{
+"complete": 867.0,
+"coords": [
+39.5,
+15.6
+],
+"radius": 80.0,
+"text": "Collect Witchwing Talon (from Witchwing Harpy, Witchwing Roguefeather).",
+"_line": 29
+},
+{
+"complete": 855.0,
+"coords": [
+46.6,
+37.9
+],
+"radius": 80.0,
+"text": "Collect Centaur Bracers (from Kolkar Wrangler, Kolkar Stormer).",
+"_line": 30
+},
+{
+"complete": 848.0,
+"coords": [
+46.4,
+39.4
+],
+"radius": 80.0,
+"text": "Collect Fungal Spores (from Laden Mushroom).",
+"_line": 31
+},
+{
+"complete": 887.0,
+"coords": [
+63.8,
+46.8
+],
+"radius": 80.0,
+"text": "Kill Southsea Brigand; kill Southsea Cannoneer.",
+"_line": 32
+},
+{
+"turnin": 1492.0,
+"npc": "Wharfmaster Dizzywig",
+"coords": [
+63.4,
+38.5
+],
+"_line": 33
+},
+{
+"turnin": 887.0,
+"npc": "Gazlowe",
+"coords": [
+62.7,
+36.2
+],
+"_line": 34
+},
+{
+"turnin": [
+886.0,
+870.0
+],
+"npc": "Tonga Runetotem",
+"coords": [
+52.3,
+31.9
+],
+"_line": 35
+},
+{
+"turnin": [
+860.0,
+844.0
+],
+"npc": "Sergra Darkthorn",
+"coords": [
+52.2,
+31.0
+],
+"_line": 36
+},
+{
+"turnin": 867.0,
+"npc": "Darsok Swiftdagger",
+"coords": [
+51.6,
+30.9
+],
+"_line": 37
+},
+{
+"turnin": 871.0,
+"npc": "Thork",
+"coords": [
+51.5,
+30.9
+],
+"_line": 38
+},
+{
+"turnin": [
+6361.0,
+6365.0
+],
+"npc": "Devrak",
+"coords": [
+51.5,
+30.3
+],
+"_line": 39
+},
+{
+"turnin": 848.0,
+"npc": "Apothecary Helbrim",
+"coords": [
+51.4,
+30.1
+],
+"_line": 40
+},
+{
+"turnin": 869.0,
+"npc": "Gazrog",
+"coords": [
+51.9,
+30.3
+],
+"_line": 41
+},
+{
+"turnin": [
+855.0,
+850.0
+],
+"npc": "Regthar Deathgate",
+"coords": [
+45.3,
+28.4
+],
+"_line": 42
+},
+{
+"turnin": 894.0,
+"coords": [
+52.4,
+11.7
+],
+"text": "Control Console.",
+"_line": 43
+},
+{
+"accept": 900.0,
+"coords": [
+52.4,
+11.7
+],
+"text": "Control Console.",
+"_line": 44
+},
+{
+"accept": 858.0,
+"npc": "Wizzlecrank's Shredder",
+"coords": [
+56.5,
+7.5
+],
+"_line": 45
+},
+{
+"accept": 853.0,
+"npc": "Apothecary Helbrim",
+"coords": [
+51.4,
+30.1
+],
+"_line": 46
+},
+{
+"accept": [
+6362.0,
+6384.0
+],
+"npc": "Devrak",
+"coords": [
+51.5,
+30.3
+],
+"_line": 47
+},
+{
+"accept": 3281.0,
+"npc": "Gazrog",
+"coords": [
+51.9,
+30.3
+],
+"_line": 48
+},
+{
+"accept": 875.0,
+"npc": "Darsok Swiftdagger",
+"coords": [
+51.6,
+30.9
+],
+"_line": 49
+},
+{
+"accept": [
+5041.0,
+872.0
+],
+"npc": "Thork",
+"coords": [
+51.5,
+30.9
+],
+"_line": 50
+},
+{
+"accept": 845.0,
+"npc": "Sergra Darkthorn",
+"coords": [
+52.2,
+31.0
+],
+"_line": 51
+},
+{
+"accept": 877.0,
+"npc": "Tonga Runetotem",
+"coords": [
+52.3,
+31.9
+],
+"_line": 52
+},
+{
+"accept": 890.0,
+"npc": "Gazlowe",
+"coords": [
+62.7,
+36.2
+],
+"_line": 53
+},
+{
+"accept": 895.0,
+"coords": [
+62.6,
+37.5
+],
+"text": "WANTED.",
+"_line": 54
+},
+{
+"accept": 865.0,
+"npc": "Mebok Mizzyrix",
+"coords": [
+62.4,
+37.6
+],
+"_line": 55
+},
+{
+"accept": 896.0,
+"npc": "Wharfmaster Dizzywig",
+"coords": [
+63.4,
+38.5
+],
+"_line": 56
+},
+{
+"complete": 877.0,
+"coords": [
+55.6,
+42.8
+],
+"radius": 80.0,
+"text": "Use Bubbling Fissure.",
+"_line": 57
+},
+{
+"complete": 865.0,
+"coords": [
+52.7,
+45.7
+],
+"radius": 80.0,
+"text": "Collect Intact Raptor Horn (from Sunscale Scytheclaw).",
+"_line": 58
+},
+{
+"complete": 3281.0,
+"coords": [
+58.0,
+53.9
+],
+"radius": 80.0,
+"text": "Collect Stolen Silver.",
+"_line": 59
+},
+{
+"complete": 895.0,
+"coords": [
+63.6,
+49.1
+],
+"radius": 80.0,
+"text": "Collect Baron Longshore's Head (from Baron Longshore).",
+"_line": 60
+},
+{
+"complete": 845.0,
+"coords": [
+50.0,
+33.9
+],
+"radius": 80.0,
+"text": "Collect Zhevra Hooves (from Zhevra Runner, Zhevra Charger).",
+"_line": 61
+},
+{
+"complete": 872.0,
+"coords": [
+58.7,
+25.1
+],
+"radius": 80.0,
+"text": "Kill Razormane Geomancer; kill Razormane Defender; collect Kreenig Snarlsnout's Tusk (from Kreenig Snarlsnout).",
+"_line": 62
+},
+{
+"complete": 5041.0,
+"coords": [
+58.8,
+24.9
+],
+"radius": 80.0,
+"text": "Collect Crossroads' Supply Crates.",
+"_line": 63
+},
+{
+"complete": 900.0,
+"coords": [
+52.3,
+11.4
+],
+"radius": 80.0,
+"text": "Use Main Control Valve; use Fuel Control Valve; use Regulator Valve.",
+"_line": 64
+},
+{
+"complete": 858.0,
+"coords": [
+56.3,
+8.6
+],
+"radius": 80.0,
+"text": "Collect Ignition Key (from Supervisor Lugwizzle).",
+"_line": 65
+},
+{
+"complete": 896.0,
+"coords": [
+60.6,
+3.8
+],
+"radius": 80.0,
+"text": "Collect Cats Eye Emerald (from Venture Co. Enforcer, Venture Co. Overseer).",
+"_line": 66
+},
+{
+"complete": 875.0,
+"coords": [
+38.8,
+14.8
+],
+"radius": 80.0,
+"text": "Collect Harpy Lieutenant Ring (from Witchwing Slayer).",
+"_line": 67
+},
+{
+"turnin": 900.0,
+"coords": [
+52.4,
+11.7
+],
+"text": "Control Console.",
+"_line": 68
+},
+{
+"turnin": 858.0,
+"npc": "Wizzlecrank's Shredder",
+"coords": [
+56.5,
+7.5
+],
+"_line": 69
+},
+{
+"turnin": 3281.0,
+"npc": "Gazrog",
+"coords": [
+51.9,
+30.3
+],
+"_line": 70
+},
+{
+"turnin": 875.0,
+"npc": "Darsok Swiftdagger",
+"coords": [
+51.6,
+30.9
+],
+"_line": 71
+},
+{
+"turnin": [
+5041.0,
+872.0
+],
+"npc": "Thork",
+"coords": [
+51.5,
+30.9
+],
+"_line": 72
+},
+{
+"turnin": 845.0,
+"npc": "Sergra Darkthorn",
+"coords": [
+52.2,
+31.0
+],
+"_line": 73
+},
+{
+"turnin": 877.0,
+"npc": "Tonga Runetotem",
+"coords": [
+52.3,
+31.9
+],
+"_line": 74
+},
+{
+"turnin": 895.0,
+"npc": "Gazlowe",
+"coords": [
+62.7,
+36.2
+],
+"_line": 75
+},
+{
+"turnin": 865.0,
+"npc": "Mebok Mizzyrix",
+"coords": [
+62.4,
+37.6
+],
+"_line": 76
+},
+{
+"turnin": [
+890.0,
+896.0
+],
+"npc": "Wharfmaster Dizzywig",
+"coords": [
+63.4,
+38.5
+],
+"_line": 77
+},
+{
+"turnin": 6362.0,
+"npc": "Ahanu",
+"coords": [
+45.8,
+55.8
+],
+"zone": "Thunder Bluff",
+"_line": 78
+},
+{
+"turnin": 853.0,
+"npc": "Apothecary Zamah",
+"coords": [
+22.8,
+20.9
+],
+"zone": "Thunder Bluff",
+"_line": 79
+},
+{
+"turnin": 6384.0,
+"npc": "Innkeeper Gryshka",
+"coords": [
+54.1,
+68.4
+],
+"zone": "Orgrimmar",
+"_line": 80
+},
+{
+"accept": 6385.0,
+"npc": "Innkeeper Gryshka",
+"coords": [
+54.1,
+68.4
+],
+"zone": "Orgrimmar",
+"_line": 81
+},
+{
+"accept": 6363.0,
+"npc": "Ahanu",
+"coords": [
+45.8,
+55.8
+],
+"zone": "Thunder Bluff",
+"_line": 82
+},
+{
+"accept": 892.0,
+"npc": "Wharfmaster Dizzywig",
+"coords": [
+63.4,
+38.5
+],
+"_line": 83
+},
+{
+"accept": 880.0,
+"npc": "Tonga Runetotem",
+"coords": [
+52.3,
+31.9
+],
+"_line": 84
+},
+{
+"accept": 903.0,
+"npc": "Sergra Darkthorn",
+"coords": [
+52.2,
+31.0
+],
+"_line": 85
+},
+{
+"accept": 901.0,
+"coords": [
+52.4,
+11.7
+],
+"text": "Control Console.",
+"_line": 86
+},
+{
+"accept": 863.0,
+"npc": "Wizzlecrank's Shredder",
+"coords": [
+56.5,
+7.5
+],
+"_line": 87
+},
+{
+"complete": 901.0,
+"coords": [
+52.8,
+10.4
+],
+"radius": 80.0,
+"text": "Collect Console Key (from Tinkerer Sniggles).",
+"_line": 88
+},
+{
+"complete": 903.0,
+"coords": [
+44.2,
+24.3
+],
+"radius": 80.0,
+"text": "Collect Prowler Claws (from Savannah Prowler).",
+"_line": 89
+},
+{
+"complete": 880.0,
+"coords": [
+47.6,
+40.2
+],
+"radius": 80.0,
+"text": "Collect Altered Snapjaw Shell (from Oasis Snapjaw).",
+"_line": 90
+},
+{
+"turnin": 880.0,
+"npc": "Tonga Runetotem",
+"coords": [
+52.3,
+31.9
+],
+"_line": 91
+},
+{
+"turnin": 903.0,
+"npc": "Sergra Darkthorn",
+"coords": [
+52.2,
+31.0
+],
+"_line": 92
+},
+{
+"turnin": 892.0,
+"npc": "Gazlowe",
+"coords": [
+62.7,
+36.2
+],
+"_line": 93
+},
+{
+"turnin": 863.0,
+"npc": "Sputtervalve",
+"coords": [
+63.0,
+37.2
+],
+"_line": 94
+},
+{
+"turnin": 901.0,
+"coords": [
+52.4,
+11.7
+],
+"text": "Control Console.",
+"_line": 95
+},
+{
+"turnin": 6363.0,
+"npc": "Tal",
+"coords": [
+47.0,
+49.8
+],
+"zone": "Thunder Bluff",
+"_line": 96
+},
+{
+"turnin": 6385.0,
+"npc": "Doras",
+"coords": [
+45.1,
+63.9
+],
+"zone": "Orgrimmar",
+"_line": 97
+},
+{
+"accept": 6386.0,
+"npc": "Doras",
+"coords": [
+45.1,
+63.9
+],
+"zone": "Orgrimmar",
+"_line": 98
+},
+{
+"accept": 6364.0,
+"npc": "Tal",
+"coords": [
+47.0,
+49.8
+],
+"zone": "Thunder Bluff",
+"_line": 99
+},
+{
+"accept": 888.0,
+"npc": "Gazlowe",
+"coords": [
+62.7,
+36.2
+],
+"_line": 100
+},
+{
+"accept": 902.0,
+"coords": [
+52.4,
+11.7
+],
+"text": "Control Console.",
+"_line": 101
+},
+{
+"complete": 888.0,
+"coords": [
+62.6,
+49.3
+],
+"radius": 80.0,
+"text": "Collect Shipment of Boots (from Drizzlik's Emporium); collect Telescopic Lens (from Fragile - Do Not Drop).",
+"_line": 102
+},
+{
+"turnin": 902.0,
+"npc": "Sputtervalve",
+"coords": [
+63.0,
+37.2
+],
+"_line": 103
+},
+{
+"turnin": 888.0,
+"npc": "Gazlowe",
+"coords": [
+62.7,
+36.2
+],
+"_line": 104
+},
+{
+"turnin": 6386.0,
+"npc": "Zargh",
+"coords": [
+52.6,
+29.8
+],
+"_line": 105
+},
+{
+"turnin": 6364.0,
+"npc": "Jahan Hawkwing",
+"coords": [
+51.2,
+29.1
+],
+"_line": 106
+},
+{
+"accept": 3921.0,
+"npc": "Sputtervalve",
+"coords": [
+63.0,
+37.2
+],
+"_line": 107
+},
+{
+"turnin": 3921.0,
+"npc": "Wenikee Boltbucket",
+"coords": [
+49.0,
+11.2
+],
+"_line": 108
+},
+{
+"accept": 3922.0,
+"npc": "Wenikee Boltbucket",
+"coords": [
+49.0,
+11.2
+],
+"_line": 109
+},
+{
+"complete": 3922.0,
+"coords": [
+56.2,
+8.5
+],
+"radius": 80.0,
+"text": "Collect Nugget Slug (from Tool Bucket).",
+"_line": 110
+},
+{
+"turnin": 3922.0,
+"npc": "Wenikee Boltbucket",
+"coords": [
+49.0,
+11.2
+],
+"_line": 111
+},
+{
+"accept": 3923.0,
+"npc": "Wenikee Boltbucket",
+"coords": [
+49.0,
+11.2
+],
+"_line": 112
+},
+{
+"turnin": 3923.0,
+"npc": "Rilli Greasygob",
+"coords": [
+76.5,
+24.4
+],
+"zone": "Orgrimmar",
+"_line": 113
+},
+{
+"level": 16.0,
+"radius": 400.0,
+"text": "Grind to 16 if needed.",
+"_line": 114
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 115
+}
+],
+"_line": 8,
+"name": "The Barrens 12-16",
+"file": "Guides/Horde_10-30.lua"
+},
+{
+"faction": "Horde",
+"races": [
+"Scourge"
+],
+"minLevel": 12.0,
+"maxLevel": 16.0,
+"zone": "Silverpine Forest",
+"next": "The Barrens 16-21",
+"steps": [
+{
+"accept": 421.0,
+"fp": "The Sepulcher",
+"bind": "The Sepulcher",
+"npc": "Dalar Dawnweaver",
+"coords": [
+44.2,
+39.8
+],
+"text": "Get the The Sepulcher flight path and set your Hearthstone in The Sepulcher.",
+"_line": 124
+},
+{
+"accept": 477.0,
+"npc": "Shadow Priest Allister",
+"coords": [
+44.0,
+40.9
+],
+"_line": 125
+},
+{
+"accept": 428.0,
+"npc": "High Executor Hadrec",
+"coords": [
+43.4,
+40.9
+],
+"_line": 126
+},
+{
+"accept": 447.0,
+"npc": "Apothecary Renferrel",
+"coords": [
+42.8,
+40.9
+],
+"_line": 127
+},
+{
+"accept": 6321.0,
+"npc": "Deathguard Podrig",
+"coords": [
+43.4,
+41.7
+],
+"_line": 128
+},
+{
+"accept": 460.0,
+"coords": [
+66.2,
+25.1
+],
+"radius": 80.0,
+"text": "Loot A Talking Head from Rot Hide Brute and right-click it to start the quest.",
+"_line": 129
+},
+{
+"accept": 435.0,
+"npc": "Deathstalker Erland",
+"coords": [
+56.2,
+9.2
+],
+"_line": 130
+},
+{
+"accept": 452.0,
+"npc": "Deathstalker Faerleia",
+"coords": [
+46.5,
+74.4
+],
+"_line": 131
+},
+{
+"complete": 421.0,
+"coords": [
+52.9,
+26.7
+],
+"radius": 80.0,
+"text": "Kill Moonrage Whitescalp.",
+"_line": 132
+},
+{
+"complete": 447.0,
+"coords": [
+45.0,
+19.3
+],
+"radius": 80.0,
+"text": "Collect Grizzled Bear Heart (from Ferocious Grizzled Bear, Giant Grizzled Bear); collect Skittering Blood (from Moss Stalker, Mist Creeper).",
+"_line": 133
+},
+{
+"turnin": [
+435.0,
+428.0
+],
+"npc": "Rane Yorick",
+"coords": [
+53.5,
+13.4
+],
+"_line": 134
+},
+{
+"turnin": 460.0,
+"coords": [
+67.9,
+24.9
+],
+"text": "Shallow Grave.",
+"_line": 135
+},
+{
+"turnin": 421.0,
+"npc": "Dalar Dawnweaver",
+"coords": [
+44.2,
+39.8
+],
+"_line": 136
+},
+{
+"turnin": 6321.0,
+"npc": "Karos Razok",
+"coords": [
+45.6,
+42.6
+],
+"_line": 137
+},
+{
+"turnin": 477.0,
+"coords": [
+49.9,
+60.3
+],
+"text": "Dalaran Crate.",
+"_line": 138
+},
+{
+"turnin": 452.0,
+"npc": "Deathstalker Faerleia",
+"coords": [
+46.5,
+74.4
+],
+"_line": 139
+},
+{
+"turnin": 447.0,
+"npc": "Master Apothecary Faranell",
+"coords": [
+48.8,
+69.3
+],
+"zone": "Undercity",
+"_line": 140
+},
+{
+"accept": 450.0,
+"npc": "Master Apothecary Faranell",
+"coords": [
+48.8,
+69.3
+],
+"zone": "Undercity",
+"_line": 141
+},
+{
+"accept": 6323.0,
+"npc": "Karos Razok",
+"coords": [
+45.6,
+42.6
+],
+"_line": 142
+},
+{
+"accept": 422.0,
+"npc": "Dalar Dawnweaver",
+"coords": [
+44.2,
+39.8
+],
+"_line": 143
+},
+{
+"accept": 478.0,
+"coords": [
+49.9,
+60.3
+],
+"text": "Dalaran Crate.",
+"_line": 144
+},
+{
+"accept": 461.0,
+"coords": [
+67.9,
+24.9
+],
+"text": "Shallow Grave.",
+"_line": 145
+},
+{
+"accept": [
+429.0,
+449.0
+],
+"npc": "Rane Yorick",
+"coords": [
+53.5,
+13.4
+],
+"_line": 146
+},
+{
+"complete": 429.0,
+"coords": [
+55.5,
+14.1
+],
+"radius": 80.0,
+"text": "Collect Discolored Worg Heart (from Worg, Mottled Worg).",
+"_line": 147
+},
+{
+"complete": 422.0,
+"coords": [
+52.8,
+28.6
+],
+"radius": 80.0,
+"text": "Collect Remedy of Arugal (from Dusty Spellbooks).",
+"_line": 148
+},
+{
+"complete": 450.0,
+"coords": [
+43.0,
+73.2
+],
+"radius": 80.0,
+"text": "Collect Berard's Journal (from Berard's Bookshelf).",
+"_line": 149
+},
+{
+"turnin": 478.0,
+"npc": "Shadow Priest Allister",
+"coords": [
+44.0,
+40.9
+],
+"_line": 150
+},
+{
+"turnin": 449.0,
+"npc": "High Executor Hadrec",
+"coords": [
+43.4,
+40.9
+],
+"_line": 151
+},
+{
+"turnin": [
+429.0,
+450.0
+],
+"npc": "Apothecary Renferrel",
+"coords": [
+42.8,
+40.9
+],
+"_line": 152
+},
+{
+"turnin": 422.0,
+"npc": "Dalar Dawnweaver",
+"coords": [
+44.2,
+39.8
+],
+"_line": 153
+},
+{
+"turnin": 461.0,
+"coords": [
+65.4,
+24.8
+],
+"text": "Dusty Shelf.",
+"_line": 154
+},
+{
+"turnin": 6323.0,
+"npc": "Gordon Wendham",
+"coords": [
+61.5,
+41.8
+],
+"zone": "Undercity",
+"_line": 155
+},
+{
+"accept": 6322.0,
+"npc": "Gordon Wendham",
+"coords": [
+61.5,
+41.8
+],
+"zone": "Undercity",
+"_line": 156
+},
+{
+"accept": [
+430.0,
+451.0
+],
+"npc": "Apothecary Renferrel",
+"coords": [
+42.8,
+40.9
+],
+"_line": 157
+},
+{
+"accept": 3221.0,
+"npc": "High Executor Hadrec",
+"coords": [
+43.4,
+40.9
+],
+"_line": 158
+},
+{
+"accept": 481.0,
+"npc": "Shadow Priest Allister",
+"coords": [
+44.0,
+40.9
+],
+"_line": 159
+},
+{
+"accept": 423.0,
+"npc": "Dalar Dawnweaver",
+"coords": [
+44.2,
+39.8
+],
+"_line": 160
+},
+{
+"accept": 491.0,
+"coords": [
+65.4,
+24.8
+],
+"text": "Dusty Shelf.",
+"_line": 161
+},
+{
+"complete": 451.0,
+"coords": [
+71.1,
+23.1
+],
+"radius": 80.0,
+"text": "Collect Lake Skulker Moss (from Lake Skulker, Elder Lake Skulker); collect Lake Creeper Moss (from Lake Creeper, Elder Lake Creeper); collect Hardened Tumor (from Vile Fin Shredder, Vile Fin Tidehunter).",
+"_line": 162
+},
+{
+"complete": 423.0,
+"coords": [
+45.5,
+29.7
+],
+"radius": 80.0,
+"text": "Collect Glutton Shackle (from Moonrage Glutton); collect Darksoul Shackle (from Moonrage Darksoul).",
+"_line": 163
+},
+{
+"turnin": [
+423.0,
+481.0
+],
+"npc": "Dalar Dawnweaver",
+"coords": [
+44.2,
+39.8
+],
+"_line": 164
+},
+{
+"turnin": 3221.0,
+"npc": "Apothecary Renferrel",
+"coords": [
+42.8,
+40.9
+],
+"_line": 165
+},
+{
+"turnin": 430.0,
+"npc": "Quinn Yorick",
+"coords": [
+53.4,
+12.6
+],
+"_line": 166
+},
+{
+"turnin": 6322.0,
+"npc": "Michael Garrett",
+"coords": [
+63.2,
+48.6
+],
+"zone": "Undercity",
+"_line": 167
+},
+{
+"turnin": 451.0,
+"npc": "Master Apothecary Faranell",
+"coords": [
+48.8,
+69.3
+],
+"zone": "Undercity",
+"_line": 168
+},
+{
+"turnin": 491.0,
+"npc": "Bethor Iceshard",
+"coords": [
+84.1,
+17.4
+],
+"zone": "Undercity",
+"_line": 169
+},
+{
+"accept": 6324.0,
+"npc": "Michael Garrett",
+"coords": [
+63.2,
+48.6
+],
+"zone": "Undercity",
+"_line": 170
+},
+{
+"accept": 425.0,
+"npc": "Rane Yorick",
+"coords": [
+53.5,
+13.4
+],
+"_line": 171
+},
+{
+"accept": [
+482.0,
+424.0
+],
+"npc": "Dalar Dawnweaver",
+"coords": [
+44.2,
+39.8
+],
+"_line": 172
+},
+{
+"complete": 424.0,
+"coords": [
+58.6,
+44.9
+],
+"radius": 80.0,
+"text": "Collect Head of Grimson (from Grimson the Pale).",
+"_line": 173
+},
+{
+"complete": 425.0,
+"coords": [
+51.5,
+13.9
+],
+"radius": 80.0,
+"text": "Collect Ivar's Head (from Ivar the Foul).",
+"_line": 174
+},
+{
+"turnin": 425.0,
+"npc": "Rane Yorick",
+"coords": [
+53.5,
+13.4
+],
+"_line": 175
+},
+{
+"turnin": 424.0,
+"npc": "Dalar Dawnweaver",
+"coords": [
+44.2,
+39.8
+],
+"_line": 176
+},
+{
+"turnin": 482.0,
+"npc": "Shadow Priest Allister",
+"coords": [
+44.0,
+40.9
+],
+"_line": 177
+},
+{
+"turnin": 6324.0,
+"npc": "Deathguard Podrig",
+"coords": [
+43.4,
+41.7
+],
+"_line": 178
+},
+{
+"accept": 479.0,
+"npc": "Shadow Priest Allister",
+"coords": [
+44.0,
+40.9
+],
+"_line": 179
+},
+{
+"complete": 479.0,
+"coords": [
+59.9,
+64.3
+],
+"radius": 80.0,
+"text": "Collect Dalaran Pendant (from Dalaran Protector, Dalaran Mage).",
+"_line": 180
+},
+{
+"turnin": 479.0,
+"npc": "Shadow Priest Allister",
+"coords": [
+44.0,
+40.9
+],
+"_line": 181
+},
+{
+"level": 16.0,
+"coords": [
+44.0,
+40.9
+],
+"radius": 400.0,
+"text": "Grind to 16 if needed.",
+"_line": 182
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills. Take the zeppelin from the tower outside Undercity (Tirisfal) to Orgrimmar, then ride south-west into The Barrens.",
+"_line": 183
+}
+],
+"_line": 121,
+"name": "Silverpine Forest 12-16",
+"file": "Guides/Horde_10-30.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 16.0,
+"maxLevel": 21.0,
+"zone": "The Barrens",
+"next": "Stonetalon Mountains 21-24",
+"steps": [
+{
+"accept": 6541.0,
+"fp": "The Crossroads",
+"bind": "The Crossroads",
+"npc": "Thork",
+"coords": [
+51.5,
+30.9
+],
+"text": "Get the The Crossroads flight path and set your Hearthstone in The Crossroads.",
+"_line": 192
+},
+{
+"accept": 876.0,
+"npc": "Darsok Swiftdagger",
+"coords": [
+51.6,
+30.9
+],
+"_line": 193
+},
+{
+"accept": [
+899.0,
+4921.0
+],
+"npc": "Mankrik",
+"coords": [
+52.0,
+31.6
+],
+"_line": 194
+},
+{
+"accept": 868.0,
+"npc": "Korran",
+"coords": [
+51.1,
+29.6
+],
+"_line": 195
+},
+{
+"accept": 891.0,
+"npc": "Captain Thalo'thas Brightsun",
+"coords": [
+62.3,
+39.0
+],
+"_line": 196
+},
+{
+"accept": 898.0,
+"npc": "Gilthares Firebough",
+"coords": [
+62.0,
+55.0
+],
+"_line": 197
+},
+{
+"accept": 883.0,
+"coords": [
+46.1,
+51.3
+],
+"radius": 80.0,
+"text": "Loot Hoof of Lakota'mani from Lakota'mani and right-click it to start the quest.",
+"_line": 198
+},
+{
+"accept": 893.0,
+"npc": "Tatternack Steelforge",
+"coords": [
+45.1,
+57.7
+],
+"_line": 199
+},
+{
+"accept": 878.0,
+"npc": "Mangletooth",
+"coords": [
+44.5,
+59.3
+],
+"_line": 200
+},
+{
+"accept": 884.0,
+"coords": [
+45.8,
+61.1
+],
+"radius": 80.0,
+"text": "Loot Owatanka's Tailspike from Owatanka and right-click it to start the quest.",
+"_line": 201
+},
+{
+"accept": 897.0,
+"coords": [
+43.1,
+70.1
+],
+"radius": 80.0,
+"text": "Loot Harvester's Head from Silithid Harvester and right-click it to start the quest.",
+"_line": 202
+},
+{
+"accept": 843.0,
+"npc": "Gann Stonespire",
+"coords": [
+45.9,
+77.0
+],
+"_line": 203
+},
+{
+"accept": 885.0,
+"coords": [
+44.8,
+78.9
+],
+"radius": 80.0,
+"text": "Loot Washte Pawne's Feather from Washte Pawne and right-click it to start the quest.",
+"_line": 204
+},
+{
+"complete": 893.0,
+"coords": [
+42.6,
+81.3
+],
+"radius": 80.0,
+"text": "Collect Razormane Backstabber (from Razormane Pathfinder, Razormane Stalker); collect Charred Razormane Wand (from Razormane Seer); collect Razormane War Shield (from Razormane Warfrenzy).",
+"_line": 205
+},
+{
+"complete": 843.0,
+"coords": [
+47.6,
+85.3
+],
+"radius": 80.0,
+"text": "Kill Bael'dun Excavator; kill Bael'dun Foreman; collect Khazgorm's Journal (from Prospector Khazgorm).",
+"_line": 206
+},
+{
+"complete": 868.0,
+"coords": [
+44.9,
+70.6
+],
+"radius": 80.0,
+"text": "Collect Silithid Egg (from Silithid Creeper, Silithid Grub).",
+"_line": 207
+},
+{
+"complete": 899.0,
+"coords": [
+45.5,
+53.3
+],
+"radius": 80.0,
+"text": "Collect Bristleback Quilboar Tusk (from Bristleback Hunter, Bristleback Water Seeker).",
+"_line": 208
+},
+{
+"complete": 4921.0,
+"coords": [
+49.3,
+50.3
+],
+"radius": 80.0,
+"text": "Find Mankrik's Wife (Beaten Corpse).",
+"_line": 209
+},
+{
+"complete": 878.0,
+"coords": [
+50.4,
+53.7
+],
+"radius": 80.0,
+"text": "Kill Bristleback Water Seeker; kill Bristleback Thornweaver; kill Bristleback Geomancer.",
+"_line": 210
+},
+{
+"complete": 891.0,
+"coords": [
+61.8,
+54.8
+],
+"radius": 80.0,
+"text": "Kill Captain Fairmount; kill Cannoneer Whessan; kill Cannoneer Smythe; collect Theramore Medal (from Theramore Marine, Theramore Preserver).",
+"_line": 211
+},
+{
+"complete": 876.0,
+"coords": [
+39.2,
+12.2
+],
+"radius": 80.0,
+"text": "Collect Serena's Head (from Serena Bloodfeather).",
+"_line": 212
+},
+{
+"turnin": 6541.0,
+"npc": "Kadrak",
+"coords": [
+48.1,
+5.4
+],
+"_line": 213
+},
+{
+"turnin": 868.0,
+"npc": "Korran",
+"coords": [
+51.1,
+29.6
+],
+"_line": 214
+},
+{
+"turnin": 876.0,
+"npc": "Darsok Swiftdagger",
+"coords": [
+51.6,
+30.9
+],
+"_line": 215
+},
+{
+"turnin": [
+899.0,
+4921.0
+],
+"npc": "Mankrik",
+"coords": [
+52.0,
+31.6
+],
+"_line": 216
+},
+{
+"turnin": [
+891.0,
+898.0
+],
+"npc": "Captain Thalo'thas Brightsun",
+"coords": [
+62.3,
+39.0
+],
+"_line": 217
+},
+{
+"turnin": 893.0,
+"npc": "Tatternack Steelforge",
+"coords": [
+45.1,
+57.7
+],
+"_line": 218
+},
+{
+"turnin": [
+883.0,
+884.0,
+897.0,
+885.0
+],
+"npc": "Jorn Skyseer",
+"coords": [
+44.9,
+59.1
+],
+"_line": 219
+},
+{
+"turnin": 878.0,
+"npc": "Mangletooth",
+"coords": [
+44.5,
+59.3
+],
+"_line": 220
+},
+{
+"turnin": 843.0,
+"npc": "Gann Stonespire",
+"coords": [
+45.9,
+77.0
+],
+"_line": 221
+},
+{
+"accept": 846.0,
+"npc": "Gann Stonespire",
+"coords": [
+45.9,
+77.0
+],
+"_line": 222
+},
+{
+"accept": 5052.0,
+"npc": "Mangletooth",
+"coords": [
+44.5,
+59.3
+],
+"_line": 223
+},
+{
+"complete": 5052.0,
+"coords": [
+46.8,
+51.6
+],
+"radius": 80.0,
+"text": "Collect Blood Shard (from Bristleback Hunter, Bristleback Water Seeker).",
+"_line": 224
+},
+{
+"complete": 846.0,
+"coords": [
+49.2,
+84.2
+],
+"radius": 80.0,
+"text": "Collect Nitroglycerin (from Bael'dun Soldier, Bael'dun Rifleman); collect Wood Pulp (from Bael'dun Soldier, Bael'dun Rifleman); collect Sodium Nitrate (from Bael'dun Soldier, Bael'dun Rifleman).",
+"_line": 225
+},
+{
+"turnin": 846.0,
+"npc": "Gann Stonespire",
+"coords": [
+45.9,
+77.0
+],
+"_line": 226
+},
+{
+"turnin": 5052.0,
+"npc": "Mangletooth",
+"coords": [
+44.5,
+59.3
+],
+"_line": 227
+},
+{
+"accept": 879.0,
+"npc": "Mangletooth",
+"coords": [
+44.5,
+59.3
+],
+"_line": 228
+},
+{
+"accept": 849.0,
+"npc": "Gann Stonespire",
+"coords": [
+45.9,
+77.0
+],
+"_line": 229
+},
+{
+"complete": 879.0,
+"coords": [
+43.8,
+80.5
+],
+"radius": 80.0,
+"text": "Collect Kuz's Skull (from Kuz); collect Nak's Skull (from Nak); collect Lok's Skull (from Lok Orcbane).",
+"_line": 230
+},
+{
+"complete": 849.0,
+"coords": [
+47.0,
+85.6
+],
+"radius": 80.0,
+"text": "Use Bael Modan Flying Machine.",
+"_line": 231
+},
+{
+"turnin": 849.0,
+"npc": "Gann Stonespire",
+"coords": [
+45.9,
+77.0
+],
+"_line": 232
+},
+{
+"turnin": 879.0,
+"npc": "Mangletooth",
+"coords": [
+44.5,
+59.3
+],
+"_line": 233
+},
+{
+"accept": 906.0,
+"npc": "Mangletooth",
+"coords": [
+44.5,
+59.3
+],
+"_line": 234
+},
+{
+"turnin": 906.0,
+"npc": "Thork",
+"coords": [
+51.5,
+30.9
+],
+"_line": 235
+},
+{
+"level": 21.0,
+"coords": [
+51.5,
+30.9
+],
+"radius": 400.0,
+"text": "Grind to 21 if needed.",
+"_line": 236
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 237
+}
+],
+"_line": 189,
+"name": "The Barrens 16-21",
+"file": "Guides/Horde_10-30.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 21.0,
+"maxLevel": 24.0,
+"zone": "Stonetalon Mountains",
+"next": "Ashenvale 24-27",
+"steps": [
+{
+"accept": 1061.0,
+"fp": "Sun Rock Retreat",
+"npc": "Zor Lonetree",
+"coords": [
+38.9,
+38.4
+],
+"zone": "Orgrimmar",
+"text": "Get the Sun Rock Retreat flight path.",
+"_line": 246
+},
+{
+"accept": 6421.0,
+"npc": "Mor'rogal",
+"coords": [
+47.2,
+64.0
+],
+"_line": 247
+},
+{
+"accept": 6393.0,
+"npc": "Tsunaman",
+"coords": [
+47.4,
+64.2
+],
+"_line": 248
+},
+{
+"accept": 6282.0,
+"npc": "Maggran Earthbinder",
+"coords": [
+47.2,
+61.2
+],
+"_line": 249
+},
+{
+"accept": 1087.0,
+"npc": "Braelyn Firehand",
+"coords": [
+45.9,
+60.4
+],
+"_line": 250
+},
+{
+"accept": 6301.0,
+"npc": "Tammra Windfield",
+"coords": [
+47.5,
+58.4
+],
+"_line": 251
+},
+{
+"accept": 1093.0,
+"npc": "Ziz Fizziks",
+"coords": [
+59.0,
+62.6
+],
+"_line": 252
+},
+{
+"accept": 1090.0,
+"npc": "Piznik",
+"coords": [
+71.9,
+60.0
+],
+"_line": 253
+},
+{
+"accept": 6523.0,
+"npc": "Kaya Flathoof",
+"coords": [
+73.5,
+85.6
+],
+"_line": 254
+},
+{
+"accept": 6461.0,
+"npc": "Xen'Zilla",
+"coords": [
+71.2,
+95.0
+],
+"_line": 255
+},
+{
+"accept": 1058.0,
+"npc": "Witch Doctor Jin'Zil",
+"coords": [
+74.5,
+97.9
+],
+"_line": 256
+},
+{
+"accept": 6548.0,
+"npc": "Makaba Flathoof",
+"coords": [
+35.2,
+27.8
+],
+"_line": 257
+},
+{
+"accept": 1062.0,
+"npc": "Seereth Stonebreak",
+"coords": [
+35.3,
+27.9
+],
+"_line": 258
+},
+{
+"complete": 6421.0,
+"coords": [
+59.6,
+91.5
+],
+"radius": 80.0,
+"text": "Collect Resonite Crystal (from Gogger Rock Keeper, Gogger Geomancer); explore: Investigate Cave in Boulderslide Ravine.",
+"_line": 259
+},
+{
+"complete": 6548.0,
+"coords": [
+82.3,
+87.3
+],
+"radius": 80.0,
+"text": "Kill Grimtotem Ruffian; kill Grimtotem Mercenary.",
+"_line": 260
+},
+{
+"complete": 6461.0,
+"coords": [
+54.8,
+66.4
+],
+"radius": 80.0,
+"text": "Kill Deepmoss Creeper; kill Deepmoss Venomspitter.",
+"_line": 261
+},
+{
+"complete": 1062.0,
+"coords": [
+66.4,
+52.3
+],
+"radius": 80.0,
+"text": "Kill Venture Co. Logger.",
+"_line": 262
+},
+{
+"complete": 1093.0,
+"coords": [
+67.1,
+51.7
+],
+"radius": 80.0,
+"text": "Collect Super Reaper 6000 Blueprints (from Venture Co. Operator).",
+"_line": 263
+},
+{
+"complete": 6301.0,
+"coords": [
+48.9,
+40.7
+],
+"radius": 80.0,
+"text": "Collect Gaea Seed.",
+"_line": 264
+},
+{
+"complete": 1058.0,
+"coords": [
+38.1,
+16.2
+],
+"radius": 80.0,
+"text": "Collect Stonetalon Sap (from Sap Beast); collect Twilight Whisker (from Twilight Runner); collect Courser Eye (from Antlered Courser, Great Courser); collect Fey Dragon Scale (from Fey Dragon, Wily Fey Dragon).",
+"_line": 265
+},
+{
+"complete": 1087.0,
+"coords": [
+36.0,
+12.6
+],
+"radius": 80.0,
+"text": "Kill Son of Cenarius; kill Daughter of Cenarius; kill Cenarion Botanist.",
+"_line": 266
+},
+{
+"complete": 6393.0,
+"coords": [
+34.1,
+65.4
+],
+"radius": 80.0,
+"text": "Collect Incendrites (from Rogue Flame Spirit, Burning Ravager).",
+"_line": 267
+},
+{
+"complete": 6282.0,
+"coords": [
+32.1,
+66.6
+],
+"radius": 80.0,
+"text": "Kill Bloodfury Harpy; kill Bloodfury Ambusher; kill Bloodfury Slayer; kill Bloodfury Roguefeather.",
+"_line": 268
+},
+{
+"turnin": 1087.0,
+"npc": "Braelyn Firehand",
+"coords": [
+45.9,
+60.4
+],
+"_line": 269
+},
+{
+"turnin": 6282.0,
+"npc": "Maggran Earthbinder",
+"coords": [
+47.2,
+61.2
+],
+"_line": 270
+},
+{
+"turnin": 6301.0,
+"npc": "Tammra Windfield",
+"coords": [
+47.5,
+58.4
+],
+"_line": 271
+},
+{
+"turnin": 6421.0,
+"npc": "Mor'rogal",
+"coords": [
+47.2,
+64.0
+],
+"_line": 272
+},
+{
+"turnin": 6393.0,
+"npc": "Tsunaman",
+"coords": [
+47.4,
+64.2
+],
+"_line": 273
+},
+{
+"turnin": 1093.0,
+"npc": "Ziz Fizziks",
+"coords": [
+59.0,
+62.6
+],
+"_line": 274
+},
+{
+"turnin": 1090.0,
+"npc": "Piznik",
+"coords": [
+71.9,
+60.0
+],
+"_line": 275
+},
+{
+"turnin": 6461.0,
+"npc": "Xen'Zilla",
+"coords": [
+71.2,
+95.0
+],
+"_line": 276
+},
+{
+"turnin": 1058.0,
+"npc": "Witch Doctor Jin'Zil",
+"coords": [
+74.5,
+97.9
+],
+"_line": 277
+},
+{
+"turnin": [
+1061.0,
+1062.0
+],
+"npc": "Seereth Stonebreak",
+"coords": [
+35.3,
+27.9
+],
+"_line": 278
+},
+{
+"turnin": [
+6523.0,
+6548.0
+],
+"npc": "Makaba Flathoof",
+"coords": [
+35.2,
+27.8
+],
+"_line": 279
+},
+{
+"accept": [
+6401.0,
+6629.0
+],
+"npc": "Makaba Flathoof",
+"coords": [
+35.2,
+27.8
+],
+"_line": 280
+},
+{
+"accept": [
+1063.0,
+1068.0
+],
+"npc": "Seereth Stonebreak",
+"coords": [
+35.3,
+27.9
+],
+"_line": 281
+},
+{
+"accept": 1094.0,
+"npc": "Ziz Fizziks",
+"coords": [
+59.0,
+62.6
+],
+"_line": 282
+},
+{
+"accept": 6381.0,
+"npc": "Tammra Windfield",
+"coords": [
+47.5,
+58.4
+],
+"_line": 283
+},
+{
+"accept": 1092.0,
+"npc": "Piznik",
+"coords": [
+71.9,
+60.0
+],
+"_line": 284
+},
+{
+"complete": 1068.0,
+"coords": [
+64.1,
+46.4
+],
+"radius": 80.0,
+"text": "Kill XT:4; kill XT:9.",
+"_line": 285
+},
+{
+"complete": 6381.0,
+"coords": [
+32.3,
+68.4
+],
+"radius": 80.0,
+"text": "Use Gaea Dirt Mound.",
+"_line": 286
+},
+{
+"complete": 6629.0,
+"coords": [
+76.4,
+86.2
+],
+"radius": 80.0,
+"text": "Kill Grundig Darkcloud; kill Grimtotem Brute.",
+"_line": 287
+},
+{
+"turnin": 1092.0,
+"npc": "Ziz Fizziks",
+"coords": [
+59.0,
+62.6
+],
+"_line": 288
+},
+{
+"turnin": [
+6401.0,
+6381.0
+],
+"npc": "Tammra Windfield",
+"coords": [
+47.5,
+58.4
+],
+"_line": 289
+},
+{
+"turnin": 1063.0,
+"npc": "Magatha Grimtotem",
+"coords": [
+69.8,
+30.9
+],
+"zone": "Thunder Bluff",
+"_line": 290
+},
+{
+"turnin": 6629.0,
+"npc": "Makaba Flathoof",
+"coords": [
+35.2,
+27.8
+],
+"_line": 291
+},
+{
+"turnin": 1068.0,
+"npc": "Seereth Stonebreak",
+"coords": [
+35.3,
+27.9
+],
+"_line": 292
+},
+{
+"turnin": 1094.0,
+"npc": "Sputtervalve",
+"coords": [
+63.0,
+37.2
+],
+"_line": 293
+},
+{
+"accept": 1095.0,
+"npc": "Sputtervalve",
+"coords": [
+63.0,
+37.2
+],
+"_line": 294
+},
+{
+"turnin": 1095.0,
+"npc": "Ziz Fizziks",
+"coords": [
+59.0,
+62.6
+],
+"_line": 295
+},
+{
+"accept": 1096.0,
+"npc": "Ziz Fizziks",
+"coords": [
+59.0,
+62.6
+],
+"_line": 296
+},
+{
+"complete": 1096.0,
+"coords": [
+64.5,
+40.3
+],
+"radius": 80.0,
+"text": "Collect Gerenzo's Mechanical Arm (from Gerenzo Wrenchwhistle).",
+"_line": 297
+},
+{
+"turnin": 1096.0,
+"npc": "Ziz Fizziks",
+"coords": [
+59.0,
+62.6
+],
+"_line": 298
+},
+{
+"level": 24.0,
+"coords": [
+59.0,
+62.6
+],
+"radius": 400.0,
+"text": "Grind to 24 if needed.",
+"_line": 299
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 300
+}
+],
+"_line": 243,
+"name": "Stonetalon Mountains 21-24",
+"file": "Guides/Horde_10-30.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 24.0,
+"maxLevel": 27.0,
+"zone": "Ashenvale",
+"next": "Hillsbrad Foothills 27-30",
+"steps": [
+{
+"accept": 6442.0,
+"fp": "Splintertree Post",
+"bind": "Splintertree Post",
+"npc": "Marukai",
+"coords": [
+11.7,
+34.9
+],
+"text": "Get the Splintertree Post flight path and set your Hearthstone in Splintertree Post.",
+"_line": 309
+},
+{
+"accept": 6462.0,
+"npc": "Mitsuwa",
+"coords": [
+11.7,
+34.9
+],
+"_line": 310
+},
+{
+"accept": 216.0,
+"npc": "Karang Amakkar",
+"coords": [
+11.9,
+34.5
+],
+"_line": 311
+},
+{
+"accept": 6641.0,
+"npc": "Muglash",
+"coords": [
+12.1,
+34.6
+],
+"_line": 312
+},
+{
+"accept": 6482.0,
+"npc": "Ruul Snowhoof",
+"coords": [
+41.5,
+34.5
+],
+"_line": 313
+},
+{
+"accept": 1918.0,
+"coords": [
+45.9,
+70.6
+],
+"radius": 80.0,
+"text": "Loot Befouled Water Globe from Tideress and right-click it to start the quest.",
+"_line": 314
+},
+{
+"accept": 6544.0,
+"npc": "Torek",
+"coords": [
+68.3,
+75.3
+],
+"_line": 315
+},
+{
+"accept": 6503.0,
+"npc": "Kuray'bin",
+"coords": [
+71.1,
+68.1
+],
+"_line": 316
+},
+{
+"accept": 6571.0,
+"npc": "Locke Okarr",
+"coords": [
+71.4,
+67.6
+],
+"_line": 317
+},
+{
+"accept": 6441.0,
+"npc": "Pixel",
+"coords": [
+73.1,
+61.5
+],
+"_line": 318
+},
+{
+"accept": 25.0,
+"npc": "Mastok Wrilehiss",
+"coords": [
+73.7,
+60.0
+],
+"_line": 319
+},
+{
+"complete": 6441.0,
+"coords": [
+78.4,
+49.7
+],
+"radius": 80.0,
+"text": "Collect Satyr Horns (from Xavian Rogue, Xavian Betrayer).",
+"_line": 320
+},
+{
+"complete": 6503.0,
+"coords": [
+72.9,
+71.4
+],
+"radius": 80.0,
+"text": "Kill Ashenvale Outrunner.",
+"_line": 321
+},
+{
+"complete": 25.0,
+"coords": [
+48.9,
+70.3
+],
+"radius": 80.0,
+"text": "Kill Befouled Water Elemental; explore: Scout the gazebo on Mystral Lake that overlooks the nearby Alliance outpost..",
+"_line": 322
+},
+{
+"complete": 6571.0,
+"coords": [
+40.4,
+38.9
+],
+"radius": 80.0,
+"text": "Collect Warsong Saw Blades; collect Warsong Axe Shipment; collect Warsong Oil; collect Logging Rope (from Foulweald Warrior, Foulweald Pathfinder).",
+"_line": 323
+},
+{
+"complete": 216.0,
+"coords": [
+35.6,
+37.0
+],
+"radius": 80.0,
+"text": "Kill Thistlefur Avenger; kill Thistlefur Shaman.",
+"_line": 324
+},
+{
+"complete": 6462.0,
+"coords": [
+40.8,
+33.6
+],
+"radius": 80.0,
+"text": "Collect Troll Charm (from Troll Chest).",
+"_line": 325
+},
+{
+"complete": 6442.0,
+"coords": [
+10.4,
+20.4
+],
+"radius": 80.0,
+"text": "Collect Wrathtail Head (from Wrathtail Myrmidon, Wrathtail Razortail).",
+"_line": 326
+},
+{
+"turnin": 6641.0,
+"npc": "Warsong Runner",
+"coords": [
+12.2,
+34.2
+],
+"_line": 327
+},
+{
+"turnin": 216.0,
+"npc": "Karang Amakkar",
+"coords": [
+11.9,
+34.5
+],
+"_line": 328
+},
+{
+"turnin": 6462.0,
+"npc": "Mitsuwa",
+"coords": [
+11.7,
+34.9
+],
+"_line": 329
+},
+{
+"turnin": 6442.0,
+"npc": "Marukai",
+"coords": [
+11.7,
+34.9
+],
+"_line": 330
+},
+{
+"turnin": [
+25.0,
+1918.0
+],
+"npc": "Mastok Wrilehiss",
+"coords": [
+73.7,
+60.0
+],
+"_line": 331
+},
+{
+"turnin": 6482.0,
+"npc": "Yama Snowhoof",
+"coords": [
+74.1,
+60.9
+],
+"_line": 332
+},
+{
+"turnin": 6441.0,
+"npc": "Pixel",
+"coords": [
+73.1,
+61.5
+],
+"_line": 333
+},
+{
+"turnin": 6544.0,
+"npc": "Ertog Ragetusk",
+"coords": [
+73.0,
+62.5
+],
+"_line": 334
+},
+{
+"turnin": 6571.0,
+"npc": "Locke Okarr",
+"coords": [
+71.4,
+67.6
+],
+"_line": 335
+},
+{
+"turnin": 6503.0,
+"npc": "Kuray'bin",
+"coords": [
+71.1,
+68.1
+],
+"_line": 336
+},
+{
+"accept": 824.0,
+"npc": "Mastok Wrilehiss",
+"coords": [
+73.7,
+60.0
+],
+"_line": 337
+},
+{
+"turnin": 824.0,
+"npc": "Je'neu Sancrea",
+"coords": [
+11.6,
+34.3
+],
+"_line": 338
+},
+{
+"level": 27.0,
+"coords": [
+11.6,
+34.3
+],
+"radius": 400.0,
+"text": "Grind to 27 if needed.",
+"_line": 339
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 340
+}
+],
+"_line": 306,
+"name": "Ashenvale 24-27",
+"file": "Guides/Horde_10-30.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 27.0,
+"maxLevel": 30.0,
+"zone": "Hillsbrad Foothills",
+"next": "Thousand Needles 30-32",
+"steps": [
+{
+"accept": 494.0,
+"fp": "Tarren Mill",
+"bind": "Tarren Mill",
+"npc": "Deathstalker Lesh",
+"coords": [
+20.8,
+47.4
+],
+"text": "Zeppelin from Orgrimmar to Undercity, then fly or ride south through Silverpine to Tarren Mill. Get the Tarren Mill flight path and set your Hearthstone in Tarren Mill.",
+"_line": 349
+},
+{
+"accept": 527.0,
+"npc": "High Executor Darthalia",
+"coords": [
+62.3,
+20.4
+],
+"_line": 350
+},
+{
+"accept": 549.0,
+"coords": [
+62.6,
+20.8
+],
+"text": "WANTED.",
+"_line": 351
+},
+{
+"accept": 498.0,
+"npc": "Krusk",
+"coords": [
+63.2,
+20.7
+],
+"_line": 352
+},
+{
+"accept": 567.0,
+"coords": [
+62.6,
+19.7
+],
+"text": "Dangerous!.",
+"_line": 353
+},
+{
+"accept": [
+496.0,
+501.0,
+509.0
+],
+"npc": "Apothecary Lydon",
+"coords": [
+61.4,
+19.1
+],
+"_line": 354
+},
+{
+"complete": 501.0,
+"coords": [
+53.9,
+41.7
+],
+"radius": 80.0,
+"text": "Collect Mountain Lion Blood (from Starving Mountain Lion, Feral Mountain Lion).",
+"_line": 355
+},
+{
+"complete": 496.0,
+"coords": [
+58.6,
+47.2
+],
+"radius": 80.0,
+"text": "Collect Gray Bear Tongue (from Gray Bear, Vicious Gray Bear); collect Creeper Ichor (from Elder Moss Creeper, Giant Moss Creeper).",
+"_line": 356
+},
+{
+"complete": 509.0,
+"coords": [
+64.6,
+61.3
+],
+"radius": 80.0,
+"text": "Collect Mudsnout Blossoms (from Mudsnout Blossom).",
+"_line": 357
+},
+{
+"complete": 549.0,
+"coords": [
+78.3,
+44.1
+],
+"radius": 80.0,
+"text": "Kill Syndicate Rogue; kill Syndicate Watchman.",
+"_line": 358
+},
+{
+"complete": 498.0,
+"coords": [
+75.3,
+39.7
+],
+"radius": 80.0,
+"text": "Use Locked ball and chain; use Locked ball and chain.",
+"_line": 359
+},
+{
+"complete": 527.0,
+"coords": [
+33.8,
+38.6
+],
+"radius": 80.0,
+"text": "Kill Hillsbrad Farmer; kill Hillsbrad Farmhand; kill Farmer Ray; kill Farmer Getz.",
+"_line": 360
+},
+{
+"complete": 567.0,
+"coords": [
+31.1,
+42.4
+],
+"radius": 80.0,
+"text": "Kill Clerk Horrace Whitesteed; kill Citizen Wilkes; kill Miner Hackett; kill Farmer Kalaba.",
+"_line": 361
+},
+{
+"turnin": [
+494.0,
+549.0,
+527.0,
+567.0
+],
+"npc": "High Executor Darthalia",
+"coords": [
+62.3,
+20.4
+],
+"_line": 362
+},
+{
+"turnin": 498.0,
+"npc": "Krusk",
+"coords": [
+63.2,
+20.7
+],
+"_line": 363
+},
+{
+"turnin": [
+496.0,
+501.0,
+509.0
+],
+"npc": "Apothecary Lydon",
+"coords": [
+61.4,
+19.1
+],
+"_line": 364
+},
+{
+"accept": [
+499.0,
+502.0,
+513.0
+],
+"npc": "Apothecary Lydon",
+"coords": [
+61.4,
+19.1
+],
+"_line": 365
+},
+{
+"accept": 546.0,
+"npc": "Deathguard Samsa",
+"coords": [
+62.1,
+19.7
+],
+"_line": 366
+},
+{
+"accept": 528.0,
+"npc": "High Executor Darthalia",
+"coords": [
+62.3,
+20.4
+],
+"_line": 367
+},
+{
+"complete": 546.0,
+"coords": [
+34.7,
+44.4
+],
+"radius": 80.0,
+"text": "Collect Hillsbrad Human Skull (from Farmer Ray, Syndicate Shadow Mage).",
+"_line": 368
+},
+{
+"complete": 528.0,
+"coords": [
+34.7,
+45.4
+],
+"radius": 80.0,
+"text": "Kill Hillsbrad Peasant.",
+"_line": 369
+},
+{
+"turnin": 502.0,
+"npc": "Stanley",
+"coords": [
+32.7,
+35.3
+],
+"_line": 370
+},
+{
+"turnin": 499.0,
+"npc": "Umpi",
+"coords": [
+61.5,
+19.1
+],
+"_line": 371
+},
+{
+"turnin": 546.0,
+"npc": "Deathguard Samsa",
+"coords": [
+62.1,
+19.7
+],
+"_line": 372
+},
+{
+"turnin": 528.0,
+"npc": "High Executor Darthalia",
+"coords": [
+62.3,
+20.4
+],
+"_line": 373
+},
+{
+"turnin": 513.0,
+"npc": "Master Apothecary Faranell",
+"coords": [
+48.8,
+69.3
+],
+"zone": "Undercity",
+"_line": 374
+},
+{
+"accept": 515.0,
+"npc": "Master Apothecary Faranell",
+"coords": [
+48.8,
+69.3
+],
+"zone": "Undercity",
+"_line": 375
+},
+{
+"accept": 529.0,
+"npc": "High Executor Darthalia",
+"coords": [
+62.3,
+20.4
+],
+"_line": 376
+},
+{
+"accept": 552.0,
+"npc": "Novice Thaivand",
+"coords": [
+63.9,
+19.7
+],
+"_line": 377
+},
+{
+"complete": 552.0,
+"coords": [
+44.2,
+30.2
+],
+"radius": 80.0,
+"text": "Collect Helcular's Rod (from Cave Yeti, Ferocious Yeti).",
+"_line": 378
+},
+{
+"complete": 529.0,
+"coords": [
+31.9,
+45.1
+],
+"radius": 80.0,
+"text": "Kill Blacksmith Verringtan; kill Hillsbrad Apprentice Blacksmith; collect Shipment of Iron.",
+"_line": 379
+},
+{
+"complete": 515.0,
+"coords": [
+44.4,
+70.9
+],
+"radius": 80.0,
+"text": "Collect Strong Troll's Blood Potion; collect Daggerspine Scale (from Daggerspine Shorestalker, Daggerspine Shorehunter); collect Torn Fin Eye (from Torn Fin Muckdweller, Torn Fin Coastrunner).",
+"_line": 380
+},
+{
+"turnin": 529.0,
+"npc": "High Executor Darthalia",
+"coords": [
+62.3,
+20.4
+],
+"_line": 381
+},
+{
+"turnin": 515.0,
+"npc": "Apothecary Lydon",
+"coords": [
+61.4,
+19.1
+],
+"_line": 382
+},
+{
+"turnin": 552.0,
+"npc": "Novice Thaivand",
+"coords": [
+63.9,
+19.7
+],
+"_line": 383
+},
+{
+"accept": 553.0,
+"npc": "Novice Thaivand",
+"coords": [
+63.9,
+19.7
+],
+"_line": 384
+},
+{
+"accept": 532.0,
+"npc": "High Executor Darthalia",
+"coords": [
+62.3,
+20.4
+],
+"_line": 385
+},
+{
+"accept": 517.0,
+"npc": "Apothecary Lydon",
+"coords": [
+61.4,
+19.1
+],
+"_line": 386
+},
+{
+"complete": 553.0,
+"coords": [
+43.9,
+26.6
+],
+"radius": 80.0,
+"text": "Use Flame of Azel; use Flame of Veraz; use Flame of Uzel.",
+"_line": 387
+},
+{
+"complete": 532.0,
+"coords": [
+29.7,
+41.8
+],
+"radius": 80.0,
+"text": "Kill Magistrate Burnside; kill Hillsbrad Councilman; use Hillsbrad Proclamation; collect Hillsbrad Town Registry.",
+"_line": 388
+},
+{
+"complete": 517.0,
+"coords": [
+71.6,
+80.2
+],
+"radius": 80.0,
+"text": "Collect Keg of Shindigger Stout.",
+"_line": 389
+},
+{
+"turnin": 553.0,
+"coords": [
+52.8,
+53.4
+],
+"text": "Helcular's Grave.",
+"_line": 390
+},
+{
+"turnin": 532.0,
+"npc": "High Executor Darthalia",
+"coords": [
+62.3,
+20.4
+],
+"_line": 391
+},
+{
+"turnin": 517.0,
+"npc": "Apothecary Lydon",
+"coords": [
+61.4,
+19.1
+],
+"_line": 392
+},
+{
+"accept": 524.0,
+"npc": "Apothecary Lydon",
+"coords": [
+61.4,
+19.1
+],
+"_line": 393
+},
+{
+"accept": 539.0,
+"npc": "High Executor Darthalia",
+"coords": [
+62.3,
+20.4
+],
+"_line": 394
+},
+{
+"complete": 539.0,
+"coords": [
+30.1,
+55.6
+],
+"radius": 80.0,
+"text": "Kill Foreman Bonds; kill Hillsbrad Miner.",
+"_line": 395
+},
+{
+"turnin": 539.0,
+"npc": "High Executor Darthalia",
+"coords": [
+62.3,
+20.4
+],
+"_line": 396
+},
+{
+"turnin": 524.0,
+"coords": [
+62.8,
+18.7
+],
+"text": "Dusty Rug.",
+"_line": 397
+},
+{
+"level": 30.0,
+"coords": [
+62.8,
+18.7
+],
+"radius": 400.0,
+"text": "Grind to 30 if needed.",
+"_line": 398
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 399
+}
+],
+"_line": 346,
+"name": "Hillsbrad Foothills 27-30",
+"file": "Guides/Horde_10-30.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 30.0,
+"maxLevel": 32.0,
+"zone": "Thousand Needles",
+"next": "Desolace 32-35",
+"steps": [
+{
+"accept": 4542.0,
+"fp": "Freewind Post",
+"bind": "Freewind Post",
+"npc": "Brave Moonhorn",
+"coords": [
+32.2,
+22.2
+],
+"text": "Back to Kalimdor: fly to Camp Taurajo (Barrens) and ride south to Freewind Post. Get the Freewind Post flight path and set your Hearthstone in Freewind Post.",
+"_line": 408
+},
+{
+"accept": 4904.0,
+"npc": "Lakota Windsong",
+"coords": [
+38.0,
+26.4
+],
+"_line": 409
+},
+{
+"accept": 4881.0,
+"coords": [
+39.4,
+33.1
+],
+"radius": 80.0,
+"text": "Loot Assassination Note from Galak Messenger and right-click it to start the quest.",
+"_line": 410
+},
+{
+"accept": 4767.0,
+"npc": "Elu",
+"coords": [
+44.9,
+48.9
+],
+"_line": 411
+},
+{
+"accept": 4821.0,
+"npc": "Hagar Lightninghoof",
+"coords": [
+44.6,
+50.3
+],
+"_line": 412
+},
+{
+"accept": 5147.0,
+"coords": [
+46.0,
+50.9
+],
+"text": "Wanted Poster - Arnak Grimtotem.",
+"_line": 413
+},
+{
+"accept": 1149.0,
+"npc": "Dorn Plainstalker",
+"coords": [
+54.0,
+41.5
+],
+"_line": 414
+},
+{
+"accept": 4770.0,
+"npc": "Pao'ka Swiftmountain",
+"coords": [
+17.9,
+40.6
+],
+"_line": 415
+},
+{
+"accept": 1148.0,
+"coords": [
+68.4,
+85.9
+],
+"radius": 80.0,
+"text": "Loot Cracked Silithid Carapace from Silithid Searcher and right-click it to start the quest.",
+"_line": 416
+},
+{
+"accept": [
+1110.0,
+1111.0
+],
+"npc": "Kravel Koalbeard",
+"coords": [
+77.8,
+77.3
+],
+"_line": 417
+},
+{
+"accept": 1104.0,
+"npc": "Fizzle Brassbolts",
+"coords": [
+78.1,
+77.1
+],
+"_line": 418
+},
+{
+"accept": 1105.0,
+"npc": "Wizzle Brassbolts",
+"coords": [
+78.1,
+77.1
+],
+"_line": 419
+},
+{
+"accept": 1176.0,
+"npc": "Pozzik",
+"coords": [
+80.2,
+75.9
+],
+"_line": 420
+},
+{
+"accept": 1175.0,
+"npc": "Trackmaster Zherin",
+"coords": [
+81.6,
+78.0
+],
+"_line": 421
+},
+{
+"complete": 1175.0,
+"coords": [
+77.7,
+74.4
+],
+"radius": 80.0,
+"text": "Kill Saltstone Basilisk; kill Saltstone Crystalhide; kill Saltstone Gazer.",
+"_line": 422
+},
+{
+"complete": 1110.0,
+"coords": [
+76.0,
+71.2
+],
+"radius": 80.0,
+"text": "Collect Rocket Car Parts (from Rocket Car Rubble, Rocket Car Rubble).",
+"_line": 423
+},
+{
+"complete": 1104.0,
+"coords": [
+76.1,
+67.8
+],
+"radius": 80.0,
+"text": "Collect Salty Scorpid Venom (from Scorpid Terror, Scorpid Reaver).",
+"_line": 424
+},
+{
+"complete": 1176.0,
+"coords": [
+79.3,
+69.0
+],
+"radius": 80.0,
+"text": "Collect Hollow Vulture Bone (from Salt Flats Scavenger, Salt Flats Vulture).",
+"_line": 425
+},
+{
+"complete": 1105.0,
+"coords": [
+81.5,
+61.1
+],
+"radius": 80.0,
+"text": "Collect Hardened Tortoise Shell (from Sparkleshell Tortoise, Sparkleshell Snapper).",
+"_line": 426
+},
+{
+"complete": 1148.0,
+"coords": [
+68.4,
+85.9
+],
+"radius": 80.0,
+"text": "Collect Silithid Heart (from Silithid Searcher, Silithid Invader); collect Silithid Talon (from Silithid Searcher, Silithid Invader); collect Intact Silithid Carapace (from Silithid Searcher, Silithid Invader).",
+"_line": 427
+},
+{
+"complete": 4821.0,
+"coords": [
+52.3,
+55.3
+],
+"radius": 80.0,
+"text": "Collect Alien Egg.",
+"_line": 428
+},
+{
+"complete": 5147.0,
+"coords": [
+38.1,
+26.9
+],
+"radius": 80.0,
+"text": "Collect Arnak's Hoof (from Arnak Grimtotem).",
+"_line": 429
+},
+{
+"complete": 1149.0,
+"coords": [
+26.4,
+32.9
+],
+"radius": 80.0,
+"text": "Explore: If you have faith, leap from the planks overlooking Thousand Needles..",
+"_line": 430
+},
+{
+"complete": 4767.0,
+"coords": [
+11.8,
+36.8
+],
+"radius": 80.0,
+"text": "Collect Highperch Wyvern Egg.",
+"_line": 431
+},
+{
+"turnin": 4881.0,
+"npc": "Kanati Greycloud",
+"coords": [
+21.2,
+32.1
+],
+"_line": 432
+},
+{
+"turnin": 4770.0,
+"npc": "Motega Firemane",
+"coords": [
+21.5,
+32.4
+],
+"_line": 433
+},
+{
+"turnin": 4767.0,
+"npc": "Elu",
+"coords": [
+44.9,
+48.9
+],
+"_line": 434
+},
+{
+"turnin": 4821.0,
+"npc": "Hagar Lightninghoof",
+"coords": [
+44.6,
+50.3
+],
+"_line": 435
+},
+{
+"turnin": [
+4542.0,
+5147.0
+],
+"npc": "Cliffwatcher Longhorn",
+"coords": [
+45.7,
+50.7
+],
+"_line": 436
+},
+{
+"turnin": 4904.0,
+"npc": "Thalia Amberhide",
+"coords": [
+46.0,
+51.6
+],
+"_line": 437
+},
+{
+"turnin": 1149.0,
+"npc": "Dorn Plainstalker",
+"coords": [
+54.0,
+41.5
+],
+"_line": 438
+},
+{
+"turnin": 1110.0,
+"npc": "Kravel Koalbeard",
+"coords": [
+77.8,
+77.3
+],
+"_line": 439
+},
+{
+"turnin": 1104.0,
+"npc": "Fizzle Brassbolts",
+"coords": [
+78.1,
+77.1
+],
+"_line": 440
+},
+{
+"turnin": 1105.0,
+"npc": "Wizzle Brassbolts",
+"coords": [
+78.1,
+77.1
+],
+"_line": 441
+},
+{
+"turnin": 1176.0,
+"npc": "Pozzik",
+"coords": [
+80.2,
+75.9
+],
+"_line": 442
+},
+{
+"turnin": 1175.0,
+"npc": "Trackmaster Zherin",
+"coords": [
+81.6,
+78.0
+],
+"_line": 443
+},
+{
+"turnin": 1148.0,
+"npc": "Korran",
+"coords": [
+51.1,
+29.6
+],
+"_line": 444
+},
+{
+"turnin": 1111.0,
+"npc": "Wharfmaster Dizzywig",
+"coords": [
+63.4,
+38.5
+],
+"_line": 445
+},
+{
+"accept": 1112.0,
+"npc": "Wharfmaster Dizzywig",
+"coords": [
+63.4,
+38.5
+],
+"_line": 446
+},
+{
+"accept": 1184.0,
+"npc": "Korran",
+"coords": [
+51.1,
+29.6
+],
+"_line": 447
+},
+{
+"accept": 4841.0,
+"npc": "Cliffwatcher Longhorn",
+"coords": [
+45.7,
+50.7
+],
+"_line": 448
+},
+{
+"accept": 4865.0,
+"npc": "Hagar Lightninghoof",
+"coords": [
+44.6,
+50.3
+],
+"_line": 449
+},
+{
+"accept": 4966.0,
+"npc": "Kanati Greycloud",
+"coords": [
+21.2,
+32.1
+],
+"_line": 450
+},
+{
+"accept": 1178.0,
+"npc": "Pozzik",
+"coords": [
+80.2,
+75.9
+],
+"_line": 451
+},
+{
+"complete": 4841.0,
+"coords": [
+43.3,
+39.0
+],
+"radius": 80.0,
+"text": "Kill Galak Scout; kill Galak Wrangler; kill Galak Windchaser.",
+"_line": 452
+},
+{
+"turnin": 4841.0,
+"npc": "Cliffwatcher Longhorn",
+"coords": [
+45.7,
+50.7
+],
+"_line": 453
+},
+{
+"turnin": 4865.0,
+"npc": "Motega Firemane",
+"coords": [
+21.5,
+32.4
+],
+"_line": 454
+},
+{
+"turnin": 4966.0,
+"npc": "Kanati Greycloud",
+"coords": [
+21.2,
+32.1
+],
+"_line": 455
+},
+{
+"turnin": 1112.0,
+"npc": "Kravel Koalbeard",
+"coords": [
+77.8,
+77.3
+],
+"_line": 456
+},
+{
+"turnin": 1184.0,
+"npc": "Belgrom Rockmaul",
+"coords": [
+75.2,
+34.2
+],
+"zone": "Orgrimmar",
+"_line": 457
+},
+{
+"turnin": 1178.0,
+"npc": "Gazlowe",
+"coords": [
+62.7,
+36.2
+],
+"_line": 458
+},
+{
+"accept": 5062.0,
+"npc": "Motega Firemane",
+"coords": [
+21.5,
+32.4
+],
+"_line": 459
+},
+{
+"accept": 5064.0,
+"npc": "Cliffwatcher Longhorn",
+"coords": [
+45.7,
+50.7
+],
+"_line": 460
+},
+{
+"accept": 1114.0,
+"npc": "Kravel Koalbeard",
+"coords": [
+77.8,
+77.3
+],
+"_line": 461
+},
+{
+"complete": 5064.0,
+"coords": [
+33.8,
+40.0
+],
+"radius": 80.0,
+"text": "Collect Secret Note #1 (from Document Chest); collect Secret Note #2 (from Document Chest); collect Secret Note #3 (from Document Chest).",
+"_line": 462
+},
+{
+"complete": 5062.0,
+"coords": [
+35.6,
+34.4
+],
+"radius": 80.0,
+"text": "Collect Incendia Agave.",
+"_line": 463
+},
+{
+"turnin": 5064.0,
+"npc": "Cliffwatcher Longhorn",
+"coords": [
+45.7,
+50.7
+],
+"_line": 464
+},
+{
+"turnin": 1114.0,
+"npc": "Fizzle Brassbolts",
+"coords": [
+78.1,
+77.1
+],
+"_line": 465
+},
+{
+"turnin": 5062.0,
+"npc": "Magatha Grimtotem",
+"coords": [
+69.8,
+30.9
+],
+"zone": "Thunder Bluff",
+"_line": 466
+},
+{
+"level": 32.0,
+"radius": 400.0,
+"text": "Grind to 32 if needed.",
+"_line": 467
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 468
+}
+],
+"_line": 405,
+"name": "Thousand Needles 30-32",
+"file": "Guides/Horde_10-30.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 32.0,
+"maxLevel": 35.0,
+"zone": "Desolace",
+"next": "Stranglethorn Vale 35-38",
+"steps": [
+{
+"accept": [
+1367.0,
+1368.0
+],
+"fp": "Shadowprey Village",
+"bind": "Shadowprey Village",
+"npc": "Gurda Wildmane",
+"coords": [
+56.3,
+59.7
+],
+"text": "Get the Shadowprey Village flight path and set your Hearthstone in Shadowprey Village.",
+"_line": 11
+},
+{
+"accept": 1365.0,
+"npc": "Felgur Twocuts",
+"coords": [
+56.2,
+59.6
+],
+"_line": 12
+},
+{
+"accept": 5943.0,
+"npc": "Rigger Gizelton",
+"coords": [
+66.7,
+58.6
+],
+"_line": 13
+},
+{
+"accept": 5821.0,
+"npc": "Cork Gizelton",
+"coords": [
+66.8,
+58.1
+],
+"_line": 14
+},
+{
+"accept": 5501.0,
+"npc": "Bibbly F'utzbuckle",
+"coords": [
+62.3,
+39.0
+],
+"_line": 15
+},
+{
+"accept": 1480.0,
+"coords": [
+55.3,
+28.7
+],
+"radius": 80.0,
+"text": "Loot Flayed Demon Skin from Burning Blade Augur and right-click it to start the quest.",
+"_line": 16
+},
+{
+"accept": 5741.0,
+"npc": "Azore Aldamort",
+"coords": [
+38.9,
+27.2
+],
+"_line": 17
+},
+{
+"accept": 6161.0,
+"coords": [
+36.1,
+30.4
+],
+"text": "Rackmore's Log.",
+"_line": 18
+},
+{
+"accept": 6142.0,
+"npc": "Mai'Lahii",
+"coords": [
+22.6,
+72.0
+],
+"_line": 19
+},
+{
+"accept": 6143.0,
+"npc": "Drulzegar Skraghook",
+"coords": [
+23.3,
+72.9
+],
+"_line": 20
+},
+{
+"complete": 5501.0,
+"coords": [
+52.2,
+58.9
+],
+"radius": 80.0,
+"text": "Collect Kodo Bone (from Kodo Bones, Kodo Bones).",
+"_line": 21
+},
+{
+"complete": 1365.0,
+"coords": [
+73.4,
+41.6
+],
+"radius": 80.0,
+"text": "Collect Khan Dez'hepah's Head (from Khan Dez'hepah).",
+"_line": 22
+},
+{
+"complete": 5741.0,
+"coords": [
+55.2,
+30.2
+],
+"radius": 80.0,
+"text": "Collect Sceptre of Light (from Burning Blade Seer).",
+"_line": 23
+},
+{
+"complete": 6142.0,
+"coords": [
+32.3,
+25.6
+],
+"radius": 80.0,
+"text": "Collect Soft-shelled Clam Meat (from Slitherblade Naga, Slitherblade Sorceress).",
+"_line": 24
+},
+{
+"complete": 6161.0,
+"coords": [
+31.6,
+22.1
+],
+"radius": 80.0,
+"text": "Collect Rackmore's Silver Key (from Drysnap Crawler, Drysnap Pincer); collect Rackmore's Golden Key (from Slitherblade Naga, Slitherblade Sorceress).",
+"_line": 25
+},
+{
+"complete": 6143.0,
+"coords": [
+33.8,
+20.4
+],
+"radius": 80.0,
+"text": "Kill Slitherblade Myrmidon; kill Slitherblade Naga; kill Slitherblade Sorceress.",
+"_line": 26
+},
+{
+"turnin": 5741.0,
+"npc": "Azore Aldamort",
+"coords": [
+38.9,
+27.2
+],
+"_line": 27
+},
+{
+"turnin": 6161.0,
+"coords": [
+30.0,
+8.7
+],
+"text": "Rackmore's Chest.",
+"_line": 28
+},
+{
+"turnin": 5501.0,
+"npc": "Bibbly F'utzbuckle",
+"coords": [
+62.3,
+39.0
+],
+"_line": 29
+},
+{
+"turnin": 1480.0,
+"npc": "Maurin Bonesplitter",
+"coords": [
+52.2,
+53.4
+],
+"_line": 30
+},
+{
+"turnin": 1365.0,
+"npc": "Felgur Twocuts",
+"coords": [
+56.2,
+59.6
+],
+"_line": 31
+},
+{
+"turnin": [
+5821.0,
+5943.0
+],
+"npc": "Smeed Scrabblescrew",
+"coords": [
+60.9,
+61.9
+],
+"_line": 32
+},
+{
+"turnin": 1367.0,
+"npc": "Warug",
+"coords": [
+75.0,
+68.2
+],
+"_line": 33
+},
+{
+"turnin": 1368.0,
+"npc": "Uthek the Wise",
+"coords": [
+36.2,
+79.2
+],
+"_line": 34
+},
+{
+"turnin": 6143.0,
+"npc": "Drulzegar Skraghook",
+"coords": [
+23.3,
+72.9
+],
+"_line": 35
+},
+{
+"turnin": 6142.0,
+"npc": "Mai'Lahii",
+"coords": [
+22.6,
+72.0
+],
+"_line": 36
+},
+{
+"accept": 1370.0,
+"npc": "Uthek the Wise",
+"coords": [
+36.2,
+79.2
+],
+"_line": 37
+},
+{
+"accept": 6132.0,
+"npc": "Melizza Brimbuzzle",
+"coords": [
+34.0,
+53.5
+],
+"_line": 38
+},
+{
+"accept": 1481.0,
+"npc": "Maurin Bonesplitter",
+"coords": [
+52.2,
+53.4
+],
+"_line": 39
+},
+{
+"accept": 1366.0,
+"npc": "Felgur Twocuts",
+"coords": [
+56.2,
+59.6
+],
+"_line": 40
+},
+{
+"accept": 1369.0,
+"npc": "Warug",
+"coords": [
+75.0,
+68.2
+],
+"_line": 41
+},
+{
+"complete": 1370.0,
+"coords": [
+70.9,
+75.4
+],
+"radius": 80.0,
+"text": "Collect Crudely Dried Meat (from Sack of Meat).",
+"_line": 42
+},
+{
+"complete": 1366.0,
+"coords": [
+40.5,
+72.4
+],
+"radius": 80.0,
+"text": "Collect Centaur Ear (from Kolkar Centaur, Kolkar Scout).",
+"_line": 43
+},
+{
+"complete": 1369.0,
+"coords": [
+39.7,
+93.7
+],
+"radius": 80.0,
+"text": "Collect Broken Tears (from Tear of Theradras).",
+"_line": 44
+},
+{
+"complete": 1481.0,
+"coords": [
+76.5,
+21.3
+],
+"radius": 80.0,
+"text": "Collect Shadowstalker Scalp (from Hatefury Shadowstalker).",
+"_line": 45
+},
+{
+"turnin": 1481.0,
+"npc": "Maurin Bonesplitter",
+"coords": [
+52.2,
+53.4
+],
+"_line": 46
+},
+{
+"turnin": 1366.0,
+"npc": "Felgur Twocuts",
+"coords": [
+56.2,
+59.6
+],
+"_line": 47
+},
+{
+"turnin": 6132.0,
+"npc": "Hornizz Brimbuzzle",
+"coords": [
+47.8,
+61.8
+],
+"_line": 48
+},
+{
+"turnin": 1370.0,
+"npc": "Uthek the Wise",
+"coords": [
+36.2,
+79.2
+],
+"_line": 49
+},
+{
+"turnin": 1369.0,
+"npc": "Warug",
+"coords": [
+75.0,
+68.2
+],
+"_line": 50
+},
+{
+"accept": 1482.0,
+"npc": "Maurin Bonesplitter",
+"coords": [
+52.2,
+53.4
+],
+"_line": 51
+},
+{
+"complete": 1482.0,
+"coords": [
+31.6,
+10.2
+],
+"radius": 80.0,
+"text": "Collect Oracle Crystal (from Slitherblade Oracle).",
+"_line": 52
+},
+{
+"turnin": 1482.0,
+"npc": "Maurin Bonesplitter",
+"coords": [
+52.2,
+53.4
+],
+"_line": 53
+},
+{
+"accept": 1484.0,
+"npc": "Maurin Bonesplitter",
+"coords": [
+52.2,
+53.4
+],
+"_line": 54
+},
+{
+"turnin": 1484.0,
+"npc": "Takata Steelblade",
+"coords": [
+52.6,
+54.4
+],
+"_line": 55
+},
+{
+"level": 35.0,
+"coords": [
+52.6,
+54.4
+],
+"radius": 400.0,
+"text": "Grind to 35 if needed.",
+"_line": 56
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 57
+}
+],
+"_line": 8,
+"name": "Desolace 32-35",
+"file": "Guides/Horde_30-60.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 35.0,
+"maxLevel": 38.0,
+"zone": "Stranglethorn Vale",
+"next": "Arathi Highlands 38-40",
+"steps": [
+{
+"accept": [
+583.0,
+339.0,
+340.0,
+341.0,
+342.0
+],
+"fp": "Grom'gol Base Camp",
+"bind": "Grom'gol Base Camp",
+"npc": "Barnil Stonepot",
+"coords": [
+35.7,
+10.5
+],
+"text": "Zeppelin from Orgrimmar to Grom'gol Base Camp in northern Stranglethorn. Get the Grom'gol Base Camp flight path and set your Hearthstone in Grom'gol Base Camp.",
+"_line": 66
+},
+{
+"accept": [
+596.0,
+629.0
+],
+"npc": "Kin'weelay",
+"coords": [
+32.3,
+27.7
+],
+"_line": 67
+},
+{
+"accept": 581.0,
+"npc": "Nimboya",
+"coords": [
+32.2,
+27.7
+],
+"_line": 68
+},
+{
+"accept": 568.0,
+"npc": "Commander Aggro'gosh",
+"coords": [
+32.2,
+28.9
+],
+"_line": 69
+},
+{
+"accept": 570.0,
+"npc": "Far Seer Mok'thardin",
+"coords": [
+32.1,
+29.2
+],
+"_line": 70
+},
+{
+"accept": [
+189.0,
+213.0
+],
+"npc": "Kebok",
+"coords": [
+27.0,
+77.1
+],
+"_line": 71
+},
+{
+"accept": 201.0,
+"npc": "Krazek",
+"coords": [
+26.9,
+77.2
+],
+"_line": 72
+},
+{
+"accept": 605.0,
+"npc": "Crank Fizzlebub",
+"coords": [
+27.1,
+77.2
+],
+"_line": 73
+},
+{
+"accept": 575.0,
+"npc": "Drizzlik",
+"coords": [
+28.3,
+77.6
+],
+"_line": 74
+},
+{
+"complete": 605.0,
+"coords": [
+39.1,
+42.6
+],
+"radius": 80.0,
+"text": "Collect Singing Crystal Shard (from Stone Maw Basilisk, Crystal Spine Basilisk).",
+"_line": 75
+},
+{
+"complete": 570.0,
+"coords": [
+40.3,
+35.6
+],
+"radius": 80.0,
+"text": "Collect Shadowmaw Claw (from Shadowmaw Panther, Elder Shadowmaw Panther); collect Pristine Tigress Fang (from Stranglethorn Tigress).",
+"_line": 76
+},
+{
+"complete": 339.0,
+"coords": [
+41.6,
+33.3
+],
+"radius": 80.0,
+"text": "Collect Green Hills of Stranglethorn - Page 1 (from Bloodscalp Warrior, Bloodscalp Scout); collect Green Hills of Stranglethorn - Page 4 (from Bloodscalp Warrior, Bloodscalp Scout); collect Green Hills of Stranglethorn - Page 6 (from Bloodscalp Warrior, Bloodscalp Scout); collect Green Hills of Stranglethorn - Page 8 (from Bloodscalp Warrior, Bloodscalp Scout).",
+"_line": 77
+},
+{
+"complete": 340.0,
+"coords": [
+41.6,
+33.3
+],
+"radius": 80.0,
+"text": "Collect Green Hills of Stranglethorn - Page 10 (from Bloodscalp Warrior, Bloodscalp Scout); collect Green Hills of Stranglethorn - Page 11 (from Bloodscalp Warrior, Bloodscalp Scout); collect Green Hills of Stranglethorn - Page 14 (from Bloodscalp Warrior, Bloodscalp Scout); collect Green Hills of Stranglethorn - Page 16 (from Bloodscalp Warrior, Bloodscalp Scout).",
+"_line": 78
+},
+{
+"complete": 342.0,
+"coords": [
+41.6,
+33.3
+],
+"radius": 80.0,
+"text": "Collect Green Hills of Stranglethorn - Page 25 (from Bloodscalp Warrior, Bloodscalp Scout); collect Green Hills of Stranglethorn - Page 26 (from Bloodscalp Warrior, Bloodscalp Scout); collect Green Hills of Stranglethorn - Page 27 (from Bloodscalp Warrior, Bloodscalp Scout).",
+"_line": 79
+},
+{
+"complete": 341.0,
+"coords": [
+41.6,
+33.0
+],
+"radius": 80.0,
+"text": "Collect Green Hills of Stranglethorn - Page 18 (from Bloodscalp Warrior, Bloodscalp Scout); collect Green Hills of Stranglethorn - Page 20 (from Bloodscalp Warrior, Bloodscalp Scout); collect Green Hills of Stranglethorn - Page 21 (from Bloodscalp Warrior, Bloodscalp Scout); collect Green Hills of Stranglethorn - Page 24 (from Bloodscalp Warrior, Bloodscalp Scout).",
+"_line": 80
+},
+{
+"complete": 568.0,
+"coords": [
+35.6,
+23.7
+],
+"radius": 80.0,
+"text": "Kill Lashtail Raptor.",
+"_line": 81
+},
+{
+"complete": 213.0,
+"coords": [
+44.2,
+19.6
+],
+"radius": 80.0,
+"text": "Collect Tumbled Crystal (from Venture Co. Geologist).",
+"_line": 82
+},
+{
+"complete": 575.0,
+"coords": [
+36.9,
+10.5
+],
+"radius": 80.0,
+"text": "Collect Large River Crocolisk Skin (from River Crocolisk).",
+"_line": 83
+},
+{
+"complete": 201.0,
+"coords": [
+35.7,
+11.0
+],
+"radius": 80.0,
+"text": "Explore: Locate the hunters' camp.",
+"_line": 84
+},
+{
+"complete": 581.0,
+"coords": [
+24.8,
+11.9
+],
+"radius": 80.0,
+"text": "Collect Bloodscalp Tusk (from Bloodscalp Warrior, Bloodscalp Scout).",
+"_line": 85
+},
+{
+"complete": 189.0,
+"coords": [
+24.8,
+11.9
+],
+"radius": 80.0,
+"text": "Collect Bloodscalp Ear (from Bloodscalp Warrior, Bloodscalp Scout).",
+"_line": 86
+},
+{
+"complete": 596.0,
+"coords": [
+24.8,
+11.9
+],
+"radius": 80.0,
+"text": "Collect Bloody Bone Necklace (from Bloodscalp Warrior, Bloodscalp Scout).",
+"_line": 87
+},
+{
+"complete": 629.0,
+"coords": [
+24.8,
+23.0
+],
+"radius": 80.0,
+"text": "Collect Tablet Shard (from Gri'lek the Wanderer).",
+"_line": 88
+},
+{
+"turnin": 581.0,
+"npc": "Nimboya",
+"coords": [
+32.2,
+27.7
+],
+"_line": 89
+},
+{
+"turnin": [
+596.0,
+629.0
+],
+"npc": "Kin'weelay",
+"coords": [
+32.3,
+27.7
+],
+"_line": 90
+},
+{
+"turnin": 568.0,
+"npc": "Commander Aggro'gosh",
+"coords": [
+32.2,
+28.9
+],
+"_line": 91
+},
+{
+"turnin": 570.0,
+"npc": "Far Seer Mok'thardin",
+"coords": [
+32.1,
+29.2
+],
+"_line": 92
+},
+{
+"turnin": 583.0,
+"npc": "Hemet Nesingwary",
+"coords": [
+35.7,
+10.8
+],
+"_line": 93
+},
+{
+"turnin": [
+339.0,
+340.0,
+341.0,
+342.0
+],
+"npc": "Barnil Stonepot",
+"coords": [
+35.7,
+10.5
+],
+"_line": 94
+},
+{
+"turnin": [
+189.0,
+213.0
+],
+"npc": "Kebok",
+"coords": [
+27.0,
+77.1
+],
+"_line": 95
+},
+{
+"turnin": 201.0,
+"npc": "Krazek",
+"coords": [
+26.9,
+77.2
+],
+"_line": 96
+},
+{
+"turnin": 605.0,
+"npc": "Crank Fizzlebub",
+"coords": [
+27.1,
+77.2
+],
+"_line": 97
+},
+{
+"turnin": 575.0,
+"npc": "Drizzlik",
+"coords": [
+28.3,
+77.6
+],
+"_line": 98
+},
+{
+"accept": 577.0,
+"npc": "Drizzlik",
+"coords": [
+28.3,
+77.6
+],
+"_line": 99
+},
+{
+"accept": 606.0,
+"npc": "\\\"Sea Wolf\\\" MacKinley",
+"coords": [
+27.8,
+77.1
+],
+"_line": 100
+},
+{
+"accept": [
+600.0,
+621.0
+],
+"npc": "Crank Fizzlebub",
+"coords": [
+27.1,
+77.2
+],
+"_line": 101
+},
+{
+"accept": 572.0,
+"npc": "Far Seer Mok'thardin",
+"coords": [
+32.1,
+29.2
+],
+"_line": 102
+},
+{
+"accept": 569.0,
+"npc": "Commander Aggro'gosh",
+"coords": [
+32.2,
+28.9
+],
+"_line": 103
+},
+{
+"accept": 582.0,
+"npc": "Nimboya",
+"coords": [
+32.2,
+27.7
+],
+"_line": 104
+},
+{
+"accept": 598.0,
+"npc": "Kin'weelay",
+"coords": [
+32.3,
+27.7
+],
+"_line": 105
+},
+{
+"accept": 194.0,
+"npc": "Hemet Nesingwary",
+"coords": [
+35.7,
+10.8
+],
+"_line": 106
+},
+{
+"accept": 185.0,
+"npc": "Ajeck Rouack",
+"coords": [
+35.6,
+10.6
+],
+"_line": 107
+},
+{
+"accept": 190.0,
+"npc": "Sir S. J. Erlgadin",
+"coords": [
+35.5,
+10.6
+],
+"_line": 108
+},
+{
+"complete": 185.0,
+"coords": [
+35.1,
+12.1
+],
+"radius": 80.0,
+"text": "Kill Young Stranglethorn Tiger.",
+"_line": 109
+},
+{
+"complete": 190.0,
+"coords": [
+41.3,
+12.3
+],
+"radius": 80.0,
+"text": "Kill Young Panther.",
+"_line": 110
+},
+{
+"complete": 577.0,
+"coords": [
+40.2,
+22.2
+],
+"radius": 80.0,
+"text": "Collect Snapjaw Crocolisk Skin (from Snapjaw Crocolisk).",
+"_line": 111
+},
+{
+"complete": 569.0,
+"coords": [
+37.2,
+30.9
+],
+"radius": 80.0,
+"text": "Kill Mosh'Ogg Brute; kill Mosh'Ogg Witch Doctor.",
+"_line": 112
+},
+{
+"complete": 598.0,
+"coords": [
+46.1,
+38.6
+],
+"radius": 80.0,
+"text": "Collect Split Bone Necklace (from Skullsplitter Warrior, Skullsplitter Hunter).",
+"_line": 113
+},
+{
+"complete": 600.0,
+"coords": [
+41.6,
+43.8
+],
+"radius": 80.0,
+"text": "Collect Singing Blue Crystal (from Venture Co. Strip Miner, Venture Co. Foreman).",
+"_line": 114
+},
+{
+"complete": 572.0,
+"coords": [
+28.9,
+44.1
+],
+"radius": 80.0,
+"text": "Collect Jungle Stalker Feather (from Jungle Stalker).",
+"_line": 115
+},
+{
+"complete": 621.0,
+"coords": [
+39.1,
+57.6
+],
+"radius": 80.0,
+"text": "Collect Zanzil's Mixture (from Zanzil Zombie, Zanzil Hunter).",
+"_line": 116
+},
+{
+"complete": 606.0,
+"coords": [
+33.0,
+65.4
+],
+"radius": 80.0,
+"text": "Collect Mistvale Giblets (from Elder Mistvale Gorilla).",
+"_line": 117
+},
+{
+"complete": 194.0,
+"coords": [
+25.7,
+16.0
+],
+"radius": 80.0,
+"text": "Kill Stranglethorn Raptor.",
+"_line": 118
+},
+{
+"complete": 582.0,
+"coords": [
+23.3,
+10.2
+],
+"radius": 80.0,
+"text": "Collect Shrunken Head (from Bloodscalp Headhunter).",
+"_line": 119
+},
+{
+"turnin": 190.0,
+"npc": "Sir S. J. Erlgadin",
+"coords": [
+35.5,
+10.6
+],
+"_line": 120
+},
+{
+"turnin": 185.0,
+"npc": "Ajeck Rouack",
+"coords": [
+35.6,
+10.6
+],
+"_line": 121
+},
+{
+"turnin": 194.0,
+"npc": "Hemet Nesingwary",
+"coords": [
+35.7,
+10.8
+],
+"_line": 122
+},
+{
+"turnin": 598.0,
+"npc": "Kin'weelay",
+"coords": [
+32.3,
+27.7
+],
+"_line": 123
+},
+{
+"turnin": 582.0,
+"npc": "Nimboya",
+"coords": [
+32.2,
+27.7
+],
+"_line": 124
+},
+{
+"turnin": 569.0,
+"npc": "Commander Aggro'gosh",
+"coords": [
+32.2,
+28.9
+],
+"_line": 125
+},
+{
+"turnin": 572.0,
+"npc": "Far Seer Mok'thardin",
+"coords": [
+32.1,
+29.2
+],
+"_line": 126
+},
+{
+"turnin": 606.0,
+"npc": "\\\"Shaky\\\" Phillipe",
+"coords": [
+26.9,
+73.6
+],
+"_line": 127
+},
+{
+"turnin": [
+600.0,
+621.0
+],
+"npc": "Crank Fizzlebub",
+"coords": [
+27.1,
+77.2
+],
+"_line": 128
+},
+{
+"turnin": 577.0,
+"npc": "Drizzlik",
+"coords": [
+28.3,
+77.6
+],
+"_line": 129
+},
+{
+"accept": 209.0,
+"npc": "Kebok",
+"coords": [
+27.0,
+77.1
+],
+"_line": 130
+},
+{
+"accept": 595.0,
+"npc": "First Mate Crazz",
+"coords": [
+28.1,
+76.2
+],
+"_line": 131
+},
+{
+"accept": 607.0,
+"npc": "\\\"Shaky\\\" Phillipe",
+"coords": [
+26.9,
+73.6
+],
+"_line": 132
+},
+{
+"accept": 571.0,
+"npc": "Far Seer Mok'thardin",
+"coords": [
+32.1,
+29.2
+],
+"_line": 133
+},
+{
+"accept": 584.0,
+"npc": "Nimboya",
+"coords": [
+32.2,
+27.7
+],
+"_line": 134
+},
+{
+"accept": 195.0,
+"npc": "Hemet Nesingwary",
+"coords": [
+35.7,
+10.8
+],
+"_line": 135
+},
+{
+"accept": 186.0,
+"npc": "Ajeck Rouack",
+"coords": [
+35.6,
+10.6
+],
+"_line": 136
+},
+{
+"accept": 191.0,
+"npc": "Sir S. J. Erlgadin",
+"coords": [
+35.5,
+10.6
+],
+"_line": 137
+},
+{
+"complete": 191.0,
+"coords": [
+29.5,
+12.3
+],
+"radius": 80.0,
+"text": "Kill Panther.",
+"_line": 138
+},
+{
+"complete": 584.0,
+"coords": [
+23.4,
+8.1
+],
+"radius": 80.0,
+"text": "Collect Gan'zulah's Head (from Gan'zulah); collect Nezzliok's Head (from Nezzliok the Dire).",
+"_line": 139
+},
+{
+"complete": 195.0,
+"coords": [
+35.6,
+23.7
+],
+"radius": 80.0,
+"text": "Kill Lashtail Raptor.",
+"_line": 140
+},
+{
+"complete": 186.0,
+"coords": [
+46.1,
+14.4
+],
+"radius": 80.0,
+"text": "Kill Stranglethorn Tiger.",
+"_line": 141
+},
+{
+"complete": 209.0,
+"coords": [
+46.1,
+38.6
+],
+"radius": 80.0,
+"text": "Collect Skullsplitter Tusk (from Skullsplitter Warrior, Skullsplitter Hunter).",
+"_line": 142
+},
+{
+"complete": 571.0,
+"coords": [
+33.0,
+65.4
+],
+"radius": 80.0,
+"text": "Collect Aged Gorilla Sinew (from Elder Mistvale Gorilla).",
+"_line": 143
+},
+{
+"turnin": 595.0,
+"coords": [
+27.3,
+69.5
+],
+"text": "Bloodsail Correspondence.",
+"_line": 144
+},
+{
+"turnin": 607.0,
+"npc": "\\\"Sea Wolf\\\" MacKinley",
+"coords": [
+27.8,
+77.1
+],
+"_line": 145
+},
+{
+"turnin": 209.0,
+"npc": "Kebok",
+"coords": [
+27.0,
+77.1
+],
+"_line": 146
+},
+{
+"turnin": 571.0,
+"npc": "Far Seer Mok'thardin",
+"coords": [
+32.1,
+29.2
+],
+"_line": 147
+},
+{
+"turnin": 584.0,
+"coords": [
+32.2,
+27.6
+],
+"text": "Bubbling Cauldron.",
+"_line": 148
+},
+{
+"turnin": 195.0,
+"npc": "Hemet Nesingwary",
+"coords": [
+35.7,
+10.8
+],
+"_line": 149
+},
+{
+"turnin": 186.0,
+"npc": "Ajeck Rouack",
+"coords": [
+35.6,
+10.6
+],
+"_line": 150
+},
+{
+"turnin": 191.0,
+"npc": "Sir S. J. Erlgadin",
+"coords": [
+35.5,
+10.6
+],
+"_line": 151
+},
+{
+"accept": 192.0,
+"npc": "Sir S. J. Erlgadin",
+"coords": [
+35.5,
+10.6
+],
+"_line": 152
+},
+{
+"accept": 187.0,
+"npc": "Ajeck Rouack",
+"coords": [
+35.6,
+10.6
+],
+"_line": 153
+},
+{
+"accept": 196.0,
+"npc": "Hemet Nesingwary",
+"coords": [
+35.7,
+10.8
+],
+"_line": 154
+},
+{
+"accept": 585.0,
+"coords": [
+32.2,
+27.6
+],
+"text": "Bubbling Cauldron.",
+"_line": 155
+},
+{
+"accept": 573.0,
+"npc": "Far Seer Mok'thardin",
+"coords": [
+32.1,
+29.2
+],
+"_line": 156
+},
+{
+"accept": 597.0,
+"coords": [
+27.3,
+69.5
+],
+"text": "Bloodsail Correspondence.",
+"_line": 157
+},
+{
+"accept": 576.0,
+"npc": "Dizzy One-Eye",
+"coords": [
+28.6,
+75.9
+],
+"_line": 158
+},
+{
+"accept": 609.0,
+"npc": "\\\"Sea Wolf\\\" MacKinley",
+"coords": [
+27.8,
+77.1
+],
+"_line": 159
+},
+{
+"accept": 587.0,
+"npc": "Deeg",
+"coords": [
+26.9,
+77.3
+],
+"_line": 160
+},
+{
+"complete": 587.0,
+"coords": [
+30.6,
+81.3
+],
+"radius": 80.0,
+"text": "Collect Snuff (from Bloodsail Raider, Bloodsail Mage).",
+"_line": 161
+},
+{
+"complete": 576.0,
+"coords": [
+30.6,
+81.3
+],
+"radius": 80.0,
+"text": "Collect Dizzy's Eye (from Bloodsail Raider, Bloodsail Mage).",
+"_line": 162
+},
+{
+"complete": 573.0,
+"coords": [
+26.3,
+62.3
+],
+"radius": 80.0,
+"text": "Kill Naga Explorer; collect Holy Spring Water (from The Holy Spring).",
+"_line": 163
+},
+{
+"complete": 609.0,
+"coords": [
+35.3,
+51.8
+],
+"radius": 80.0,
+"text": "Collect Maury's Clubbed Foot (from Maury \\\"Club Foot\\\" Wilkins); collect Jon-Jon's Golden Spyglass (from Jon-Jon the Crow); collect Chucky's Huge Ring (from Chucky \\\"Ten Thumbs\\\").",
+"_line": 164
+},
+{
+"complete": 196.0,
+"coords": [
+28.9,
+44.1
+],
+"radius": 80.0,
+"text": "Kill Jungle Stalker.",
+"_line": 165
+},
+{
+"complete": 192.0,
+"coords": [
+40.7,
+34.8
+],
+"radius": 80.0,
+"text": "Kill Shadowmaw Panther.",
+"_line": 166
+},
+{
+"complete": 585.0,
+"coords": [
+46.1,
+36.1
+],
+"radius": 80.0,
+"text": "Collect Balia'mah Trophy (from Balia'mah Trophy Skulls); collect Ziata'jai Trophy (from Ziata'jai Trophy Skulls); collect Zul'Mamwe Trophy (from Zul'Mamwe Trophy Skulls).",
+"_line": 167
+},
+{
+"complete": 187.0,
+"coords": [
+32.9,
+18.5
+],
+"radius": 80.0,
+"text": "Kill Elder Stranglethorn Tiger.",
+"_line": 168
+},
+{
+"turnin": 196.0,
+"npc": "Hemet Nesingwary",
+"coords": [
+35.7,
+10.8
+],
+"_line": 169
+},
+{
+"turnin": 187.0,
+"npc": "Ajeck Rouack",
+"coords": [
+35.6,
+10.6
+],
+"_line": 170
+},
+{
+"turnin": 192.0,
+"npc": "Sir S. J. Erlgadin",
+"coords": [
+35.5,
+10.6
+],
+"_line": 171
+},
+{
+"turnin": 585.0,
+"coords": [
+32.2,
+27.6
+],
+"text": "Bubbling Cauldron.",
+"_line": 172
+},
+{
+"turnin": 573.0,
+"npc": "Far Seer Mok'thardin",
+"coords": [
+32.1,
+29.2
+],
+"_line": 173
+},
+{
+"turnin": 576.0,
+"npc": "Dizzy One-Eye",
+"coords": [
+28.6,
+75.9
+],
+"_line": 174
+},
+{
+"turnin": 597.0,
+"npc": "First Mate Crazz",
+"coords": [
+28.1,
+76.2
+],
+"_line": 175
+},
+{
+"turnin": 609.0,
+"npc": "\\\"Sea Wolf\\\" MacKinley",
+"coords": [
+27.8,
+77.1
+],
+"_line": 176
+},
+{
+"turnin": 587.0,
+"npc": "Deeg",
+"coords": [
+26.9,
+77.3
+],
+"_line": 177
+},
+{
+"accept": 617.0,
+"npc": "Privateer Bloads",
+"coords": [
+26.8,
+76.4
+],
+"_line": 178
+},
+{
+"accept": 599.0,
+"npc": "First Mate Crazz",
+"coords": [
+28.1,
+76.2
+],
+"_line": 179
+},
+{
+"accept": 188.0,
+"npc": "Ajeck Rouack",
+"coords": [
+35.6,
+10.6
+],
+"_line": 180
+},
+{
+"complete": 188.0,
+"coords": [
+32.2,
+17.4
+],
+"radius": 80.0,
+"text": "Collect Paw of Sin'Dall (from Sin'Dall).",
+"_line": 181
+},
+{
+"complete": 617.0,
+"coords": [
+26.3,
+62.3
+],
+"radius": 80.0,
+"text": "Collect Akiris Reed (from Naga Explorer).",
+"_line": 182
+},
+{
+"turnin": 617.0,
+"npc": "Privateer Bloads",
+"coords": [
+26.8,
+76.4
+],
+"_line": 183
+},
+{
+"turnin": 599.0,
+"npc": "Fleet Master Seahorn",
+"coords": [
+27.2,
+77.0
+],
+"_line": 184
+},
+{
+"turnin": 188.0,
+"npc": "Ajeck Rouack",
+"coords": [
+35.6,
+10.6
+],
+"_line": 185
+},
+{
+"accept": 604.0,
+"npc": "Fleet Master Seahorn",
+"coords": [
+27.2,
+77.0
+],
+"_line": 186
+},
+{
+"complete": 604.0,
+"coords": [
+27.0,
+82.6
+],
+"radius": 80.0,
+"text": "Kill Bloodsail Swashbuckler; collect Bloodsail Charts; collect Bloodsail Orders.",
+"_line": 187
+},
+{
+"turnin": 604.0,
+"npc": "Fleet Master Seahorn",
+"coords": [
+27.2,
+77.0
+],
+"_line": 188
+},
+{
+"accept": 608.0,
+"npc": "Fleet Master Seahorn",
+"coords": [
+27.2,
+77.0
+],
+"_line": 189
+},
+{
+"complete": 608.0,
+"coords": [
+30.6,
+88.3
+],
+"radius": 80.0,
+"text": "Kill Captain Stillwater; kill Captain Keelhaul; kill Fleet Master Firallon.",
+"_line": 190
+},
+{
+"turnin": 608.0,
+"npc": "Fleet Master Seahorn",
+"coords": [
+27.2,
+77.0
+],
+"_line": 191
+},
+{
+"level": 38.0,
+"coords": [
+27.2,
+77.0
+],
+"radius": 400.0,
+"text": "Grind to 38 if needed.",
+"_line": 192
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 193
+}
+],
+"_line": 63,
+"name": "Stranglethorn Vale 35-38",
+"file": "Guides/Horde_30-60.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 38.0,
+"maxLevel": 40.0,
+"zone": "Arathi Highlands",
+"next": "Swamp of Sorrows 40-41",
+"steps": [
+{
+"accept": 671.0,
+"fp": "Hammerfall",
+"npc": "Tor'gan",
+"coords": [
+74.7,
+36.3
+],
+"text": "Get the Hammerfall flight path.",
+"_line": 202
+},
+{
+"accept": 655.0,
+"npc": "Gor'mul",
+"coords": [
+72.6,
+33.9
+],
+"_line": 203
+},
+{
+"accept": 642.0,
+"coords": [
+62.5,
+33.7
+],
+"text": "Shards of Myzrael.",
+"_line": 204
+},
+{
+"accept": 635.0,
+"coords": [
+56.6,
+58.3
+],
+"radius": 80.0,
+"text": "Loot Pendant of Myzrael from Witherbark Troll and right-click it to start the quest.",
+"_line": 205
+},
+{
+"accept": 665.0,
+"npc": "Professor Phizzlethorpe",
+"coords": [
+33.9,
+80.5
+],
+"_line": 206
+},
+{
+"accept": 664.0,
+"npc": "Captain Steelgut",
+"coords": [
+34.0,
+80.8
+],
+"_line": 207
+},
+{
+"accept": 663.0,
+"npc": "Lolo the Lookout",
+"coords": [
+31.8,
+82.7
+],
+"_line": 208
+},
+{
+"complete": 664.0,
+"coords": [
+21.9,
+86.8
+],
+"radius": 80.0,
+"text": "Kill Daggerspine Raider; kill Daggerspine Sorceress.",
+"_line": 209
+},
+{
+"complete": 671.0,
+"coords": [
+32.1,
+28.4
+],
+"radius": 80.0,
+"text": "Collect Bloodstone Amulet (from Syndicate Highwayman, Syndicate Pathstalker).",
+"_line": 210
+},
+{
+"complete": 642.0,
+"coords": [
+82.6,
+34.5
+],
+"radius": 80.0,
+"text": "Collect Mote of Myzrael (from Drywhisker Kobold, Drywhisker Surveyor).",
+"_line": 211
+},
+{
+"turnin": 642.0,
+"coords": [
+84.3,
+30.9
+],
+"text": "Iridescent Shards.",
+"_line": 212
+},
+{
+"turnin": [
+671.0,
+655.0
+],
+"npc": "Tor'gan",
+"coords": [
+74.7,
+36.3
+],
+"_line": 213
+},
+{
+"turnin": 635.0,
+"coords": [
+62.5,
+33.7
+],
+"text": "Shards of Myzrael.",
+"_line": 214
+},
+{
+"turnin": 665.0,
+"npc": "Doctor Draxlegauge",
+"coords": [
+33.9,
+80.5
+],
+"_line": 215
+},
+{
+"turnin": 664.0,
+"npc": "Captain Steelgut",
+"coords": [
+34.0,
+80.8
+],
+"_line": 216
+},
+{
+"turnin": 663.0,
+"npc": "Shakes O'Breen",
+"coords": [
+32.3,
+81.4
+],
+"_line": 217
+},
+{
+"accept": 662.0,
+"npc": "First Mate Nilzlix",
+"coords": [
+32.8,
+81.5
+],
+"_line": 218
+},
+{
+"accept": 666.0,
+"npc": "Doctor Draxlegauge",
+"coords": [
+33.9,
+80.5
+],
+"_line": 219
+},
+{
+"accept": 672.0,
+"npc": "Tor'gan",
+"coords": [
+74.7,
+36.3
+],
+"_line": 220
+},
+{
+"accept": 651.0,
+"coords": [
+84.3,
+30.9
+],
+"text": "Iridescent Shards.",
+"_line": 221
+},
+{
+"complete": 672.0,
+"coords": [
+41.0,
+44.8
+],
+"radius": 80.0,
+"text": "Collect Highland Raptor Eye (from Highland Strider, Highland Thrasher).",
+"_line": 222
+},
+{
+"complete": 651.0,
+"coords": [
+25.6,
+30.5
+],
+"radius": 80.0,
+"text": "Collect Burning Key (from Burning Exile, Stone of West Binding); collect Cresting Key (from Stone of East Binding); collect Thundering Key (from Stone of Outer Binding).",
+"_line": 223
+},
+{
+"complete": 662.0,
+"coords": [
+20.7,
+85.1
+],
+"radius": 80.0,
+"text": "Collect Maiden's Folly Charts; collect Maiden's Folly Log; collect Spirit of Silverpine Charts; collect Spirit of Silverpine Log.",
+"_line": 224
+},
+{
+"complete": 666.0,
+"coords": [
+22.4,
+89.4
+],
+"radius": 80.0,
+"text": "Collect Elven Gem (from Calcified Elven Gem).",
+"_line": 225
+},
+{
+"turnin": 662.0,
+"npc": "First Mate Nilzlix",
+"coords": [
+32.8,
+81.5
+],
+"_line": 226
+},
+{
+"turnin": 666.0,
+"npc": "Doctor Draxlegauge",
+"coords": [
+33.9,
+80.5
+],
+"_line": 227
+},
+{
+"turnin": 651.0,
+"coords": [
+36.2,
+57.4
+],
+"text": "Stone of Inner Binding.",
+"_line": 228
+},
+{
+"turnin": 672.0,
+"npc": "Tor'gan",
+"coords": [
+74.7,
+36.3
+],
+"_line": 229
+},
+{
+"accept": 674.0,
+"npc": "Tor'gan",
+"coords": [
+74.7,
+36.3
+],
+"_line": 230
+},
+{
+"accept": 668.0,
+"npc": "Doctor Draxlegauge",
+"coords": [
+33.9,
+80.5
+],
+"_line": 231
+},
+{
+"turnin": 668.0,
+"npc": "Shakes O'Breen",
+"coords": [
+32.3,
+81.4
+],
+"_line": 232
+},
+{
+"turnin": 674.0,
+"npc": "Gor'mul",
+"coords": [
+72.6,
+33.9
+],
+"_line": 233
+},
+{
+"accept": 675.0,
+"npc": "Gor'mul",
+"coords": [
+72.6,
+33.9
+],
+"_line": 234
+},
+{
+"turnin": 675.0,
+"npc": "Tor'gan",
+"coords": [
+74.7,
+36.3
+],
+"_line": 235
+},
+{
+"accept": 701.0,
+"npc": "Tor'gan",
+"coords": [
+74.7,
+36.3
+],
+"_line": 236
+},
+{
+"complete": 701.0,
+"coords": [
+50.2,
+68.8
+],
+"radius": 80.0,
+"text": "Collect Raptor Heart (from Highland Fleshstalker).",
+"_line": 237
+},
+{
+"turnin": 701.0,
+"npc": "Tor'gan",
+"coords": [
+74.7,
+36.3
+],
+"_line": 238
+},
+{
+"accept": 702.0,
+"npc": "Tor'gan",
+"coords": [
+74.7,
+36.3
+],
+"_line": 239
+},
+{
+"turnin": 702.0,
+"npc": "Gor'mul",
+"coords": [
+72.6,
+33.9
+],
+"_line": 240
+},
+{
+"accept": 847.0,
+"npc": "Gor'mul",
+"coords": [
+72.6,
+33.9
+],
+"_line": 241
+},
+{
+"turnin": 847.0,
+"npc": "Tor'gan",
+"coords": [
+74.7,
+36.3
+],
+"_line": 242
+},
+{
+"level": 40.0,
+"coords": [
+74.7,
+36.3
+],
+"radius": 400.0,
+"text": "Grind to 40 if needed.",
+"_line": 243
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 244
+}
+],
+"_line": 199,
+"name": "Arathi Highlands 38-40",
+"file": "Guides/Horde_30-60.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 40.0,
+"maxLevel": 41.0,
+"zone": "Swamp of Sorrows",
+"next": "Dustwallow Marsh 41-43",
+"steps": [
+{
+"accept": 1389.0,
+"fp": "Stonard",
+"bind": "Stonard",
+"npc": "Magtoor",
+"coords": [
+26.0,
+31.4
+],
+"text": "Get the Stonard flight path and set your Hearthstone in Stonard.",
+"_line": 253
+},
+{
+"accept": 1392.0,
+"coords": [
+55.7,
+34.4
+],
+"radius": 80.0,
+"text": "Loot Noboru's Cudgel from Noboru the Cudgel and right-click it to start the quest.",
+"_line": 254
+},
+{
+"accept": 1393.0,
+"npc": "Galen Goodward",
+"coords": [
+65.5,
+18.2
+],
+"_line": 255
+},
+{
+"accept": 1424.0,
+"npc": "Fel'zerul",
+"coords": [
+47.9,
+54.8
+],
+"_line": 256
+},
+{
+"accept": [
+698.0,
+1430.0
+],
+"npc": "Dar",
+"coords": [
+44.7,
+57.2
+],
+"_line": 257
+},
+{
+"complete": 1424.0,
+"coords": [
+70.6,
+53.6
+],
+"radius": 80.0,
+"text": "Collect Atal'ai Artifact (from Atal'ai Artifact, Atal'ai Artifact).",
+"_line": 258
+},
+{
+"complete": 698.0,
+"coords": [
+76.3,
+34.1
+],
+"radius": 80.0,
+"text": "Collect Unprepared Sawtooth Flank (from Sawtooth Crocolisk, Sawtooth Snapper).",
+"_line": 259
+},
+{
+"complete": 1389.0,
+"coords": [
+62.1,
+22.9
+],
+"radius": 80.0,
+"text": "Collect Draenethyst Crystal (from Draenethyst Crystals).",
+"_line": 260
+},
+{
+"complete": 1430.0,
+"coords": [
+93.1,
+46.3
+],
+"radius": 80.0,
+"text": "Collect Monstrous Crawler Leg (from Monstrous Crawler).",
+"_line": 261
+},
+{
+"turnin": 698.0,
+"npc": "Tok'Kar",
+"coords": [
+81.3,
+81.0
+],
+"_line": 262
+},
+{
+"turnin": 1424.0,
+"npc": "Fel'zerul",
+"coords": [
+47.9,
+54.8
+],
+"_line": 263
+},
+{
+"turnin": 1430.0,
+"npc": "Dar",
+"coords": [
+44.7,
+57.2
+],
+"_line": 264
+},
+{
+"turnin": 1393.0,
+"coords": [
+47.8,
+39.8
+],
+"text": "Galen's Strongbox.",
+"_line": 265
+},
+{
+"turnin": [
+1389.0,
+1392.0
+],
+"npc": "Magtoor",
+"coords": [
+26.0,
+31.4
+],
+"_line": 266
+},
+{
+"accept": 699.0,
+"npc": "Tok'Kar",
+"coords": [
+81.3,
+81.0
+],
+"_line": 267
+},
+{
+"complete": 699.0,
+"coords": [
+81.0,
+28.4
+],
+"radius": 80.0,
+"text": "Collect Sawtooth Snapper Claw (from Sawtooth Snapper).",
+"_line": 268
+},
+{
+"turnin": 699.0,
+"npc": "Tok'Kar",
+"coords": [
+81.3,
+81.0
+],
+"_line": 269
+},
+{
+"accept": 1422.0,
+"npc": "Tok'Kar",
+"coords": [
+81.3,
+81.0
+],
+"_line": 270
+},
+{
+"turnin": 1422.0,
+"npc": "Katar",
+"coords": [
+83.8,
+80.4
+],
+"_line": 271
+},
+{
+"accept": 1426.0,
+"npc": "Katar",
+"coords": [
+83.8,
+80.4
+],
+"_line": 272
+},
+{
+"complete": 1426.0,
+"coords": [
+85.2,
+82.0
+],
+"radius": 80.0,
+"text": "Kill Marsh Murloc; kill Marsh Inkspewer; kill Marsh Flesheater.",
+"_line": 273
+},
+{
+"turnin": 1426.0,
+"npc": "Katar",
+"coords": [
+83.8,
+80.4
+],
+"_line": 274
+},
+{
+"accept": 1427.0,
+"npc": "Katar",
+"coords": [
+83.8,
+80.4
+],
+"_line": 275
+},
+{
+"turnin": 1427.0,
+"npc": "Tok'Kar",
+"coords": [
+81.3,
+81.0
+],
+"_line": 276
+},
+{
+"accept": 1428.0,
+"npc": "Katar",
+"coords": [
+83.8,
+80.4
+],
+"_line": 277
+},
+{
+"complete": 1428.0,
+"coords": [
+83.9,
+81.1
+],
+"radius": 80.0,
+"text": "Kill Marsh Inkspewer; kill Marsh Flesheater; kill Marsh Oracle.",
+"_line": 278
+},
+{
+"turnin": 1428.0,
+"npc": "Katar",
+"coords": [
+83.8,
+80.4
+],
+"_line": 279
+},
+{
+"level": 41.0,
+"coords": [
+83.8,
+80.4
+],
+"radius": 400.0,
+"text": "Grind to 41 if needed.",
+"_line": 280
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 281
+}
+],
+"_line": 250,
+"name": "Swamp of Sorrows 40-41",
+"file": "Guides/Horde_30-60.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 41.0,
+"maxLevel": 43.0,
+"zone": "Dustwallow Marsh",
+"next": "Badlands 43-44",
+"steps": [
+{
+"accept": 1201.0,
+"fp": "Brackenwall Village",
+"bind": "Brackenwall Village",
+"npc": "Nazeer Bloodpike",
+"coords": [
+35.2,
+30.7
+],
+"text": "Get the Brackenwall Village flight path and set your Hearthstone in Brackenwall Village.",
+"_line": 290
+},
+{
+"accept": 1166.0,
+"npc": "Overlord Mok'Morokk",
+"coords": [
+36.3,
+31.4
+],
+"_line": 291
+},
+{
+"accept": 1168.0,
+"npc": "Tharg",
+"coords": [
+37.4,
+31.4
+],
+"_line": 292
+},
+{
+"accept": 1169.0,
+"npc": "Draz'Zilb",
+"coords": [
+37.1,
+33.1
+],
+"_line": 293
+},
+{
+"accept": 1177.0,
+"npc": "Mudcrush Durtfeet",
+"coords": [
+35.1,
+38.3
+],
+"_line": 294
+},
+{
+"accept": 1268.0,
+"coords": [
+29.7,
+47.6
+],
+"text": "Suspicious Hoofprint.",
+"_line": 295
+},
+{
+"accept": 1269.0,
+"coords": [
+29.8,
+48.2
+],
+"text": "Theramore Guard Badge.",
+"_line": 296
+},
+{
+"accept": 1251.0,
+"coords": [
+29.6,
+48.6
+],
+"text": "Black Shield.",
+"_line": 297
+},
+{
+"accept": 1238.0,
+"coords": [
+55.4,
+25.9
+],
+"text": "Loose Dirt.",
+"_line": 298
+},
+{
+"accept": 1270.0,
+"npc": "\\\"Stinky\\\" Ignatz",
+"coords": [
+46.9,
+17.5
+],
+"_line": 299
+},
+{
+"accept": 1205.0,
+"npc": "Melor Stonehoof",
+"coords": [
+61.5,
+80.9
+],
+"zone": "Thunder Bluff",
+"_line": 300
+},
+{
+"complete": 1201.0,
+"coords": [
+39.0,
+26.0
+],
+"radius": 80.0,
+"text": "Kill Theramore Infiltrator.",
+"_line": 301
+},
+{
+"complete": 1177.0,
+"coords": [
+58.2,
+14.9
+],
+"radius": 80.0,
+"text": "Collect Mirefin Head (from Mirefin Murloc, Mirefin Muckdweller).",
+"_line": 302
+},
+{
+"complete": 1205.0,
+"coords": [
+48.8,
+56.8
+],
+"radius": 80.0,
+"text": "Collect Deadmire's Tooth (from Deadmire).",
+"_line": 303
+},
+{
+"complete": 1168.0,
+"coords": [
+44.1,
+67.7
+],
+"radius": 80.0,
+"text": "Kill Firemane Scout; kill Firemane Ash Tail; kill Firemane Scalebane.",
+"_line": 304
+},
+{
+"complete": 1169.0,
+"coords": [
+45.8,
+72.1
+],
+"radius": 80.0,
+"text": "Collect Searing Tongue (from Searing Hatchling, Searing Whelp); collect Searing Heart (from Searing Hatchling, Searing Whelp).",
+"_line": 305
+},
+{
+"complete": 1166.0,
+"coords": [
+38.7,
+66.0
+],
+"radius": 80.0,
+"text": "Collect Mok'Morokk's Snuff; collect Mok'Morokk's Grog; collect Mok'Morokk's Strongbox.",
+"_line": 306
+},
+{
+"turnin": 1177.0,
+"npc": "Mudcrush Durtfeet",
+"coords": [
+35.1,
+38.3
+],
+"_line": 307
+},
+{
+"turnin": 1169.0,
+"npc": "Draz'Zilb",
+"coords": [
+37.1,
+33.1
+],
+"_line": 308
+},
+{
+"turnin": [
+1251.0,
+1268.0,
+1269.0
+],
+"npc": "Krog",
+"coords": [
+36.4,
+31.9
+],
+"_line": 309
+},
+{
+"turnin": 1166.0,
+"npc": "Overlord Mok'Morokk",
+"coords": [
+36.3,
+31.4
+],
+"_line": 310
+},
+{
+"turnin": 1168.0,
+"npc": "Tharg",
+"coords": [
+37.4,
+31.4
+],
+"_line": 311
+},
+{
+"turnin": [
+1201.0,
+1238.0
+],
+"npc": "Nazeer Bloodpike",
+"coords": [
+35.2,
+30.7
+],
+"_line": 312
+},
+{
+"turnin": 1270.0,
+"npc": "Mebok Mizzyrix",
+"coords": [
+62.4,
+37.6
+],
+"_line": 313
+},
+{
+"turnin": 1205.0,
+"npc": "Melor Stonehoof",
+"coords": [
+61.5,
+80.9
+],
+"zone": "Thunder Bluff",
+"_line": 314
+},
+{
+"accept": 1202.0,
+"npc": "Nazeer Bloodpike",
+"coords": [
+35.2,
+30.7
+],
+"_line": 315
+},
+{
+"accept": 1321.0,
+"npc": "Krog",
+"coords": [
+36.4,
+31.9
+],
+"_line": 316
+},
+{
+"accept": 1170.0,
+"npc": "Draz'Zilb",
+"coords": [
+37.1,
+33.1
+],
+"_line": 317
+},
+{
+"accept": 1273.0,
+"npc": "Ogron",
+"coords": [
+41.0,
+36.7
+],
+"_line": 318
+},
+{
+"accept": 1239.0,
+"coords": [
+55.4,
+25.9
+],
+"text": "Loose Dirt.",
+"_line": 319
+},
+{
+"complete": 1202.0,
+"coords": [
+71.5,
+51.2
+],
+"radius": 80.0,
+"text": "Collect Captain's Documents (from Captain's Footlocker).",
+"_line": 320
+},
+{
+"turnin": 1273.0,
+"npc": "Krog",
+"coords": [
+36.4,
+31.9
+],
+"_line": 321
+},
+{
+"turnin": 1170.0,
+"npc": "Overlord Mok'Morokk",
+"coords": [
+36.3,
+31.4
+],
+"_line": 322
+},
+{
+"turnin": 1321.0,
+"npc": "Do'gol",
+"coords": [
+36.5,
+30.8
+],
+"_line": 323
+},
+{
+"turnin": [
+1202.0,
+1239.0
+],
+"npc": "Nazeer Bloodpike",
+"coords": [
+35.2,
+30.7
+],
+"_line": 324
+},
+{
+"accept": 1171.0,
+"npc": "Overlord Mok'Morokk",
+"coords": [
+36.3,
+31.4
+],
+"_line": 325
+},
+{
+"accept": 1322.0,
+"npc": "Do'gol",
+"coords": [
+36.5,
+30.8
+],
+"_line": 326
+},
+{
+"complete": 1322.0,
+"coords": [
+41.7,
+39.4
+],
+"radius": 80.0,
+"text": "Collect Acidic Venom Sac (from Darkmist Spider, Darkmist Recluse).",
+"_line": 327
+},
+{
+"turnin": 1171.0,
+"npc": "Draz'Zilb",
+"coords": [
+37.1,
+33.1
+],
+"_line": 328
+},
+{
+"turnin": 1322.0,
+"npc": "Do'gol",
+"coords": [
+36.5,
+30.8
+],
+"_line": 329
+},
+{
+"accept": 1323.0,
+"npc": "Do'gol",
+"coords": [
+36.5,
+30.8
+],
+"_line": 330
+},
+{
+"accept": 1172.0,
+"npc": "Draz'Zilb",
+"coords": [
+37.1,
+33.1
+],
+"_line": 331
+},
+{
+"complete": 1172.0,
+"coords": [
+52.3,
+75.4
+],
+"radius": 80.0,
+"text": "Use Egg of Onyxia.",
+"_line": 332
+},
+{
+"turnin": 1172.0,
+"npc": "Draz'Zilb",
+"coords": [
+37.1,
+33.1
+],
+"_line": 333
+},
+{
+"turnin": 1323.0,
+"npc": "Krog",
+"coords": [
+36.4,
+31.9
+],
+"_line": 334
+},
+{
+"accept": 1276.0,
+"npc": "Krog",
+"coords": [
+36.4,
+31.9
+],
+"_line": 335
+},
+{
+"accept": 1173.0,
+"npc": "Overlord Mok'Morokk",
+"coords": [
+36.3,
+31.4
+],
+"_line": 336
+},
+{
+"turnin": 1173.0,
+"npc": "Draz'Zilb",
+"coords": [
+37.1,
+33.1
+],
+"_line": 337
+},
+{
+"turnin": 1276.0,
+"npc": "Mosarn",
+"coords": [
+54.0,
+80.8
+],
+"zone": "Thunder Bluff",
+"_line": 338
+},
+{
+"level": 43.0,
+"radius": 400.0,
+"text": "Grind to 43 if needed.",
+"_line": 339
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 340
+}
+],
+"_line": 287,
+"name": "Dustwallow Marsh 41-43",
+"file": "Guides/Horde_30-60.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 43.0,
+"maxLevel": 44.0,
+"zone": "Badlands",
+"next": "Tanaris 44-47",
+"steps": [
+{
+"accept": [
+705.0,
+703.0
+],
+"fp": "Kargath",
+"npc": "Rigglefuzz",
+"coords": [
+42.4,
+52.9
+],
+"text": "Get the Kargath flight path.",
+"_line": 349
+},
+{
+"accept": 710.0,
+"npc": "Lotwil Veriatus",
+"coords": [
+25.9,
+44.9
+],
+"_line": 350
+},
+{
+"accept": 1419.0,
+"npc": "Neeka Bloodscar",
+"coords": [
+6.5,
+47.2
+],
+"_line": 351
+},
+{
+"accept": 782.0,
+"npc": "Gorn",
+"coords": [
+2.9,
+45.6
+],
+"_line": 352
+},
+{
+"accept": 2258.0,
+"npc": "Jarkal Mossmeld",
+"coords": [
+2.4,
+46.1
+],
+"_line": 353
+},
+{
+"complete": 710.0,
+"coords": [
+19.1,
+43.0
+],
+"radius": 80.0,
+"text": "Collect Small Stone Shard (from Lesser Rock Elemental).",
+"_line": 354
+},
+{
+"complete": 703.0,
+"coords": [
+25.8,
+60.0
+],
+"radius": 80.0,
+"text": "Collect Buzzard Wing (from Starving Buzzard, Buzzard).",
+"_line": 355
+},
+{
+"complete": 2258.0,
+"coords": [
+38.5,
+61.9
+],
+"radius": 80.0,
+"text": "Collect Buzzard Gizzard (from Starving Buzzard, Buzzard); collect Crag Coyote Fang (from Crag Coyote, Feral Crag Coyote); collect Rock Elemental Shard (from Rock Elemental, Lesser Rock Elemental).",
+"_line": 356
+},
+{
+"complete": 1419.0,
+"coords": [
+49.8,
+58.2
+],
+"radius": 80.0,
+"text": "Collect Coyote Jawbone (from Crag Coyote, Feral Crag Coyote).",
+"_line": 357
+},
+{
+"complete": 705.0,
+"coords": [
+41.5,
+29.8
+],
+"radius": 80.0,
+"text": "Collect Blue Pearl (from Shadowforge Commander).",
+"_line": 358
+},
+{
+"complete": 782.0,
+"coords": [
+12.6,
+75.5
+],
+"radius": 80.0,
+"text": "Collect Sign of the Earth (from Boss Tho'grun).",
+"_line": 359
+},
+{
+"turnin": 1419.0,
+"npc": "Neeka Bloodscar",
+"coords": [
+6.5,
+47.2
+],
+"_line": 360
+},
+{
+"turnin": 782.0,
+"npc": "Gorn",
+"coords": [
+2.9,
+45.6
+],
+"_line": 361
+},
+{
+"turnin": 2258.0,
+"npc": "Jarkal Mossmeld",
+"coords": [
+2.4,
+46.1
+],
+"_line": 362
+},
+{
+"turnin": 710.0,
+"npc": "Lotwil Veriatus",
+"coords": [
+25.9,
+44.9
+],
+"_line": 363
+},
+{
+"turnin": [
+705.0,
+703.0
+],
+"npc": "Rigglefuzz",
+"coords": [
+42.4,
+52.9
+],
+"_line": 364
+},
+{
+"accept": 711.0,
+"npc": "Lotwil Veriatus",
+"coords": [
+25.9,
+44.9
+],
+"_line": 365
+},
+{
+"complete": 711.0,
+"coords": [
+40.5,
+77.6
+],
+"radius": 80.0,
+"text": "Collect Large Stone Slab (from Rock Elemental).",
+"_line": 366
+},
+{
+"turnin": 711.0,
+"npc": "Lotwil Veriatus",
+"coords": [
+25.9,
+44.9
+],
+"_line": 367
+},
+{
+"accept": 712.0,
+"npc": "Lotwil Veriatus",
+"coords": [
+25.9,
+44.9
+],
+"_line": 368
+},
+{
+"complete": 712.0,
+"coords": [
+5.7,
+82.2
+],
+"radius": 80.0,
+"text": "Collect Bracers of Rock Binding (from Greater Rock Elemental).",
+"_line": 369
+},
+{
+"turnin": 712.0,
+"npc": "Lotwil Veriatus",
+"coords": [
+25.9,
+44.9
+],
+"_line": 370
+},
+{
+"level": 44.0,
+"coords": [
+25.9,
+44.9
+],
+"radius": 400.0,
+"text": "Grind to 44 if needed.",
+"_line": 371
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 372
+}
+],
+"_line": 346,
+"name": "Badlands 43-44",
+"file": "Guides/Horde_30-60.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 44.0,
+"maxLevel": 47.0,
+"zone": "Tanaris",
+"next": "Feralas 47-49",
+"steps": [
+{
+"accept": 1690.0,
+"fp": "Gadgetzan",
+"bind": "Gadgetzan",
+"npc": "Chief Engineer Bilgewhizzle",
+"coords": [
+52.5,
+28.5
+],
+"text": "Get the Gadgetzan flight path and set your Hearthstone in Gadgetzan.",
+"_line": 381
+},
+{
+"accept": 1707.0,
+"npc": "Spigot Operator Luglunket",
+"coords": [
+52.5,
+28.4
+],
+"_line": 382
+},
+{
+"accept": 2605.0,
+"npc": "Marin Noggenfogger",
+"coords": [
+51.8,
+28.7
+],
+"_line": 383
+},
+{
+"accept": 5863.0,
+"npc": "Andi Lynn",
+"coords": [
+52.8,
+27.4
+],
+"_line": 384
+},
+{
+"accept": 2781.0,
+"coords": [
+51.8,
+27.0
+],
+"text": "Wanted Poster.",
+"_line": 385
+},
+{
+"accept": 3362.0,
+"npc": "Tran'rek",
+"coords": [
+51.6,
+26.8
+],
+"_line": 386
+},
+{
+"accept": 8365.0,
+"npc": "Haughty Modiste",
+"coords": [
+66.6,
+22.3
+],
+"_line": 387
+},
+{
+"accept": 2875.0,
+"coords": [
+66.8,
+22.3
+],
+"text": "Wanted Poster.",
+"_line": 388
+},
+{
+"accept": 8366.0,
+"npc": "Security Chief Bilgewhizzle",
+"coords": [
+67.1,
+23.9
+],
+"_line": 389
+},
+{
+"accept": 3161.0,
+"npc": "Marvon Rivetseeker",
+"coords": [
+52.7,
+45.9
+],
+"_line": 390
+},
+{
+"accept": 351.0,
+"coords": [
+49.2,
+49.6
+],
+"radius": 80.0,
+"text": "Loot OOX-17/TN Distress Beacon from Glasshide Basilisk and right-click it to start the quest.",
+"_line": 391
+},
+{
+"accept": 1560.0,
+"npc": "Tooga",
+"coords": [
+31.8,
+74.2
+],
+"_line": 392
+},
+{
+"complete": 3362.0,
+"coords": [
+29.4,
+65.6
+],
+"radius": 80.0,
+"text": "Kill Gnarled Thistleshrub; kill Thistleshrub Rootshaper.",
+"_line": 393
+},
+{
+"complete": 2605.0,
+"coords": [
+29.0,
+64.7
+],
+"radius": 80.0,
+"text": "Collect Laden Dew Gland (from Thistleshrub Dew Collector).",
+"_line": 394
+},
+{
+"complete": 5863.0,
+"coords": [
+40.3,
+56.5
+],
+"radius": 80.0,
+"text": "Kill Dunemaul Brute; kill Dunemaul Enforcer; kill Gor'marok the Ravager.",
+"_line": 395
+},
+{
+"complete": 3161.0,
+"coords": [
+46.5,
+64.1
+],
+"radius": 80.0,
+"text": "Collect Gahz'ridian Ornament (from Gahz'ridian).",
+"_line": 396
+},
+{
+"complete": 2781.0,
+"coords": [
+61.8,
+38.2
+],
+"radius": 80.0,
+"text": "Collect Caliph Scorpidsting's Head (from Caliph Scorpidsting).",
+"_line": 397
+},
+{
+"complete": 1707.0,
+"coords": [
+62.8,
+35.1
+],
+"radius": 80.0,
+"text": "Collect Wastewander Water Pouch (from Wastewander Rogue, Wastewander Thief).",
+"_line": 398
+},
+{
+"complete": 1690.0,
+"coords": [
+63.4,
+30.5
+],
+"radius": 80.0,
+"text": "Kill Wastewander Bandit; kill Wastewander Thief.",
+"_line": 399
+},
+{
+"complete": 8365.0,
+"coords": [
+73.6,
+46.6
+],
+"radius": 80.0,
+"text": "Collect Southsea Pirate Hat (from Southsea Pirate, Southsea Freebooter).",
+"_line": 400
+},
+{
+"complete": 8366.0,
+"coords": [
+73.7,
+46.6
+],
+"radius": 80.0,
+"text": "Kill Southsea Pirate; kill Southsea Freebooter; kill Southsea Dock Worker; kill Southsea Swashbuckler.",
+"_line": 401
+},
+{
+"complete": 2875.0,
+"coords": [
+73.4,
+47.1
+],
+"radius": 80.0,
+"text": "Collect Firebeard's Head (from Andre Firebeard).",
+"_line": 402
+},
+{
+"turnin": 3161.0,
+"npc": "Marvon Rivetseeker",
+"coords": [
+52.7,
+45.9
+],
+"_line": 403
+},
+{
+"turnin": 2605.0,
+"npc": "Marin Noggenfogger",
+"coords": [
+51.8,
+28.7
+],
+"_line": 404
+},
+{
+"turnin": [
+1690.0,
+2781.0
+],
+"npc": "Chief Engineer Bilgewhizzle",
+"coords": [
+52.5,
+28.5
+],
+"_line": 405
+},
+{
+"turnin": 1707.0,
+"npc": "Spigot Operator Luglunket",
+"coords": [
+52.5,
+28.4
+],
+"_line": 406
+},
+{
+"turnin": 5863.0,
+"npc": "Andi Lynn",
+"coords": [
+52.8,
+27.4
+],
+"_line": 407
+},
+{
+"turnin": 3362.0,
+"npc": "Tran'rek",
+"coords": [
+51.6,
+26.8
+],
+"_line": 408
+},
+{
+"turnin": 1560.0,
+"npc": "Torta",
+"coords": [
+66.6,
+25.7
+],
+"_line": 409
+},
+{
+"turnin": [
+2875.0,
+8366.0
+],
+"npc": "Security Chief Bilgewhizzle",
+"coords": [
+67.1,
+23.9
+],
+"_line": 410
+},
+{
+"turnin": 8365.0,
+"npc": "Haughty Modiste",
+"coords": [
+66.6,
+22.3
+],
+"_line": 411
+},
+{
+"turnin": 351.0,
+"npc": "Homing Robot OOX-17/TN",
+"coords": [
+60.2,
+64.7
+],
+"_line": 412
+},
+{
+"accept": 2606.0,
+"npc": "Marin Noggenfogger",
+"coords": [
+51.8,
+28.7
+],
+"_line": 413
+},
+{
+"accept": 1691.0,
+"npc": "Chief Engineer Bilgewhizzle",
+"coords": [
+52.5,
+28.5
+],
+"_line": 414
+},
+{
+"complete": 1691.0,
+"coords": [
+61.7,
+37.5
+],
+"radius": 80.0,
+"text": "Kill Wastewander Rogue; kill Wastewander Assassin; kill Wastewander Shadow Mage.",
+"_line": 415
+},
+{
+"turnin": 1691.0,
+"npc": "Chief Engineer Bilgewhizzle",
+"coords": [
+52.5,
+28.5
+],
+"_line": 416
+},
+{
+"turnin": 2606.0,
+"npc": "Sprinkle",
+"coords": [
+51.1,
+26.9
+],
+"_line": 417
+},
+{
+"level": 47.0,
+"coords": [
+51.1,
+26.9
+],
+"radius": 400.0,
+"text": "Grind to 47 if needed.",
+"_line": 418
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 419
+}
+],
+"_line": 378,
+"name": "Tanaris 44-47",
+"file": "Guides/Horde_30-60.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 47.0,
+"maxLevel": 49.0,
+"zone": "Feralas",
+"next": "The Hinterlands 49-51",
+"steps": [
+{
+"accept": 2862.0,
+"fp": "Camp Mojache",
+"bind": "Camp Mojache",
+"npc": "Hadoken Swiftstrider",
+"coords": [
+74.9,
+42.5
+],
+"text": "Get the Camp Mojache flight path and set your Hearthstone in Camp Mojache.",
+"_line": 428
+},
+{
+"accept": 2822.0,
+"npc": "Jangdor Swiftstrider",
+"coords": [
+74.4,
+42.9
+],
+"_line": 429
+},
+{
+"accept": [
+3121.0,
+3128.0
+],
+"npc": "Witch Doctor Uzer'i",
+"coords": [
+74.4,
+43.4
+],
+"_line": 430
+},
+{
+"accept": 2975.0,
+"npc": "Rok Orhan",
+"coords": [
+75.8,
+43.6
+],
+"_line": 431
+},
+{
+"accept": 3063.0,
+"npc": "Talo Thornhoof",
+"coords": [
+76.2,
+43.8
+],
+"_line": 432
+},
+{
+"accept": 2973.0,
+"npc": "Krueg Skullsplitter",
+"coords": [
+75.9,
+42.7
+],
+"_line": 433
+},
+{
+"accept": 2766.0,
+"coords": [
+59.1,
+52.6
+],
+"radius": 80.0,
+"text": "Loot OOX-22/FE Distress Beacon from Gordunni Ogre and right-click it to start the quest.",
+"_line": 434
+},
+{
+"accept": 7721.0,
+"npc": "Zorbin Fandazzle",
+"coords": [
+44.8,
+43.4
+],
+"_line": 435
+},
+{
+"complete": 7721.0,
+"coords": [
+45.4,
+51.7
+],
+"radius": 80.0,
+"text": "Collect Water Elemental Core (from Sea Elemental, Sea Spray).",
+"_line": 436
+},
+{
+"complete": 2822.0,
+"coords": [
+52.5,
+58.2
+],
+"radius": 80.0,
+"text": "Collect Thick Yeti Hide (from Feral Scar Yeti, Hulking Feral Scar).",
+"_line": 437
+},
+{
+"complete": 3128.0,
+"coords": [
+55.6,
+65.8
+],
+"radius": 80.0,
+"text": "Collect Splintered Log (from Wandering Forest Walker); collect Encrusted Minerals (from Sprite Dragon, Sprite Darter); collect Resilient Sinew (from Frayfeather Hippogryph, Frayfeather Stagwing); collect Metallic Fragments (from Frayfeather Hippogryph, Frayfeather Stagwing).",
+"_line": 438
+},
+{
+"complete": 2862.0,
+"coords": [
+72.0,
+54.2
+],
+"radius": 80.0,
+"text": "Collect Woodpaw Gnoll Mane (from Woodpaw Mongrel, Woodpaw Trapper).",
+"_line": 439
+},
+{
+"complete": 2973.0,
+"coords": [
+66.6,
+47.0
+],
+"radius": 80.0,
+"text": "Collect Iridescent Sprite Darter Wing (from Sprite Darter, Captured Sprite Darter).",
+"_line": 440
+},
+{
+"complete": 2975.0,
+"coords": [
+75.2,
+33.7
+],
+"radius": 80.0,
+"text": "Kill Gordunni Ogre; kill Gordunni Ogre Mage; kill Gordunni Brute.",
+"_line": 441
+},
+{
+"complete": 3063.0,
+"coords": [
+39.1,
+13.4
+],
+"radius": 80.0,
+"text": "Kill Northspring Harpy; kill Northspring Roguefeather; kill Northspring Slayer; kill Northspring Windcaller.",
+"_line": 442
+},
+{
+"turnin": 7721.0,
+"npc": "Zorbin Fandazzle",
+"coords": [
+44.8,
+43.4
+],
+"_line": 443
+},
+{
+"turnin": 2766.0,
+"npc": "Homing Robot OOX-22/FE",
+"coords": [
+53.4,
+55.7
+],
+"_line": 444
+},
+{
+"turnin": 3128.0,
+"npc": "Witch Doctor Uzer'i",
+"coords": [
+74.4,
+43.4
+],
+"_line": 445
+},
+{
+"turnin": 2822.0,
+"npc": "Jangdor Swiftstrider",
+"coords": [
+74.4,
+42.9
+],
+"_line": 446
+},
+{
+"turnin": 2862.0,
+"npc": "Hadoken Swiftstrider",
+"coords": [
+74.9,
+42.5
+],
+"_line": 447
+},
+{
+"turnin": 2973.0,
+"npc": "Krueg Skullsplitter",
+"coords": [
+75.9,
+42.7
+],
+"_line": 448
+},
+{
+"turnin": 2975.0,
+"npc": "Rok Orhan",
+"coords": [
+75.8,
+43.6
+],
+"_line": 449
+},
+{
+"turnin": 3063.0,
+"npc": "Talo Thornhoof",
+"coords": [
+76.2,
+43.8
+],
+"_line": 450
+},
+{
+"turnin": 3121.0,
+"npc": "Neeru Fireblade",
+"coords": [
+49.5,
+50.6
+],
+"zone": "Orgrimmar",
+"_line": 451
+},
+{
+"accept": 3122.0,
+"npc": "Neeru Fireblade",
+"coords": [
+49.5,
+50.6
+],
+"zone": "Orgrimmar",
+"_line": 452
+},
+{
+"accept": 2863.0,
+"npc": "Hadoken Swiftstrider",
+"coords": [
+74.9,
+42.5
+],
+"_line": 453
+},
+{
+"accept": 7734.0,
+"npc": "Jangdor Swiftstrider",
+"coords": [
+74.4,
+42.9
+],
+"_line": 454
+},
+{
+"accept": 2974.0,
+"npc": "Krueg Skullsplitter",
+"coords": [
+75.9,
+42.7
+],
+"_line": 455
+},
+{
+"accept": 2980.0,
+"npc": "Rok Orhan",
+"coords": [
+75.8,
+43.6
+],
+"_line": 456
+},
+{
+"complete": 2974.0,
+"coords": [
+67.3,
+40.1
+],
+"radius": 80.0,
+"text": "Collect Grimtotem Horn (from Grimtotem Raider, Grimtotem Naturalist).",
+"_line": 457
+},
+{
+"complete": 2863.0,
+"coords": [
+69.1,
+55.0
+],
+"radius": 80.0,
+"text": "Kill Woodpaw Alpha.",
+"_line": 458
+},
+{
+"complete": 2980.0,
+"coords": [
+60.4,
+64.8
+],
+"radius": 80.0,
+"text": "Kill Gordunni Shaman; kill Gordunni Warlock; kill Gordunni Mauler.",
+"_line": 459
+},
+{
+"complete": 7734.0,
+"coords": [
+53.8,
+32.0
+],
+"radius": 80.0,
+"text": "Collect Rage Scar Yeti Hide (from Rage Scar Yeti, Elder Rage Scar).",
+"_line": 460
+},
+{
+"turnin": 7734.0,
+"npc": "Jangdor Swiftstrider",
+"coords": [
+74.4,
+42.9
+],
+"_line": 461
+},
+{
+"turnin": 3122.0,
+"npc": "Witch Doctor Uzer'i",
+"coords": [
+74.4,
+43.4
+],
+"_line": 462
+},
+{
+"turnin": 2863.0,
+"npc": "Hadoken Swiftstrider",
+"coords": [
+74.9,
+42.5
+],
+"_line": 463
+},
+{
+"turnin": 2974.0,
+"npc": "Krueg Skullsplitter",
+"coords": [
+75.9,
+42.7
+],
+"_line": 464
+},
+{
+"turnin": 2980.0,
+"npc": "Rok Orhan",
+"coords": [
+75.8,
+43.6
+],
+"_line": 465
+},
+{
+"accept": 2976.0,
+"npc": "Krueg Skullsplitter",
+"coords": [
+75.9,
+42.7
+],
+"_line": 466
+},
+{
+"accept": 2902.0,
+"npc": "Hadoken Swiftstrider",
+"coords": [
+74.9,
+42.5
+],
+"_line": 467
+},
+{
+"turnin": 2902.0,
+"coords": [
+71.6,
+55.9
+],
+"text": "Woodpaw Battle Map.",
+"_line": 468
+},
+{
+"turnin": 2976.0,
+"npc": "Belgrom Rockmaul",
+"coords": [
+75.2,
+34.2
+],
+"zone": "Orgrimmar",
+"_line": 469
+},
+{
+"accept": 2903.0,
+"coords": [
+71.6,
+55.9
+],
+"text": "Woodpaw Battle Map.",
+"_line": 470
+},
+{
+"turnin": 2903.0,
+"npc": "Hadoken Swiftstrider",
+"coords": [
+74.9,
+42.5
+],
+"_line": 471
+},
+{
+"accept": [
+7730.0,
+7731.0
+],
+"npc": "Hadoken Swiftstrider",
+"coords": [
+74.9,
+42.5
+],
+"_line": 472
+},
+{
+"complete": 7731.0,
+"coords": [
+77.0,
+61.6
+],
+"radius": 80.0,
+"text": "Collect Stinglasher's Glands (from Stinglasher).",
+"_line": 473
+},
+{
+"complete": 7730.0,
+"coords": [
+75.1,
+63.0
+],
+"radius": 80.0,
+"text": "Collect Zukk'ash Carapace (from Zukk'ash Stinger, Zukk'ash Wasp).",
+"_line": 474
+},
+{
+"turnin": [
+7730.0,
+7731.0
+],
+"npc": "Hadoken Swiftstrider",
+"coords": [
+74.9,
+42.5
+],
+"_line": 475
+},
+{
+"accept": 7732.0,
+"npc": "Hadoken Swiftstrider",
+"coords": [
+74.9,
+42.5
+],
+"_line": 476
+},
+{
+"turnin": 7732.0,
+"npc": "Zilzibin Drumlore",
+"coords": [
+56.3,
+46.7
+],
+"zone": "Orgrimmar",
+"_line": 477
+},
+{
+"level": 49.0,
+"radius": 400.0,
+"text": "Grind to 49 if needed.",
+"_line": 478
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 479
+}
+],
+"_line": 425,
+"name": "Feralas 47-49",
+"file": "Guides/Horde_30-60.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 49.0,
+"maxLevel": 51.0,
+"zone": "The Hinterlands",
+"next": "Azshara 51-52",
+"steps": [
+{
+"accept": 2742.0,
+"fp": "Revantusk Village",
+"npc": "Rin'ji",
+"coords": [
+30.7,
+46.9
+],
+"text": "Get the Revantusk Village flight path.",
+"_line": 488
+},
+{
+"accept": 485.0,
+"coords": [
+45.8,
+53.8
+],
+"radius": 80.0,
+"text": "Loot OOX-09/HL Distress Beacon from Saltwater Snapjaw and right-click it to start the quest.",
+"_line": 489
+},
+{
+"accept": 7839.0,
+"npc": "Smith Slagtree",
+"coords": [
+77.2,
+80.1
+],
+"_line": 490
+},
+{
+"accept": [
+7850.0,
+7845.0
+],
+"npc": "Primal Torntusk",
+"coords": [
+78.2,
+81.2
+],
+"_line": 491
+},
+{
+"accept": [
+7828.0,
+7829.0,
+7830.0,
+7849.0
+],
+"npc": "Huntsman Markhor",
+"coords": [
+79.2,
+79.5
+],
+"_line": 492
+},
+{
+"accept": 7841.0,
+"npc": "Otho Moji'ko",
+"coords": [
+79.4,
+79.1
+],
+"_line": 493
+},
+{
+"accept": 7844.0,
+"npc": "Mystic Yayo'jin",
+"coords": [
+78.8,
+78.2
+],
+"_line": 494
+},
+{
+"accept": 7815.0,
+"npc": "Katoom the Angler",
+"coords": [
+80.3,
+81.5
+],
+"_line": 495
+},
+{
+"complete": 7850.0,
+"coords": [
+64.2,
+72.2
+],
+"radius": 80.0,
+"text": "Collect Vessel of Tainted Blood.",
+"_line": 496
+},
+{
+"complete": 7849.0,
+"coords": [
+58.6,
+64.8
+],
+"radius": 80.0,
+"text": "Collect Huntsman Malkhor's Skull (from Pile of Skulls); collect Huntsman Malkhor's Bones (from Pile of Bones).",
+"_line": 497
+},
+{
+"complete": 7844.0,
+"coords": [
+50.6,
+62.7
+],
+"radius": 80.0,
+"text": "Kill Vilebranch Scalper; kill Vilebranch Soothsayer.",
+"_line": 498
+},
+{
+"complete": 7830.0,
+"coords": [
+54.2,
+49.3
+],
+"radius": 80.0,
+"text": "Collect Skylord Plume (from Razorbeak Skylord).",
+"_line": 499
+},
+{
+"complete": 7829.0,
+"coords": [
+60.4,
+46.5
+],
+"radius": 80.0,
+"text": "Kill Savage Owlbeast.",
+"_line": 500
+},
+{
+"complete": 7839.0,
+"coords": [
+66.4,
+44.8
+],
+"radius": 80.0,
+"text": "Collect Slagtree's Lost Tools.",
+"_line": 501
+},
+{
+"complete": 7828.0,
+"coords": [
+62.5,
+54.2
+],
+"radius": 80.0,
+"text": "Kill Silvermane Stalker; kill Silvermane Howler.",
+"_line": 502
+},
+{
+"complete": 7815.0,
+"coords": [
+81.5,
+60.4
+],
+"radius": 80.0,
+"text": "Kill Saltwater Snapjaw.",
+"_line": 503
+},
+{
+"complete": 7841.0,
+"coords": [
+31.5,
+48.2
+],
+"radius": 80.0,
+"text": "Kill Highvale Scout; kill Highvale Outrunner; kill Highvale Ranger; kill Highvale Marksman.",
+"_line": 504
+},
+{
+"turnin": 485.0,
+"npc": "Homing Robot OOX-09/HL",
+"coords": [
+49.4,
+37.7
+],
+"_line": 505
+},
+{
+"turnin": 7845.0,
+"npc": "Elder Torntusk",
+"coords": [
+59.7,
+77.8
+],
+"_line": 506
+},
+{
+"turnin": 7839.0,
+"npc": "Smith Slagtree",
+"coords": [
+77.2,
+80.1
+],
+"_line": 507
+},
+{
+"turnin": 7850.0,
+"npc": "Primal Torntusk",
+"coords": [
+78.2,
+81.2
+],
+"_line": 508
+},
+{
+"turnin": [
+7828.0,
+7829.0,
+7830.0,
+7849.0
+],
+"npc": "Huntsman Markhor",
+"coords": [
+79.2,
+79.5
+],
+"_line": 509
+},
+{
+"turnin": 7841.0,
+"npc": "Otho Moji'ko",
+"coords": [
+79.4,
+79.1
+],
+"_line": 510
+},
+{
+"turnin": 7844.0,
+"npc": "Mystic Yayo'jin",
+"coords": [
+78.8,
+78.2
+],
+"_line": 511
+},
+{
+"turnin": 7815.0,
+"npc": "Katoom the Angler",
+"coords": [
+80.3,
+81.5
+],
+"_line": 512
+},
+{
+"turnin": 2742.0,
+"coords": [
+86.3,
+59.0
+],
+"text": "Rin'ji's Secret.",
+"_line": 513
+},
+{
+"accept": 2782.0,
+"coords": [
+86.3,
+59.0
+],
+"text": "Rin'ji's Secret.",
+"_line": 514
+},
+{
+"accept": 7842.0,
+"npc": "Otho Moji'ko",
+"coords": [
+79.4,
+79.1
+],
+"_line": 515
+},
+{
+"complete": 7842.0,
+"coords": [
+30.5,
+57.3
+],
+"radius": 80.0,
+"text": "Collect Long Elegant Feather (from Witherbark Hideskinner, Trained Razorbeak).",
+"_line": 516
+},
+{
+"turnin": 7842.0,
+"npc": "Otho Moji'ko",
+"coords": [
+79.4,
+79.1
+],
+"_line": 517
+},
+{
+"turnin": 2782.0,
+"npc": "Oran Snakewrithe",
+"coords": [
+73.1,
+32.9
+],
+"zone": "Undercity",
+"_line": 518
+},
+{
+"accept": 8273.0,
+"npc": "Oran Snakewrithe",
+"coords": [
+73.1,
+32.9
+],
+"zone": "Undercity",
+"_line": 519
+},
+{
+"accept": 7843.0,
+"npc": "Otho Moji'ko",
+"coords": [
+79.4,
+79.1
+],
+"_line": 520
+},
+{
+"turnin": 7843.0,
+"npc": "Otho Moji'ko",
+"coords": [
+79.4,
+79.1
+],
+"_line": 521
+},
+{
+"turnin": 8273.0,
+"npc": "Oran Snakewrithe",
+"coords": [
+73.1,
+32.9
+],
+"zone": "Undercity",
+"_line": 522
+},
+{
+"level": 51.0,
+"radius": 400.0,
+"text": "Grind to 51 if needed.",
+"_line": 523
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 524
+}
+],
+"_line": 485,
+"name": "The Hinterlands 49-51",
+"file": "Guides/Horde_30-60.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 51.0,
+"maxLevel": 52.0,
+"zone": "Azshara",
+"next": "Searing Gorge 52-53",
+"steps": [
+{
+"accept": [
+5535.0,
+5536.0
+],
+"fp": "Valormok",
+"npc": "Loh'atu",
+"coords": [
+11.4,
+78.2
+],
+"text": "Get the Valormok flight path.",
+"_line": 533
+},
+{
+"accept": 3517.0,
+"npc": "Jediga",
+"coords": [
+22.6,
+51.4
+],
+"_line": 534
+},
+{
+"accept": 3601.0,
+"npc": "Kim'jael",
+"coords": [
+53.5,
+21.8
+],
+"_line": 535
+},
+{
+"complete": 3601.0,
+"coords": [
+58.5,
+28.8
+],
+"radius": 80.0,
+"text": "Collect Kim'Jael's Compass (from Kim'jael's Equipment); collect Kim'Jael's Scope (from Kim'jael's Equipment); collect Kim'Jael's Stuffed Chicken (from Kim'jael's Equipment); collect Kim'Jael's Wizzlegoober (from Kim'jael's Equipment).",
+"_line": 536
+},
+{
+"complete": 3517.0,
+"coords": [
+37.9,
+53.8
+],
+"radius": 80.0,
+"text": "Collect Tablet of Beth'Amara; collect Tablet of Jin'yael; collect Tablet of Markri; collect Tablet of Sael'hai.",
+"_line": 537
+},
+{
+"complete": 5536.0,
+"coords": [
+20.2,
+61.8
+],
+"radius": 80.0,
+"text": "Kill Haldarr Satyr; kill Haldarr Trickster; kill Haldarr Felsworn.",
+"_line": 538
+},
+{
+"complete": 5535.0,
+"coords": [
+16.6,
+70.0
+],
+"radius": 80.0,
+"text": "Kill Highborne Apparition; kill Highborne Lichling.",
+"_line": 539
+},
+{
+"turnin": [
+5535.0,
+5536.0
+],
+"npc": "Loh'atu",
+"coords": [
+11.4,
+78.2
+],
+"_line": 540
+},
+{
+"turnin": 3517.0,
+"npc": "Jediga",
+"coords": [
+22.6,
+51.4
+],
+"_line": 541
+},
+{
+"turnin": 3601.0,
+"npc": "Kim'jael",
+"coords": [
+53.5,
+21.8
+],
+"_line": 542
+},
+{
+"accept": 5534.0,
+"npc": "Kim'jael",
+"coords": [
+53.5,
+21.8
+],
+"_line": 543
+},
+{
+"accept": [
+3518.0,
+3541.0,
+3542.0,
+3561.0
+],
+"npc": "Jediga",
+"coords": [
+22.6,
+51.4
+],
+"_line": 544
+},
+{
+"complete": 5534.0,
+"coords": [
+46.7,
+55.8
+],
+"radius": 80.0,
+"text": "Collect Some Rune (from Spitelash Siren, Spitelash Myrmidon).",
+"_line": 545
+},
+{
+"turnin": 3561.0,
+"npc": "Archmage Xylem",
+"coords": [
+29.2,
+40.2
+],
+"_line": 546
+},
+{
+"turnin": 5534.0,
+"npc": "Kim'jael",
+"coords": [
+53.5,
+21.8
+],
+"_line": 547
+},
+{
+"turnin": 3518.0,
+"npc": "Magatha Grimtotem",
+"coords": [
+69.8,
+30.9
+],
+"zone": "Thunder Bluff",
+"_line": 548
+},
+{
+"turnin": 3541.0,
+"npc": "Jes'rimon",
+"coords": [
+55.5,
+34.1
+],
+"zone": "Orgrimmar",
+"_line": 549
+},
+{
+"turnin": 3542.0,
+"npc": "Andron Gant",
+"coords": [
+54.8,
+76.3
+],
+"zone": "Undercity",
+"_line": 550
+},
+{
+"accept": 3564.0,
+"npc": "Andron Gant",
+"coords": [
+54.8,
+76.3
+],
+"zone": "Undercity",
+"_line": 551
+},
+{
+"accept": 3562.0,
+"npc": "Magatha Grimtotem",
+"coords": [
+69.8,
+30.9
+],
+"zone": "Thunder Bluff",
+"_line": 552
+},
+{
+"accept": 3563.0,
+"npc": "Jes'rimon",
+"coords": [
+55.5,
+34.1
+],
+"zone": "Orgrimmar",
+"_line": 553
+},
+{
+"accept": 3565.0,
+"npc": "Archmage Xylem",
+"coords": [
+29.2,
+40.2
+],
+"_line": 554
+},
+{
+"turnin": [
+3562.0,
+3563.0,
+3564.0,
+3565.0
+],
+"npc": "Jediga",
+"coords": [
+22.6,
+51.4
+],
+"_line": 555
+},
+{
+"level": 52.0,
+"coords": [
+22.6,
+51.4
+],
+"radius": 400.0,
+"text": "Grind to 52 if needed.",
+"_line": 556
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 557
+}
+],
+"_line": 530,
+"name": "Azshara 51-52",
+"file": "Guides/Horde_30-60.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 52.0,
+"maxLevel": 53.0,
+"zone": "Searing Gorge",
+"next": "Un'Goro Crater 53-55",
+"steps": [
+{
+"accept": 4449.0,
+"fp": "Thorium Point",
+"coords": [
+65.6,
+62.2
+],
+"text": "Get the Thorium Point flight path. Wooden Outhouse.",
+"_line": 566
+},
+{
+"accept": 4451.0,
+"coords": [
+42.5,
+45.1
+],
+"radius": 80.0,
+"text": "Loot Grimesilt Outhouse Key from Dark Iron Steamsmith and right-click it to start the quest.",
+"_line": 567
+},
+{
+"accept": 3441.0,
+"npc": "Kalaran Windblade",
+"coords": [
+39.1,
+39.0
+],
+"_line": 568
+},
+{
+"accept": 7722.0,
+"npc": "Master Smith Burninate",
+"coords": [
+38.8,
+28.5
+],
+"_line": 569
+},
+{
+"accept": [
+7723.0,
+7724.0,
+7727.0
+],
+"npc": "Hansel Heavyhands",
+"coords": [
+38.6,
+27.8
+],
+"_line": 570
+},
+{
+"accept": [
+7728.0,
+7729.0
+],
+"coords": [
+37.6,
+26.5
+],
+"text": "Wanted/Missing/Lost & Found.",
+"_line": 571
+},
+{
+"complete": 7722.0,
+"coords": [
+40.5,
+35.7
+],
+"radius": 80.0,
+"text": "Collect Secret Plans: Fiery Flux.",
+"_line": 572
+},
+{
+"complete": 7729.0,
+"coords": [
+42.6,
+40.5
+],
+"radius": 80.0,
+"text": "Kill Dark Iron Taskmaster; kill Dark Iron Slaver.",
+"_line": 573
+},
+{
+"complete": 4449.0,
+"coords": [
+41.6,
+42.0
+],
+"radius": 80.0,
+"text": "Kill Dark Iron Geologist; collect Silk Cloth (from Dark Iron Geologist, Dark Iron Steamsmith).",
+"_line": 574
+},
+{
+"complete": 7723.0,
+"coords": [
+40.5,
+45.9
+],
+"radius": 80.0,
+"text": "Kill Heavy War Golem.",
+"_line": 575
+},
+{
+"complete": 7728.0,
+"coords": [
+40.0,
+55.5
+],
+"radius": 80.0,
+"text": "Collect Smithing Tuyere (from Dark Iron Steamsmith); collect Lookout's Spyglass (from Dark Iron Lookout).",
+"_line": 576
+},
+{
+"complete": 7724.0,
+"coords": [
+28.3,
+61.4
+],
+"radius": 80.0,
+"text": "Kill Greater Lava Spider.",
+"_line": 577
+},
+{
+"complete": 7727.0,
+"coords": [
+49.5,
+26.5
+],
+"radius": 80.0,
+"text": "Kill Incendosaur.",
+"_line": 578
+},
+{
+"turnin": [
+7728.0,
+7729.0
+],
+"npc": "Taskmaster Scrange",
+"coords": [
+39.0,
+27.5
+],
+"_line": 579
+},
+{
+"turnin": [
+7723.0,
+7724.0,
+7727.0
+],
+"npc": "Hansel Heavyhands",
+"coords": [
+38.6,
+27.8
+],
+"_line": 580
+},
+{
+"turnin": 7722.0,
+"npc": "Master Smith Burninate",
+"coords": [
+38.8,
+28.5
+],
+"_line": 581
+},
+{
+"turnin": 3441.0,
+"npc": "Kalaran Windblade",
+"coords": [
+39.1,
+39.0
+],
+"_line": 582
+},
+{
+"turnin": [
+4449.0,
+4451.0
+],
+"coords": [
+65.6,
+62.2
+],
+"text": "Wooden Outhouse.",
+"_line": 583
+},
+{
+"accept": 3442.0,
+"npc": "Kalaran Windblade",
+"coords": [
+39.1,
+39.0
+],
+"_line": 584
+},
+{
+"complete": 3442.0,
+"coords": [
+45.9,
+52.6
+],
+"radius": 80.0,
+"text": "Collect Heart of Flame (from Blazing Elemental, Inferno Elemental); collect Golem Oil (from Tempered War Golem, Heavy War Golem).",
+"_line": 585
+},
+{
+"turnin": 3442.0,
+"npc": "Kalaran Windblade",
+"coords": [
+39.1,
+39.0
+],
+"_line": 586
+},
+{
+"accept": 3443.0,
+"npc": "Kalaran Windblade",
+"coords": [
+39.1,
+39.0
+],
+"_line": 587
+},
+{
+"complete": 3443.0,
+"coords": [
+41.6,
+42.9
+],
+"radius": 80.0,
+"text": "Collect Thorium Plated Dagger (from Dark Iron Geologist, Dark Iron Steamsmith).",
+"_line": 588
+},
+{
+"turnin": 3443.0,
+"npc": "Kalaran Windblade",
+"coords": [
+39.1,
+39.0
+],
+"_line": 589
+},
+{
+"level": 53.0,
+"coords": [
+39.1,
+39.0
+],
+"radius": 400.0,
+"text": "Grind to 53 if needed.",
+"_line": 590
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 591
+}
+],
+"_line": 563,
+"name": "Searing Gorge 52-53",
+"file": "Guides/Horde_30-60.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 53.0,
+"maxLevel": 55.0,
+"zone": "Un'Goro Crater",
+"next": "Felwood 55-56",
+"steps": [
+{
+"accept": 3884.0,
+"fp": "Marshal's Refuge",
+"bind": "Marshal's Refuge",
+"coords": [
+52.8,
+50.1
+],
+"radius": 80.0,
+"text": "Get the Marshal's Refuge flight path and set your Hearthstone in Marshal's Refuge. Loot A Mangled Journal from Ravasaur and right-click it to start the quest.",
+"_line": 600
+},
+{
+"accept": 3844.0,
+"coords": [
+63.0,
+68.6
+],
+"text": "A Wrecked Raft.",
+"_line": 601
+},
+{
+"accept": [
+4290.0,
+4289.0
+],
+"npc": "Torwa Pathfinder",
+"coords": [
+71.6,
+76.0
+],
+"_line": 602
+},
+{
+"accept": 974.0,
+"npc": "Krakle",
+"coords": [
+30.9,
+50.4
+],
+"_line": 603
+},
+{
+"accept": 4243.0,
+"npc": "Karna Remtravel",
+"coords": [
+46.4,
+13.4
+],
+"_line": 604
+},
+{
+"accept": 4503.0,
+"npc": "Shizzle",
+"coords": [
+44.2,
+11.6
+],
+"_line": 605
+},
+{
+"accept": 4492.0,
+"npc": "Spraggle Frock",
+"coords": [
+43.6,
+8.5
+],
+"_line": 606
+},
+{
+"accept": 4501.0,
+"coords": [
+43.5,
+8.4
+],
+"text": "Beware of Pterrordax.",
+"_line": 607
+},
+{
+"accept": 3882.0,
+"npc": "Spark Nilminer",
+"coords": [
+43.5,
+7.4
+],
+"_line": 608
+},
+{
+"accept": 3881.0,
+"npc": "Williden Marshal",
+"coords": [
+44.0,
+7.1
+],
+"_line": 609
+},
+{
+"accept": 4145.0,
+"npc": "Larion",
+"coords": [
+45.5,
+8.7
+],
+"_line": 610
+},
+{
+"accept": 4284.0,
+"npc": "J.D. Collie",
+"coords": [
+41.9,
+2.7
+],
+"_line": 611
+},
+{
+"complete": 4289.0,
+"coords": [
+66.4,
+16.3
+],
+"radius": 80.0,
+"text": "Collect Un'Goro Gorilla Pelt (from Un'Goro Gorilla); collect Un'Goro Stomper Pelt (from Un'Goro Stomper); collect Un'Goro Thunderer Pelt (from Un'Goro Thunderer).",
+"_line": 612
+},
+{
+"complete": 4145.0,
+"coords": [
+56.3,
+39.8
+],
+"radius": 80.0,
+"text": "Kill Bloodpetal Lasher; kill Bloodpetal Trapper; kill Bloodpetal Flayer; kill Bloodpetal Thresher.",
+"_line": 613
+},
+{
+"complete": 4284.0,
+"coords": [
+54.0,
+47.9
+],
+"radius": 80.0,
+"text": "Collect Red Power Crystal (from Ravasaur, Ravasaur Runner); collect Yellow Power Crystal (from Ravasaur, Ravasaur Runner); collect Green Power Crystal (from Ravasaur, Ravasaur Runner); collect Blue Power Crystal (from Ravasaur, Ravasaur Runner).",
+"_line": 614
+},
+{
+"complete": 974.0,
+"coords": [
+49.7,
+48.5
+],
+"radius": 80.0,
+"text": "Find the hottest area of Fire Plume Ridge (Krakle's Thermometer).",
+"_line": 615
+},
+{
+"complete": 4503.0,
+"coords": [
+42.2,
+58.7
+],
+"radius": 80.0,
+"text": "Collect Webbed Diemetradon Scale (from Young Diemetradon, Diemetradon); collect Webbed Pterrordax Scale (from Fledgling Pterrordax, Pterrordax).",
+"_line": 616
+},
+{
+"complete": 3882.0,
+"coords": [
+41.9,
+62.9
+],
+"radius": 80.0,
+"text": "Collect Dinosaur Bone (from Young Diemetradon, Diemetradon).",
+"_line": 617
+},
+{
+"complete": 4501.0,
+"coords": [
+36.6,
+47.9
+],
+"radius": 80.0,
+"text": "Kill Pterrordax; kill Frenzied Pterrordax.",
+"_line": 618
+},
+{
+"complete": 3881.0,
+"coords": [
+38.5,
+36.5
+],
+"radius": 80.0,
+"text": "Collect Crate of Foodstuffs; collect Research Equipment.",
+"_line": 619
+},
+{
+"complete": 4290.0,
+"coords": [
+68.7,
+56.7
+],
+"radius": 80.0,
+"text": "Collect Piece of Threshadon Carcass (from Fresh Threshadon Carcass).",
+"_line": 620
+},
+{
+"turnin": 3844.0,
+"coords": [
+63.1,
+69.1
+],
+"text": "A Small Pack.",
+"_line": 621
+},
+{
+"turnin": [
+4290.0,
+4289.0
+],
+"npc": "Torwa Pathfinder",
+"coords": [
+71.6,
+76.0
+],
+"_line": 622
+},
+{
+"turnin": 4492.0,
+"npc": "Ringo",
+"coords": [
+51.9,
+49.9
+],
+"_line": 623
+},
+{
+"turnin": 974.0,
+"npc": "Krakle",
+"coords": [
+30.9,
+50.4
+],
+"_line": 624
+},
+{
+"turnin": 4503.0,
+"npc": "Shizzle",
+"coords": [
+44.2,
+11.6
+],
+"_line": 625
+},
+{
+"turnin": 4501.0,
+"npc": "Spraggle Frock",
+"coords": [
+43.6,
+8.5
+],
+"_line": 626
+},
+{
+"turnin": 3882.0,
+"npc": "Spark Nilminer",
+"coords": [
+43.5,
+7.4
+],
+"_line": 627
+},
+{
+"turnin": [
+3884.0,
+3881.0
+],
+"npc": "Williden Marshal",
+"coords": [
+44.0,
+7.1
+],
+"_line": 628
+},
+{
+"turnin": 4145.0,
+"npc": "Larion",
+"coords": [
+45.5,
+8.7
+],
+"_line": 629
+},
+{
+"turnin": 4284.0,
+"npc": "J.D. Collie",
+"coords": [
+41.9,
+2.7
+],
+"_line": 630
+},
+{
+"turnin": 4243.0,
+"npc": "A-Me 01",
+"coords": [
+67.7,
+16.8
+],
+"_line": 631
+},
+{
+"accept": [
+4285.0,
+4287.0,
+4288.0
+],
+"npc": "J.D. Collie",
+"coords": [
+41.9,
+2.7
+],
+"_line": 632
+},
+{
+"accept": 4491.0,
+"npc": "Ringo",
+"coords": [
+51.9,
+49.9
+],
+"_line": 633
+},
+{
+"accept": 4301.0,
+"npc": "Torwa Pathfinder",
+"coords": [
+71.6,
+76.0
+],
+"_line": 634
+},
+{
+"complete": 4301.0,
+"coords": [
+68.1,
+12.6
+],
+"radius": 80.0,
+"text": "Collect U'cha's Pelt (from U'cha).",
+"_line": 635
+},
+{
+"turnin": 4491.0,
+"npc": "Spraggle Frock",
+"coords": [
+43.6,
+8.5
+],
+"_line": 636
+},
+{
+"turnin": [
+4285.0,
+4287.0,
+4288.0
+],
+"npc": "J.D. Collie",
+"coords": [
+41.9,
+2.7
+],
+"_line": 637
+},
+{
+"turnin": 4301.0,
+"npc": "Torwa Pathfinder",
+"coords": [
+71.6,
+76.0
+],
+"_line": 638
+},
+{
+"accept": 4321.0,
+"npc": "J.D. Collie",
+"coords": [
+41.9,
+2.7
+],
+"_line": 639
+},
+{
+"turnin": 4321.0,
+"npc": "J.D. Collie",
+"coords": [
+41.9,
+2.7
+],
+"_line": 640
+},
+{
+"level": 55.0,
+"coords": [
+41.9,
+2.7
+],
+"radius": 400.0,
+"text": "Grind to 55 if needed.",
+"_line": 641
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 642
+}
+],
+"_line": 597,
+"name": "Un'Goro Crater 53-55",
+"file": "Guides/Horde_30-60.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 55.0,
+"maxLevel": 56.0,
+"zone": "Felwood",
+"next": "Winterspring 56-58",
+"steps": [
+{
+"accept": 8460.0,
+"fp": "Bloodvenom Post",
+"npc": "Grazle",
+"coords": [
+50.9,
+85.0
+],
+"text": "Get the Bloodvenom Post flight path.",
+"_line": 651
+},
+{
+"accept": 5155.0,
+"npc": "Greta Mosshoof",
+"coords": [
+51.2,
+82.1
+],
+"_line": 652
+},
+{
+"accept": 5156.0,
+"npc": "Taronn Redfeather",
+"coords": [
+50.9,
+81.6
+],
+"_line": 653
+},
+{
+"accept": 4102.0,
+"npc": "Maybess Riverbreeze",
+"coords": [
+46.8,
+83.1
+],
+"_line": 654
+},
+{
+"accept": 6162.0,
+"npc": "Dreka'Sur",
+"coords": [
+34.8,
+52.7
+],
+"_line": 655
+},
+{
+"accept": 5202.0,
+"coords": [
+37.8,
+50.3
+],
+"radius": 80.0,
+"text": "Loot Blood Red Key from Jaedenar Enforcer and right-click it to start the quest.",
+"_line": 656
+},
+{
+"complete": 5155.0,
+"coords": [
+38.0,
+61.1
+],
+"radius": 80.0,
+"text": "Kill Jaedenar Hound; kill Jaedenar Guardian; kill Jaedenar Adept; kill Jaedenar Cultist.",
+"_line": 657
+},
+{
+"complete": 5156.0,
+"coords": [
+42.5,
+40.4
+],
+"radius": 80.0,
+"text": "Kill Entropic Beast; kill Entropic Horror.",
+"_line": 658
+},
+{
+"complete": 4102.0,
+"coords": [
+57.4,
+19.1
+],
+"radius": 80.0,
+"text": "Collect Blood Amber (from Warpwood Moss Flayer, Warpwood Shredder).",
+"_line": 659
+},
+{
+"complete": 8460.0,
+"coords": [
+48.3,
+91.0
+],
+"radius": 80.0,
+"text": "Kill Deadwood Warrior; kill Deadwood Pathfinder; kill Deadwood Gardener.",
+"_line": 660
+},
+{
+"complete": 6162.0,
+"coords": [
+48.2,
+94.3
+],
+"radius": 80.0,
+"text": "Collect Overlord Ror's Claw (from Overlord Ror).",
+"_line": 661
+},
+{
+"turnin": 8460.0,
+"npc": "Grazle",
+"coords": [
+50.9,
+85.0
+],
+"_line": 662
+},
+{
+"turnin": 5155.0,
+"npc": "Greta Mosshoof",
+"coords": [
+51.2,
+82.1
+],
+"_line": 663
+},
+{
+"turnin": 5156.0,
+"npc": "Taronn Redfeather",
+"coords": [
+50.9,
+81.6
+],
+"_line": 664
+},
+{
+"turnin": 4102.0,
+"npc": "Maybess Riverbreeze",
+"coords": [
+46.8,
+83.1
+],
+"_line": 665
+},
+{
+"turnin": 5202.0,
+"npc": "Captured Arko'narin",
+"coords": [
+36.2,
+55.5
+],
+"_line": 666
+},
+{
+"turnin": 6162.0,
+"npc": "Dreka'Sur",
+"coords": [
+34.8,
+52.7
+],
+"_line": 667
+},
+{
+"accept": 5203.0,
+"npc": "Captured Arko'narin",
+"coords": [
+36.2,
+55.5
+],
+"_line": 668
+},
+{
+"accept": 5882.0,
+"npc": "Maybess Riverbreeze",
+"coords": [
+46.8,
+83.1
+],
+"_line": 669
+},
+{
+"accept": 8462.0,
+"npc": "Grazle",
+"coords": [
+50.9,
+85.0
+],
+"_line": 670
+},
+{
+"complete": 5882.0,
+"coords": [
+43.5,
+54.5
+],
+"radius": 80.0,
+"text": "Collect Corrupted Soul Shard (from Cursed Ooze, Tainted Ooze).",
+"_line": 671
+},
+{
+"turnin": 5203.0,
+"npc": "Jessir Moonbow",
+"coords": [
+51.4,
+82.0
+],
+"_line": 672
+},
+{
+"turnin": 5882.0,
+"npc": "Maybess Riverbreeze",
+"coords": [
+46.8,
+83.1
+],
+"_line": 673
+},
+{
+"turnin": 8462.0,
+"npc": "Nafien",
+"coords": [
+64.8,
+8.1
+],
+"_line": 674
+},
+{
+"accept": 5204.0,
+"npc": "Jessir Moonbow",
+"coords": [
+51.4,
+82.0
+],
+"_line": 675
+},
+{
+"complete": 5204.0,
+"coords": [
+38.3,
+50.5
+],
+"radius": 80.0,
+"text": "Kill Rakaiah.",
+"_line": 676
+},
+{
+"turnin": 5204.0,
+"npc": "Remains of Trey Lightforge",
+"coords": [
+38.5,
+50.4
+],
+"_line": 677
+},
+{
+"accept": 5385.0,
+"npc": "Remains of Trey Lightforge",
+"coords": [
+38.5,
+50.4
+],
+"_line": 678
+},
+{
+"turnin": 5385.0,
+"npc": "Jessir Moonbow",
+"coords": [
+51.4,
+82.0
+],
+"_line": 679
+},
+{
+"level": 56.0,
+"coords": [
+51.4,
+82.0
+],
+"radius": 400.0,
+"text": "Grind to 56 if needed.",
+"_line": 680
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 681
+}
+],
+"_line": 648,
+"name": "Felwood 55-56",
+"file": "Guides/Horde_30-60.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 56.0,
+"maxLevel": 58.0,
+"zone": "Winterspring",
+"next": "Western Plaguelands 58-59",
+"steps": [
+{
+"accept": 3783.0,
+"fp": "Everlook",
+"bind": "Everlook",
+"npc": "Umi Rumplesnicker",
+"coords": [
+60.9,
+37.6
+],
+"text": "Get the Everlook flight path and set your Hearthstone in Everlook.",
+"_line": 690
+},
+{
+"accept": 6603.0,
+"npc": "Meggi Peppinrocker",
+"coords": [
+60.7,
+38.2
+],
+"_line": 691
+},
+{
+"accept": 6606.0,
+"npc": "Harlo Wigglesworth",
+"coords": [
+61.1,
+38.4
+],
+"_line": 692
+},
+{
+"accept": 969.0,
+"npc": "Witch Doctor Mau'ari",
+"coords": [
+61.9,
+38.3
+],
+"_line": 693
+},
+{
+"accept": 5083.0,
+"coords": [
+41.3,
+37.0
+],
+"radius": 80.0,
+"text": "Loot Empty Firewater Flask from Winterfall Ursa and right-click it to start the quest.",
+"_line": 694
+},
+{
+"complete": 3783.0,
+"coords": [
+57.8,
+40.2
+],
+"radius": 80.0,
+"text": "Collect Thick Yeti Fur (from Rogue Ice Thistle, Ice Thistle Yeti).",
+"_line": 695
+},
+{
+"complete": 969.0,
+"coords": [
+61.5,
+68.1
+],
+"radius": 80.0,
+"text": "Collect Frostmaul Shards.",
+"_line": 696
+},
+{
+"turnin": [
+969.0,
+6606.0
+],
+"npc": "Witch Doctor Mau'ari",
+"coords": [
+61.9,
+38.3
+],
+"_line": 697
+},
+{
+"turnin": 3783.0,
+"npc": "Umi Rumplesnicker",
+"coords": [
+60.9,
+37.6
+],
+"_line": 698
+},
+{
+"turnin": [
+5083.0,
+6603.0
+],
+"npc": "Donova Snowden",
+"coords": [
+31.3,
+45.2
+],
+"_line": 699
+},
+{
+"accept": 5082.0,
+"npc": "Donova Snowden",
+"coords": [
+31.3,
+45.2
+],
+"_line": 700
+},
+{
+"accept": 977.0,
+"npc": "Umi Rumplesnicker",
+"coords": [
+60.9,
+37.6
+],
+"_line": 701
+},
+{
+"accept": 975.0,
+"npc": "Witch Doctor Mau'ari",
+"coords": [
+61.9,
+38.3
+],
+"_line": 702
+},
+{
+"complete": 977.0,
+"coords": [
+70.0,
+40.6
+],
+"radius": 80.0,
+"text": "Collect Pristine Yeti Horn (from Ice Thistle Matriarch, Ice Thistle Patriarch).",
+"_line": 703
+},
+{
+"complete": 5082.0,
+"coords": [
+39.8,
+36.9
+],
+"radius": 80.0,
+"text": "Kill Winterfall Pathfinder; kill Winterfall Den Watcher; kill Winterfall Totemic.",
+"_line": 704
+},
+{
+"turnin": 5082.0,
+"npc": "Donova Snowden",
+"coords": [
+31.3,
+45.2
+],
+"_line": 705
+},
+{
+"turnin": 977.0,
+"npc": "Umi Rumplesnicker",
+"coords": [
+60.9,
+37.6
+],
+"_line": 706
+},
+{
+"turnin": 975.0,
+"npc": "Witch Doctor Mau'ari",
+"coords": [
+61.9,
+38.3
+],
+"_line": 707
+},
+{
+"accept": 5163.0,
+"npc": "Umi Rumplesnicker",
+"coords": [
+60.9,
+37.6
+],
+"_line": 708
+},
+{
+"complete": 5163.0,
+"coords": [
+61.5,
+38.6
+],
+"radius": 80.0,
+"text": "Scare Legacki (Legacki); Scare Sprinkle (Sprinkle); Scare Quixxil (Quixxil).",
+"_line": 709
+},
+{
+"turnin": 5163.0,
+"npc": "Umi Rumplesnicker",
+"coords": [
+60.9,
+37.6
+],
+"_line": 710
+},
+{
+"level": 58.0,
+"coords": [
+60.9,
+37.6
+],
+"radius": 400.0,
+"text": "Grind to 58 if needed.",
+"_line": 711
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 712
+}
+],
+"_line": 687,
+"name": "Winterspring 56-58",
+"file": "Guides/Horde_30-60.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 58.0,
+"maxLevel": 59.0,
+"zone": "Western Plaguelands",
+"next": "Eastern Plaguelands 59-60",
+"steps": [
+{
+"accept": 5093.0,
+"npc": "Warcaller Gorlach",
+"coords": [
+37.6,
+75.4
+],
+"zone": "Orgrimmar",
+"_line": 721
+},
+{
+"accept": 5094.0,
+"npc": "Harbinger Balthazad",
+"coords": [
+63.9,
+44.1
+],
+"zone": "Undercity",
+"_line": 722
+},
+{
+"accept": 5095.0,
+"npc": "Bluff Runner Windstrider",
+"coords": [
+44.3,
+58.8
+],
+"zone": "Thunder Bluff",
+"_line": 723
+},
+{
+"accept": 5021.0,
+"npc": "Janice Felstone",
+"coords": [
+38.4,
+54.0
+],
+"_line": 724
+},
+{
+"accept": 5058.0,
+"coords": [
+47.8,
+50.7
+],
+"text": "Mrs. Dalson's Diary.",
+"_line": 725
+},
+{
+"accept": 4984.0,
+"npc": "Mulgris Deepriver",
+"coords": [
+53.7,
+64.7
+],
+"_line": 726
+},
+{
+"accept": 6004.0,
+"npc": "Kirsta Deepshadow",
+"coords": [
+51.9,
+28.1
+],
+"_line": 727
+},
+{
+"accept": 5405.0,
+"npc": "Argent Officer Garush",
+"coords": [
+83.2,
+68.5
+],
+"_line": 728
+},
+{
+"complete": 4984.0,
+"coords": [
+47.3,
+44.9
+],
+"radius": 80.0,
+"text": "Kill Diseased Wolf.",
+"_line": 729
+},
+{
+"complete": 6004.0,
+"coords": [
+50.4,
+42.2
+],
+"radius": 80.0,
+"text": "Kill Scarlet Medic; kill Scarlet Hunter; kill Scarlet Mage; kill Scarlet Knight.",
+"_line": 730
+},
+{
+"turnin": 5058.0,
+"coords": [
+47.8,
+50.7
+],
+"text": "Mrs. Dalson's Diary.",
+"_line": 731
+},
+{
+"turnin": 5021.0,
+"coords": [
+38.7,
+55.2
+],
+"text": "Janice's Parcel.",
+"_line": 732
+},
+{
+"turnin": 4984.0,
+"npc": "Mulgris Deepriver",
+"coords": [
+53.7,
+64.7
+],
+"_line": 733
+},
+{
+"turnin": 6004.0,
+"npc": "Kirsta Deepshadow",
+"coords": [
+51.9,
+28.1
+],
+"_line": 734
+},
+{
+"turnin": [
+5093.0,
+5094.0,
+5095.0
+],
+"npc": "High Executor Derrington",
+"coords": [
+83.1,
+68.9
+],
+"_line": 735
+},
+{
+"turnin": 5405.0,
+"npc": "Argent Officer Garush",
+"coords": [
+83.2,
+68.5
+],
+"_line": 736
+},
+{
+"accept": 5096.0,
+"npc": "High Executor Derrington",
+"coords": [
+83.1,
+68.9
+],
+"_line": 737
+},
+{
+"accept": 5023.0,
+"coords": [
+38.7,
+55.2
+],
+"text": "Janice's Parcel.",
+"_line": 738
+},
+{
+"accept": 4985.0,
+"npc": "Mulgris Deepriver",
+"coords": [
+53.7,
+64.7
+],
+"_line": 739
+},
+{
+"accept": 6023.0,
+"npc": "Kirsta Deepshadow",
+"coords": [
+51.9,
+28.1
+],
+"_line": 740
+},
+{
+"complete": 6023.0,
+"coords": [
+55.2,
+23.6
+],
+"radius": 80.0,
+"text": "Kill Huntsman Radley; kill Cavalier Durgen.",
+"_line": 741
+},
+{
+"complete": 4985.0,
+"coords": [
+59.0,
+51.7
+],
+"radius": 80.0,
+"text": "Kill Diseased Grizzly.",
+"_line": 742
+},
+{
+"turnin": 4985.0,
+"npc": "Mulgris Deepriver",
+"coords": [
+53.7,
+64.7
+],
+"_line": 743
+},
+{
+"turnin": 6023.0,
+"npc": "Kirsta Deepshadow",
+"coords": [
+51.9,
+28.1
+],
+"_line": 744
+},
+{
+"turnin": 5023.0,
+"npc": "Royal Overseer Bauhaus",
+"coords": [
+69.8,
+43.2
+],
+"zone": "Undercity",
+"_line": 745
+},
+{
+"turnin": 5096.0,
+"npc": "High Executor Derrington",
+"coords": [
+83.1,
+68.9
+],
+"_line": 746
+},
+{
+"accept": [
+5228.0,
+5098.0
+],
+"npc": "High Executor Derrington",
+"coords": [
+83.1,
+68.9
+],
+"_line": 747
+},
+{
+"accept": 4987.0,
+"npc": "Mulgris Deepriver",
+"coords": [
+53.7,
+64.7
+],
+"_line": 748
+},
+{
+"accept": 6025.0,
+"npc": "Kirsta Deepshadow",
+"coords": [
+51.9,
+28.1
+],
+"_line": 749
+},
+{
+"complete": 6025.0,
+"coords": [
+45.8,
+18.3
+],
+"radius": 80.0,
+"text": "Explore: Overlook Hearthglen from a high vantage point.",
+"_line": 750
+},
+{
+"complete": 5098.0,
+"coords": [
+42.3,
+66.2
+],
+"radius": 80.0,
+"text": "Tower One marked (Andorhal Tower One); Tower Two marked (Andorhal Tower Two); Tower Three marked (Andorhal Tower Three); Tower Four marked (Andorhal Tower Four).",
+"_line": 751
+},
+{
+"turnin": 6025.0,
+"npc": "Kirsta Deepshadow",
+"coords": [
+51.9,
+28.1
+],
+"_line": 752
+},
+{
+"turnin": 5228.0,
+"npc": "Shadow Priestess Vandis",
+"coords": [
+83.0,
+71.9
+],
+"_line": 753
+},
+{
+"turnin": 5098.0,
+"npc": "High Executor Derrington",
+"coords": [
+83.1,
+68.9
+],
+"_line": 754
+},
+{
+"turnin": 4987.0,
+"npc": "Nara Wildmane",
+"coords": [
+75.7,
+31.6
+],
+"zone": "Thunder Bluff",
+"_line": 755
+},
+{
+"accept": 838.0,
+"npc": "High Executor Derrington",
+"coords": [
+83.1,
+68.9
+],
+"_line": 756
+},
+{
+"turnin": 838.0,
+"npc": "Apothecary Dithers",
+"coords": [
+83.3,
+69.2
+],
+"_line": 757
+},
+{
+"accept": 964.0,
+"npc": "Apothecary Dithers",
+"coords": [
+83.3,
+69.2
+],
+"_line": 758
+},
+{
+"complete": 964.0,
+"coords": [
+44.7,
+67.1
+],
+"radius": 80.0,
+"text": "Collect Skeletal Fragments (from Skeletal Flayer, Skeletal Sorcerer).",
+"_line": 759
+},
+{
+"turnin": 964.0,
+"npc": "Apothecary Dithers",
+"coords": [
+83.3,
+69.2
+],
+"_line": 760
+},
+{
+"level": 59.0,
+"radius": 400.0,
+"text": "Grind to 59 if needed.",
+"_line": 761
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 762
+}
+],
+"_line": 718,
+"name": "Western Plaguelands 58-59",
+"file": "Guides/Horde_30-60.lua"
+},
+{
+"faction": "Horde",
+"minLevel": 59.0,
+"maxLevel": 60.0,
+"zone": "Eastern Plaguelands",
+"steps": [
+{
+"accept": [
+6021.0,
+5281.0
+],
+"fp": "Light's Hope Chapel",
+"bind": "Light's Hope Chapel",
+"npc": "Caretaker Alen",
+"coords": [
+69.9,
+53.7
+],
+"text": "Get the Light's Hope Chapel flight path and set your Hearthstone in Light's Hope Chapel.",
+"_line": 770
+},
+{
+"accept": 9124.0,
+"npc": "Huntsman Leopold",
+"coords": [
+71.7,
+48.9
+],
+"_line": 771
+},
+{
+"accept": 9126.0,
+"npc": "Rohan the Assassin",
+"coords": [
+71.6,
+48.9
+],
+"_line": 772
+},
+{
+"accept": [
+9121.0,
+9122.0,
+9123.0
+],
+"npc": "Archmage Angela Dosantos",
+"coords": [
+71.7,
+48.7
+],
+"_line": 773
+},
+{
+"accept": [
+6042.0,
+6133.0,
+6144.0
+],
+"npc": "Nathanos Blightcaller",
+"coords": [
+22.2,
+63.5
+],
+"_line": 774
+},
+{
+"accept": 6024.0,
+"coords": [
+22.9,
+73.0
+],
+"text": "Torn Scroll.",
+"_line": 775
+},
+{
+"accept": [
+5542.0,
+5543.0,
+5544.0
+],
+"npc": "Tirion Fordring",
+"coords": [
+5.2,
+35.6
+],
+"_line": 776
+},
+{
+"accept": 6164.0,
+"npc": "Augustus the Touched",
+"coords": [
+11.4,
+26.4
+],
+"_line": 777
+},
+{
+"complete": 6164.0,
+"coords": [
+14.0,
+24.2
+],
+"radius": 80.0,
+"text": "Collect Augustus' Receipt Book.",
+"_line": 778
+},
+{
+"complete": 9124.0,
+"coords": [
+24.8,
+30.3
+],
+"radius": 80.0,
+"text": "Collect Crypt Fiend Parts (from Crypt Fiend, Crypt Walker).",
+"_line": 779
+},
+{
+"complete": 9126.0,
+"coords": [
+35.6,
+29.3
+],
+"radius": 80.0,
+"text": "Collect Bone Fragments (from Scourge Soldier, Cursed Mage).",
+"_line": 780
+},
+{
+"complete": 6042.0,
+"coords": [
+48.3,
+42.1
+],
+"radius": 80.0,
+"text": "Kill Noxious Plaguebat; kill Monstrous Plaguebat.",
+"_line": 781
+},
+{
+"complete": 5542.0,
+"coords": [
+45.9,
+45.5
+],
+"radius": 80.0,
+"text": "Kill Plaguehound Runt; kill Plaguehound; kill Frenzied Plaguehound.",
+"_line": 782
+},
+{
+"complete": 5544.0,
+"coords": [
+46.8,
+51.5
+],
+"radius": 80.0,
+"text": "Collect Slab of Carrion Worm Meat (from Carrion Grub, Carrion Devourer).",
+"_line": 783
+},
+{
+"complete": 9121.0,
+"coords": [
+53.5,
+51.2
+],
+"radius": 80.0,
+"text": "Collect Arcane Crystal (from Small Thorium Vein, Rich Thorium Vein); collect Nexus Crystal; collect Righteous Orb.",
+"_line": 784
+},
+{
+"complete": 9122.0,
+"coords": [
+53.5,
+51.2
+],
+"radius": 80.0,
+"text": "Collect Arcane Crystal (from Small Thorium Vein, Rich Thorium Vein); collect Nexus Crystal.",
+"_line": 785
+},
+{
+"complete": 5543.0,
+"coords": [
+28.7,
+65.5
+],
+"radius": 80.0,
+"text": "Kill Plaguebat.",
+"_line": 786
+},
+{
+"complete": 6021.0,
+"coords": [
+23.1,
+72.6
+],
+"radius": 80.0,
+"text": "Collect Zaeldarr's Head (from Zaeldarr the Outcast).",
+"_line": 787
+},
+{
+"complete": 6133.0,
+"coords": [
+45.7,
+12.9
+],
+"radius": 80.0,
+"text": "Kill Pathstrider; kill Ranger; kill Woodsman; collect Quel'Thalas Registry.",
+"_line": 788
+},
+{
+"complete": 6024.0,
+"coords": [
+62.0,
+11.1
+],
+"radius": 80.0,
+"text": "Collect Hameya's Key (from Infiltrator Hameya).",
+"_line": 789
+},
+{
+"turnin": [
+9121.0,
+9122.0,
+9123.0
+],
+"npc": "Archmage Angela Dosantos",
+"coords": [
+71.7,
+48.7
+],
+"_line": 790
+},
+{
+"turnin": 9126.0,
+"npc": "Rohan the Assassin",
+"coords": [
+71.6,
+48.9
+],
+"_line": 791
+},
+{
+"turnin": 9124.0,
+"npc": "Huntsman Leopold",
+"coords": [
+71.7,
+48.9
+],
+"_line": 792
+},
+{
+"turnin": 6021.0,
+"npc": "Caretaker Alen",
+"coords": [
+69.9,
+53.7
+],
+"_line": 793
+},
+{
+"turnin": [
+6042.0,
+6133.0
+],
+"npc": "Nathanos Blightcaller",
+"coords": [
+22.2,
+63.5
+],
+"_line": 794
+},
+{
+"turnin": 6024.0,
+"coords": [
+23.6,
+73.8
+],
+"text": "Mound of Dirt.",
+"_line": 795
+},
+{
+"turnin": [
+5542.0,
+5543.0,
+5544.0
+],
+"npc": "Tirion Fordring",
+"coords": [
+5.2,
+35.6
+],
+"_line": 796
+},
+{
+"turnin": 5281.0,
+"npc": "Egan",
+"coords": [
+11.4,
+26.6
+],
+"_line": 797
+},
+{
+"turnin": 6164.0,
+"npc": "Augustus the Touched",
+"coords": [
+11.4,
+26.4
+],
+"_line": 798
+},
+{
+"turnin": 6144.0,
+"npc": "Varimathras",
+"coords": [
+56.2,
+92.2
+],
+"zone": "Undercity",
+"_line": 799
+},
+{
+"accept": 5742.0,
+"npc": "Tirion Fordring",
+"coords": [
+5.2,
+35.6
+],
+"_line": 800
+},
+{
+"accept": 9665.0,
+"npc": "Emmisary Gormok",
+"coords": [
+70.4,
+47.9
+],
+"_line": 801
+},
+{
+"accept": 9128.0,
+"npc": "Archmage Angela Dosantos",
+"coords": [
+71.7,
+48.7
+],
+"_line": 802
+},
+{
+"complete": 9128.0,
+"coords": [
+53.2,
+67.3
+],
+"radius": 80.0,
+"text": "Collect Core of Elements (from Blighted Surge, Plague Ravager).",
+"_line": 803
+},
+{
+"complete": 9665.0,
+"coords": [
+34.1,
+25.1
+],
+"radius": 80.0,
+"text": "Capture Crown Guard Tower (<TXT>Crown Guard Capture Quest Doodad); Capture Eastwall Tower (<TXT>Eastwall Capture Quest Doodad); Capture Northpass Tower (<TXT>Northpass Capture Quest Doodad); Capture Plaguewood Tower (<TXT>Plaguewood Capture Quest Doodad).",
+"_line": 804
+},
+{
+"turnin": 5742.0,
+"npc": "Tirion Fordring",
+"coords": [
+5.2,
+35.6
+],
+"_line": 805
+},
+{
+"turnin": 9665.0,
+"npc": "Emmisary Gormok",
+"coords": [
+70.4,
+47.9
+],
+"_line": 806
+},
+{
+"turnin": 9128.0,
+"npc": "Archmage Angela Dosantos",
+"coords": [
+71.7,
+48.7
+],
+"_line": 807
+},
+{
+"level": 60.0,
+"coords": [
+71.7,
+48.7
+],
+"radius": 400.0,
+"text": "Grind to 60 if needed.",
+"_line": 808
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 809
+}
+],
+"_line": 768,
+"name": "Eastern Plaguelands 59-60",
+"file": "Guides/Horde_30-60.lua"
+},
+{
+"faction": "Horde",
+"races": [
+"Orc",
+"Troll"
+],
+"minLevel": 1.0,
+"maxLevel": 6.0,
+"zone": "Durotar",
+"next": "Durotar 6-12",
+"steps": [
+{
+"accept": 787.0,
+"npc": "Eitrigg",
+"coords": [
+34.3,
+39.4
+],
+"zone": "Orgrimmar",
+"_line": 11
+},
+{
+"accept": 4641.0,
+"npc": "Kaltunk",
+"coords": [
+43.3,
+68.5
+],
+"_line": 12
+},
+{
+"accept": 788.0,
+"npc": "Gornek",
+"coords": [
+42.1,
+68.3
+],
+"_line": 13
+},
+{
+"accept": 790.0,
+"npc": "Hana'zua",
+"coords": [
+40.6,
+62.6
+],
+"_line": 14
+},
+{
+"complete": 790.0,
+"coords": [
+40.5,
+66.8
+],
+"radius": 80.0,
+"text": "Collect Sarkoth's Mangled Claw (from Sarkoth).",
+"_line": 15
+},
+{
+"complete": 788.0,
+"coords": [
+44.4,
+64.8
+],
+"radius": 80.0,
+"text": "Kill Mottled Boar.",
+"_line": 16
+},
+{
+"turnin": [
+787.0,
+4641.0,
+788.0
+],
+"npc": "Gornek",
+"coords": [
+42.1,
+68.3
+],
+"_line": 17
+},
+{
+"turnin": 790.0,
+"npc": "Hana'zua",
+"coords": [
+40.6,
+62.6
+],
+"_line": 18
+},
+{
+"accept": 804.0,
+"npc": "Hana'zua",
+"coords": [
+40.6,
+62.6
+],
+"_line": 19
+},
+{
+"accept": 4402.0,
+"npc": "Galgar",
+"coords": [
+42.7,
+67.2
+],
+"_line": 20
+},
+{
+"accept": 789.0,
+"npc": "Gornek",
+"coords": [
+42.1,
+68.3
+],
+"_line": 21
+},
+{
+"accept": 5441.0,
+"npc": "Foreman Thazz'ril",
+"coords": [
+44.6,
+68.7
+],
+"_line": 22
+},
+{
+"complete": 4402.0,
+"coords": [
+44.0,
+63.0
+],
+"radius": 80.0,
+"text": "Collect Cactus Apple.",
+"_line": 23
+},
+{
+"complete": 5441.0,
+"coords": [
+43.9,
+61.8
+],
+"radius": 80.0,
+"text": "Peons Awoken (Lazy Peon).",
+"_line": 24
+},
+{
+"complete": 789.0,
+"coords": [
+41.4,
+62.9
+],
+"radius": 80.0,
+"text": "Collect Scorpid Worker Tail (from Scorpid Worker, Sarkoth).",
+"_line": 25
+},
+{
+"turnin": 4402.0,
+"npc": "Galgar",
+"coords": [
+42.7,
+67.2
+],
+"_line": 26
+},
+{
+"turnin": [
+789.0,
+804.0
+],
+"npc": "Gornek",
+"coords": [
+42.1,
+68.3
+],
+"_line": 27
+},
+{
+"turnin": 5441.0,
+"npc": "Foreman Thazz'ril",
+"coords": [
+44.6,
+68.7
+],
+"_line": 28
+},
+{
+"accept": 6394.0,
+"npc": "Foreman Thazz'ril",
+"coords": [
+44.6,
+68.7
+],
+"_line": 29
+},
+{
+"complete": 6394.0,
+"coords": [
+43.7,
+53.8
+],
+"radius": 80.0,
+"text": "Collect Thazz'ril's Pick.",
+"_line": 30
+},
+{
+"turnin": 6394.0,
+"npc": "Foreman Thazz'ril",
+"coords": [
+44.6,
+68.7
+],
+"_line": 31
+},
+{
+"level": 6.0,
+"coords": [
+44.6,
+68.7
+],
+"radius": 400.0,
+"text": "Grind to 6 if needed.",
+"_line": 32
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 33
+}
+],
+"_line": 8,
+"name": "Valley of Trials 1-6",
+"file": "Guides/Horde_Starts.lua"
+},
+{
+"faction": "Horde",
+"races": [
+"Orc",
+"Troll"
+],
+"minLevel": 6.0,
+"maxLevel": 12.0,
+"zone": "Durotar",
+"next": "The Barrens 12-16",
+"steps": [
+{
+"accept": 2161.0,
+"bind": "Razor Hill",
+"npc": "Ukor",
+"coords": [
+52.1,
+68.3
+],
+"text": "set your Hearthstone in Razor Hill.",
+"_line": 42
+},
+{
+"accept": 786.0,
+"npc": "Lar Prowltusk",
+"coords": [
+54.2,
+73.3
+],
+"_line": 43
+},
+{
+"accept": 817.0,
+"npc": "Vel'rin Fang",
+"coords": [
+56.0,
+73.9
+],
+"_line": 44
+},
+{
+"accept": 818.0,
+"npc": "Master Vornal",
+"coords": [
+55.9,
+74.4
+],
+"_line": 45
+},
+{
+"accept": [
+823.0,
+808.0,
+826.0
+],
+"npc": "Master Gadrin",
+"coords": [
+56.0,
+74.7
+],
+"_line": 46
+},
+{
+"accept": [
+784.0,
+837.0
+],
+"npc": "Gar'Thok",
+"coords": [
+52.0,
+43.5
+],
+"_line": 47
+},
+{
+"accept": 815.0,
+"npc": "Cook Torka",
+"coords": [
+51.1,
+42.5
+],
+"_line": 48
+},
+{
+"accept": 791.0,
+"npc": "Furl Scornbrow",
+"coords": [
+49.9,
+40.4
+],
+"_line": 49
+},
+{
+"accept": 834.0,
+"npc": "Rezlak",
+"coords": [
+46.4,
+22.9
+],
+"_line": 50
+},
+{
+"accept": 832.0,
+"coords": [
+51.8,
+9.6
+],
+"radius": 80.0,
+"text": "Loot Eye of Burning Shadow from Gazz'uz and right-click it to start the quest.",
+"_line": 51
+},
+{
+"complete": 834.0,
+"coords": [
+49.4,
+27.8
+],
+"radius": 80.0,
+"text": "Collect Sack of Supplies (from Stolen Supply Sack).",
+"_line": 52
+},
+{
+"complete": 837.0,
+"coords": [
+44.0,
+48.3
+],
+"radius": 80.0,
+"text": "Kill Razormane Quilboar; kill Razormane Scout; kill Razormane Dustrunner; kill Razormane Battleguard.",
+"_line": 53
+},
+{
+"complete": 791.0,
+"coords": [
+57.1,
+58.5
+],
+"radius": 80.0,
+"text": "Collect Canvas Scraps (from Kolkar Drudge, Kolkar Outrunner).",
+"_line": 54
+},
+{
+"complete": 784.0,
+"coords": [
+58.4,
+56.8
+],
+"radius": 80.0,
+"text": "Kill Kul Tiras Sailor; kill Kul Tiras Marine; kill Lieutenant Benedict.",
+"_line": 55
+},
+{
+"complete": 818.0,
+"coords": [
+61.6,
+71.5
+],
+"radius": 80.0,
+"text": "Collect Intact Makrura Eye (from Makrura Clacker, Makrura Shellhide); collect Crawler Mucus (from Pygmy Surf Crawler, Surf Crawler).",
+"_line": 56
+},
+{
+"complete": 815.0,
+"coords": [
+64.9,
+78.8
+],
+"radius": 80.0,
+"text": "Collect Taillasher Egg (from Taillasher Eggs).",
+"_line": 57
+},
+{
+"complete": 817.0,
+"coords": [
+64.1,
+84.7
+],
+"radius": 80.0,
+"text": "Collect Durotar Tiger Fur (from Durotar Tiger).",
+"_line": 58
+},
+{
+"complete": 826.0,
+"coords": [
+67.4,
+85.0
+],
+"radius": 80.0,
+"text": "Kill Hexed Troll; kill Voodoo Troll; collect Zalazane's Head (from Zalazane).",
+"_line": 59
+},
+{
+"complete": 808.0,
+"coords": [
+67.5,
+87.8
+],
+"radius": 80.0,
+"text": "Collect Minshina's Skull (from Imprisoned Darkspear).",
+"_line": 60
+},
+{
+"complete": 786.0,
+"coords": [
+47.7,
+78.9
+],
+"radius": 80.0,
+"text": "Use Attack Plan: Valley of Trials; use Attack Plan: Sen'jin Village; use Attack Plan: Orgrimmar.",
+"_line": 61
+},
+{
+"turnin": 786.0,
+"npc": "Lar Prowltusk",
+"coords": [
+54.2,
+73.3
+],
+"_line": 62
+},
+{
+"turnin": 817.0,
+"npc": "Vel'rin Fang",
+"coords": [
+56.0,
+73.9
+],
+"_line": 63
+},
+{
+"turnin": 818.0,
+"npc": "Master Vornal",
+"coords": [
+55.9,
+74.4
+],
+"_line": 64
+},
+{
+"turnin": [
+808.0,
+826.0
+],
+"npc": "Master Gadrin",
+"coords": [
+56.0,
+74.7
+],
+"_line": 65
+},
+{
+"turnin": [
+784.0,
+837.0
+],
+"npc": "Gar'Thok",
+"coords": [
+52.0,
+43.5
+],
+"_line": 66
+},
+{
+"turnin": 823.0,
+"npc": "Orgnil Soulscar",
+"coords": [
+52.2,
+43.1
+],
+"_line": 67
+},
+{
+"turnin": 815.0,
+"npc": "Cook Torka",
+"coords": [
+51.1,
+42.5
+],
+"_line": 68
+},
+{
+"turnin": 2161.0,
+"npc": "Innkeeper Grosk",
+"coords": [
+51.5,
+41.6
+],
+"_line": 69
+},
+{
+"turnin": 791.0,
+"npc": "Furl Scornbrow",
+"coords": [
+49.9,
+40.4
+],
+"_line": 70
+},
+{
+"turnin": 834.0,
+"npc": "Rezlak",
+"coords": [
+46.4,
+22.9
+],
+"_line": 71
+},
+{
+"turnin": 832.0,
+"npc": "Neeru Fireblade",
+"coords": [
+49.5,
+50.6
+],
+"zone": "Orgrimmar",
+"_line": 72
+},
+{
+"accept": 825.0,
+"npc": "Gar'Thok",
+"coords": [
+52.0,
+43.5
+],
+"_line": 73
+},
+{
+"accept": 806.0,
+"npc": "Orgnil Soulscar",
+"coords": [
+52.2,
+43.1
+],
+"_line": 74
+},
+{
+"accept": 816.0,
+"npc": "Misha Tor'kren",
+"coords": [
+43.1,
+30.2
+],
+"_line": 75
+},
+{
+"accept": 835.0,
+"npc": "Rezlak",
+"coords": [
+46.4,
+22.9
+],
+"_line": 76
+},
+{
+"complete": 806.0,
+"coords": [
+42.1,
+26.7
+],
+"radius": 80.0,
+"text": "Collect Fizzle's Claw (from Fizzle Darkstorm).",
+"_line": 77
+},
+{
+"complete": 835.0,
+"coords": [
+52.4,
+23.3
+],
+"radius": 80.0,
+"text": "Kill Dustwind Savage; kill Dustwind Storm Witch.",
+"_line": 78
+},
+{
+"complete": 816.0,
+"coords": [
+35.3,
+46.0
+],
+"radius": 80.0,
+"text": "Collect Kron's Amulet (from Dreadmaw Crocolisk, Corrupted Dreadmaw Crocolisk).",
+"_line": 79
+},
+{
+"complete": 825.0,
+"coords": [
+62.4,
+53.5
+],
+"radius": 80.0,
+"text": "Collect Gnomish Tools (from Gnomish Toolbox).",
+"_line": 80
+},
+{
+"turnin": 825.0,
+"npc": "Gar'Thok",
+"coords": [
+52.0,
+43.5
+],
+"_line": 81
+},
+{
+"turnin": 806.0,
+"npc": "Orgnil Soulscar",
+"coords": [
+52.2,
+43.1
+],
+"_line": 82
+},
+{
+"turnin": 816.0,
+"npc": "Misha Tor'kren",
+"coords": [
+43.1,
+30.2
+],
+"_line": 83
+},
+{
+"turnin": 835.0,
+"npc": "Rezlak",
+"coords": [
+46.4,
+22.9
+],
+"_line": 84
+},
+{
+"accept": 828.0,
+"npc": "Orgnil Soulscar",
+"coords": [
+52.2,
+43.1
+],
+"_line": 85
+},
+{
+"turnin": 828.0,
+"npc": "Margoz",
+"coords": [
+56.4,
+20.0
+],
+"_line": 86
+},
+{
+"accept": 827.0,
+"npc": "Margoz",
+"coords": [
+56.4,
+20.0
+],
+"_line": 87
+},
+{
+"complete": 827.0,
+"coords": [
+52.6,
+10.9
+],
+"radius": 80.0,
+"text": "Collect Searing Collar (from Burning Blade Thug, Burning Blade Neophyte).",
+"_line": 88
+},
+{
+"turnin": 827.0,
+"npc": "Margoz",
+"coords": [
+56.4,
+20.0
+],
+"_line": 89
+},
+{
+"accept": 829.0,
+"npc": "Margoz",
+"coords": [
+56.4,
+20.0
+],
+"_line": 90
+},
+{
+"turnin": 829.0,
+"npc": "Neeru Fireblade",
+"coords": [
+49.5,
+50.6
+],
+"zone": "Orgrimmar",
+"_line": 91
+},
+{
+"level": 12.0,
+"radius": 400.0,
+"text": "Grind to 12 if needed.",
+"_line": 92
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 93
+}
+],
+"_line": 39,
+"name": "Durotar 6-12",
+"file": "Guides/Horde_Starts.lua"
+},
+{
+"faction": "Horde",
+"races": [
+"Tauren"
+],
+"minLevel": 1.0,
+"maxLevel": 6.0,
+"zone": "Mulgore",
+"next": "Mulgore 6-12",
+"steps": [
+{
+"accept": 747.0,
+"npc": "Grull Hawkwind",
+"coords": [
+44.5,
+77.5
+],
+"_line": 102
+},
+{
+"accept": 752.0,
+"npc": "Chief Hawkwind",
+"coords": [
+43.9,
+76.7
+],
+"_line": 103
+},
+{
+"accept": 1656.0,
+"npc": "Antur Fallow",
+"coords": [
+39.2,
+81.2
+],
+"_line": 104
+},
+{
+"complete": 747.0,
+"coords": [
+47.5,
+81.5
+],
+"radius": 80.0,
+"text": "Collect Plainstrider Meat (from Plainstrider); collect Plainstrider Feather (from Plainstrider).",
+"_line": 105
+},
+{
+"turnin": 752.0,
+"npc": "Greatmother Hawkwind",
+"coords": [
+48.8,
+80.9
+],
+"_line": 106
+},
+{
+"turnin": 747.0,
+"npc": "Grull Hawkwind",
+"coords": [
+44.5,
+77.5
+],
+"_line": 107
+},
+{
+"turnin": 1656.0,
+"npc": "Innkeeper Kauth",
+"coords": [
+45.9,
+64.2
+],
+"_line": 108
+},
+{
+"accept": 3376.0,
+"npc": "Brave Windfeather",
+"coords": [
+44.2,
+77.0
+],
+"_line": 109
+},
+{
+"accept": 750.0,
+"npc": "Grull Hawkwind",
+"coords": [
+44.5,
+77.5
+],
+"_line": 110
+},
+{
+"accept": 753.0,
+"npc": "Greatmother Hawkwind",
+"coords": [
+48.8,
+80.9
+],
+"_line": 111
+},
+{
+"complete": 753.0,
+"coords": [
+48.9,
+81.1
+],
+"radius": 80.0,
+"text": "Collect Water Pitcher.",
+"_line": 112
+},
+{
+"complete": 750.0,
+"coords": [
+47.5,
+88.7
+],
+"radius": 80.0,
+"text": "Collect Mountain Cougar Pelt (from Mountain Cougar).",
+"_line": 113
+},
+{
+"complete": 3376.0,
+"coords": [
+61.0,
+78.0
+],
+"radius": 80.0,
+"text": "Collect Chief Sharptusk Thornmantle's Head (from Chief Sharptusk Thornmantle).",
+"_line": 114
+},
+{
+"turnin": 750.0,
+"npc": "Grull Hawkwind",
+"coords": [
+44.5,
+77.5
+],
+"_line": 115
+},
+{
+"turnin": 3376.0,
+"npc": "Brave Windfeather",
+"coords": [
+44.2,
+77.0
+],
+"_line": 116
+},
+{
+"turnin": 753.0,
+"npc": "Chief Hawkwind",
+"coords": [
+43.9,
+76.7
+],
+"_line": 117
+},
+{
+"accept": 755.0,
+"npc": "Chief Hawkwind",
+"coords": [
+43.9,
+76.7
+],
+"_line": 118
+},
+{
+"accept": 780.0,
+"npc": "Grull Hawkwind",
+"coords": [
+44.5,
+77.5
+],
+"_line": 119
+},
+{
+"complete": 780.0,
+"coords": [
+54.1,
+81.5
+],
+"radius": 80.0,
+"text": "Collect Battleboar Snout (from Bristleback Battleboar, Battleboar); collect Battleboar Flank (from Bristleback Battleboar, Battleboar).",
+"_line": 120
+},
+{
+"turnin": 780.0,
+"npc": "Grull Hawkwind",
+"coords": [
+44.5,
+77.5
+],
+"_line": 121
+},
+{
+"turnin": 755.0,
+"npc": "Seer Graytongue",
+"coords": [
+42.5,
+90.1
+],
+"_line": 122
+},
+{
+"accept": 757.0,
+"npc": "Seer Graytongue",
+"coords": [
+42.5,
+90.1
+],
+"_line": 123
+},
+{
+"complete": 757.0,
+"coords": [
+58.4,
+78.6
+],
+"radius": 80.0,
+"text": "Collect Bristleback Belt (from Bristleback Quilboar, Bristleback Shaman).",
+"_line": 124
+},
+{
+"turnin": 757.0,
+"npc": "Chief Hawkwind",
+"coords": [
+43.9,
+76.7
+],
+"_line": 125
+},
+{
+"accept": 763.0,
+"npc": "Chief Hawkwind",
+"coords": [
+43.9,
+76.7
+],
+"_line": 126
+},
+{
+"turnin": 763.0,
+"npc": "Baine Bloodhoof",
+"coords": [
+46.7,
+63.4
+],
+"_line": 127
+},
+{
+"level": 6.0,
+"coords": [
+46.7,
+63.4
+],
+"radius": 400.0,
+"text": "Grind to 6 if needed.",
+"_line": 128
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 129
+}
+],
+"_line": 99,
+"name": "Camp Narache 1-6",
+"file": "Guides/Horde_Starts.lua"
+},
+{
+"faction": "Horde",
+"races": [
+"Tauren"
+],
+"minLevel": 6.0,
+"maxLevel": 12.0,
+"zone": "Mulgore",
+"next": "The Barrens 12-16",
+"steps": [
+{
+"accept": 748.0,
+"fp": "Thunder Bluff",
+"bind": "Bloodhoof Village",
+"npc": "Mull Thunderhorn",
+"coords": [
+47.5,
+63.6
+],
+"text": "Get the Thunder Bluff flight path and set your Hearthstone in Bloodhoof Village.",
+"_line": 138
+},
+{
+"accept": [
+745.0,
+767.0
+],
+"npc": "Baine Bloodhoof",
+"coords": [
+46.7,
+63.4
+],
+"_line": 139
+},
+{
+"accept": 761.0,
+"npc": "Harken Windtotem",
+"coords": [
+47.7,
+62.7
+],
+"_line": 140
+},
+{
+"accept": 766.0,
+"npc": "Maur Raincaller",
+"coords": [
+46.2,
+60.8
+],
+"_line": 141
+},
+{
+"accept": 743.0,
+"npc": "Ruul Eagletalon",
+"coords": [
+46.5,
+64.9
+],
+"_line": 142
+},
+{
+"accept": 749.0,
+"npc": "Morin Cloudstalker",
+"coords": [
+54.8,
+64.3
+],
+"_line": 143
+},
+{
+"accept": 833.0,
+"npc": "Lorekeeper Raintotem",
+"coords": [
+57.0,
+34.5
+],
+"_line": 144
+},
+{
+"complete": 833.0,
+"coords": [
+58.2,
+30.8
+],
+"radius": 80.0,
+"text": "Kill Bristleback Interloper.",
+"_line": 145
+},
+{
+"complete": 761.0,
+"coords": [
+47.9,
+50.2
+],
+"radius": 80.0,
+"text": "Collect Trophy Swoop Quill (from Wiry Swoop, Swoop).",
+"_line": 146
+},
+{
+"complete": 766.0,
+"coords": [
+47.3,
+55.4
+],
+"radius": 80.0,
+"text": "Collect Prairie Wolf Heart (from Prairie Wolf, Prairie Stalker); collect Flatland Cougar Femur (from Flatland Cougar); collect Plainstrider Scale (from Plainstrider, Adult Plainstrider); collect Swoop Gizzard (from Wiry Swoop, Swoop).",
+"_line": 147
+},
+{
+"complete": 748.0,
+"coords": [
+47.0,
+59.4
+],
+"radius": 80.0,
+"text": "Collect Prairie Wolf Paw (from Prairie Wolf, Prairie Stalker); collect Plainstrider Talon (from Plainstrider, Adult Plainstrider).",
+"_line": 148
+},
+{
+"complete": 745.0,
+"coords": [
+36.6,
+65.3
+],
+"radius": 80.0,
+"text": "Kill Palemane Tanner; kill Palemane Skinner; kill Palemane Poacher.",
+"_line": 149
+},
+{
+"complete": 743.0,
+"coords": [
+59.2,
+70.8
+],
+"radius": 80.0,
+"text": "Collect Windfury Talon (from Windfury Harpy, Windfury Wind Witch).",
+"_line": 150
+},
+{
+"turnin": 748.0,
+"npc": "Mull Thunderhorn",
+"coords": [
+47.5,
+63.6
+],
+"_line": 151
+},
+{
+"turnin": 745.0,
+"npc": "Baine Bloodhoof",
+"coords": [
+46.7,
+63.4
+],
+"_line": 152
+},
+{
+"turnin": 761.0,
+"npc": "Harken Windtotem",
+"coords": [
+47.7,
+62.7
+],
+"_line": 153
+},
+{
+"turnin": 767.0,
+"npc": "Zarlman Two-Moons",
+"coords": [
+46.9,
+61.2
+],
+"_line": 154
+},
+{
+"turnin": 766.0,
+"npc": "Maur Raincaller",
+"coords": [
+46.2,
+60.8
+],
+"_line": 155
+},
+{
+"turnin": 743.0,
+"npc": "Ruul Eagletalon",
+"coords": [
+46.5,
+64.9
+],
+"_line": 156
+},
+{
+"turnin": 749.0,
+"coords": [
+51.9,
+53.4
+],
+"text": "Sealed Supply Crate.",
+"_line": 157
+},
+{
+"turnin": 833.0,
+"npc": "Lorekeeper Raintotem",
+"coords": [
+57.0,
+34.5
+],
+"_line": 158
+},
+{
+"accept": 751.0,
+"coords": [
+51.9,
+53.4
+],
+"text": "Sealed Supply Crate.",
+"_line": 159
+},
+{
+"accept": 771.0,
+"npc": "Zarlman Two-Moons",
+"coords": [
+46.9,
+61.2
+],
+"_line": 160
+},
+{
+"accept": 754.0,
+"npc": "Mull Thunderhorn",
+"coords": [
+47.5,
+63.6
+],
+"_line": 161
+},
+{
+"complete": 771.0,
+"coords": [
+46.4,
+60.1
+],
+"radius": 80.0,
+"text": "Collect Well Stone; collect Ambercorn.",
+"_line": 162
+},
+{
+"turnin": 771.0,
+"npc": "Zarlman Two-Moons",
+"coords": [
+46.9,
+61.2
+],
+"_line": 163
+},
+{
+"turnin": 754.0,
+"npc": "Mull Thunderhorn",
+"coords": [
+47.5,
+63.6
+],
+"_line": 164
+},
+{
+"turnin": 751.0,
+"npc": "Morin Cloudstalker",
+"coords": [
+54.8,
+64.3
+],
+"_line": 165
+},
+{
+"accept": [
+764.0,
+765.0
+],
+"npc": "Morin Cloudstalker",
+"coords": [
+54.8,
+64.3
+],
+"_line": 166
+},
+{
+"accept": 756.0,
+"npc": "Mull Thunderhorn",
+"coords": [
+47.5,
+63.6
+],
+"_line": 167
+},
+{
+"accept": 772.0,
+"npc": "Zarlman Two-Moons",
+"coords": [
+46.9,
+61.2
+],
+"_line": 168
+},
+{
+"complete": 756.0,
+"coords": [
+48.7,
+49.9
+],
+"radius": 80.0,
+"text": "Collect Stalker Claws (from Prairie Stalker); collect Cougar Claws (from Flatland Cougar).",
+"_line": 169
+},
+{
+"complete": 764.0,
+"coords": [
+58.9,
+46.9
+],
+"radius": 80.0,
+"text": "Kill Venture Co. Worker; kill Venture Co. Supervisor.",
+"_line": 170
+},
+{
+"complete": 765.0,
+"coords": [
+61.2,
+49.3
+],
+"radius": 80.0,
+"text": "Collect Fizsprocket's Clipboard (from Supervisor Fizsprocket).",
+"_line": 171
+},
+{
+"turnin": [
+764.0,
+765.0
+],
+"npc": "Morin Cloudstalker",
+"coords": [
+54.8,
+64.3
+],
+"_line": 172
+},
+{
+"turnin": 756.0,
+"npc": "Mull Thunderhorn",
+"coords": [
+47.5,
+63.6
+],
+"_line": 173
+},
+{
+"turnin": 772.0,
+"npc": "Seer Wiserunner",
+"coords": [
+34.3,
+43.3
+],
+"_line": 174
+},
+{
+"accept": 773.0,
+"npc": "Seer Wiserunner",
+"coords": [
+34.3,
+43.3
+],
+"_line": 175
+},
+{
+"accept": 861.0,
+"npc": "Skorn Whitecloud",
+"coords": [
+46.0,
+63.4
+],
+"_line": 176
+},
+{
+"accept": 758.0,
+"npc": "Mull Thunderhorn",
+"coords": [
+47.5,
+63.6
+],
+"_line": 177
+},
+{
+"complete": 861.0,
+"coords": [
+49.3,
+28.5
+],
+"radius": 80.0,
+"text": "Collect Flatland Prowler Claw (from Flatland Prowler).",
+"_line": 178
+},
+{
+"turnin": 773.0,
+"npc": "Ancestral Spirit",
+"coords": [
+58.3,
+30.7
+],
+"_line": 179
+},
+{
+"turnin": 758.0,
+"npc": "Mull Thunderhorn",
+"coords": [
+47.5,
+63.6
+],
+"_line": 180
+},
+{
+"turnin": 861.0,
+"npc": "Melor Stonehoof",
+"coords": [
+61.5,
+80.9
+],
+"zone": "Thunder Bluff",
+"_line": 181
+},
+{
+"accept": 759.0,
+"npc": "Mull Thunderhorn",
+"coords": [
+47.5,
+63.6
+],
+"_line": 182
+},
+{
+"accept": 775.0,
+"npc": "Ancestral Spirit",
+"coords": [
+58.3,
+30.7
+],
+"_line": 183
+},
+{
+"complete": 759.0,
+"coords": [
+52.6,
+37.1
+],
+"radius": 80.0,
+"text": "Collect Prairie Alpha Tooth (from Prairie Wolf Alpha).",
+"_line": 184
+},
+{
+"turnin": 759.0,
+"npc": "Mull Thunderhorn",
+"coords": [
+47.5,
+63.6
+],
+"_line": 185
+},
+{
+"turnin": 775.0,
+"npc": "Cairne Bloodhoof",
+"coords": [
+60.3,
+51.7
+],
+"zone": "Thunder Bluff",
+"_line": 186
+},
+{
+"accept": 760.0,
+"npc": "Mull Thunderhorn",
+"coords": [
+47.5,
+63.6
+],
+"_line": 187
+},
+{
+"turnin": 760.0,
+"npc": "Mull Thunderhorn",
+"coords": [
+47.5,
+63.6
+],
+"_line": 188
+},
+{
+"level": 12.0,
+"coords": [
+47.5,
+63.6
+],
+"radius": 400.0,
+"text": "Grind to 12 if needed.",
+"_line": 189
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 190
+}
+],
+"_line": 135,
+"name": "Mulgore 6-12",
+"file": "Guides/Horde_Starts.lua"
+},
+{
+"faction": "Horde",
+"races": [
+"Scourge"
+],
+"minLevel": 1.0,
+"maxLevel": 6.0,
+"zone": "Tirisfal Glades",
+"next": "Tirisfal Glades 6-12",
+"steps": [
+{
+"accept": 363.0,
+"npc": "Undertaker Mordo",
+"coords": [
+30.2,
+71.7
+],
+"_line": 199
+},
+{
+"accept": 376.0,
+"npc": "Novice Elreth",
+"coords": [
+30.9,
+66.0
+],
+"_line": 200
+},
+{
+"accept": 8.0,
+"npc": "Calvin Montague",
+"coords": [
+38.2,
+56.8
+],
+"_line": 201
+},
+{
+"complete": 376.0,
+"coords": [
+34.1,
+62.9
+],
+"radius": 80.0,
+"text": "Collect Scavenger Paw (from Young Scavenger, Ragged Scavenger); collect Duskbat Wing (from Duskbat, Mangy Duskbat).",
+"_line": 202
+},
+{
+"turnin": 376.0,
+"npc": "Novice Elreth",
+"coords": [
+30.9,
+66.0
+],
+"_line": 203
+},
+{
+"turnin": 363.0,
+"npc": "Shadow Priest Sarvis",
+"coords": [
+30.8,
+66.2
+],
+"_line": 204
+},
+{
+"turnin": 8.0,
+"npc": "Innkeeper Renee",
+"coords": [
+61.7,
+52.0
+],
+"_line": 205
+},
+{
+"accept": 590.0,
+"npc": "Calvin Montague",
+"coords": [
+38.2,
+56.8
+],
+"_line": 206
+},
+{
+"accept": 3902.0,
+"npc": "Deathguard Saltain",
+"coords": [
+31.6,
+65.6
+],
+"_line": 207
+},
+{
+"accept": 380.0,
+"npc": "Executor Arren",
+"coords": [
+32.1,
+66.0
+],
+"_line": 208
+},
+{
+"accept": 6395.0,
+"npc": "Novice Elreth",
+"coords": [
+30.9,
+66.0
+],
+"_line": 209
+},
+{
+"accept": 364.0,
+"npc": "Shadow Priest Sarvis",
+"coords": [
+30.8,
+66.2
+],
+"_line": 210
+},
+{
+"complete": 6395.0,
+"coords": [
+31.2,
+65.1
+],
+"radius": 80.0,
+"text": "Use Marla's Grave.",
+"_line": 211
+},
+{
+"complete": 3902.0,
+"coords": [
+32.9,
+64.2
+],
+"radius": 80.0,
+"text": "Collect Scavenged Goods (from Equipment Boxes).",
+"_line": 212
+},
+{
+"complete": 364.0,
+"coords": [
+32.8,
+63.3
+],
+"radius": 80.0,
+"text": "Kill Mindless Zombie; kill Wretched Zombie.",
+"_line": 213
+},
+{
+"complete": 380.0,
+"coords": [
+27.1,
+59.2
+],
+"radius": 80.0,
+"text": "Kill Young Night Web Spider; kill Night Web Spider.",
+"_line": 214
+},
+{
+"turnin": 6395.0,
+"npc": "Novice Elreth",
+"coords": [
+30.9,
+66.0
+],
+"_line": 215
+},
+{
+"turnin": 364.0,
+"npc": "Shadow Priest Sarvis",
+"coords": [
+30.8,
+66.2
+],
+"_line": 216
+},
+{
+"turnin": 3902.0,
+"npc": "Deathguard Saltain",
+"coords": [
+31.6,
+65.6
+],
+"_line": 217
+},
+{
+"turnin": 380.0,
+"npc": "Executor Arren",
+"coords": [
+32.1,
+66.0
+],
+"_line": 218
+},
+{
+"turnin": 590.0,
+"npc": "Calvin Montague",
+"coords": [
+38.2,
+56.8
+],
+"_line": 219
+},
+{
+"accept": 381.0,
+"npc": "Executor Arren",
+"coords": [
+32.1,
+66.0
+],
+"_line": 220
+},
+{
+"accept": 3901.0,
+"npc": "Shadow Priest Sarvis",
+"coords": [
+30.8,
+66.2
+],
+"_line": 221
+},
+{
+"complete": 3901.0,
+"coords": [
+33.0,
+61.6
+],
+"radius": 80.0,
+"text": "Kill Rattlecage Skeleton.",
+"_line": 222
+},
+{
+"complete": 381.0,
+"coords": [
+37.6,
+68.0
+],
+"radius": 80.0,
+"text": "Collect Scarlet Armband (from Scarlet Convert, Scarlet Initiate).",
+"_line": 223
+},
+{
+"turnin": 381.0,
+"npc": "Executor Arren",
+"coords": [
+32.1,
+66.0
+],
+"_line": 224
+},
+{
+"turnin": 3901.0,
+"npc": "Shadow Priest Sarvis",
+"coords": [
+30.8,
+66.2
+],
+"_line": 225
+},
+{
+"accept": 382.0,
+"npc": "Executor Arren",
+"coords": [
+32.1,
+66.0
+],
+"_line": 226
+},
+{
+"complete": 382.0,
+"coords": [
+36.6,
+68.5
+],
+"radius": 80.0,
+"text": "Collect Scarlet Crusade Documents (from Meven Korgal).",
+"_line": 227
+},
+{
+"turnin": 382.0,
+"npc": "Executor Arren",
+"coords": [
+32.1,
+66.0
+],
+"_line": 228
+},
+{
+"accept": 383.0,
+"npc": "Executor Arren",
+"coords": [
+32.1,
+66.0
+],
+"_line": 229
+},
+{
+"turnin": 383.0,
+"npc": "Executor Zygand",
+"coords": [
+60.6,
+51.8
+],
+"_line": 230
+},
+{
+"level": 6.0,
+"coords": [
+60.6,
+51.8
+],
+"radius": 400.0,
+"text": "Grind to 6 if needed.",
+"_line": 231
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 232
+}
+],
+"_line": 196,
+"name": "Deathknell 1-6",
+"file": "Guides/Horde_Starts.lua"
+},
+{
+"faction": "Horde",
+"races": [
+"Scourge"
+],
+"minLevel": 6.0,
+"maxLevel": 12.0,
+"zone": "Tirisfal Glades",
+"next": "Silverpine Forest 12-16",
+"steps": [
+{
+"accept": 5481.0,
+"fp": "Undercity",
+"bind": "Brill",
+"npc": "Gordo",
+"coords": [
+43.1,
+54.7
+],
+"text": "Get the Undercity flight path and set your Hearthstone in Brill.",
+"_line": 241
+},
+{
+"accept": 365.0,
+"npc": "Deathguard Simmer",
+"coords": [
+40.9,
+54.2
+],
+"_line": 242
+},
+{
+"accept": 404.0,
+"npc": "Deathguard Dillinger",
+"coords": [
+58.2,
+51.5
+],
+"_line": 243
+},
+{
+"accept": 367.0,
+"npc": "Apothecary Johaan",
+"coords": [
+59.5,
+52.4
+],
+"_line": 244
+},
+{
+"accept": 427.0,
+"npc": "Executor Zygand",
+"coords": [
+60.6,
+51.8
+],
+"_line": 245
+},
+{
+"accept": 398.0,
+"coords": [
+60.7,
+51.5
+],
+"text": "Wanted!.",
+"_line": 246
+},
+{
+"accept": 358.0,
+"npc": "Magistrate Sevren",
+"coords": [
+61.3,
+50.8
+],
+"_line": 247
+},
+{
+"accept": [
+362.0,
+354.0
+],
+"npc": "Coleman Farthing",
+"coords": [
+61.7,
+52.3
+],
+"_line": 248
+},
+{
+"accept": 375.0,
+"npc": "Gretchen Dedmar",
+"coords": [
+61.9,
+52.7
+],
+"_line": 249
+},
+{
+"accept": 356.0,
+"npc": "Deathguard Linnea",
+"coords": [
+65.5,
+60.2
+],
+"_line": 250
+},
+{
+"accept": 361.0,
+"coords": [
+47.1,
+34.9
+],
+"radius": 80.0,
+"text": "Loot A Letter to Yvette from Rattlecage Soldier and right-click it to start the quest.",
+"_line": 251
+},
+{
+"complete": 354.0,
+"coords": [
+46.7,
+33.6
+],
+"radius": 80.0,
+"text": "Collect Gregor's Remains (from Gregor Agamand); collect Nissa's Remains (from Nissa Agamand); collect Thurman's Remains (from Thurman Agamand).",
+"_line": 252
+},
+{
+"complete": 362.0,
+"coords": [
+47.3,
+40.8
+],
+"radius": 80.0,
+"text": "Collect Devlin's Remains (from Devlin Agamand).",
+"_line": 253
+},
+{
+"complete": 358.0,
+"coords": [
+57.5,
+39.7
+],
+"radius": 80.0,
+"text": "Kill Rot Hide Graverobber; kill Rot Hide Mongrel; collect Embalming Ichor (from Rot Hide Gnoll, Rot Hide Mongrel).",
+"_line": 254
+},
+{
+"complete": 398.0,
+"coords": [
+58.7,
+30.8
+],
+"radius": 80.0,
+"text": "Collect Maggot Eye's Paw (from Maggot Eye).",
+"_line": 255
+},
+{
+"complete": 367.0,
+"coords": [
+63.5,
+49.9
+],
+"radius": 80.0,
+"text": "Collect Darkhound Blood (from Decrepit Darkhound, Cursed Darkhound).",
+"_line": 256
+},
+{
+"complete": 375.0,
+"coords": [
+64.3,
+53.6
+],
+"radius": 80.0,
+"text": "Collect Duskbat Pelt (from Greater Duskbat, Vampiric Duskbat); collect Coarse Thread.",
+"_line": 257
+},
+{
+"complete": 404.0,
+"coords": [
+53.3,
+53.8
+],
+"radius": 80.0,
+"text": "Collect Putrid Claw (from Rotting Dead, Ravaged Corpse).",
+"_line": 258
+},
+{
+"complete": 5481.0,
+"coords": [
+47.6,
+54.9
+],
+"radius": 80.0,
+"text": "Collect Gloom Weed.",
+"_line": 259
+},
+{
+"complete": 365.0,
+"coords": [
+35.7,
+50.4
+],
+"radius": 80.0,
+"text": "Collect Tirisfal Pumpkin.",
+"_line": 260
+},
+{
+"complete": 427.0,
+"coords": [
+32.1,
+47.7
+],
+"radius": 80.0,
+"text": "Kill Scarlet Warrior.",
+"_line": 261
+},
+{
+"complete": 356.0,
+"coords": [
+76.2,
+60.5
+],
+"radius": 80.0,
+"text": "Kill Bleeding Horror; kill Wandering Spirit.",
+"_line": 262
+},
+{
+"turnin": 356.0,
+"npc": "Deathguard Linnea",
+"coords": [
+65.5,
+60.2
+],
+"_line": 263
+},
+{
+"turnin": 375.0,
+"npc": "Gretchen Dedmar",
+"coords": [
+61.9,
+52.7
+],
+"_line": 264
+},
+{
+"turnin": 361.0,
+"npc": "Yvette Farthing",
+"coords": [
+61.6,
+52.6
+],
+"_line": 265
+},
+{
+"turnin": [
+362.0,
+354.0
+],
+"npc": "Coleman Farthing",
+"coords": [
+61.7,
+52.3
+],
+"_line": 266
+},
+{
+"turnin": [
+427.0,
+398.0
+],
+"npc": "Executor Zygand",
+"coords": [
+60.6,
+51.8
+],
+"_line": 267
+},
+{
+"turnin": 358.0,
+"npc": "Magistrate Sevren",
+"coords": [
+61.3,
+50.8
+],
+"_line": 268
+},
+{
+"turnin": [
+367.0,
+365.0
+],
+"npc": "Apothecary Johaan",
+"coords": [
+59.5,
+52.4
+],
+"_line": 269
+},
+{
+"turnin": 404.0,
+"npc": "Deathguard Dillinger",
+"coords": [
+58.2,
+51.5
+],
+"_line": 270
+},
+{
+"turnin": 5481.0,
+"npc": "Junior Apothecary Holland",
+"coords": [
+57.4,
+48.9
+],
+"_line": 271
+},
+{
+"accept": 5482.0,
+"npc": "Junior Apothecary Holland",
+"coords": [
+57.4,
+48.9
+],
+"_line": 272
+},
+{
+"accept": 426.0,
+"npc": "Deathguard Dillinger",
+"coords": [
+58.2,
+51.5
+],
+"_line": 273
+},
+{
+"accept": [
+407.0,
+368.0
+],
+"npc": "Apothecary Johaan",
+"coords": [
+59.5,
+52.4
+],
+"_line": 274
+},
+{
+"accept": 370.0,
+"npc": "Executor Zygand",
+"coords": [
+60.6,
+51.8
+],
+"_line": 275
+},
+{
+"accept": 374.0,
+"npc": "Deathguard Burgess",
+"coords": [
+60.9,
+52.0
+],
+"_line": 276
+},
+{
+"accept": 355.0,
+"npc": "Coleman Farthing",
+"coords": [
+61.7,
+52.3
+],
+"_line": 277
+},
+{
+"accept": [
+405.0,
+359.0
+],
+"npc": "Magistrate Sevren",
+"coords": [
+61.3,
+50.8
+],
+"_line": 278
+},
+{
+"complete": 5482.0,
+"coords": [
+57.1,
+39.5
+],
+"radius": 80.0,
+"text": "Collect Doom Weed.",
+"_line": 279
+},
+{
+"complete": 368.0,
+"coords": [
+59.4,
+29.1
+],
+"radius": 80.0,
+"text": "Collect Vile Fin Scale (from Vile Fin Puddlejumper, Vile Fin Minor Oracle).",
+"_line": 280
+},
+{
+"complete": 426.0,
+"coords": [
+47.1,
+34.9
+],
+"radius": 80.0,
+"text": "Collect Notched Rib (from Rattlecage Soldier, Cracked Skull Soldier); collect Blackened Skull (from Darkeye Bonecaster).",
+"_line": 281
+},
+{
+"complete": 370.0,
+"coords": [
+53.7,
+64.7
+],
+"radius": 80.0,
+"text": "Kill Captain Perrine; kill Scarlet Zealot; kill Scarlet Missionary.",
+"_line": 282
+},
+{
+"complete": 374.0,
+"coords": [
+76.1,
+49.2
+],
+"radius": 80.0,
+"text": "Collect Scarlet Insignia Ring (from Scarlet Warrior, Scarlet Missionary).",
+"_line": 283
+},
+{
+"turnin": 407.0,
+"npc": "Captured Scarlet Zealot",
+"coords": [
+62.0,
+51.3
+],
+"_line": 284
+},
+{
+"turnin": 355.0,
+"npc": "Magistrate Sevren",
+"coords": [
+61.3,
+50.8
+],
+"_line": 285
+},
+{
+"turnin": 370.0,
+"npc": "Executor Zygand",
+"coords": [
+60.6,
+51.8
+],
+"_line": 286
+},
+{
+"turnin": 374.0,
+"npc": "Deathguard Burgess",
+"coords": [
+60.9,
+52.0
+],
+"_line": 287
+},
+{
+"turnin": 368.0,
+"npc": "Apothecary Johaan",
+"coords": [
+59.5,
+52.4
+],
+"_line": 288
+},
+{
+"turnin": 426.0,
+"npc": "Deathguard Dillinger",
+"coords": [
+58.2,
+51.5
+],
+"_line": 289
+},
+{
+"turnin": 5482.0,
+"npc": "Junior Apothecary Holland",
+"coords": [
+57.4,
+48.9
+],
+"_line": 290
+},
+{
+"turnin": 359.0,
+"npc": "Deathguard Linnea",
+"coords": [
+65.5,
+60.2
+],
+"_line": 291
+},
+{
+"turnin": 405.0,
+"npc": "Bethor Iceshard",
+"coords": [
+84.1,
+17.4
+],
+"zone": "Undercity",
+"_line": 292
+},
+{
+"accept": 360.0,
+"npc": "Deathguard Linnea",
+"coords": [
+65.5,
+60.2
+],
+"_line": 293
+},
+{
+"accept": 371.0,
+"npc": "Executor Zygand",
+"coords": [
+60.6,
+51.8
+],
+"_line": 294
+},
+{
+"accept": 369.0,
+"npc": "Apothecary Johaan",
+"coords": [
+59.5,
+52.4
+],
+"_line": 295
+},
+{
+"complete": 371.0,
+"coords": [
+79.4,
+53.1
+],
+"radius": 80.0,
+"text": "Kill Captain Vachon; kill Scarlet Friar.",
+"_line": 296
+},
+{
+"complete": 369.0,
+"coords": [
+86.7,
+52.4
+],
+"radius": 80.0,
+"text": "Collect Vicious Night Web Spider Venom (from Vicious Night Web Spider).",
+"_line": 297
+},
+{
+"turnin": 360.0,
+"npc": "Magistrate Sevren",
+"coords": [
+61.3,
+50.8
+],
+"_line": 298
+},
+{
+"turnin": 371.0,
+"npc": "Executor Zygand",
+"coords": [
+60.6,
+51.8
+],
+"_line": 299
+},
+{
+"turnin": 369.0,
+"npc": "Apothecary Johaan",
+"coords": [
+59.5,
+52.4
+],
+"_line": 300
+},
+{
+"accept": 492.0,
+"npc": "Apothecary Johaan",
+"coords": [
+59.5,
+52.4
+],
+"_line": 301
+},
+{
+"accept": 372.0,
+"npc": "Executor Zygand",
+"coords": [
+60.6,
+51.8
+],
+"_line": 302
+},
+{
+"complete": 372.0,
+"coords": [
+79.5,
+25.2
+],
+"radius": 80.0,
+"text": "Kill Captain Melrache; kill Scarlet Bodyguard.",
+"_line": 303
+},
+{
+"turnin": 492.0,
+"npc": "Captured Mountaineer",
+"coords": [
+61.9,
+51.4
+],
+"_line": 304
+},
+{
+"turnin": 372.0,
+"npc": "Executor Zygand",
+"coords": [
+60.6,
+51.8
+],
+"_line": 305
+},
+{
+"level": 12.0,
+"coords": [
+60.6,
+51.8
+],
+"radius": 400.0,
+"text": "Grind to 12 if needed.",
+"_line": 306
+},
+{
+"train": true,
+"text": "Visit your class trainer for new skills.",
+"_line": 307
+}
+],
+"_line": 238,
+"name": "Tirisfal Glades 6-12",
+"file": "Guides/Horde_Starts.lua"
+},
+{
 "faction": "Alliance",
 "races": [
 "Human"

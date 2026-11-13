@@ -5,15 +5,26 @@ by={g['name']:g for g in G}
 def L(x): return x if isinstance(x,list) else [x]
 issues=collections.defaultdict(list)
 # chain
-cur='Northshire 1-6';seen=[];
-while cur: seen.append(cur); cur=by[cur].get('next')
-print('MAIN CHAIN:', ' -> '.join(seen)); print('not in chain:',[g['name'] for g in G if g['name'] not in seen])
-for a,b in zip(seen,seen[1:]):
-    if by[a]['maxLevel']!=by[b]['minLevel']: issues['chain'].append(f'{a} max {by[a]["maxLevel"]} vs {b} min {by[b]["minLevel"]}')
+seen=[]; chain_starts={}
+for start, label in (('Northshire 1-6','MAIN CHAIN'), ('Valley of Trials 1-6','HORDE CHAIN')):
+    cur=start; chain=[]
+    while cur and cur not in chain: chain.append(cur); cur=by[cur].get('next')
+    print(label+':', ' -> '.join(chain))
+    for a,b in zip(chain,chain[1:]):  # level hand-off within one chain
+        if by[a]['maxLevel']!=by[b]['minLevel']: issues['chain'].append(f'{a} max {by[a]["maxLevel"]} vs {b} min {by[b]["minLevel"]}')
+    chain_starts[chain[0]]=True
+    for c in chain:
+        if c not in seen: seen.append(c)
+print('not in chain:',[g['name'] for g in G if g['name'] not in seen])
 accepted=set();turned=set();completed=set()
+never=set()
+def flush():  # quests a chain accepted and never turned in
+    never.update(q for q in accepted if q not in turned)
 for gname in seen+[g['name'] for g in G if g['name'] not in seen]:
+    if gname in chain_starts:  # each faction's route is tracked on its own
+        flush(); accepted=set(); turned=set(); completed=set()
     g=by[gname]; lastlvl=0
-    if g.get('faction')!='Alliance': issues[gname].append('faction '+str(g.get('faction')))
+    if g.get('faction') not in ('Alliance','Horde'): issues[gname].append('faction '+str(g.get('faction')))
     for i,s in enumerate(g['steps'],1):
         tag=f'{gname} #{i} (line {s.get("_line")})'
         unk=set(s)-KNOWN
@@ -40,8 +51,8 @@ for gname in seen+[g['name'] for g in G if g['name'] not in seen]:
         for k in ('warn','tip','text'):
             if k in s and (not isinstance(s[k],str) or not s[k].strip()): issues['bad text'].append(f'{tag}: {k}')
         if 'warn' in s and 'tip' not in s: issues['warn w/o tip'].append(tag)
-        if s.get('train') and not s.get('zone'): issues['train no zone'].append(tag)
-never=[q for q in accepted if q not in turned]
+        if s.get('train') and s.get('train') is not True and not s.get('zone'): issues['train no zone'].append(tag)
+flush()
 issues['accepted, never turned in']=sorted(map(str,never))
 for k,v in issues.items():
     if v: print(f'\n== {k} ({len(v)})'); [print('  ',x) for x in v]

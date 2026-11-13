@@ -74,18 +74,30 @@ QZ:BuildNameIndex()
 drain()
 assert(QZ.indexDone, "name index didn't finish")
 
-local said = {}
-FXP.Print = function(fmt, ...) said[#said + 1] = string.format(fmt, ...) end
-ForeverXPDB = {}
-FXP:CheckRoute()
-drain()
-for _, l in ipairs(said) do io.write("# ", l, "\n") end
-local rc = ForeverXPDB.routeCheck
-assert(rc, "route check didn't run")
-for _, f in ipairs(rc.findings) do
-  io.write(string.format("- %s #%s%s: %s%s\n", f.guide or "?", f.step or "?", f.src and (" (file step " .. f.src .. ")") or "",
-    f.quest and (f.quest .. " - ") or "", f.issue or ""))
+if skip_check then
+  FOREVER = { quests = quests, npcs = npcs, objects = objects, items = items, area = area,
+    keys = QDB.questKeys, npcKeys = QDB.npcKeys, objectKeys = QDB.objectKeys, itemKeys = QDB.itemKeys, ns = ns, QZ = QZ }
+  return FOREVER
 end
-io.write(string.format("%d findings\n", #rc.findings))
-FOREVER = { quests = quests, npcs = npcs, keys = QDB.questKeys, npcKeys = QDB.npcKeys, ns = ns, QZ = QZ }
+-- check each faction's guides as a character of that faction
+local total = 0
+for _, faction in ipairs({ "Alliance", "Horde" }) do
+  UnitFactionGroup = function() return faction end
+  local said = {}
+  FXP.Print = function(fmt, ...) said[#said + 1] = string.format(fmt, ...) end
+  ForeverXPDB = {}
+  FXP:CheckRoute()
+  drain()
+  for _, l in ipairs(said) do io.write("# ", faction, ": ", l, "\n") end
+  local rc = ForeverXPDB.routeCheck
+  assert(rc, "route check didn't run")
+  for _, f in ipairs(rc.findings) do
+    io.write(string.format("- [%s] %s #%s%s: %s%s\n", faction, f.guide or "?", f.step or "?", f.src and (" (file step " .. f.src .. ")") or "",
+      f.quest and (f.quest .. " - ") or "", f.issue or ""))
+  end
+  total = total + #rc.findings
+end
+io.write(string.format("%d findings\n", total))
+FOREVER = { quests = quests, npcs = npcs, objects = objects, items = items, area = area,
+  keys = QDB.questKeys, npcKeys = QDB.npcKeys, objectKeys = QDB.objectKeys, itemKeys = QDB.itemKeys, ns = ns, QZ = QZ }
 return FOREVER

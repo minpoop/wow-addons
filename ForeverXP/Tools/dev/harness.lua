@@ -77,7 +77,7 @@ IsTradeskillTrainer = function() return false end
 local ns = {}
 local files = { "Compat.lua", "Data/QuestDB.lua", "Data/ClassQuests.lua", "Data/Dungeons.lua", "Data/FlightPoints.lua", "Data/Talents.lua", "Core.lua", "Questie.lua",
   "UI.lua", "Themes.lua", "Arrow.lua", "Targeting.lua", "Helpers.lua", "Travel.lua", "Pins.lua", "Feedback.lua", "Talents.lua", "Gear.lua", "Party.lua", "Hardcore.lua", "Options.lua", "DungeonUI.lua", "Guides/Human_Northshire.lua", "Guides/Elwynn_6-10.lua",
-  "Guides/Alliance_Starts.lua", "Guides/Alliance_10-30.lua", "Guides/Alliance_30-60.lua", "Guides/Alliance_Extra.lua" }
+  "Guides/Alliance_Starts.lua", "Guides/Alliance_10-30.lua", "Guides/Alliance_30-60.lua", "Guides/Alliance_Extra.lua", "Guides/Horde_Starts.lua", "Guides/Horde_10-30.lua", "Guides/Horde_30-60.lua" }
 for _, f in ipairs(files) do
   local chunk, err = loadfile(ROOT .. "/" .. f)
   if not chunk then error(err) end
@@ -184,11 +184,28 @@ check(pick("Gnome", 8) == "Dun Morogh 6-11", "Gnome 8 -> Dun Morogh")
 check(pick("NightElf", 1) == "Shadowglen 1-6", "Night Elf 1 -> Shadowglen")
 check(pick("NightElf", 13) == "Darkshore 11-16", "Night Elf 13 -> Darkshore")
 check(pick("Skyborne", 1) == "Zephras Isle 1-12", "Skyborne 1 -> Zephras Isle")
+-- Horde (Phase 6)
+PLAYER.faction = "Horde"
+check(pick("Orc", 1) == "Valley of Trials 1-6", "Orc 1 -> Valley of Trials")
+check(pick("Troll", 8) == "Durotar 6-12", "Troll 8 -> Durotar")
+check(pick("Tauren", 1) == "Camp Narache 1-6", "Tauren 1 -> Camp Narache")
+check(pick("Scourge", 1) == "Deathknell 1-6", "Undead 1 -> Deathknell")
+check(pick("Orc", 13) == "The Barrens 12-16", "Orc 13 -> The Barrens")
+check(pick("Scourge", 13) == "Silverpine Forest 12-16", "Undead 13 -> Silverpine Forest")
+check(pick("Tauren", 40) and FXP.guides[pick("Tauren", 40)].faction == "Horde", "Horde 40 -> a Horde guide")
+PLAYER.faction = "Alliance"
+check(pick("Human", 40) and FXP.guides[pick("Human", 40)].faction ~= "Horde", "Alliance never gets a Horde guide")
+local alliClass = false
+for _, n in ipairs({ "The Barrens 16-21", "Stonetalon Mountains 21-24", "Desolace 32-35" }) do
+  for _, st in ipairs(FXP.guides[n].steps) do if st.classStep then alliClass = true end end
+end
+check(not alliClass, "Horde guides don't get the Alliance class quest steps")
 local p = pick("Human", 49)
 check(not FXP.guides[p].side, "side guides never auto-picked (Human 49 -> " .. tostring(p) .. ")")
 
 -- 7. chains
-for _, start in ipairs({ "Northshire 1-6", "Coldridge Valley 1-6", "Shadowglen 1-6", "Zephras Isle 1-12" }) do
+for _, start in ipairs({ "Northshire 1-6", "Coldridge Valley 1-6", "Shadowglen 1-6", "Zephras Isle 1-12",
+    "Valley of Trials 1-6", "Camp Narache 1-6", "Deathknell 1-6" }) do
   local cur, n, path = start, 0, {}
   while cur and n < 60 do
     check(FXP.guides[cur] ~= nil, "guide exists: " .. cur); n = n + 1; path[#path + 1] = cur
@@ -513,6 +530,7 @@ FXP.Print = realPrint
 local nTravel, unknownFP = 0, {}
 local allFP = {}
 for _, list in pairs(ns.FlightPoints) do for _, n in ipairs(list) do allFP[n] = true end end
+for _, list in pairs(ns.FlightPointsHorde) do for _, n in ipairs(list) do allFP[n] = true end end
 for _, g in pairs(FXP.guides) do
   for _, st in ipairs(g.steps) do
     if st.fly or st.fp or st.bind or st.hearth then nTravel = nTravel + 1 end

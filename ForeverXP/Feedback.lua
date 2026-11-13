@@ -307,8 +307,13 @@ function FXP:CheckRoute()
     end
     return
   end
+  -- only your own faction's guides (and neutral ones): the other faction's quests can't fit your character
   local order, seen = {}, {}
-  for _, n in ipairs(self.guideOrder or {}) do if not seen[n] then seen[n] = true; order[#order + 1] = n end end
+  local mine = UnitFactionGroup and UnitFactionGroup("player")
+  for _, n in ipairs(self.guideOrder or {}) do
+    local g = self.guides[n]
+    if not seen[n] and (not g.faction or g.faction == mine) then seen[n] = true; order[#order + 1] = n end
+  end
   local before, all, i = {}, {}, 0
   self.Print("Checking %d guides against Questie...", #order)
   local function step()

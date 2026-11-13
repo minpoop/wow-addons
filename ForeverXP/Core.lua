@@ -67,7 +67,9 @@ local function InjectClassSteps(info)
   local lo, hi = info.minLevel or 1, info.maxLevel or 60
   local add = {}
   for _, block in ipairs(CQ) do
-    if block.level >= lo and (block.level < hi or hi >= 60) then
+    -- the class quest data is Alliance's; Horde guides only get blocks marked for the Horde
+    local side = block.faction or "Alliance"
+    if block.level >= lo and (block.level < hi or hi >= 60) and (info.faction == nil or info.faction == side) then
       for _, st in ipairs(block.steps) do
         local c = {}
         for k, v in pairs(st) do c[k] = v end
@@ -316,6 +318,7 @@ function FXP:Unavailable(id, q)
   local row = QZ:Row(id)
   if not row then return false end
   if not QZ:FitsFaction(row) then return true end
+  if row.req and UnitLevel("player") < row.req then return true end -- too low to take it yet
   return not QZ:PrereqsMet(row)
 end
 
