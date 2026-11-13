@@ -1,7 +1,7 @@
 # ForeverXP: project notes for Claude Code
 
 A free RestedXP-style leveling guide addon for **WoW Forever** (Blizzard's Classic+, launched Nov 4 2026, interface 16001).
-Alliance only. Current version **2.12.3** (see `ForeverXP.toc` and the changelog in `README.md`).
+Alliance only. Current version **2.13.0** (see `ForeverXP.toc` and the changelog in `README.md`).
 Moved here from a claude.ai chat on 2026-11-09. This file is the handoff.
 
 ## Ground rules from the owner
@@ -105,6 +105,8 @@ python3 Tools/dev/audit_parse.py && python3 Tools/dev/audit_check.py   # quest f
 python3 Tools/dev/audit_questlog.py | grep PEAK  # quest-log peak across the main route, must stay <= 20 (now 16)
 python3 Tools/import_textures.py <png_dir> [name ...]  # convert generated images into Media/Themes TGAs
 python3 Tools/read_reports.py <ForeverXP.lua> [out.md]  # owner's saved variables -> fix list with guide file:line
+# offline /fxp check against WoW Forever's real data (git clone https://github.com/Questie/QuestieDB somewhere first):
+lua -e "arg_root='.'; qdb_root='/path/to/QuestieDB'" Tools/dev/forever_check.lua   # expect "0 findings"
 python3 Tools/make_textures.py                   # procedural-only textures (block_stone, map pin); --all would overwrite the generated art
 ```
 
@@ -147,6 +149,12 @@ python3 Tools/make_textures.py                   # procedural-only textures (blo
   now falls back to LibQuestieDB and `BuildNameIndex` retries (2 s x 90). Prerequisite check now means
   handed in (pre1 = preQuestSingle) and matches by name. Real finding fixed: Wetlands Fire Taboo needs
   Tramping Paws handed in first (route reordered).
+- Fourth owner file (2.12.3, name index complete): 38 real findings. Built `Tools/dev/forever_check.lua`, which
+  runs the addon's own CheckRoute offline against QuestieDB's `data/Forever/*` (matches the in-game run except
+  live-only Questie corrections, e.g. Report to Captain Stoutfist needing The Algaz Gauntlet). Fixed every
+  finding in 2.13.0 (Horde quests removed from Arathi/Feralas/Hinterlands, Dustwallow rebuilt from real quests,
+  prerequisite orders in Coldridge/Wetlands/Arathi, misspellings). Offline check: 0 findings. When a guide
+  references a quest, look it up in the Forever data first (name, races, pre1, start/finish NPC and spawns).
 - Roadmap agreed with the owner: phase 1 quest helpers (done), phase 2 travel (done), phase 3 map pins (done),
   phase 4 route feedback tools (done; fixes ongoing from reports), phase 4 route quality from in-game reports, phase 5 talents /
   upgrades / group sync / hardcore mode, phase 6 Horde 1-60.

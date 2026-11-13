@@ -85,6 +85,28 @@ Shen'dralas 40-45 (WoW Forever), Azshara 48-50, Silithus 55-58.
 All of levels 1-60 are step-by-step: named quests, quest givers, coordinates, hard-quest warnings,
 trainer stops, and optional steps for quests WoW Forever may not offer (they skip themselves with no XP debt).
 
+## Changes in 2.13.0 - route checked against WoW Forever's quest data
+Every quest in the guides was checked against WoW Forever's real quest database (the one Questie uses).
+Fixes:
+- Coldridge Valley: A New Threat is taken after Dwarven Outfitters is handed in (Balir won't offer it before).
+- Duskwood: "Look To The Stars" was misspelled, so the guide never recognised it.
+- Wetlands: picks up the Algaz Gauntlet chain on the way in (Thelsamar -> Dun Algaz gate -> Menethil), which
+  Report to Captain Stoutfist needs. Captain Stoutfist is in Menethil Keep (not at the excavation), so War
+  Banners is taken right away. Claws from the Deep (12 Bluegill murlocs) is done before Reclaiming Goods, which
+  needs it. Fire Taboo is handed in before you leave Rethiel; Blisters on The Land is skipped (it would mean
+  crossing the zone twice). Karl Boran's position fixed.
+- Stranglethorn: the non-existent "Hemet Nesingwary Jr." step is gone. On your way out of Stormwind you now
+  pick up Malin's Request (opens Refuge Pointe) and Angus Stern's letter (opens Mudrock Soup in Theramore).
+- Arathi Highlands: Call to Arms and Foul Magics were Horde quests - removed. Stromgarde Badges now comes after
+  Northfold Manor (it needs it), and Kryten's Worth Its Weight in Gold uses the Witherbark troll camps.
+- Dustwallow Marsh: the Witch Hill quests don't exist in WoW Forever - replaced with the real Alliance quests:
+  Morgan Stern -> Mudrock Soup and Bugs -> ... and Bugs, Soothing Spices -> Jarl Needs Eyes, Stinky's Escape,
+  Hungry!, Smiling Jim and the Shady Rest Inn quests.
+- Feralas and The Hinterlands: The Ogres of Feralas and Hunt the Savages were Horde quests - removed.
+- Un'Goro: the Alliance quest is "Muigin and Larion" (the guide had the Horde one).
+- Tanaris: Thistleshrub Valley only if you're 45. Winterspring: Frostsaber Provisions (level 58) removed.
+- Western Plaguelands: the fourth hand-in is called "Return to Chillwind Point" in the game data.
+
 ## Changes in 2.12.3 - Questie name lookup fix
 - ForeverXP couldn't build its quest-name lookup with the current Questie: Questie now fills its quest list late
   in its own startup, and ForeverXP gave up straight away. It now reads the list from Questie's database library

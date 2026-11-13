@@ -1124,7 +1124,7 @@
 "_line": 222
 },
 {
-"accept": "Look to the Stars#1",
+"accept": "Look To The Stars#1",
 "npc": "Viktori Prism'Antras",
 "_line": 223
 },
@@ -1134,7 +1134,7 @@
 "_line": 224
 },
 {
-"turnin": "Look to the Stars#1",
+"turnin": "Look To The Stars#1",
 "text": "Hand this in right away in Darkshire.",
 "_line": 225
 },
@@ -1340,6 +1340,39 @@
 "next": "Duskwood 27-30",
 "steps": [
 {
+"accept": 468.0,
+"npc": "Mountaineer Kadrell",
+"coords": [
+34.2,
+47.8
+],
+"zone": "Loch Modan",
+"text": "Thelsamar: Report to Mountaineer Rockgar (it opens the Menethil quests).",
+"_line": 271
+},
+{
+"turnin": 468.0,
+"npc": "Mountaineer Rockgar",
+"coords": [
+25.4,
+10.4
+],
+"zone": "Loch Modan",
+"text": "At the Dun Algaz gate, north Loch Modan.",
+"_line": 273
+},
+{
+"accept": 455.0,
+"npc": "Mountaineer Rockgar",
+"coords": [
+25.4,
+10.4
+],
+"zone": "Loch Modan",
+"text": "The Algaz Gauntlet: just make it through Dun Algaz to Menethil Harbor.",
+"_line": 274
+},
+{
 "fp": "Menethil Harbor",
 "bind": "Menethil Harbor",
 "text": "Menethil Harbor: get the flight path and set your Hearthstone.",
@@ -1350,22 +1383,58 @@
 "radius": 20.0,
 "warn": "The road from Dun Algaz to Menethil passes Dragonmaw orcs and raptors.",
 "tip": "Stay on the road and mount up/run past; don't fight on the way.",
-"_line": 271
+"_line": 276
+},
+{
+"turnin": 455.0,
+"npc": "Valstag Ironjaw",
+"coords": [
+10.1,
+56.9
+],
+"_line": 279
 },
 {
 "accept": "Report to Captain Stoutfist",
 "npc": "Valstag Ironjaw",
-"_line": 274
+"coords": [
+10.1,
+56.9
+],
+"_line": 280
 },
 {
-"accept": "Reclaiming Goods",
+"turnin": "Report to Captain Stoutfist",
+"npc": "Captain Stoutfist",
+"coords": [
+9.9,
+57.5
+],
+"text": "Right next to Valstag in Menethil Keep.",
+"_line": 281
+},
+{
+"accept": "War Banners",
+"npc": "Captain Stoutfist",
+"coords": [
+9.9,
+57.5
+],
+"_line": 282
+},
+{
+"accept": "Claws from the Deep",
 "npc": "Karl Boran",
-"_line": 275
+"coords": [
+8.3,
+58.6
+],
+"_line": 283
 },
 {
 "accept": "Young Crocolisk Skins",
 "optional": true,
-"_line": 276
+"_line": 284
 },
 {
 "text": "WoW Forever: Caitlin Grassman (house at 11.9, 58.8) starts the Excavation Site dungeon quests; take them if you'll run it.",
@@ -1374,7 +1443,38 @@
 58.8
 ],
 "radius": 10.0,
-"_line": 277
+"_line": 285
+},
+{
+"complete": "Claws from the Deep",
+"coords": [
+13.5,
+45.0
+],
+"radius": 150.0,
+"text": "Kill 12 Bluegill Murlocs on the coast north of Menethil.",
+"warn": "Bluegill murlocs come in groups and flee to bring friends.",
+"tip": "Pull from the edge of each camp.",
+"_line": 287
+},
+{
+"turnin": "Claws from the Deep",
+"npc": "Karl Boran",
+"coords": [
+8.3,
+58.6
+],
+"_line": 289
+},
+{
+"accept": "Reclaiming Goods",
+"npc": "Karl Boran",
+"coords": [
+8.3,
+58.6
+],
+"text": "Offered once Claws from the Deep is handed in.",
+"_line": 290
 },
 {
 "turnin": "Reclaiming Goods",
@@ -1385,7 +1485,7 @@
 "text": "Damaged Crate at the Bluegill murloc camp north of Menethil.",
 "warn": "Bluegill murlocs come in groups and flee to bring friends.",
 "tip": "Pull from the edge and click the crates once the area's clear.",
-"_line": 279
+"_line": 291
 },
 {
 "accept": "The Search Continues",
@@ -1393,7 +1493,7 @@
 13.5,
 41.4
 ],
-"_line": 281
+"_line": 293
 },
 {
 "turnin": "The Search Continues",
@@ -1402,7 +1502,7 @@
 38.0
 ],
 "text": "Sealed Barrel in the hovels just north.",
-"_line": 282
+"_line": 294
 },
 {
 "accept": "Search More Hovels",
@@ -1410,7 +1510,7 @@
 13.5,
 38.0
 ],
-"_line": 283
+"_line": 295
 },
 {
 "turnin": "Search More Hovels",
@@ -1419,7 +1519,7 @@
 37.0
 ],
 "text": "Half-buried Barrel a little further north.",
-"_line": 284
+"_line": 296
 },
 {
 "accept": "Return the Statuette",
@@ -1427,13 +1527,17 @@
 13.5,
 37.0
 ],
-"_line": 285
+"_line": 297
 },
 {
 "turnin": "Return the Statuette",
 "npc": "Karl Boran",
+"coords": [
+8.3,
+58.6
+],
 "text": "Back in Menethil Harbor.",
-"_line": 286
+"_line": 298
 },
 {
 "complete": "Young Crocolisk Skins",
@@ -1444,7 +1548,7 @@
 ],
 "radius": 150.0,
 "text": "Young crocolisks around Menethil.",
-"_line": 287
+"_line": 299
 },
 {
 "turnin": "Young Crocolisk Skins",
@@ -1454,25 +1558,14 @@
 60.6
 ],
 "text": "Hand in at Menethil Harbor.",
-"_line": 289
-},
-{
-"turnin": "Report to Captain Stoutfist",
-"npc": "Captain Stoutfist",
-"text": "Whelgar's Excavation Site.",
-"_line": 290
-},
-{
-"accept": "War Banners",
-"npc": "Captain Stoutfist",
-"_line": 291
+"_line": 301
 },
 {
 "accept": [
 "Uncovering the Past",
 "Ormer's Revenge#1"
 ],
-"_line": 292
+"_line": 302
 },
 {
 "complete": "Ormer's Revenge#1",
@@ -1484,7 +1577,7 @@
 "text": "Raptors in the hills west of the excavation. Pick up excavation fragments as you go.",
 "warn": "Mottled raptors fight in pairs and hit hard.",
 "tip": "Pull with range and fight away from the next pack.",
-"_line": 293
+"_line": 303
 },
 {
 "complete": "Uncovering the Past",
@@ -1493,19 +1586,19 @@
 50.0
 ],
 "radius": 60.0,
-"_line": 296
+"_line": 306
 },
 {
 "turnin": [
 "Ormer's Revenge#1",
 "Uncovering the Past"
 ],
-"_line": 297
+"_line": 307
 },
 {
 "accept": "Ormer's Revenge#2",
 "optional": true,
-"_line": 298
+"_line": 308
 },
 {
 "complete": "Ormer's Revenge#2",
@@ -1515,24 +1608,21 @@
 46.0
 ],
 "radius": 150.0,
-"_line": 299
+"_line": 309
 },
 {
 "turnin": "Ormer's Revenge#2",
 "optional": true,
-"_line": 300
+"_line": 310
 },
 {
-"accept": [
-"Tramping Paws",
-"Blisters on The Land"
-],
+"accept": "Tramping Paws",
 "npc": "Rethiel the Greenwarden",
 "coords": [
-56.3,
-40.3
+56.4,
+40.4
 ],
-"_line": 301
+"_line": 311
 },
 {
 "complete": "Tramping Paws",
@@ -1542,7 +1632,7 @@
 ],
 "radius": 150.0,
 "text": "Mosshide gnolls south-east and west of Rethiel.",
-"_line": 302
+"_line": 312
 },
 {
 "turnin": "Tramping Paws",
@@ -1552,7 +1642,7 @@
 40.3
 ],
 "text": "Fire Taboo is only offered once Tramping Paws is handed in.",
-"_line": 304
+"_line": 314
 },
 {
 "accept": "Fire Taboo",
@@ -1561,7 +1651,7 @@
 56.3,
 40.3
 ],
-"_line": 306
+"_line": 316
 },
 {
 "complete": "Fire Taboo",
@@ -1571,7 +1661,17 @@
 ],
 "radius": 150.0,
 "text": "Back to the Mosshide gnolls: Crude Flints only drop now that you have the quest.",
-"_line": 307
+"_line": 317
+},
+{
+"turnin": "Fire Taboo",
+"npc": "Rethiel the Greenwarden",
+"coords": [
+56.4,
+40.4
+],
+"text": "(Blisters on The Land comes next, but its Fen Creepers are in the far west and it hands in back here - skip it.)",
+"_line": 319
 },
 {
 "complete": "War Banners",
@@ -1580,37 +1680,19 @@
 43.0
 ],
 "radius": 50.0,
-"text": "Angerfang Encampment.",
+"text": "Angerfang Encampment, on the way back west.",
 "warn": "Dragonmaw orcs in the camp are in groups of 2-3.",
 "tip": "Clear the outer tents first and pull to the hillside.",
-"_line": 309
-},
-{
-"complete": "Blisters on The Land",
-"coords": [
-26.0,
-25.0
-],
-"radius": 150.0,
-"text": "Fen Creepers in the swamp around the windmill.",
-"_line": 311
-},
-{
-"turnin": [
-"Fire Taboo",
-"Blisters on The Land"
-],
-"npc": "Rethiel the Greenwarden",
-"coords": [
-56.3,
-40.3
-],
-"_line": 313
+"_line": 321
 },
 {
 "turnin": "War Banners",
 "npc": "Captain Stoutfist",
-"_line": 314
+"coords": [
+9.9,
+57.5
+],
+"_line": 323
 },
 {
 "elite": true,
@@ -1621,7 +1703,7 @@
 50.0
 ],
 "radius": 30.0,
-"_line": 315
+"_line": 324
 },
 {
 "level": 27.0,
@@ -1631,14 +1713,14 @@
 ],
 "radius": 300.0,
 "text": "Grind crocolisks or raptors to 27 if needed.",
-"_line": 318
+"_line": 327
 },
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
 "fly": "Stormwind",
 "text": "Fly to Stormwind, train, then fly to Darkshire.",
-"_line": 319
+"_line": 328
 }
 ],
 "_line": 268,
@@ -1655,7 +1737,7 @@
 {
 "turnin": "Zombie Juice",
 "optional": true,
-"_line": 328
+"_line": 337
 },
 {
 "accept": [
@@ -1663,7 +1745,7 @@
 "Worgen in the Woods#1"
 ],
 "optional": true,
-"_line": 329
+"_line": 338
 },
 {
 "turnin": "Sven's Revenge",
@@ -1672,7 +1754,7 @@
 77.7
 ],
 "text": "Dig at the Mound of Loose Dirt at the Yorgen Farmstead.",
-"_line": 330
+"_line": 339
 },
 {
 "accept": "Sven's Camp",
@@ -1680,7 +1762,7 @@
 49.8,
 77.7
 ],
-"_line": 331
+"_line": 340
 },
 {
 "complete": [
@@ -1695,7 +1777,7 @@
 "text": "Raven Hill Cemetery: Skeletal Fiends/Horrors and Skeleton Fingers; Rot Blossoms on the ground.",
 "warn": "The cemetery is crowded and Mor'Ladim (elite) patrols it.",
 "tip": "Work the edges and keep an eye out for his patrol.",
-"_line": 332
+"_line": 341
 },
 {
 "turnin": "Sven's Camp",
@@ -1704,7 +1786,7 @@
 7.8,
 34.1
 ],
-"_line": 335
+"_line": 344
 },
 {
 "accept": "The Shadowy Figure",
@@ -1713,7 +1795,7 @@
 7.8,
 34.1
 ],
-"_line": 336
+"_line": 345
 },
 {
 "turnin": [
@@ -1721,7 +1803,7 @@
 "Gather Rot Blossoms"
 ],
 "text": "Darkshire.",
-"_line": 337
+"_line": 346
 },
 {
 "accept": [
@@ -1729,34 +1811,34 @@
 "Juice Delivery"
 ],
 "optional": true,
-"_line": 338
+"_line": 347
 },
 {
 "turnin": "The Shadowy Figure",
 "text": "Darkshire: ask around town (the large house, town hall and the inn).",
-"_line": 339
+"_line": 348
 },
 {
 "accept": "The Shadowy Search Continues",
-"_line": 340
+"_line": 349
 },
 {
 "turnin": "The Shadowy Search Continues",
-"_line": 341
+"_line": 350
 },
 {
 "accept": "Inquire at the Inn",
-"_line": 342
+"_line": 351
 },
 {
 "turnin": "Inquire at the Inn",
 "npc": "Tavernkeep Smitts",
-"_line": 343
+"_line": 352
 },
 {
 "accept": "Finding the Shadowy Figure",
 "npc": "Tavernkeep Smitts",
-"_line": 344
+"_line": 353
 },
 {
 "complete": "Worgen in the Woods#1",
@@ -1769,19 +1851,19 @@
 "text": "Nightbane Shadow Weavers in Brightwood Grove, west of Darkshire.",
 "warn": "Nightbane worgen hit hard and Shadow Weavers cast shadow bolts.",
 "tip": "Fight one at a time on open ground.",
-"_line": 345
+"_line": 354
 },
 {
 "turnin": "Juice Delivery",
 "optional": true,
 "npc": "Abercrombie",
-"_line": 348
+"_line": 357
 },
 {
 "accept": "Ghoulish Effigy",
 "optional": true,
 "npc": "Abercrombie",
-"_line": 349
+"_line": 358
 },
 {
 "turnin": "Finding the Shadowy Figure",
@@ -1790,7 +1872,7 @@
 18.4,
 56.6
 ],
-"_line": 350
+"_line": 359
 },
 {
 "accept": "Return to Sven",
@@ -1799,7 +1881,7 @@
 18.4,
 56.6
 ],
-"_line": 351
+"_line": 360
 },
 {
 "turnin": "Return to Sven",
@@ -1808,7 +1890,7 @@
 7.8,
 34.1
 ],
-"_line": 352
+"_line": 361
 },
 {
 "accept": "Proving Your Worth",
@@ -1817,7 +1899,7 @@
 7.8,
 34.1
 ],
-"_line": 353
+"_line": 362
 },
 {
 "complete": [
@@ -1832,7 +1914,7 @@
 "text": "North-west mausoleum: Skeletal Raiders, Healers and Warders.",
 "warn": "Skeletal Healers heal everything near them.",
 "tip": "Kill Healers first and pull Warders away from the group.",
-"_line": 354
+"_line": 363
 },
 {
 "complete": "Ghoulish Effigy",
@@ -1843,19 +1925,19 @@
 ],
 "radius": 80.0,
 "text": "North-east mausoleum: Plague Spreaders for Ghoul Ribs and Fangs.",
-"_line": 357
+"_line": 366
 },
 {
 "turnin": "Ghoulish Effigy",
 "optional": true,
 "npc": "Abercrombie",
-"_line": 359
+"_line": 368
 },
 {
 "accept": "Ogre Thieves",
 "optional": true,
 "npc": "Abercrombie",
-"_line": 360
+"_line": 369
 },
 {
 "accept": "The Weathered Grave",
@@ -1865,7 +1947,7 @@
 29.0
 ],
 "text": "A Weathered Grave, north of the cemetery.",
-"_line": 361
+"_line": 370
 },
 {
 "turnin": "Proving Your Worth",
@@ -1874,14 +1956,14 @@
 7.8,
 34.1
 ],
-"_line": 362
+"_line": 371
 },
 {
 "accept": "Seeking Wisdom",
 "optional": true,
 "npc": "Sven Yorgen",
 "text": "Starts the Morbent Fel chain in Stormwind; finish it later at 30+.",
-"_line": 363
+"_line": 372
 },
 {
 "complete": "Ogre Thieves",
@@ -1894,7 +1976,7 @@
 "text": "Vul'Gol Ogre Mound.",
 "warn": "Ogres come in pairs and hit very hard.",
 "tip": "Pull singles from the mound's edge.",
-"_line": 365
+"_line": 374
 },
 {
 "turnin": "Ogre Thieves",
@@ -1904,7 +1986,7 @@
 28.0,
 31.5
 ],
-"_line": 367
+"_line": 376
 },
 {
 "turnin": [
@@ -1913,17 +1995,17 @@
 "The Totem of Infliction"
 ],
 "text": "Darkshire.",
-"_line": 368
+"_line": 377
 },
 {
 "accept": "Morgan Ladimore",
 "optional": true,
-"_line": 369
+"_line": 378
 },
 {
 "turnin": "Morgan Ladimore",
 "optional": true,
-"_line": 370
+"_line": 379
 },
 {
 "accept": "Mor'Ladim",
@@ -1931,12 +2013,12 @@
 "elite": true,
 "group": 3.0,
 "tip": "Mor'Ladim is an elite skeleton; bring 2-3 friends.",
-"_line": 371
+"_line": 380
 },
 {
 "turnin": "Worgen in the Woods#1",
 "optional": true,
-"_line": 373
+"_line": 382
 },
 {
 "level": 30.0,
@@ -1946,17 +2028,17 @@
 ],
 "radius": 400.0,
 "text": "Grind worgen, skeletons or ogres to 30 if needed.",
-"_line": 374
+"_line": 383
 },
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
 "fly": "Stormwind",
 "text": "Fly to Stormwind and train level 30 skills, then head south to Stranglethorn Vale.",
-"_line": 376
+"_line": 385
 }
 ],
-"_line": 325,
+"_line": 334,
 "name": "Duskwood 27-30",
 "file": "Guides/Alliance_10-30.lua"
 },
@@ -1975,7 +2057,7 @@
 49.6
 ],
 "radius": 25.0,
-"_line": 387
+"_line": 396
 },
 {
 "fp": "Astranaar",
@@ -1986,7 +2068,7 @@
 49.6
 ],
 "radius": 20.0,
-"_line": 389
+"_line": 398
 },
 {
 "level": 28.0,
@@ -1998,7 +2080,7 @@
 "text": "Do the Thistlefur furbolg, Ruins of Stardust and Lake Iris quests around Astranaar.",
 "warn": "Thistlefur Hold is a dense cave; on PvP realms Horde often quest here too.",
 "tip": "Do Thistlefur outside first; inside, pull one at a time from the ramps.",
-"_line": 391
+"_line": 400
 },
 {
 "text": "Visit Maestra's Post and the Zoram Strand to the west for more quests.",
@@ -2007,7 +2089,7 @@
 38.0
 ],
 "radius": 40.0,
-"_line": 394
+"_line": 403
 },
 {
 "level": 30.0,
@@ -2017,17 +2099,17 @@
 ],
 "radius": 400.0,
 "text": "Finish the Ashenvale quests and turn in at Astranaar.",
-"_line": 396
+"_line": 405
 },
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
 "fly": "Auberdine",
 "text": "Fly to Auberdine -> boat to Menethil -> fly to Stormwind and train (night elves can train in Darnassus instead).",
-"_line": 398
+"_line": 407
 }
 ],
-"_line": 384,
+"_line": 393,
 "name": "Ashenvale 27-30",
 "file": "Guides/Alliance_10-30.lua"
 },
@@ -2096,20 +2178,14 @@
 "_line": 21
 },
 {
-"turnin": "Hemet Nesingwary Jr.",
-"optional": true,
-"npc": "Hemet Nesingwary Jr.",
-"_line": 22
-},
-{
 "accept": "Welcome to the Jungle",
 "npc": "Barnil Stonepot",
-"_line": 23
+"_line": 22
 },
 {
 "turnin": "Welcome to the Jungle",
 "npc": "Hemet Nesingwary Jr.",
-"_line": 24
+"_line": 23
 },
 {
 "accept": [
@@ -2121,14 +2197,14 @@
 35.6,
 10.6
 ],
-"_line": 25
+"_line": 24
 },
 {
 "accept": "The Green Hills of Stranglethorn",
 "optional": true,
 "npc": "Barnil Stonepot",
 "text": "Collect Green Hills pages as they drop; the full book is worth a lot of XP later.",
-"_line": 26
+"_line": 25
 },
 {
 "complete": [
@@ -2138,7 +2214,7 @@
 "text": "Young Stranglethorn Tigers south-west of camp; Young Panthers along the road and river.",
 "warn": "Young panthers are stealthed.",
 "tip": "Walk slowly and pull panthers as soon as you spot the shimmer.",
-"_line": 28
+"_line": 27
 },
 {
 "turnin": [
@@ -2149,7 +2225,7 @@
 35.6,
 10.6
 ],
-"_line": 31
+"_line": 30
 },
 {
 "accept": [
@@ -2160,7 +2236,7 @@
 35.6,
 10.6
 ],
-"_line": 32
+"_line": 31
 },
 {
 "complete": [
@@ -2168,7 +2244,7 @@
 "Panther Mastery#2"
 ],
 "text": "Stranglethorn Tigers on the hill to the west; Panthers across the river.",
-"_line": 33
+"_line": 32
 },
 {
 "complete": [
@@ -2178,14 +2254,14 @@
 "text": "Kurzen's soldiers around the compound east of the Rebel Camp; medicine drops from Kurzen medicine men.",
 "warn": "Kurzen camps are packed with casters and medicine men who heal.",
 "tip": "Kill healers first and stay outside the compound walls and cave.",
-"_line": 35
+"_line": 34
 },
 {
 "complete": "Raptor Mastery#1",
 "text": "Stranglethorn Raptors on the hill south-west of Nesingwary's.",
 "warn": "Raptors run in packs.",
 "tip": "Pull from the edge and kill one before the next arrives.",
-"_line": 39
+"_line": 38
 },
 {
 "turnin": [
@@ -2197,7 +2273,7 @@
 35.6,
 10.6
 ],
-"_line": 41
+"_line": 40
 },
 {
 "turnin": [
@@ -2208,7 +2284,7 @@
 37.9,
 3.5
 ],
-"_line": 42
+"_line": 41
 },
 {
 "accept": [
@@ -2220,7 +2296,7 @@
 37.9,
 3.5
 ],
-"_line": 43
+"_line": 42
 },
 {
 "fp": "Booty Bay",
@@ -2231,20 +2307,20 @@
 77.0
 ],
 "radius": 20.0,
-"_line": 44
+"_line": 43
 },
 {
 "turnin": "Krazek's Cookery",
 "optional": true,
 "npc": "Krazek",
 "text": "Krazek is upstairs in the Booty Bay tavern.",
-"_line": 46
+"_line": 45
 },
 {
 "accept": "The Haunted Isle",
 "optional": true,
 "npc": "Krazek",
-"_line": 47
+"_line": 46
 },
 {
 "level": 34.0,
@@ -2254,14 +2330,36 @@
 ],
 "radius": 300.0,
 "text": "Grind tigers/raptors near Nesingwary's to 34 if needed.",
-"_line": 48
+"_line": 47
 },
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
 "fly": "Stormwind",
 "text": "Fly to Stormwind and train, then tram to Ironforge and fly to Menethil. Run north over Thandol Span into Arathi.",
-"_line": 50
+"_line": 49
+},
+{
+"accept": 690.0,
+"npc": "Archmage Malin",
+"coords": [
+50.5,
+87.5
+],
+"zone": "Stormwind City",
+"text": "Before you leave Stormwind: Malin's Request from Archmage Malin in the Mage Quarter (opens Refuge Pointe's quests).",
+"_line": 51
+},
+{
+"accept": 1260.0,
+"npc": "Angus Stern",
+"coords": [
+51.8,
+93.6
+],
+"zone": "Stormwind City",
+"text": "And Morgan Stern from Angus Stern at the Blue Recluse (you'll hand it in at Theramore for Mudrock Soup and Bugs).",
+"_line": 53
 }
 ],
 "_line": 10,
@@ -2285,110 +2383,108 @@
 "radius": 20.0,
 "warn": "Dark Iron dwarves guard the bridge and the road.",
 "tip": "Ride through; don't stop to fight on the span.",
-"_line": 60
-},
-{
-"accept": "Northfold Manor",
-"npc": "Captain Nials",
-"_line": 62
-},
-{
-"accept": "Call to Arms",
-"optional": true,
 "_line": 63
 },
 {
-"accept": [
-"Worth Its Weight in Gold",
-"Wand over Fist"
+"accept": 681.0,
+"npc": "Captain Nials",
+"coords": [
+45.8,
+47.6
 ],
-"optional": true,
-"_line": 64
-},
-{
-"accept": "Hints of a New Plague?",
-"optional": true,
+"text": "Northfold Manor.",
 "_line": 65
 },
 {
-"accept": "Foul Magics",
-"optional": true,
+"turnin": 690.0,
+"npc": "Skuerto",
+"coords": [
+46.6,
+47.0
+],
+"text": "Hand Malin's Request to Skuerto.",
 "_line": 66
 },
 {
-"accept": "Stromgarde Badges",
-"optional": true,
+"accept": 691.0,
+"npc": "Apprentice Kryten",
+"coords": [
+46.2,
+47.8
+],
+"text": "Worth Its Weight in Gold.",
 "_line": 67
 },
 {
-"complete": "Northfold Manor",
+"complete": 681.0,
 "coords": [
 32.0,
 28.0
 ],
 "radius": 80.0,
-"text": "Syndicate at Northfold Manor, north-west of Refuge Pointe.",
+"text": "Syndicate Highwaymen and Mercenaries at Northfold Manor, north-west of Refuge Pointe.",
 "warn": "Syndicate stand very close together and rogues stealth around the manor.",
 "tip": "Use ranged pulls, pull to doorways and watch your back for stealthers.",
 "_line": 68
 },
 {
-"complete": "Stromgarde Badges",
-"optional": true,
+"turnin": 681.0,
+"npc": "Captain Nials",
+"coords": [
+45.8,
+47.6
+],
+"_line": 72
+},
+{
+"accept": 682.0,
+"npc": "Captain Nials",
+"coords": [
+45.8,
+47.6
+],
+"text": "Stromgarde Badges (offered once Northfold Manor is done).",
+"_line": 73
+},
+{
+"complete": 682.0,
 "coords": [
 32.0,
 28.0
 ],
 "radius": 120.0,
-"_line": 72
+"text": "Badges drop from the Syndicate around Northfold and outside Stromgarde.",
+"_line": 74
 },
 {
-"complete": [
-"Worth Its Weight in Gold",
-"Wand over Fist"
-],
-"optional": true,
-"text": "Follow the arrow; Questie points at the mobs for each objective.",
-"_line": 73
-},
-{
-"complete": "Call to Arms",
-"optional": true,
+"complete": 691.0,
 "coords": [
 66.0,
 70.0
 ],
 "radius": 120.0,
-"text": "Witherbark trolls in the south-east.",
+"text": "Witherbark trolls in the south-east: tusks, medicine pouches and a Shadow Hunter Knife.",
 "warn": "Witherbark trolls fight in groups and their shadow hunters hit hard.",
 "tip": "Clear the outer huts first.",
 "_line": 75
 },
 {
-"complete": [
-"Hints of a New Plague?",
-"Foul Magics"
+"turnin": 682.0,
+"npc": "Captain Nials",
+"coords": [
+45.8,
+47.6
 ],
-"optional": true,
 "_line": 78
 },
 {
-"turnin": "Northfold Manor",
-"npc": "Captain Nials",
-"_line": 79
-},
-{
-"turnin": [
-"Call to Arms",
-"Worth Its Weight in Gold",
-"Wand over Fist",
-"Hints of a New Plague?",
-"Foul Magics",
-"Stromgarde Badges"
+"turnin": 691.0,
+"npc": "Apprentice Kryten",
+"coords": [
+46.2,
+47.8
 ],
-"optional": true,
-"text": "Back at Refuge Pointe; take any follow-ups you're offered.",
-"_line": 80
+"_line": 79
 },
 {
 "elite": true,
@@ -2400,7 +2496,7 @@
 "radius": 40.0,
 "text": "Optional: Stromgarde Keep quests (elite ogres and Syndicate inside the keep).",
 "tip": "Bring a group or skip the keep.",
-"_line": 82
+"_line": 80
 },
 {
 "level": 36.0,
@@ -2410,17 +2506,17 @@
 ],
 "radius": 400.0,
 "text": "Grind to 36 if needed.",
-"_line": 85
+"_line": 83
 },
 {
 "train": "Ironforge",
 "zone": "Ironforge",
 "fly": "Ironforge",
 "text": "Fly to Ironforge and train, then fly to Menethil and take the boat to Theramore.",
-"_line": 86
+"_line": 84
 }
 ],
-"_line": 57,
+"_line": 60,
 "name": "Arathi Highlands 34-36",
 "file": "Guides/Alliance_30-60.lua"
 },
@@ -2442,47 +2538,97 @@
 "radius": 20.0,
 "warn": "Dustwallow mobs don't scale; arriving too early means a lot of deaths.",
 "tip": "Be 36+ before leaving the island.",
+"_line": 94
+},
+{
+"turnin": 1260.0,
+"optional": true,
+"npc": "Morgan Stern",
+"coords": [
+66.3,
+45.5
+],
+"text": "Angus's letter to Morgan Stern.",
 "_line": 96
 },
 {
-"accept": "Mudrock Soup and Bugs",
+"accept": 1204.0,
 "npc": "Morgan Stern",
+"coords": [
+66.3,
+45.5
+],
+"text": "Mudrock Soup and Bugs (skipped if you didn't bring Angus's letter).",
+"_line": 97
+},
+{
+"accept": 1282.0,
+"optional": true,
+"npc": "Guard Byron",
+"coords": [
+66.2,
+46.1
+],
 "_line": 98
 },
 {
-"accept": "They Call Him Smiling Jim",
-"optional": true,
-"_line": 99
-},
-{
-"turnin": "They Call Him Smiling Jim",
+"turnin": 1282.0,
 "optional": true,
 "npc": "Captain Garran Vimes",
-"_line": 100
+"coords": [
+68.2,
+48.6
+],
+"text": "Top floor of Foothold Citadel.",
+"_line": 99
 },
 {
 "accept": "The Missing Diplomat#1",
 "optional": true,
 "text": "Long chain; take it if Theramore offers it.",
+"_line": 100
+},
+{
+"complete": 1204.0,
+"coords": [
+60.0,
+60.0
+],
+"radius": 200.0,
+"text": "Mudrock tortoises along the coast for Forked Mudrock Tongues.",
 "_line": 101
 },
 {
-"complete": "Mudrock Soup and Bugs",
-"text": "Mudrock tortoises along the coast for Forked Mudrock Tongues.",
-"_line": 102
-},
-{
-"accept": [
-"Marsh Frog Legs",
-"What's Haunting Witch Hill?"
-],
+"accept": 1218.0,
+"optional": true,
 "npc": "Swamp Eye Jarl",
 "coords": [
 55.4,
 26.3
 ],
-"text": "Swamplight Manor, north of the road.",
-"_line": 103
+"text": "Swamplight Manor, north of the road. Soothing Spices: buy 3 from a trade goods vendor (Theramore has one) and hand them straight back.",
+"tip": "Buy the spices in Theramore before you ride out.",
+"_line": 102
+},
+{
+"turnin": 1218.0,
+"optional": true,
+"npc": "Swamp Eye Jarl",
+"coords": [
+55.4,
+26.3
+],
+"_line": 105
+},
+{
+"accept": 1206.0,
+"npc": "Swamp Eye Jarl",
+"coords": [
+55.4,
+26.3
+],
+"text": "Jarl Needs Eyes (skipped if you didn't do Soothing Spices).",
+"_line": 106
 },
 {
 "accept": "The Orc Report",
@@ -2491,37 +2637,29 @@
 55.4,
 26.3
 ],
-"_line": 105
-},
-{
-"complete": "Marsh Frog Legs",
-"text": "Giant Marsh Frogs (critters) around the manor.",
-"_line": 106
-},
-{
-"complete": "What's Haunting Witch Hill?",
-"text": "Risen Husks and Spirits on Witch Hill; talk to the Restless Apparitions they leave.",
-"warn": "Undead on Witch Hill stand in clumps.",
-"tip": "Fight at the bottom of the hill and work upward.",
+"text": "A Spy's Report can be found in the manor.",
 "_line": 107
 },
 {
-"turnin": [
-"Marsh Frog Legs",
-"What's Haunting Witch Hill?"
-],
-"npc": "Swamp Eye Jarl",
-"coords": [
-55.4,
-26.3
-],
-"_line": 110
+"accept": "The Black Shield#1",
+"optional": true,
+"text": "From the Black Shield over the manor's fireplace.",
+"_line": 108
 },
 {
-"accept": [
-"Jarl Needs Eyes",
-"The Witch's Bane"
+"complete": 1206.0,
+"coords": [
+50.0,
+20.0
 ],
+"radius": 150.0,
+"text": "Darkmist spiders for Unpopped Darkmist Eyes.",
+"warn": "Darkmist widows web you and come in groups.",
+"tip": "Clear from the outside in and keep a potion ready.",
+"_line": 109
+},
+{
+"turnin": 1206.0,
 "npc": "Swamp Eye Jarl",
 "coords": [
 55.4,
@@ -2530,68 +2668,49 @@
 "_line": 111
 },
 {
-"accept": "The Black Shield#1",
+"accept": 1222.0,
 "optional": true,
-"text": "From the Black Shield over the manor's fireplace.",
+"npc": "\\\"Stinky\\\" Ignatz",
+"coords": [
+46.9,
+17.5
+],
+"text": "Stinky's Escape: escort him out of the north marsh (you hand it in to Morgan Stern in Theramore).",
+"warn": "Escorts pull extra mobs along the way.",
+"tip": "Clear the path ahead of him and stay close.",
 "_line": 112
 },
 {
-"complete": "The Witch's Bane",
-"text": "Witchbane plants in the waterways near the manor.",
-"_line": 113
-},
-{
-"complete": "Jarl Needs Eyes",
-"text": "Darkmist spiders for Unpopped Darkmist Eyes.",
-"warn": "Darkmist widows web you and come in groups.",
-"tip": "Clear from the outside in and keep a potion ready.",
-"_line": 114
-},
-{
-"turnin": [
-"Jarl Needs Eyes",
-"The Witch's Bane"
-],
-"npc": "Swamp Eye Jarl",
+"accept": 1177.0,
+"optional": true,
+"npc": "Mudcrush Durtfeet",
 "coords": [
-55.4,
-26.3
+35.1,
+38.3
 ],
+"text": "Hungry!: a friendly ogre in northern Dustwallow.",
+"_line": 115
+},
+{
+"complete": 1177.0,
+"optional": true,
+"coords": [
+33.0,
+30.0
+],
+"radius": 120.0,
+"text": "Mirefin murlocs for 8 Mirefin Heads.",
 "_line": 116
 },
 {
-"accept": "Cleansing Witch Hill",
-"optional": true,
-"coords": [
-55.4,
-26.3
-],
-"_line": 117
-},
-{
-"complete": "Cleansing Witch Hill",
-"optional": true,
-"text": "Use the Witchbane Torch at the end of the dock to summon Zelfrax.",
-"warn": "Zelfrax hits hard.",
-"tip": "Be at full health and mana before using the torch.",
-"_line": 118
-},
-{
-"turnin": "Cleansing Witch Hill",
-"optional": true,
-"npc": "Swamp Eye Jarl",
-"coords": [
-55.4,
-26.3
-],
-"_line": 121
-},
-{
-"accept": "Hungry!",
+"turnin": 1177.0,
 "optional": true,
 "npc": "Mudcrush Durtfeet",
-"text": "Friendly ogre on the south road.",
-"_line": 122
+"coords": [
+35.1,
+38.3
+],
+"_line": 117
 },
 {
 "accept": [
@@ -2605,7 +2724,7 @@
 48.6
 ],
 "text": "Shady Rest Inn, the burned inn on the western road.",
-"_line": 123
+"_line": 118
 },
 {
 "hearth": "Theramore",
@@ -2615,16 +2734,58 @@
 49.0
 ],
 "radius": 30.0,
+"_line": 120
+},
+{
+"turnin": 1204.0,
+"npc": "Morgan Stern",
+"coords": [
+66.3,
+45.5
+],
+"_line": 121
+},
+{
+"turnin": 1222.0,
+"optional": true,
+"npc": "Morgan Stern",
+"coords": [
+66.3,
+45.5
+],
+"_line": 122
+},
+{
+"accept": 1258.0,
+"optional": true,
+"npc": "Morgan Stern",
+"coords": [
+66.3,
+45.5
+],
+"text": "... and Bugs (level 40): Pristine Crawler Legs from the coast crawlers; do it now if you're close to 38.",
+"_line": 123
+},
+{
+"complete": 1258.0,
+"optional": true,
+"text": "Mirefin and Saltspittle crawlers along the Theramore coast; follow the arrow.",
 "_line": 125
 },
 {
-"turnin": "Mudrock Soup and Bugs",
+"turnin": 1258.0,
+"optional": true,
 "npc": "Morgan Stern",
+"coords": [
+66.3,
+45.5
+],
 "_line": 126
 },
 {
 "turnin": "The Orc Report",
 "optional": true,
+"text": "Any Theramore Lieutenant.",
 "_line": 127
 },
 {
@@ -2634,20 +2795,13 @@
 "The Black Shield#1"
 ],
 "optional": true,
+"npc": "Captain Garran Vimes",
+"coords": [
+68.2,
+48.6
+],
 "text": "Foothold Citadel, upstairs. Take any follow-ups.",
 "_line": 128
-},
-{
-"complete": "Hungry!",
-"optional": true,
-"text": "Follow the arrow; Questie points at the objective.",
-"_line": 130
-},
-{
-"turnin": "Hungry!",
-"optional": true,
-"npc": "Mudcrush Durtfeet",
-"_line": 131
 },
 {
 "level": 38.0,
@@ -2657,16 +2811,16 @@
 ],
 "radius": 400.0,
 "text": "Grind to 38 if needed.",
-"_line": 132
+"_line": 130
 },
 {
 "train": "Theramore or Stormwind",
 "text": "Train in Theramore if your class has a trainer there, otherwise boat to Menethil and fly to Stormwind.",
 "tip": "Start saving gold now - your mount at 40 costs about 90-100g in Classic. Skip auction-house upgrades.",
-"_line": 133
+"_line": 131
 }
 ],
-"_line": 93,
+"_line": 91,
 "name": "Dustwallow Marsh 36-38",
 "file": "Guides/Alliance_30-60.lua"
 },
@@ -2685,7 +2839,7 @@
 77.0
 ],
 "radius": 25.0,
-"_line": 143
+"_line": 141
 },
 {
 "accept": [
@@ -2694,30 +2848,30 @@
 ],
 "optional": true,
 "npc": "Kebok",
-"_line": 144
+"_line": 142
 },
 {
 "accept": "Singing Blue Shards",
 "optional": true,
 "npc": "Crank Fizzlebub",
-"_line": 145
+"_line": 143
 },
 {
 "accept": "Supply and Demand",
 "optional": true,
 "npc": "Drizzlik",
-"_line": 146
+"_line": 144
 },
 {
 "turnin": "The Haunted Isle",
 "optional": true,
-"_line": 147
+"_line": 145
 },
 {
 "accept": "The Stone of the Tides",
 "optional": true,
 "npc": "Baron Revilgaz",
-"_line": 148
+"_line": 146
 },
 {
 "fly": "Rebel Camp",
@@ -2727,7 +2881,7 @@
 10.6
 ],
 "radius": 15.0,
-"_line": 149
+"_line": 147
 },
 {
 "accept": [
@@ -2740,7 +2894,7 @@
 35.6,
 10.6
 ],
-"_line": 150
+"_line": 148
 },
 {
 "complete": "Bloodscalp Ears",
@@ -2748,7 +2902,7 @@
 "text": "Bloodscalp trolls at Bal'lal Ruins, then Tkashi Ruins.",
 "warn": "Bloodscalp trolls come in groups of 2-3.",
 "tip": "Fight at the edge of the ruins and save escapes for runners.",
-"_line": 151
+"_line": 149
 },
 {
 "complete": [
@@ -2757,7 +2911,7 @@
 ],
 "optional": true,
 "text": "Elder Stranglethorn Tigers south of Tkashi Ruins; Lashtail Raptors to the south-east.",
-"_line": 153
+"_line": 151
 },
 {
 "complete": "Panther Mastery#3",
@@ -2765,7 +2919,7 @@
 "text": "Shadowmaw Panthers in the jungle further south.",
 "warn": "Shadowmaw panthers are stealthed and hit very hard.",
 "tip": "Move slowly and pull them before they open on you.",
-"_line": 155
+"_line": 153
 },
 {
 "complete": [
@@ -2775,7 +2929,7 @@
 ],
 "optional": true,
 "text": "Venture Co. around Lake Nazferiti and the oil rig; crocolisks along the river.",
-"_line": 157
+"_line": 155
 },
 {
 "complete": [
@@ -2783,7 +2937,7 @@
 "Kurzen's Mystery"
 ],
 "optional": true,
-"_line": 159
+"_line": 157
 },
 {
 "turnin": [
@@ -2796,7 +2950,7 @@
 35.6,
 10.6
 ],
-"_line": 160
+"_line": 158
 },
 {
 "turnin": [
@@ -2808,14 +2962,14 @@
 37.9,
 3.5
 ],
-"_line": 161
+"_line": 159
 },
 {
 "train": "Stormwind City",
 "zone": "Stormwind City",
 "fly": "Stormwind",
 "text": "At 40, fly to Stormwind, train and buy your mount if you can afford it.",
-"_line": 162
+"_line": 160
 },
 {
 "turnin": [
@@ -2826,7 +2980,7 @@
 ],
 "optional": true,
 "text": "Booty Bay. Take the follow-ups (Venture Company Mining, Some Assembly Required).",
-"_line": 164
+"_line": 162
 },
 {
 "accept": [
@@ -2835,18 +2989,18 @@
 "Water Elementals"
 ],
 "optional": true,
-"_line": 166
+"_line": 164
 },
 {
 "complete": "The Stone of the Tides",
 "optional": true,
-"_line": 167
+"_line": 165
 },
 {
 "turnin": "The Stone of the Tides",
 "optional": true,
 "npc": "Baron Revilgaz",
-"_line": 168
+"_line": 166
 },
 {
 "complete": [
@@ -2856,7 +3010,7 @@
 ],
 "optional": true,
 "text": "Water Elementals: the island off the south-west coast.",
-"_line": 169
+"_line": 167
 },
 {
 "turnin": [
@@ -2865,7 +3019,7 @@
 "Water Elementals"
 ],
 "optional": true,
-"_line": 171
+"_line": 169
 },
 {
 "elite": true,
@@ -2878,7 +3032,7 @@
 "text": "Optional: Mosh'Ogg ogre quests (elite) and Zul'Gurub-adjacent troll quests need a group.",
 "warn": "The Gurubashi Arena is a free-for-all PvP area.",
 "tip": "Stay away from the Arena when the chest event runs.",
-"_line": 172
+"_line": 170
 },
 {
 "level": 41.0,
@@ -2889,10 +3043,10 @@
 "radius": 400.0,
 "fly": "Darkshire",
 "text": "Grind to 41 if needed, then fly Booty Bay -> Darkshire for the Swamp of Sorrows.",
-"_line": 175
+"_line": 173
 }
 ],
-"_line": 140,
+"_line": 138,
 "name": "Stranglethorn Vale 38-42",
 "file": "Guides/Alliance_30-60.lua"
 },
@@ -2910,7 +3064,7 @@
 28.0
 ],
 "radius": 25.0,
-"_line": 185
+"_line": 183
 },
 {
 "fp": "Gadgetzan",
@@ -2921,7 +3075,7 @@
 27.9
 ],
 "radius": 15.0,
-"_line": 187
+"_line": 185
 },
 {
 "turnin": "Tran'rek",
@@ -2931,17 +3085,19 @@
 51.6,
 26.8
 ],
-"_line": 188
+"_line": 186
 },
 {
 "accept": "Thistleshrub Valley",
 "optional": true,
+"ifLevel": 45.0,
 "npc": "Tran'rek",
 "coords": [
 51.6,
 26.8
 ],
-"_line": 189
+"text": "Thistleshrub Valley needs level 45; take it if you already are.",
+"_line": 187
 },
 {
 "accept": "Wastewander Justice",
@@ -2950,7 +3106,7 @@
 52.5,
 28.4
 ],
-"_line": 190
+"_line": 189
 },
 {
 "accept": "Water Pouch Bounty",
@@ -2959,7 +3115,7 @@
 52.0,
 28.4
 ],
-"_line": 191
+"_line": 190
 },
 {
 "accept": [
@@ -2972,7 +3128,7 @@
 27.5
 ],
 "text": "Wanted poster next to the Gadgetzan bank.",
-"_line": 192
+"_line": 191
 },
 {
 "accept": "Gadgetzan Water Survey",
@@ -2982,7 +3138,7 @@
 50.2,
 27.5
 ],
-"_line": 194
+"_line": 193
 },
 {
 "complete": [
@@ -2997,7 +3153,7 @@
 "text": "Noonshade Ruins east of town: Wastewander Bandits and Thieves. Pouches drop from any Wastewander.",
 "warn": "Wastewander Shadow Mages are stealthy-casters and Thieves come in pairs.",
 "tip": "Pull from the outer dunes and kill casters first. Tag everything - pouches drop from all nomads.",
-"_line": 195
+"_line": 194
 },
 {
 "text": "Run east to Steamwheedle Port.",
@@ -3006,7 +3162,7 @@
 23.0
 ],
 "radius": 20.0,
-"_line": 199
+"_line": 198
 },
 {
 "accept": [
@@ -3019,7 +3175,7 @@
 67.0,
 22.0
 ],
-"_line": 200
+"_line": 199
 },
 {
 "accept": "Screecher Spirits",
@@ -3030,7 +3186,7 @@
 22.4
 ],
 "text": "Yeh'kinya - keep this one; the screechers are in Feralas.",
-"_line": 201
+"_line": 200
 },
 {
 "turnin": [
@@ -3042,7 +3198,7 @@
 28.4
 ],
 "text": "Back to Gadgetzan.",
-"_line": 203
+"_line": 202
 },
 {
 "accept": "More Wastewander Justice",
@@ -3051,7 +3207,7 @@
 52.5,
 28.4
 ],
-"_line": 205
+"_line": 204
 },
 {
 "complete": "Gadgetzan Water Survey",
@@ -3063,7 +3219,7 @@
 "text": "Use the Untapped Dowsing Widget at the Noxious Lair oasis west of town.",
 "warn": "Centipaar silithid swarm the oasis once you use the widget.",
 "tip": "Clear the pool edge first, then use the widget and fight with your back to the wall.",
-"_line": 206
+"_line": 205
 },
 {
 "turnin": "Gadgetzan Water Survey",
@@ -3072,7 +3228,7 @@
 50.2,
 27.5
 ],
-"_line": 209
+"_line": 208
 },
 {
 "accept": "Noxious Lair Investigation",
@@ -3081,7 +3237,7 @@
 50.2,
 27.5
 ],
-"_line": 210
+"_line": 209
 },
 {
 "complete": [
@@ -3096,7 +3252,7 @@
 "text": "Waterspring Field / Wastewander camps south-east: Rogues, Assassins, Shadow Mages. Caliph patrols here.",
 "warn": "Caliph Scorpidsting walks with two stealthed assassins.",
 "tip": "Use a detect-stealth effect or fight near a wall; burst Caliph once the assassins are down.",
-"_line": 211
+"_line": 210
 },
 {
 "complete": [
@@ -3114,7 +3270,7 @@
 "text": "Lost Rigger Cove: Southsea pirates, hats, and Stoley's stolen wine (second floor of the two-storey house at 72,46). Andre Firebeard is in the big house.",
 "warn": "[Elite-like density] Pirates are packed and the cove patrols; Andre Firebeard has adds.",
 "tip": "Pull from the ridge downward, wait out patrols, and save a cooldown for Andre.",
-"_line": 215
+"_line": 214
 },
 {
 "turnin": [
@@ -3128,7 +3284,7 @@
 67.0,
 22.0
 ],
-"_line": 220
+"_line": 219
 },
 {
 "complete": "Noxious Lair Investigation",
@@ -3141,7 +3297,7 @@
 "text": "Kill Centipaar Swarmers in the Noxious Lair for Centipaar Insect Parts.",
 "warn": "Silithid tunnels chain-pull easily.",
 "tip": "Stay near the entrance and pull single bugs.",
-"_line": 221
+"_line": 220
 },
 {
 "complete": "Thistleshrub Valley",
@@ -3152,7 +3308,7 @@
 ],
 "radius": 200.0,
 "text": "Thistleshrub Valley in the south-west: Gnarled Thistleshrubs and Thistleshrub Rootshapers.",
-"_line": 224
+"_line": 223
 },
 {
 "turnin": [
@@ -3166,7 +3322,7 @@
 52.5,
 28.4
 ],
-"_line": 226
+"_line": 225
 },
 {
 "level": 45.0,
@@ -3176,10 +3332,10 @@
 ],
 "radius": 400.0,
 "text": "Grind Wastewander nomads until level 45 - you keep earning Steamwheedle reputation too.",
-"_line": 228
+"_line": 227
 }
 ],
-"_line": 182,
+"_line": 180,
 "name": "Tanaris 42-45",
 "file": "Guides/Alliance_30-60.lua"
 },
@@ -3199,7 +3355,7 @@
 "radius": 20.0,
 "warn": "The Thousand Needles - Feralas road passes Grimtotem and Horde-friendly areas.",
 "tip": "Mount up and don't stop until you reach the coast.",
-"_line": 238
+"_line": 237
 },
 {
 "fp": "Feathermoon",
@@ -3210,17 +3366,7 @@
 44.0
 ],
 "radius": 20.0,
-"_line": 241
-},
-{
-"accept": "The Ogres of Feralas",
-"optional": true,
-"npc": "Angelas Moonbreeze",
-"coords": [
-30.2,
-46.2
-],
-"_line": 242
+"_line": 240
 },
 {
 "accept": "The Mark of Quality",
@@ -3230,7 +3376,7 @@
 30.6,
 42.8
 ],
-"_line": 243
+"_line": 241
 },
 {
 "accept": "Rise of the Silithid",
@@ -3240,7 +3386,7 @@
 30.4,
 46.0
 ],
-"_line": 244
+"_line": 242
 },
 {
 "accept": "The Giant Guardian",
@@ -3249,7 +3395,7 @@
 31.0,
 45.0
 ],
-"_line": 245
+"_line": 243
 },
 {
 "text": "Take the boat back to the mainland and head to the Dream Bough / Lower Wilds region.",
@@ -3258,7 +3404,7 @@
 43.0
 ],
 "radius": 20.0,
-"_line": 246
+"_line": 244
 },
 {
 "accept": [
@@ -3272,7 +3418,7 @@
 43.4
 ],
 "text": "Zorbin Fandazzle on the dock - giant-zapping quests.",
-"_line": 247
+"_line": 245
 },
 {
 "complete": [
@@ -3288,7 +3434,7 @@
 "text": "Use Zorbin's Ultra-Shrinker on Wave Striders and Land Walkers (giants) roaming the middle of Feralas.",
 "warn": "The giants hit very hard and stun.",
 "tip": "Shrink them first, then kill; don't fight one at full size.",
-"_line": 249
+"_line": 247
 },
 {
 "complete": "Fuel for the Zapping",
@@ -3299,20 +3445,7 @@
 ],
 "radius": 250.0,
 "text": "Kill Sea Elementals / Water Elementals along the coast for Fuel.",
-"_line": 252
-},
-{
-"complete": "The Ogres of Feralas",
-"optional": true,
-"coords": [
-76.0,
-63.0
-],
-"radius": 200.0,
-"text": "Gordunni Ogres at the Ruins of Isildien (eastern Feralas).",
-"warn": "Gordunni Shamans heal and Brutes enrage.",
-"tip": "Interrupt or burst the shaman first; avoid triple pulls in the ruins.",
-"_line": 254
+"_line": 250
 },
 {
 "complete": "The Mark of Quality",
@@ -3323,7 +3456,7 @@
 ],
 "radius": 300.0,
 "text": "Yeti hides (Feral Scar Vale / Ridge yetis) and Frayfeather hippogryph feathers for Pratt.",
-"_line": 257
+"_line": 252
 },
 {
 "complete": "Screecher Spirits",
@@ -3334,7 +3467,7 @@
 ],
 "radius": 150.0,
 "text": "Feral Scar Vale: kill Vale Screechers and use Yeh'kinya's Bramble on their corpses. Hand it in at Steamwheedle Port on the way to Un'Goro.",
-"_line": 259
+"_line": 254
 },
 {
 "complete": "Rise of the Silithid",
@@ -3347,7 +3480,7 @@
 "text": "Zukk'ash Hive in the far north: collect the Hive samples.",
 "warn": "The Zukk'ash Hive is dense and Zukk'ash Wasps add constantly.",
 "tip": "Work the outer ring; pull with a ranged attack and leave before respawns catch up.",
-"_line": 261
+"_line": 256
 },
 {
 "text": "Return to the dock and boat back to Feathermoon.",
@@ -3356,11 +3489,10 @@
 44.0
 ],
 "radius": 20.0,
-"_line": 264
+"_line": 259
 },
 {
 "turnin": [
-"The Ogres of Feralas",
 "The Mark of Quality",
 "Rise of the Silithid",
 "The Giant Guardian",
@@ -3372,7 +3504,7 @@
 30.5,
 44.0
 ],
-"_line": 265
+"_line": 260
 },
 {
 "level": 47.0,
@@ -3382,7 +3514,7 @@
 ],
 "radius": 400.0,
 "text": "Grind yetis or Gordunni ogres until level 47 if you're short.",
-"_line": 267
+"_line": 262
 },
 {
 "train": "Ironforge",
@@ -3391,10 +3523,10 @@
 "text": "Fly Feathermoon -> Auberdine, boat to Menethil, fly to Ironforge. Train level 46 skills and fly on to Aerie Peak.",
 "warn": "No Aerie Peak flight path yet? Fly to Refuge Pointe (Arathi) and ride north into the Hinterlands.",
 "tip": "Stick to the roads through Arathi; Hinterlands mobs near the gate are 45+.",
-"_line": 269
+"_line": 264
 }
 ],
-"_line": 235,
+"_line": 234,
 "name": "Feralas 45-47",
 "file": "Guides/Alliance_30-60.lua"
 },
@@ -3412,7 +3544,7 @@
 46.0
 ],
 "radius": 20.0,
-"_line": 281
+"_line": 276
 },
 {
 "fp": "Aerie Peak",
@@ -3423,7 +3555,7 @@
 46.0
 ],
 "radius": 25.0,
-"_line": 282
+"_line": 277
 },
 {
 "accept": "Troll Necklace Bounty",
@@ -3433,7 +3565,7 @@
 9.8,
 44.5
 ],
-"_line": 283
+"_line": 278
 },
 {
 "accept": "Skulk Rock Clean-up",
@@ -3442,7 +3574,7 @@
 11.8,
 46.8
 ],
-"_line": 284
+"_line": 279
 },
 {
 "accept": "Witherbark Cages",
@@ -3452,16 +3584,7 @@
 9.8,
 44.5
 ],
-"_line": 285
-},
-{
-"accept": "Hunt the Savages",
-"optional": true,
-"coords": [
-14.0,
-44.0
-],
-"_line": 286
+"_line": 280
 },
 {
 "complete": "Witherbark Cages",
@@ -3474,7 +3597,7 @@
 "text": "Check the Witherbark cages at Shadra'Alor / the Overlook (south-west troll camps).",
 "warn": "Witherbark troll camps are dense and the Shadow Hunters hex.",
 "tip": "Pull from range and clear casters first.",
-"_line": 287
+"_line": 281
 },
 {
 "complete": "Troll Necklace Bounty",
@@ -3485,7 +3608,7 @@
 ],
 "radius": 300.0,
 "text": "Witherbark trolls drop necklaces - keep doing this across all troll camps.",
-"_line": 290
+"_line": 284
 },
 {
 "complete": "Skulk Rock Clean-up",
@@ -3496,25 +3619,13 @@
 ],
 "radius": 80.0,
 "text": "Skulk Rock (central Hinterlands): Green Sludges and Jade Oozes.",
-"_line": 292
-},
-{
-"complete": "Hunt the Savages",
-"optional": true,
-"coords": [
-45.0,
-50.0
-],
-"radius": 300.0,
-"text": "Savage Owlbeasts in central Hinterlands.",
-"_line": 294
+"_line": 286
 },
 {
 "turnin": [
 "Witherbark Cages",
 "Troll Necklace Bounty",
-"Skulk Rock Clean-up",
-"Hunt the Savages"
+"Skulk Rock Clean-up"
 ],
 "optional": true,
 "coords": [
@@ -3522,7 +3633,7 @@
 45.0
 ],
 "text": "Back to Aerie Peak.",
-"_line": 296
+"_line": 288
 },
 {
 "accept": "The Altar of Zul",
@@ -3532,7 +3643,7 @@
 9.8,
 44.5
 ],
-"_line": 298
+"_line": 290
 },
 {
 "accept": "Saving Sharpbeak",
@@ -3542,7 +3653,7 @@
 9.8,
 44.5
 ],
-"_line": 299
+"_line": 291
 },
 {
 "complete": "The Altar of Zul",
@@ -3555,7 +3666,7 @@
 "text": "Explore the top of the Altar of Zul (south-central).",
 "warn": "Trolls on every tier of the altar.",
 "tip": "Run the stairs straight up - you only need to reach the top.",
-"_line": 300
+"_line": 292
 },
 {
 "complete": "Saving Sharpbeak",
@@ -3568,7 +3679,7 @@
 "text": "Jintha'Alor (south-east): free Sharpbeak's parents at the top.",
 "warn": "[Elite pockets] Jintha'Alor is thick with Vilebranch trolls and patrolling bats.",
 "tip": "Group up if possible; otherwise clear one tier at a time and rest between pulls.",
-"_line": 303
+"_line": 295
 },
 {
 "turnin": [
@@ -3580,7 +3691,7 @@
 9.8,
 44.5
 ],
-"_line": 306
+"_line": 298
 },
 {
 "level": 49.0,
@@ -3590,17 +3701,17 @@
 ],
 "radius": 400.0,
 "text": "Grind owlbeasts / Witherbark trolls until level 49.",
-"_line": 307
+"_line": 299
 },
 {
 "train": "Ironforge",
 "zone": "Ironforge",
 "fly": "Ironforge",
 "text": "Fly to Ironforge and train level 48 skills, then take the tram to Stormwind and fly to Lakeshire for the Searing Gorge.",
-"_line": 309
+"_line": 301
 }
 ],
-"_line": 278,
+"_line": 273,
 "name": "The Hinterlands 47-49",
 "file": "Guides/Alliance_30-60.lua"
 },
@@ -3619,7 +3730,7 @@
 28.0
 ],
 "radius": 25.0,
-"_line": 319
+"_line": 311
 },
 {
 "turnin": "Screecher Spirits",
@@ -3631,7 +3742,7 @@
 22.4
 ],
 "text": "Short ride east to Steamwheedle Port.",
-"_line": 320
+"_line": 312
 },
 {
 "accept": [
@@ -3645,7 +3756,7 @@
 27.0
 ],
 "text": "Alchemist Pestlezugg / Tran'rek in Gadgetzan.",
-"_line": 322
+"_line": 314
 },
 {
 "text": "Ride west past Thistleshrub Valley and down the ramp into Un'Goro Crater.",
@@ -3654,7 +3765,7 @@
 75.0
 ],
 "radius": 20.0,
-"_line": 324
+"_line": 316
 },
 {
 "accept": [
@@ -3666,7 +3777,7 @@
 71.6,
 75.9
 ],
-"_line": 325
+"_line": 317
 },
 {
 "accept": "Expedition Salvation",
@@ -3676,7 +3787,7 @@
 69.0
 ],
 "text": "Take it if an expedition member near the entrance offers it.",
-"_line": 326
+"_line": 318
 },
 {
 "complete": "The Fare of Lar'korwi",
@@ -3687,7 +3798,7 @@
 ],
 "radius": 50.0,
 "text": "Loot the Threshadon carcass north of Torwa.",
-"_line": 328
+"_line": 320
 },
 {
 "turnin": "The Fare of Lar'korwi",
@@ -3696,7 +3807,7 @@
 71.6,
 75.9
 ],
-"_line": 330
+"_line": 322
 },
 {
 "accept": "The Scent of Lar'korwi",
@@ -3705,7 +3816,7 @@
 71.6,
 75.9
 ],
-"_line": 331
+"_line": 323
 },
 {
 "complete": "The Scent of Lar'korwi",
@@ -3718,7 +3829,7 @@
 "text": "Stand by the raptor nests and wait for Lar'korwi Mates to come to you; loot the eggs.",
 "warn": "Raptor mates spawn on top of you while you loot.",
 "tip": "Loot one nest, fight, rest, then the next.",
-"_line": 332
+"_line": 324
 },
 {
 "complete": [
@@ -3732,7 +3843,7 @@
 ],
 "radius": 300.0,
 "text": "Tar Beasts (Super Sticky) at the Lakkari Tar Pits; blue/green/red/yellow Un'Goro power crystals as you go.",
-"_line": 335
+"_line": 327
 },
 {
 "fp": "Marshal's Refuge",
@@ -3743,7 +3854,7 @@
 8.5
 ],
 "radius": 20.0,
-"_line": 337
+"_line": 329
 },
 {
 "turnin": "Williden's Journal",
@@ -3753,7 +3864,7 @@
 9.6
 ],
 "text": "If you found A Mangled Journal, turn it in to Williden Marshal.",
-"_line": 338
+"_line": 330
 },
 {
 "accept": [
@@ -3767,19 +3878,19 @@
 8.5
 ],
 "text": "Accept everything inside Marshal's Refuge.",
-"_line": 340
+"_line": 332
 },
 {
 "accept": [
 "Crystals of Power",
-"Larion and Muigin"
+"Muigin and Larion"
 ],
 "optional": true,
 "coords": [
 43.5,
 8.5
 ],
-"_line": 342
+"_line": 334
 },
 {
 "accept": "Chasing A-Me 01",
@@ -3789,12 +3900,12 @@
 46.4,
 13.4
 ],
-"_line": 343
+"_line": 335
 },
 {
 "complete": [
 "Roll the Bones",
-"Larion and Muigin"
+"Muigin and Larion"
 ],
 "optional": true,
 "coords": [
@@ -3803,7 +3914,7 @@
 ],
 "radius": 300.0,
 "text": "Dinosaur Bones and Bloodpetals/Gorillas around the crater as you go.",
-"_line": 344
+"_line": 336
 },
 {
 "complete": "Alien Ecology",
@@ -3816,7 +3927,7 @@
 "text": "Gorishi Hive (south): use the Scraping Vial on a hatchery wall.",
 "warn": "Gorishi hive is dense - stingers and wasps chain-pull.",
 "tip": "Hug one wall, and leave immediately once the sample is taken.",
-"_line": 346
+"_line": 338
 },
 {
 "complete": "Beware of Pterrordax",
@@ -3827,7 +3938,7 @@
 ],
 "radius": 400.0,
 "text": "Pterrordax and Frenzied Pterrordax fly all over the crater.",
-"_line": 349
+"_line": 341
 },
 {
 "complete": "Chasing A-Me 01",
@@ -3840,7 +3951,7 @@
 "text": "Find A-Me 01 by the gorilla terraces (north-east) and follow its chain back to Karna.",
 "warn": "Escort: gorillas and Un'Goro Stompers ambush.",
 "tip": "Keep your heal up; she's sturdy but the stompers hit hard.",
-"_line": 351
+"_line": 343
 },
 {
 "accept": "Lost!",
@@ -3850,13 +3961,13 @@
 8.5
 ],
 "text": "Spraggle Frock in Marshal's Refuge.",
-"_line": 354
+"_line": 346
 },
 {
 "complete": "Lost!",
 "optional": true,
 "text": "Ringo at Fire Plume Ridge: use Spraggle's Canteen whenever he passes out, then escort him to Spraggle Frock.",
-"_line": 355
+"_line": 347
 },
 {
 "turnin": [
@@ -3864,7 +3975,7 @@
 "Alien Ecology",
 "Beware of Pterrordax",
 "Chasing A-Me 01",
-"Larion and Muigin",
+"Muigin and Larion",
 "Lost!"
 ],
 "optional": true,
@@ -3872,7 +3983,7 @@
 43.5,
 8.5
 ],
-"_line": 356
+"_line": 348
 },
 {
 "accept": "The Apes of Un'Goro",
@@ -3881,7 +3992,7 @@
 43.5,
 8.5
 ],
-"_line": 358
+"_line": 350
 },
 {
 "complete": "The Apes of Un'Goro",
@@ -3894,7 +4005,7 @@
 "text": "Un'Goro Gorillas / Thunderers / Stompers in the north-east.",
 "warn": "Un'Goro Stompers stun and hit hard.",
 "tip": "Pull Stompers alone and kite if you can.",
-"_line": 359
+"_line": 351
 },
 {
 "turnin": [
@@ -3906,7 +4017,7 @@
 43.5,
 8.5
 ],
-"_line": 362
+"_line": 354
 },
 {
 "level": 51.0,
@@ -3916,7 +4027,7 @@
 ],
 "radius": 400.0,
 "text": "Keep collecting crystals and grind dinosaurs until 51.",
-"_line": 363
+"_line": 355
 },
 {
 "turnin": [
@@ -3928,7 +4039,7 @@
 "optional": true,
 "fly": "Gadgetzan",
 "text": "Fly to Gadgetzan to hand in, then back.",
-"_line": 364
+"_line": 356
 },
 {
 "level": 52.0,
@@ -3938,16 +4049,16 @@
 ],
 "radius": 400.0,
 "text": "Grind to 52 if you're short.",
-"_line": 366
+"_line": 358
 },
 {
 "train": "Darnassus",
 "zone": "Darnassus",
 "text": "Fly Gadgetzan -> Theramore/Rut'theran (via Auberdine) and train level 52 skills in Darnassus. Then fly to Astranaar for Felwood.",
-"_line": 367
+"_line": 359
 }
 ],
-"_line": 316,
+"_line": 308,
 "name": "Un'Goro Crater 49-52",
 "file": "Guides/Alliance_30-60.lua"
 },
@@ -3965,7 +4076,7 @@
 81.0
 ],
 "radius": 20.0,
-"_line": 377
+"_line": 369
 },
 {
 "fp": "Emerald Sanctuary",
@@ -3975,7 +4086,7 @@
 81.0
 ],
 "radius": 15.0,
-"_line": 378
+"_line": 370
 },
 {
 "accept": "The Corruption of the Jadefire",
@@ -3985,7 +4096,7 @@
 51.2,
 82.1
 ],
-"_line": 379
+"_line": 371
 },
 {
 "accept": [
@@ -3997,7 +4108,7 @@
 51.2,
 82.1
 ],
-"_line": 380
+"_line": 372
 },
 {
 "accept": "Timbermaw Ally",
@@ -4007,7 +4118,7 @@
 50.9,
 85.0
 ],
-"_line": 381
+"_line": 373
 },
 {
 "accept": "Cleansing Felwood",
@@ -4017,7 +4128,7 @@
 54.2,
 86.8
 ],
-"_line": 382
+"_line": 374
 },
 {
 "complete": "Timbermaw Ally",
@@ -4028,7 +4139,7 @@
 ],
 "radius": 120.0,
 "text": "Deadwood furbolgs just south: Deadwood Warriors, Pathfinders, Gardeners.",
-"_line": 383
+"_line": 375
 },
 {
 "turnin": "Timbermaw Ally",
@@ -4037,7 +4148,7 @@
 50.9,
 85.0
 ],
-"_line": 385
+"_line": 377
 },
 {
 "accept": "Speak to Nafien",
@@ -4046,7 +4157,7 @@
 50.9,
 85.0
 ],
-"_line": 386
+"_line": 378
 },
 {
 "complete": "Forces of Jaedenar",
@@ -4059,7 +4170,7 @@
 "text": "Jaedenar: Jaedenar Cultists, Adepts, Darkweavers.",
 "warn": "Jaedenar Hounds drain mana and Darkweavers fear.",
 "tip": "Clear from the road edge; casters first, and keep a fear break ready.",
-"_line": 387
+"_line": 379
 },
 {
 "complete": "Verifying the Corruption",
@@ -4070,7 +4181,7 @@
 ],
 "radius": 40.0,
 "text": "Scout the satyr camp at the end of Jaedenar.",
-"_line": 390
+"_line": 382
 },
 {
 "complete": "The Corruption of the Jadefire",
@@ -4083,7 +4194,7 @@
 "text": "Jadefire Glen: Jadefire Satyrs, Felsworn and Rogues.",
 "warn": "Jadefire Rogues stealth around the glen.",
 "tip": "Pull from the hill edge and watch your back.",
-"_line": 392
+"_line": 384
 },
 {
 "complete": "Cleansing Felwood",
@@ -4094,7 +4205,7 @@
 ],
 "radius": 80.0,
 "text": "Irontree Cavern (north): kill the cavern's furbolgs for 15 Blood Amber.",
-"_line": 395
+"_line": 387
 },
 {
 "turnin": [
@@ -4108,7 +4219,7 @@
 51.2,
 82.1
 ],
-"_line": 397
+"_line": 389
 },
 {
 "fp": "Talonbranch Glade",
@@ -4118,7 +4229,7 @@
 24.2
 ],
 "radius": 20.0,
-"_line": 399
+"_line": 391
 },
 {
 "turnin": "Speak to Nafien",
@@ -4129,7 +4240,7 @@
 8.1
 ],
 "text": "Nafien sits at the Timbermaw Hold tunnel entrance.",
-"_line": 400
+"_line": 392
 },
 {
 "accept": "Deadwood of the North",
@@ -4139,7 +4250,7 @@
 64.8,
 8.1
 ],
-"_line": 402
+"_line": 394
 },
 {
 "complete": "Deadwood of the North",
@@ -4152,7 +4263,7 @@
 "text": "Deadwood Den Watchers, Avengers and Shamans at Felpaw Village.",
 "warn": "Deadwood Shamans chain-heal the camp.",
 "tip": "Kill shamans first and fight at the camp edge.",
-"_line": 403
+"_line": 395
 },
 {
 "turnin": "Deadwood of the North",
@@ -4161,7 +4272,7 @@
 64.8,
 8.1
 ],
-"_line": 406
+"_line": 398
 },
 {
 "accept": "Speak to Salfa",
@@ -4170,7 +4281,7 @@
 64.8,
 8.1
 ],
-"_line": 407
+"_line": 399
 },
 {
 "level": 54.0,
@@ -4180,10 +4291,10 @@
 ],
 "radius": 300.0,
 "text": "Grind Deadwood furbolgs to 54 - every kill also builds Timbermaw reputation.",
-"_line": 408
+"_line": 400
 }
 ],
-"_line": 374,
+"_line": 366,
 "name": "Felwood 52-54",
 "file": "Guides/Alliance_30-60.lua"
 },
@@ -4203,7 +4314,7 @@
 "radius": 20.0,
 "warn": "Timbermaw are hostile until you've earned enough reputation.",
 "tip": "If they're red, hug the walls and keep moving.",
-"_line": 418
+"_line": 410
 },
 {
 "turnin": "Speak to Salfa",
@@ -4213,7 +4324,7 @@
 27.7,
 34.5
 ],
-"_line": 420
+"_line": 412
 },
 {
 "accept": "Winterfall Activity",
@@ -4223,7 +4334,7 @@
 27.7,
 34.5
 ],
-"_line": 421
+"_line": 413
 },
 {
 "text": "Ride to Donova Snowden at the hot springs.",
@@ -4232,7 +4343,7 @@
 45.2
 ],
 "radius": 20.0,
-"_line": 422
+"_line": 414
 },
 {
 "accept": "The Ruins of Kel'Theril",
@@ -4242,7 +4353,7 @@
 31.2,
 45.2
 ],
-"_line": 423
+"_line": 415
 },
 {
 "accept": "Threat of the Winterfall",
@@ -4252,7 +4363,7 @@
 31.2,
 45.2
 ],
-"_line": 424
+"_line": 416
 },
 {
 "complete": "Threat of the Winterfall",
@@ -4263,7 +4374,7 @@
 ],
 "radius": 120.0,
 "text": "Winterfall Pathfinders, Den Watchers, Totemics at the Winterfall Village west camp.",
-"_line": 425
+"_line": 417
 },
 {
 "complete": "Winterfall Activity",
@@ -4276,7 +4387,7 @@
 "text": "Winterfall Village (east): Shamans, Den Watchers, Ursas.",
 "warn": "Winterfall Shamans heal and the village is crowded.",
 "tip": "Fight on the edges; save Winterfall Firewater drops.",
-"_line": 427
+"_line": 419
 },
 {
 "turnin": [
@@ -4288,7 +4399,7 @@
 31.2,
 45.2
 ],
-"_line": 430
+"_line": 422
 },
 {
 "fp": "Everlook",
@@ -4299,19 +4410,16 @@
 38.6
 ],
 "radius": 20.0,
-"_line": 431
+"_line": 423
 },
 {
-"accept": [
-"Are We There, Yeti?",
-"Frostsaber Provisions"
-],
+"accept": "Are We There, Yeti?",
 "optional": true,
 "coords": [
 61.0,
 38.0
 ],
-"_line": 432
+"_line": 424
 },
 {
 "turnin": "To Winterspring!",
@@ -4321,7 +4429,7 @@
 38.0
 ],
 "text": "Only if you carried it from Felwood or Darnassus.",
-"_line": 433
+"_line": 425
 },
 {
 "accept": [
@@ -4333,18 +4441,7 @@
 61.0,
 38.0
 ],
-"_line": 434
-},
-{
-"complete": "Frostsaber Provisions",
-"optional": true,
-"coords": [
-50.0,
-25.0
-],
-"radius": 250.0,
-"text": "Chillwind Chimaeras (meat) and Shardtooth Bears (bear meat) north of the road.",
-"_line": 435
+"_line": 426
 },
 {
 "complete": "Are We There, Yeti?",
@@ -4355,7 +4452,7 @@
 ],
 "radius": 120.0,
 "text": "Ice Thistle Yetis in the Owl Wing Thicket / Ice Thistle Hills.",
-"_line": 437
+"_line": 427
 },
 {
 "complete": [
@@ -4369,11 +4466,10 @@
 ],
 "radius": 300.0,
 "text": "Moontouched / Berserk Owlbeasts in the south.",
-"_line": 439
+"_line": 429
 },
 {
 "turnin": [
-"Frostsaber Provisions",
 "Are We There, Yeti?",
 "Enraged Wildkin",
 "Wildkin of Elune"
@@ -4383,7 +4479,7 @@
 61.0,
 38.0
 ],
-"_line": 441
+"_line": 431
 },
 {
 "turnin": "Winterfall Activity",
@@ -4392,7 +4488,7 @@
 27.7,
 34.5
 ],
-"_line": 442
+"_line": 432
 },
 {
 "level": 56.0,
@@ -4402,17 +4498,17 @@
 ],
 "radius": 400.0,
 "text": "Grind Winterfall furbolgs (great Timbermaw rep and Firewater) until 56.",
-"_line": 443
+"_line": 433
 },
 {
 "train": "Ironforge",
 "zone": "Ironforge",
 "fly": "Rut'theran Village",
 "text": "Fly Everlook -> Rut'theran -> Auberdine, boat to Menethil, fly to Ironforge. Train 54/56 skills, then fly to Chillwind Camp (or Southshore and ride north).",
-"_line": 445
+"_line": 435
 }
 ],
-"_line": 415,
+"_line": 407,
 "name": "Winterspring 54-56",
 "file": "Guides/Alliance_30-60.lua"
 },
@@ -4427,7 +4523,7 @@
 "accept": "A Call to Arms: The Plaguelands!",
 "optional": true,
 "text": "Herald notice in Ironforge/Stormwind - grab it on the way.",
-"_line": 455
+"_line": 445
 },
 {
 "fp": "Chillwind Camp",
@@ -4438,7 +4534,7 @@
 85.1
 ],
 "radius": 20.0,
-"_line": 456
+"_line": 446
 },
 {
 "turnin": "A Call to Arms: The Plaguelands!",
@@ -4448,7 +4544,7 @@
 42.7,
 84.0
 ],
-"_line": 457
+"_line": 447
 },
 {
 "accept": "Clear the Way",
@@ -4458,7 +4554,7 @@
 42.7,
 84.0
 ],
-"_line": 458
+"_line": 448
 },
 {
 "accept": "The Scourge Cauldrons",
@@ -4468,7 +4564,7 @@
 43.4,
 84.8
 ],
-"_line": 459
+"_line": 449
 },
 {
 "accept": "All Along the Watchtowers",
@@ -4477,7 +4573,7 @@
 42.7,
 84.0
 ],
-"_line": 460
+"_line": 450
 },
 {
 "turnin": "The Scourge Cauldrons",
@@ -4486,7 +4582,7 @@
 43.4,
 84.8
 ],
-"_line": 461
+"_line": 451
 },
 {
 "accept": "Target: Felstone Field",
@@ -4495,7 +4591,7 @@
 43.4,
 84.8
 ],
-"_line": 462
+"_line": 452
 },
 {
 "complete": "Clear the Way",
@@ -4506,7 +4602,7 @@
 ],
 "radius": 200.0,
 "text": "Skeletal Flayers and Slavering Ghouls along the road north of camp.",
-"_line": 463
+"_line": 453
 },
 {
 "complete": "Target: Felstone Field",
@@ -4519,7 +4615,7 @@
 "text": "Kill Cauldron Lord Bilemaw at the Felstone Field cauldron, loot his key, fill the bottle.",
 "warn": "The cauldron lord brings Bilemaw adds.",
 "tip": "Clear the surrounding skeletons first.",
-"_line": 465
+"_line": 455
 },
 {
 "turnin": "Target: Felstone Field",
@@ -4529,7 +4625,7 @@
 57.0
 ],
 "text": "Use the key on the Scourge Cauldron itself.",
-"_line": 468
+"_line": 458
 },
 {
 "accept": "Return to Chillwind Camp#1",
@@ -4538,7 +4634,7 @@
 37.0,
 57.0
 ],
-"_line": 469
+"_line": 459
 },
 {
 "turnin": "Clear the Way",
@@ -4547,7 +4643,7 @@
 42.7,
 84.0
 ],
-"_line": 470
+"_line": 460
 },
 {
 "turnin": "Return to Chillwind Camp#1",
@@ -4556,7 +4652,7 @@
 43.4,
 84.8
 ],
-"_line": 471
+"_line": 461
 },
 {
 "accept": "Target: Dalson's Tears",
@@ -4565,7 +4661,7 @@
 43.4,
 84.8
 ],
-"_line": 472
+"_line": 462
 },
 {
 "complete": "Target: Dalson's Tears",
@@ -4578,7 +4674,7 @@
 "text": "Cauldron Lord Malvinious at Dalson's Tears. Check the barn for Mrs. Dalson's Diary while you're there.",
 "warn": "The barn ghosts and Wandering Skeleton patrols add quickly.",
 "tip": "Pull Malvinious away from the farmhouse.",
-"_line": 473
+"_line": 463
 },
 {
 "turnin": "Target: Dalson's Tears",
@@ -4588,7 +4684,7 @@
 51.9
 ],
 "text": "Use the key on the cauldron.",
-"_line": 476
+"_line": 466
 },
 {
 "accept": "Return to Chillwind Camp#2",
@@ -4597,7 +4693,7 @@
 46.2,
 51.9
 ],
-"_line": 477
+"_line": 467
 },
 {
 "turnin": "Return to Chillwind Camp#2",
@@ -4606,7 +4702,7 @@
 43.4,
 84.8
 ],
-"_line": 478
+"_line": 468
 },
 {
 "accept": "Target: Writhing Haunt",
@@ -4615,7 +4711,7 @@
 43.4,
 84.8
 ],
-"_line": 479
+"_line": 469
 },
 {
 "complete": "Target: Writhing Haunt",
@@ -4626,7 +4722,7 @@
 ],
 "radius": 40.0,
 "text": "Cauldron Lord Razarch at the Writhing Haunt.",
-"_line": 480
+"_line": 470
 },
 {
 "turnin": "Target: Writhing Haunt",
@@ -4636,7 +4732,7 @@
 66.0
 ],
 "text": "Use the key on the cauldron.",
-"_line": 482
+"_line": 472
 },
 {
 "accept": "Return to Chillwind Camp#3",
@@ -4645,7 +4741,7 @@
 53.0,
 66.0
 ],
-"_line": 483
+"_line": 473
 },
 {
 "complete": "All Along the Watchtowers",
@@ -4658,7 +4754,7 @@
 "text": "Andorhal: use the Beacon Torch at each of the four watchtowers.",
 "warn": "Andorhal is full of Scourge casters and Skeletal Warders.",
 "tip": "Light the towers in order around the edge; don't cross the middle.",
-"_line": 484
+"_line": 474
 },
 {
 "turnin": "Return to Chillwind Camp#3",
@@ -4667,7 +4763,7 @@
 43.4,
 84.8
 ],
-"_line": 487
+"_line": 477
 },
 {
 "accept": "Target: Gahrron's Withering",
@@ -4676,7 +4772,7 @@
 43.4,
 84.8
 ],
-"_line": 488
+"_line": 478
 },
 {
 "complete": "Target: Gahrron's Withering",
@@ -4687,7 +4783,7 @@
 ],
 "radius": 40.0,
 "text": "Cauldron Lord Soulwrath at Gahrron's Withering (east).",
-"_line": 489
+"_line": 479
 },
 {
 "turnin": "Target: Gahrron's Withering",
@@ -4697,25 +4793,25 @@
 58.0
 ],
 "text": "Use the key on the cauldron.",
-"_line": 491
+"_line": 481
 },
 {
-"accept": "Return to Chillwind Camp#4",
+"accept": 5226.0,
 "optional": true,
 "coords": [
 62.0,
 58.0
 ],
-"_line": 492
+"_line": 482
 },
 {
-"turnin": "Return to Chillwind Camp#4",
+"turnin": 5226.0,
 "optional": true,
 "coords": [
 43.4,
 84.8
 ],
-"_line": 493
+"_line": 483
 },
 {
 "accept": "Mission Accomplished!",
@@ -4724,7 +4820,7 @@
 43.4,
 84.8
 ],
-"_line": 494
+"_line": 484
 },
 {
 "turnin": [
@@ -4736,7 +4832,7 @@
 42.7,
 84.0
 ],
-"_line": 495
+"_line": 485
 },
 {
 "accept": "The Wildlife Suffers Too",
@@ -4746,7 +4842,7 @@
 53.7,
 64.7
 ],
-"_line": 496
+"_line": 486
 },
 {
 "complete": "The Wildlife Suffers Too",
@@ -4757,7 +4853,7 @@
 ],
 "radius": 300.0,
 "text": "Diseased Wolves and Plague Lurkers in the middle of the zone.",
-"_line": 497
+"_line": 487
 },
 {
 "turnin": "The Wildlife Suffers Too",
@@ -4767,7 +4863,7 @@
 53.7,
 64.7
 ],
-"_line": 499
+"_line": 489
 },
 {
 "level": 58.0,
@@ -4777,17 +4873,17 @@
 ],
 "radius": 400.0,
 "text": "Grind Scourge around Andorhal until 58 (Scourgestones are worth keeping for the Argent Dawn).",
-"_line": 500
+"_line": 490
 },
 {
 "train": "Ironforge",
 "zone": "Ironforge",
 "fly": "Ironforge",
 "text": "Fly to Ironforge and train level 58 skills, then fly back to Chillwind Camp.",
-"_line": 502
+"_line": 492
 }
 ],
-"_line": 452,
+"_line": 442,
 "name": "Western Plaguelands 56-58",
 "file": "Guides/Alliance_30-60.lua"
 },
@@ -4807,7 +4903,7 @@
 "radius": 20.0,
 "warn": "Level 58 is the minimum here - Plaguewood and Stratholme's surroundings are 60+.",
 "tip": "Stick to the road and the south until you're stronger.",
-"_line": 511
+"_line": 501
 },
 {
 "text": "Tirion Fordring's hut at Ruins of Eastwall (south-west).",
@@ -4816,7 +4912,7 @@
 43.6
 ],
 "radius": 20.0,
-"_line": 513
+"_line": 503
 },
 {
 "accept": "Of Forgotten Memories",
@@ -4826,7 +4922,7 @@
 7.6,
 43.6
 ],
-"_line": 514
+"_line": 504
 },
 {
 "complete": "Of Forgotten Memories",
@@ -4839,7 +4935,7 @@
 "text": "Mereldar Cemetery: dig at the grave to summon Taelan's ghosts and kill Mercutio Filthgorger.",
 "warn": "Digging spawns Mercutio plus several Scourge adds at once.",
 "tip": "Clear the cemetery first; pop a cooldown when the wave lands.",
-"_line": 515
+"_line": 505
 },
 {
 "turnin": "Of Forgotten Memories",
@@ -4848,7 +4944,7 @@
 7.6,
 43.6
 ],
-"_line": 518
+"_line": 508
 },
 {
 "accept": "Of Lost Honor",
@@ -4857,7 +4953,7 @@
 7.6,
 43.6
 ],
-"_line": 519
+"_line": 509
 },
 {
 "fp": "Light's Hope Chapel",
@@ -4868,7 +4964,7 @@
 57.0
 ],
 "radius": 20.0,
-"_line": 520
+"_line": 510
 },
 {
 "accept": [
@@ -4880,7 +4976,7 @@
 81.0,
 57.0
 ],
-"_line": 521
+"_line": 511
 },
 {
 "accept": "The Restless Souls",
@@ -4889,7 +4985,7 @@
 81.0,
 57.0
 ],
-"_line": 522
+"_line": 512
 },
 {
 "text": "Ride south-west to Darrowshire.",
@@ -4898,7 +4994,7 @@
 85.0
 ],
 "radius": 30.0,
-"_line": 523
+"_line": 513
 },
 {
 "turnin": "Little Pamela",
@@ -4908,7 +5004,7 @@
 90.8
 ],
 "text": "Pamela Redpath sits in her house in Darrowshire.",
-"_line": 524
+"_line": 514
 },
 {
 "accept": "Pamela's Doll",
@@ -4917,7 +5013,7 @@
 36.4,
 90.8
 ],
-"_line": 525
+"_line": 515
 },
 {
 "complete": "Pamela's Doll",
@@ -4930,7 +5026,7 @@
 "text": "Search the Darrowshire houses for the doll's head, left side and right side.",
 "warn": "Each search may spawn a Darrowshire Poltergeist.",
 "tip": "Search one house at a time with full health.",
-"_line": 526
+"_line": 516
 },
 {
 "turnin": "Pamela's Doll",
@@ -4939,7 +5035,7 @@
 36.4,
 90.8
 ],
-"_line": 529
+"_line": 519
 },
 {
 "complete": "Of Lost Honor",
@@ -4950,7 +5046,7 @@
 ],
 "radius": 80.0,
 "text": "Find Tirion's lost token in the Infectis Scar area.",
-"_line": 530
+"_line": 520
 },
 {
 "complete": "Zaeldarr the Outcast",
@@ -4961,7 +5057,7 @@
 ],
 "radius": 50.0,
 "text": "Zaeldarr the Outcast in the Scarlet camp near Darrowshire.",
-"_line": 532
+"_line": 522
 },
 {
 "complete": "Hameya's Plea",
@@ -4972,7 +5068,7 @@
 ],
 "radius": 60.0,
 "text": "Hameya's Plea: kill the named Scourge and recover the item east of Light's Hope.",
-"_line": 534
+"_line": 524
 },
 {
 "turnin": [
@@ -4985,7 +5081,7 @@
 81.0,
 57.0
 ],
-"_line": 536
+"_line": 526
 },
 {
 "turnin": "Of Lost Honor",
@@ -4994,7 +5090,7 @@
 7.6,
 43.6
 ],
-"_line": 537
+"_line": 527
 },
 {
 "level": 59.0,
@@ -5004,14 +5100,14 @@
 ],
 "radius": 500.0,
 "text": "Grind Scourge / Plaguebats around Corin's Crossing and Pestilent Scar until 59.",
-"_line": 538
+"_line": 528
 },
 {
 "train": "Ironforge",
 "zone": "Ironforge",
 "fly": "Ironforge",
 "text": "Hearth or fly to Ironforge and train level 58/60 skills.",
-"_line": 540
+"_line": 530
 },
 {
 "level": 60.0,
@@ -5022,10 +5118,10 @@
 "radius": 500.0,
 "text": "Final push: grind in the Eastern Plaguelands (or run Stratholme/Scholomance quest turn-ins). Congratulations on 60!",
 "tip": "Hand in Scourgestones at Light's Hope for Argent Dawn reputation on the way.",
-"_line": 541
+"_line": 531
 }
 ],
-"_line": 508,
+"_line": 498,
 "name": "Eastern Plaguelands 58-60",
 "file": "Guides/Alliance_30-60.lua"
 },
@@ -6181,27 +6277,14 @@
 "_line": 16
 },
 {
-"accept": "A New Threat",
-"npc": "Balir Frosthammer",
-"coords": [
-29.7,
-71.3
-],
-"_line": 18
-},
-{
-"complete": [
-"Dwarven Outfitters",
-"A New Threat"
-],
+"complete": "Dwarven Outfitters",
 "coords": [
 26.0,
 74.0
 ],
 "radius": 120.0,
-"text": "Ragged Young Wolves for Tough Wolf Meat, and Rockjaw Troggs west of Anvilmar.",
-"tip": "Tag every wolf you pass on the way to the troggs.",
-"_line": 19
+"text": "Ragged Young Wolves for Tough Wolf Meat, just west of Anvilmar.",
+"_line": 18
 },
 {
 "turnin": "Dwarven Outfitters",
@@ -6210,7 +6293,27 @@
 29.9,
 71.2
 ],
-"_line": 22
+"_line": 20
+},
+{
+"accept": "A New Threat",
+"npc": "Balir Frosthammer",
+"coords": [
+29.7,
+71.3
+],
+"text": "Balir only offers this once Dwarven Outfitters is handed in.",
+"_line": 21
+},
+{
+"complete": "A New Threat",
+"coords": [
+26.0,
+74.0
+],
+"radius": 120.0,
+"text": "Rockjaw Troggs and Burly Rockjaw Troggs west of Anvilmar.",
+"_line": 23
 },
 {
 "turnin": "A New Threat",
@@ -6219,7 +6322,7 @@
 29.7,
 71.3
 ],
-"_line": 23
+"_line": 24
 },
 {
 "accept": "Coldridge Valley Mail Delivery#1",
@@ -6228,7 +6331,7 @@
 29.9,
 71.2
 ],
-"_line": 24
+"_line": 25
 },
 {
 "text": "Your class trainer is inside Anvilmar - pick up your class letter quest if you were given one.",
@@ -6237,7 +6340,7 @@
 68.0
 ],
 "radius": 10.0,
-"_line": 25
+"_line": 26
 },
 {
 "train": "Anvilmar",
@@ -6247,7 +6350,7 @@
 68.0
 ],
 "text": "Train your first new skills inside Anvilmar.",
-"_line": 27
+"_line": 28
 },
 {
 "accept": [
@@ -6259,7 +6362,7 @@
 66.4
 ],
 "text": "Durnan Furcutter inside Anvilmar - a fast delivery if offered.",
-"_line": 29
+"_line": 30
 },
 {
 "turnin": "Coldridge Valley Mail Delivery#1",
@@ -6269,7 +6372,7 @@
 71.4
 ],
 "text": "Talin Keeneye at the camp west of Anvilmar.",
-"_line": 31
+"_line": 32
 },
 {
 "accept": [
@@ -6281,7 +6384,7 @@
 22.6,
 71.4
 ],
-"_line": 33
+"_line": 34
 },
 {
 "complete": "The Boar Hunter",
@@ -6291,7 +6394,7 @@
 ],
 "radius": 120.0,
 "text": "Small Crag Boars around Talin's camp.",
-"_line": 34
+"_line": 35
 },
 {
 "turnin": "The Boar Hunter",
@@ -6300,7 +6403,7 @@
 22.6,
 71.4
 ],
-"_line": 35
+"_line": 36
 },
 {
 "turnin": "Coldridge Valley Mail Delivery#2",
@@ -6310,7 +6413,7 @@
 75.9
 ],
 "text": "Grelin Whitebeard camps south of Talin, by the troll cave.",
-"_line": 36
+"_line": 37
 },
 {
 "accept": "The Troll Cave",
@@ -6319,7 +6422,7 @@
 25.0,
 75.9
 ],
-"_line": 38
+"_line": 39
 },
 {
 "complete": "The Troll Cave",
@@ -6329,7 +6432,7 @@
 ],
 "radius": 80.0,
 "text": "Frostmane Troll Whelps outside and just inside the cave.",
-"_line": 39
+"_line": 40
 },
 {
 "turnin": "The Troll Cave",
@@ -6338,7 +6441,7 @@
 25.0,
 75.9
 ],
-"_line": 41
+"_line": 42
 },
 {
 "accept": "The Stolen Journal",
@@ -6347,7 +6450,7 @@
 25.0,
 75.9
 ],
-"_line": 42
+"_line": 43
 },
 {
 "complete": "The Stolen Journal",
@@ -6359,7 +6462,7 @@
 "text": "Grik'nir the Cold at the back of the troll cave.",
 "warn": "Grik'nir is level 5 with a frost slow, and the cave fills up with whelps.",
 "tip": "Clear the whelps on the way in and fight him at full health and mana.",
-"_line": 43
+"_line": 44
 },
 {
 "turnin": "The Stolen Journal",
@@ -6368,7 +6471,7 @@
 25.0,
 75.9
 ],
-"_line": 47
+"_line": 48
 },
 {
 "accept": "Senir's Observations#1",
@@ -6377,7 +6480,7 @@
 25.0,
 75.9
 ],
-"_line": 48
+"_line": 49
 },
 {
 "turnin": "Scalding Mornbrew Delivery",
@@ -6386,7 +6489,7 @@
 28.8,
 66.4
 ],
-"_line": 49
+"_line": 50
 },
 {
 "accept": "Bring Back the Mug",
@@ -6395,7 +6498,7 @@
 28.8,
 66.4
 ],
-"_line": 50
+"_line": 51
 },
 {
 "turnin": "Senir's Observations#1",
@@ -6405,7 +6508,7 @@
 71.8
 ],
 "text": "Mountaineer Thalos guards the tunnel east of Anvilmar.",
-"_line": 51
+"_line": 52
 },
 {
 "accept": "Senir's Observations#2",
@@ -6414,7 +6517,7 @@
 33.9,
 71.8
 ],
-"_line": 53
+"_line": 54
 },
 {
 "level": 6.0,
@@ -6424,7 +6527,7 @@
 ],
 "radius": 300.0,
 "text": "Grind troggs or wolves to 6 if needed, then take the tunnel north-east.",
-"_line": 54
+"_line": 55
 }
 ],
 "_line": 12,
@@ -6450,7 +6553,7 @@
 52.6
 ],
 "radius": 15.0,
-"_line": 63
+"_line": 64
 },
 {
 "turnin": "Senir's Observations#2",
@@ -6459,7 +6562,7 @@
 46.8,
 53.0
 ],
-"_line": 65
+"_line": 66
 },
 {
 "turnin": "Bring Back the Mug",
@@ -6468,7 +6571,7 @@
 47.4,
 52.6
 ],
-"_line": 66
+"_line": 67
 },
 {
 "accept": "Beer Basted Boar Ribs",
@@ -6478,7 +6581,7 @@
 52.4
 ],
 "text": "Buy Rhapsody Malt from the innkeeper for this one.",
-"_line": 67
+"_line": 68
 },
 {
 "accept": [
@@ -6491,7 +6594,7 @@
 45.8,
 49.4
 ],
-"_line": 69
+"_line": 70
 },
 {
 "train": "Kharanos",
@@ -6501,7 +6604,7 @@
 52.0
 ],
 "text": "Class trainers are in and around the inn.",
-"_line": 70
+"_line": 71
 },
 {
 "accept": "Frostmane Hold",
@@ -6511,7 +6614,7 @@
 46.8,
 53.0
 ],
-"_line": 71
+"_line": 72
 },
 {
 "turnin": "Tools for Steelgrill",
@@ -6522,7 +6625,7 @@
 49.1
 ],
 "text": "Steelgrill's Depot, east of Kharanos.",
-"_line": 72
+"_line": 73
 },
 {
 "accept": [
@@ -6535,7 +6638,7 @@
 48.6
 ],
 "text": "Pilot Bellowfiz and Pilot Stonegear at the depot.",
-"_line": 74
+"_line": 75
 },
 {
 "complete": [
@@ -6548,7 +6651,7 @@
 ],
 "radius": 300.0,
 "text": "Crag Boars (ribs and boar meat) and bears (thick fur) north of the road.",
-"_line": 76
+"_line": 77
 },
 {
 "complete": "The Grizzled Den",
@@ -6561,7 +6664,7 @@
 "text": "Wendigos in the Grizzled Den, south-west of Kharanos.",
 "warn": "Wendigos pile up deeper in the den.",
 "tip": "Stay near the entrance and pull them out one at a time.",
-"_line": 78
+"_line": 79
 },
 {
 "turnin": "The Grizzled Den",
@@ -6570,7 +6673,7 @@
 49.6,
 48.6
 ],
-"_line": 81
+"_line": 82
 },
 {
 "turnin": "Stocking Jetsteam",
@@ -6579,7 +6682,7 @@
 49.6,
 48.6
 ],
-"_line": 82
+"_line": 83
 },
 {
 "accept": "Evershine",
@@ -6588,7 +6691,7 @@
 49.6,
 48.6
 ],
-"_line": 83
+"_line": 84
 },
 {
 "turnin": "Beer Basted Boar Ribs",
@@ -6597,7 +6700,7 @@
 46.8,
 52.4
 ],
-"_line": 84
+"_line": 85
 },
 {
 "complete": "Frostmane Hold",
@@ -6610,7 +6713,7 @@
 "text": "Explore Frostmane Hold (far west) and kill Frostmane Headhunters.",
 "warn": "Frostmane Seers and Headhunters pack the cave.",
 "tip": "Clear the outside first and only go in as far as the exploration credit.",
-"_line": 85
+"_line": 86
 },
 {
 "turnin": "Ammo for Rumbleshot",
@@ -6621,7 +6724,7 @@
 65.1
 ],
 "text": "Rumbleshot's camp, south of the Grizzled Den.",
-"_line": 88
+"_line": 89
 },
 {
 "turnin": "Evershine",
@@ -6632,7 +6735,7 @@
 45.7
 ],
 "text": "Rejold Barleybrew by the lake, west of Kharanos.",
-"_line": 90
+"_line": 91
 },
 {
 "accept": [
@@ -6645,7 +6748,7 @@
 30.2,
 45.7
 ],
-"_line": 92
+"_line": 93
 },
 {
 "complete": "The Perfect Stout",
@@ -6656,7 +6759,7 @@
 ],
 "radius": 150.0,
 "text": "Shimmerweed baskets / Frostmane Seers on Shimmer Ridge.",
-"_line": 93
+"_line": 94
 },
 {
 "complete": "A Favor for Evershine",
@@ -6667,7 +6770,7 @@
 ],
 "radius": 300.0,
 "text": "Ice Claw Bears, Elder Crag Boars and Snow Leopards west of Kharanos.",
-"_line": 95
+"_line": 96
 },
 {
 "turnin": [
@@ -6680,7 +6783,7 @@
 30.2,
 45.7
 ],
-"_line": 97
+"_line": 98
 },
 {
 "turnin": "Frostmane Hold",
@@ -6690,7 +6793,7 @@
 46.8,
 53.0
 ],
-"_line": 98
+"_line": 99
 },
 {
 "accept": "Return to Bellowfiz",
@@ -6699,7 +6802,7 @@
 30.2,
 45.7
 ],
-"_line": 99
+"_line": 100
 },
 {
 "turnin": "Return to Bellowfiz",
@@ -6708,7 +6811,7 @@
 49.6,
 48.6
 ],
-"_line": 100
+"_line": 101
 },
 {
 "accept": "Operation Recombobulation",
@@ -6718,7 +6821,7 @@
 45.9,
 49.4
 ],
-"_line": 101
+"_line": 102
 },
 {
 "complete": "Operation Recombobulation",
@@ -6731,7 +6834,7 @@
 "text": "Leper Gnomes outside Gnomeregan's entrance for Gears and Cogs.",
 "warn": "Leper gnomes come in small groups around the entrance.",
 "tip": "Pull from the edge of the courtyard.",
-"_line": 102
+"_line": 103
 },
 {
 "turnin": "Operation Recombobulation",
@@ -6740,7 +6843,7 @@
 45.9,
 49.4
 ],
-"_line": 105
+"_line": 106
 },
 {
 "text": "Head east to Gol'Bolar Quarry.",
@@ -6749,7 +6852,7 @@
 55.0
 ],
 "radius": 20.0,
-"_line": 106
+"_line": 107
 },
 {
 "accept": [
@@ -6762,7 +6865,7 @@
 55.9
 ],
 "text": "Senator Mehr Stonehallow and Foreman Stonebrow at the quarry.",
-"_line": 107
+"_line": 108
 },
 {
 "complete": [
@@ -6778,7 +6881,7 @@
 "text": "Rockjaw Bonesnappers and Skullthumpers in the quarry.",
 "warn": "The quarry floor is crowded with troggs.",
 "tip": "Work down from the ramp so you only pull one or two at a time.",
-"_line": 109
+"_line": 110
 },
 {
 "turnin": [
@@ -6790,7 +6893,7 @@
 68.9,
 55.9
 ],
-"_line": 112
+"_line": 113
 },
 {
 "level": 10.0,
@@ -6800,13 +6903,13 @@
 ],
 "radius": 300.0,
 "text": "Grind troggs to 10 if you're short.",
-"_line": 113
+"_line": 114
 },
 {
 "train": "Kharanos or Ironforge",
 "zone": "Dun Morogh",
 "text": "Train level 10 skills (warlocks/hunters: your level 10 pet quest starts here).",
-"_line": 114
+"_line": 115
 },
 {
 "level": 11.0,
@@ -6816,7 +6919,7 @@
 ],
 "radius": 300.0,
 "text": "Grind to 11, or move on - Westfall catches you up.",
-"_line": 116
+"_line": 117
 },
 {
 "text": "Ironforge -> Deeprun Tram -> Stormwind, then run south through Elwynn to Westfall (Sentinel Hill).",
@@ -6827,10 +6930,10 @@
 ],
 "radius": 15.0,
 "tip": "Pick up the Stormwind flight path as you pass through.",
-"_line": 117
+"_line": 118
 }
 ],
-"_line": 59,
+"_line": 60,
 "name": "Dun Morogh 6-11",
 "file": "Guides/Alliance_Starts.lua"
 },
@@ -6851,7 +6954,7 @@
 58.7,
 44.3
 ],
-"_line": 131
+"_line": 132
 },
 {
 "complete": "The Balance of Nature#1",
@@ -6861,7 +6964,7 @@
 ],
 "radius": 120.0,
 "text": "Young Nightsabers and Young Thistle Boars around Aldrassil.",
-"_line": 132
+"_line": 133
 },
 {
 "turnin": "The Balance of Nature#1",
@@ -6870,7 +6973,7 @@
 58.7,
 44.3
 ],
-"_line": 134
+"_line": 135
 },
 {
 "accept": "The Balance of Nature#2",
@@ -6879,7 +6982,7 @@
 58.7,
 44.3
 ],
-"_line": 135
+"_line": 136
 },
 {
 "accept": "The Woodland Protector#1",
@@ -6889,7 +6992,7 @@
 57.8,
 45.1
 ],
-"_line": 136
+"_line": 137
 },
 {
 "turnin": "The Woodland Protector#1",
@@ -6898,7 +7001,7 @@
 57.8,
 45.1
 ],
-"_line": 137
+"_line": 138
 },
 {
 "accept": "The Woodland Protector#2",
@@ -6907,7 +7010,7 @@
 57.8,
 45.1
 ],
-"_line": 138
+"_line": 139
 },
 {
 "accept": "Webwood Venom",
@@ -6917,7 +7020,7 @@
 41.7
 ],
 "text": "Gilshalan is on the first ramp of Aldrassil.",
-"_line": 139
+"_line": 140
 },
 {
 "train": "Aldrassil",
@@ -6927,7 +7030,7 @@
 40.4
 ],
 "text": "Class trainers are up in Aldrassil.",
-"_line": 141
+"_line": 142
 },
 {
 "complete": [
@@ -6940,7 +7043,7 @@
 ],
 "radius": 200.0,
 "text": "Mangy Nightsabers and Thistle Boars north of Aldrassil; Grells and Grellkin drop Fel Moss.",
-"_line": 142
+"_line": 143
 },
 {
 "complete": "Webwood Venom",
@@ -6950,7 +7053,7 @@
 ],
 "radius": 60.0,
 "text": "Webwood Spiders outside Shadowthread Cave.",
-"_line": 144
+"_line": 145
 },
 {
 "turnin": [
@@ -6961,7 +7064,7 @@
 58.7,
 44.3
 ],
-"_line": 146
+"_line": 147
 },
 {
 "turnin": "Webwood Venom",
@@ -6970,7 +7073,7 @@
 57.8,
 41.7
 ],
-"_line": 147
+"_line": 148
 },
 {
 "accept": "Webwood Egg",
@@ -6979,7 +7082,7 @@
 57.8,
 41.7
 ],
-"_line": 148
+"_line": 149
 },
 {
 "accept": "A Friend in Need",
@@ -6989,7 +7092,7 @@
 56.7,
 31.6
 ],
-"_line": 149
+"_line": 150
 },
 {
 "complete": "Webwood Egg",
@@ -7001,7 +7104,7 @@
 "text": "The egg is at the very back of Shadowthread Cave.",
 "warn": "Shadowthread Cave is packed with spiders that respawn quickly.",
 "tip": "Follow the left wall, grab the egg and walk straight back out.",
-"_line": 150
+"_line": 151
 },
 {
 "turnin": "Webwood Egg",
@@ -7010,7 +7113,7 @@
 57.8,
 41.7
 ],
-"_line": 153
+"_line": 154
 },
 {
 "accept": "Tenaron's Summons",
@@ -7019,7 +7122,7 @@
 57.8,
 41.7
 ],
-"_line": 154
+"_line": 155
 },
 {
 "turnin": "Tenaron's Summons",
@@ -7029,7 +7132,7 @@
 39.4
 ],
 "text": "Top of Aldrassil.",
-"_line": 155
+"_line": 156
 },
 {
 "accept": "Crown of the Earth#1",
@@ -7038,7 +7141,7 @@
 59.2,
 39.4
 ],
-"_line": 156
+"_line": 157
 },
 {
 "complete": "Crown of the Earth#1",
@@ -7048,7 +7151,7 @@
 ],
 "radius": 15.0,
 "text": "Fill the Jade Phial at the moonwell north of Aldrassil.",
-"_line": 157
+"_line": 158
 },
 {
 "turnin": "Crown of the Earth#1",
@@ -7057,7 +7160,7 @@
 59.2,
 39.4
 ],
-"_line": 159
+"_line": 160
 },
 {
 "accept": "Crown of the Earth#2",
@@ -7066,7 +7169,7 @@
 59.2,
 39.4
 ],
-"_line": 160
+"_line": 161
 },
 {
 "turnin": "A Friend in Need",
@@ -7076,7 +7179,7 @@
 54.6,
 32.9
 ],
-"_line": 161
+"_line": 162
 },
 {
 "accept": "Iverron's Antidote#1",
@@ -7086,7 +7189,7 @@
 54.6,
 32.9
 ],
-"_line": 162
+"_line": 163
 },
 {
 "complete": "Iverron's Antidote#1",
@@ -7097,7 +7200,7 @@
 ],
 "radius": 150.0,
 "text": "Hyacinth Mushrooms (grells), Moonpetal Lilies (by the water) and Webwood Ichor (spiders).",
-"_line": 163
+"_line": 164
 },
 {
 "turnin": "Iverron's Antidote#1",
@@ -7106,7 +7209,7 @@
 54.6,
 32.9
 ],
-"_line": 165
+"_line": 166
 },
 {
 "accept": "Iverron's Antidote#2",
@@ -7115,7 +7218,7 @@
 54.6,
 32.9
 ],
-"_line": 166
+"_line": 167
 },
 {
 "turnin": "Iverron's Antidote#2",
@@ -7125,7 +7228,7 @@
 56.7,
 31.6
 ],
-"_line": 167
+"_line": 168
 },
 {
 "accept": "Dolanaar Delivery",
@@ -7135,7 +7238,7 @@
 54.6,
 32.9
 ],
-"_line": 168
+"_line": 169
 },
 {
 "level": 6.0,
@@ -7145,10 +7248,10 @@
 ],
 "radius": 300.0,
 "text": "Grind to 6 if needed, then take the ramp south-west toward Dolanaar.",
-"_line": 169
+"_line": 170
 }
 ],
-"_line": 127,
+"_line": 128,
 "name": "Shadowglen 1-6",
 "file": "Guides/Alliance_Starts.lua"
 },
@@ -7170,7 +7273,7 @@
 59.8
 ],
 "radius": 15.0,
-"_line": 178
+"_line": 179
 },
 {
 "turnin": "Dolanaar Delivery",
@@ -7180,7 +7283,7 @@
 55.6,
 59.8
 ],
-"_line": 179
+"_line": 180
 },
 {
 "turnin": "Crown of the Earth#2",
@@ -7189,7 +7292,7 @@
 56.2,
 61.6
 ],
-"_line": 180
+"_line": 181
 },
 {
 "accept": "Crown of the Earth#3",
@@ -7198,7 +7301,7 @@
 56.2,
 61.6
 ],
-"_line": 181
+"_line": 182
 },
 {
 "accept": [
@@ -7210,7 +7313,7 @@
 60.4,
 56.2
 ],
-"_line": 182
+"_line": 183
 },
 {
 "accept": "A Troubling Breeze",
@@ -7220,7 +7323,7 @@
 55.6,
 56.9
 ],
-"_line": 183
+"_line": 184
 },
 {
 "accept": "Denalan's Earth",
@@ -7230,7 +7333,7 @@
 56.2,
 61.6
 ],
-"_line": 184
+"_line": 185
 },
 {
 "accept": "The Emerald Dreamcatcher",
@@ -7240,7 +7343,7 @@
 55.6,
 50.4
 ],
-"_line": 185
+"_line": 186
 },
 {
 "accept": "Twisted Hatred",
@@ -7249,7 +7352,7 @@
 55.6,
 57.0
 ],
-"_line": 186
+"_line": 187
 },
 {
 "train": "Dolanaar",
@@ -7258,7 +7361,7 @@
 56.0,
 60.0
 ],
-"_line": 187
+"_line": 188
 },
 {
 "complete": "Crown of the Earth#3",
@@ -7268,7 +7371,7 @@
 ],
 "radius": 15.0,
 "text": "Starbreeze moonwell, east of Dolanaar.",
-"_line": 188
+"_line": 189
 },
 {
 "turnin": "A Troubling Breeze",
@@ -7278,7 +7381,7 @@
 66.3,
 58.6
 ],
-"_line": 189
+"_line": 190
 },
 {
 "accept": "Gnarlpine Corruption",
@@ -7287,7 +7390,7 @@
 66.3,
 58.6
 ],
-"_line": 190
+"_line": 191
 },
 {
 "complete": "The Emerald Dreamcatcher",
@@ -7300,7 +7403,7 @@
 "text": "Starbreeze Village: the dreamcatcher is upstairs in one of the ruined houses.",
 "warn": "Gnarlpine furbolgs fill the village.",
 "tip": "Clear the house entrance before you go up.",
-"_line": 191
+"_line": 192
 },
 {
 "complete": "Zenn's Bidding",
@@ -7311,7 +7414,7 @@
 ],
 "radius": 300.0,
 "text": "Nightsaber Pelts, Strigid Owl Feathers and Webwood Spider Silk as you travel.",
-"_line": 194
+"_line": 195
 },
 {
 "turnin": "Denalan's Earth",
@@ -7322,7 +7425,7 @@
 68.5
 ],
 "text": "Denalan, by Lake Al'Ameth.",
-"_line": 196
+"_line": 197
 },
 {
 "accept": [
@@ -7335,7 +7438,7 @@
 60.9,
 68.5
 ],
-"_line": 197
+"_line": 198
 },
 {
 "complete": [
@@ -7349,7 +7452,7 @@
 ],
 "radius": 150.0,
 "text": "Timberlings around the lake drop seeds; sprouts sit on the ground.",
-"_line": 198
+"_line": 199
 },
 {
 "turnin": [
@@ -7362,12 +7465,12 @@
 60.9,
 68.5
 ],
-"_line": 200
+"_line": 201
 },
 {
 "complete": "Crown of the Earth#3",
 "text": "If not done yet, fill the phial at Starbreeze.",
-"_line": 201
+"_line": 202
 },
 {
 "turnin": [
@@ -7379,7 +7482,7 @@
 56.2,
 61.6
 ],
-"_line": 202
+"_line": 203
 },
 {
 "accept": "Crown of the Earth#4",
@@ -7388,7 +7491,7 @@
 56.2,
 61.6
 ],
-"_line": 203
+"_line": 204
 },
 {
 "turnin": [
@@ -7400,7 +7503,7 @@
 56.0,
 58.0
 ],
-"_line": 204
+"_line": 205
 },
 {
 "accept": "Ferocitas the Dream Eater",
@@ -7410,7 +7513,7 @@
 55.6,
 50.4
 ],
-"_line": 205
+"_line": 206
 },
 {
 "complete": "Ferocitas the Dream Eater",
@@ -7421,7 +7524,7 @@
 ],
 "radius": 60.0,
 "text": "Ferocitas and Gnarlpine Mystics north-east of Dolanaar.",
-"_line": 206
+"_line": 207
 },
 {
 "turnin": "Ferocitas the Dream Eater",
@@ -7430,7 +7533,7 @@
 55.6,
 50.4
 ],
-"_line": 208
+"_line": 209
 },
 {
 "complete": "Crown of the Earth#4",
@@ -7441,7 +7544,7 @@
 ],
 "radius": 15.0,
 "text": "Ban'ethil moonwell, north-west.",
-"_line": 209
+"_line": 210
 },
 {
 "complete": "Twisted Hatred",
@@ -7454,7 +7557,7 @@
 "text": "Lord Melenas at the bottom of Fel Rock.",
 "warn": "Fel Rock is crowded with Burning Blade cultists, and Lord Melenas shadow-bolts hard.",
 "tip": "Clear the ramps slowly and rest before Melenas.",
-"_line": 211
+"_line": 212
 },
 {
 "turnin": [
@@ -7466,7 +7569,7 @@
 56.0,
 60.0
 ],
-"_line": 214
+"_line": 215
 },
 {
 "accept": "Crown of the Earth#5",
@@ -7475,7 +7578,7 @@
 56.2,
 61.6
 ],
-"_line": 215
+"_line": 216
 },
 {
 "complete": "Crown of the Earth#5",
@@ -7486,7 +7589,7 @@
 ],
 "radius": 15.0,
 "text": "Pools of Arlithrien moonwell, south-west.",
-"_line": 216
+"_line": 217
 },
 {
 "turnin": "Crown of the Earth#5",
@@ -7495,7 +7598,7 @@
 56.2,
 61.6
 ],
-"_line": 218
+"_line": 219
 },
 {
 "level": 10.0,
@@ -7505,13 +7608,13 @@
 ],
 "radius": 400.0,
 "text": "Grind Gnarlpine furbolgs to 10 if needed.",
-"_line": 219
+"_line": 220
 },
 {
 "train": "Dolanaar or Darnassus",
 "zone": "Teldrassil",
 "text": "Train level 10 skills (druids: start your bear form quest).",
-"_line": 220
+"_line": 221
 },
 {
 "level": 11.0,
@@ -7521,7 +7624,7 @@
 ],
 "radius": 400.0,
 "text": "Grind to 11, or move on.",
-"_line": 221
+"_line": 222
 },
 {
 "text": "Run west to Darnassus, take the portal to Rut'theran Village and the boat to Auberdine (Darkshore).",
@@ -7531,10 +7634,10 @@
 44.3
 ],
 "radius": 15.0,
-"_line": 222
+"_line": 223
 }
 ],
-"_line": 174,
+"_line": 175,
 "name": "Teldrassil 6-11",
 "file": "Guides/Alliance_Starts.lua"
 },
@@ -7557,7 +7660,7 @@
 45.6
 ],
 "radius": 15.0,
-"_line": 232
+"_line": 233
 },
 {
 "accept": "Washed Ashore#1",
@@ -7567,7 +7670,7 @@
 36.6,
 45.6
 ],
-"_line": 233
+"_line": 234
 },
 {
 "accept": "Bashal'Aran#1",
@@ -7577,7 +7680,7 @@
 44.2,
 36.3
 ],
-"_line": 234
+"_line": 235
 },
 {
 "accept": "The Red Crystal",
@@ -7587,7 +7690,7 @@
 37.7,
 43.4
 ],
-"_line": 235
+"_line": 236
 },
 {
 "accept": "Buzzbox 827",
@@ -7597,7 +7700,7 @@
 36.3,
 46.6
 ],
-"_line": 236
+"_line": 237
 },
 {
 "accept": "How Big a Threat?#1",
@@ -7607,7 +7710,7 @@
 39.4,
 43.5
 ],
-"_line": 237
+"_line": 238
 },
 {
 "accept": "Plagued Lands",
@@ -7617,7 +7720,7 @@
 38.8,
 43.4
 ],
-"_line": 238
+"_line": 239
 },
 {
 "complete": [
@@ -7631,7 +7734,7 @@
 ],
 "radius": 200.0,
 "text": "Sea Creature Bones on the beach south of town; crabs along the shore.",
-"_line": 239
+"_line": 240
 },
 {
 "complete": "How Big a Threat?#1",
@@ -7642,7 +7745,7 @@
 ],
 "radius": 40.0,
 "text": "Scout the furbolg camp south-east of Auberdine.",
-"_line": 241
+"_line": 242
 },
 {
 "complete": "Plagued Lands",
@@ -7655,7 +7758,7 @@
 "text": "Use the Tharnariun's Hope trap on a Rabid Thistle Bear.",
 "warn": "Rabid bears can give you a disease.",
 "tip": "Trap one away from others and let the trap hold it.",
-"_line": 243
+"_line": 244
 },
 {
 "turnin": [
@@ -7669,7 +7772,7 @@
 37.0,
 44.0
 ],
-"_line": 246
+"_line": 247
 },
 {
 "accept": [
@@ -7682,7 +7785,7 @@
 37.0,
 44.0
 ],
-"_line": 247
+"_line": 248
 },
 {
 "complete": "The Red Crystal",
@@ -7693,7 +7796,7 @@
 ],
 "radius": 20.0,
 "text": "The red crystal is up on the hill east of town.",
-"_line": 248
+"_line": 249
 },
 {
 "turnin": "The Red Crystal",
@@ -7702,7 +7805,7 @@
 37.7,
 43.4
 ],
-"_line": 249
+"_line": 250
 },
 {
 "accept": "As Water Cascades",
@@ -7711,7 +7814,7 @@
 37.7,
 43.4
 ],
-"_line": 250
+"_line": 251
 },
 {
 "complete": "As Water Cascades",
@@ -7722,7 +7825,7 @@
 ],
 "radius": 15.0,
 "text": "Fill the tube at the Auberdine moonwell.",
-"_line": 251
+"_line": 252
 },
 {
 "turnin": "As Water Cascades",
@@ -7731,7 +7834,7 @@
 37.7,
 43.4
 ],
-"_line": 252
+"_line": 253
 },
 {
 "complete": "Bashal'Aran#1",
@@ -7742,7 +7845,7 @@
 ],
 "radius": 80.0,
 "text": "Asterion's ruins chain: Grimclaw / Deth'ryll satyrs and Asterion's medallion.",
-"_line": 253
+"_line": 254
 },
 {
 "turnin": "Bashal'Aran#1",
@@ -7752,7 +7855,7 @@
 44.2,
 36.3
 ],
-"_line": 255
+"_line": 256
 },
 {
 "complete": [
@@ -7769,7 +7872,7 @@
 "text": "Blackwood furbolgs, Moonstalkers and Rabid Thistle Bears south of town.",
 "warn": "Blackwood furbolg camps have 3-4 mobs each.",
 "tip": "Pull singles from the edge of the camp.",
-"_line": 256
+"_line": 257
 },
 {
 "turnin": [
@@ -7782,7 +7885,7 @@
 37.0,
 44.0
 ],
-"_line": 260
+"_line": 261
 },
 {
 "accept": "Tharnariun's Hope",
@@ -7791,7 +7894,7 @@
 38.8,
 43.4
 ],
-"_line": 261
+"_line": 262
 },
 {
 "level": 14.0,
@@ -7801,7 +7904,7 @@
 ],
 "radius": 400.0,
 "text": "Keep doing Darkshore's southern quests and grind to 14.",
-"_line": 262
+"_line": 263
 },
 {
 "complete": "Tharnariun's Hope",
@@ -7814,7 +7917,7 @@
 "text": "Den Mother in the cave north-east of Auberdine.",
 "warn": "The Den Mother has cubs with her.",
 "tip": "Pull her out of the cave and kill her before the cubs.",
-"_line": 263
+"_line": 264
 },
 {
 "turnin": "Tharnariun's Hope",
@@ -7823,7 +7926,7 @@
 38.8,
 43.4
 ],
-"_line": 266
+"_line": 267
 },
 {
 "level": 16.0,
@@ -7833,13 +7936,13 @@
 ],
 "radius": 500.0,
 "text": "Finish your open Darkshore quests and grind to 16 north of Auberdine.",
-"_line": 267
+"_line": 268
 },
 {
 "train": "Darnassus",
 "zone": "Darnassus",
 "text": "Boat to Rut'theran, train in Darnassus, then boat back.",
-"_line": 269
+"_line": 270
 },
 {
 "fly": "Ironforge",
@@ -7851,10 +7954,10 @@
 "radius": 15.0,
 "warn": "The Wetlands road and the Elwynn-Redridge border are far above your level.",
 "tip": "Fly and take the tram - don't run through the Wetlands at 16.",
-"_line": 270
+"_line": 271
 }
 ],
-"_line": 228,
+"_line": 229,
 "name": "Darkshore 11-16",
 "file": "Guides/Alliance_Starts.lua"
 },
@@ -7874,45 +7977,45 @@
 "level": 2.0,
 "text": "Zephras Isle: take every quest Questie shows (yellow '!') and follow the story hubs in order.",
 "tip": "Accept and turn-in are still automated, so just walk to the markers.",
-"_line": 287
+"_line": 288
 },
 {
 "level": 4.0,
 "text": "Finish the first hub's quests and reach level 4.",
-"_line": 289
+"_line": 290
 },
 {
 "train": "Zephras Isle",
 "text": "Visit your class trainer.",
-"_line": 290
+"_line": 291
 },
 {
 "level": 8.0,
 "text": "Keep following the main story and side quests to level 8.",
-"_line": 291
+"_line": 292
 },
 {
 "train": "Zephras Isle",
 "text": "Visit your class trainer.",
-"_line": 292
+"_line": 293
 },
 {
 "level": 12.0,
 "text": "Complete the island's story to level 12.",
-"_line": 293
+"_line": 294
 },
 {
 "train": "Zephras Isle",
 "text": "Train level 10-12 skills before you leave.",
-"_line": 294
+"_line": 295
 },
 {
 "text": "Leave Zephras Isle for your faction's capital (Alliance: Stormwind) and head to Westfall.",
 "tip": "Westfall is a little low for 12, so take only quests that are still worth XP (grey ones are skipped automatically).",
-"_line": 295
+"_line": 296
 }
 ],
-"_line": 283,
+"_line": 284,
 "name": "Zephras Isle 1-12",
 "file": "Guides/Alliance_Starts.lua"
 },
